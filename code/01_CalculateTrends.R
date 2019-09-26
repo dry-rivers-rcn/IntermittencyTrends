@@ -1,4 +1,5 @@
 ## 01_CalculateTrends.R
+# This script calculates the sen's slope and p-value of each metric
 
 source(file.path("code", "paths+packages.R"))
 
