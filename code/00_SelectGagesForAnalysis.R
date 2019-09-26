@@ -20,6 +20,8 @@ gages_westKS <- subset(sf_gages, state_cd == 20 & dec_long_v < -100)$site
 
 ## variables we care about:
 #  -totalnoflowperwyear = number of days with no flow per water year
+#  -totalnoflowperiods = number of discrete no flow periods per year
+#  -maxlengthnoflow = maximum no flow length
 # (variable descriptions: dir_DataAnalysis/code/Variable_explanations.xlsx)
 
 # count number of years with >= 1 no-flow day per site
