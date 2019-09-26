@@ -22,8 +22,8 @@ gages_allyears_summary <-
                    no_flow_years = sum(totalnoflowperwyear >= 1))
 
 ## subset to gages meeting criteria
-gages_out <- gages_allyears_summary[gages_allyears_summary$no_flow_years >= 10, ]
+gages_analysis <- gages_allyears_summary[gages_allyears_summary$no_flow_years >= 10, ]
 
 # save file
-gages_out %>% 
-  readr::write_csv(path = file.path("data", "00_SelectGagesForAnalysis.csv"))
+gages_analysis %>% 
+  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis.csv"))
