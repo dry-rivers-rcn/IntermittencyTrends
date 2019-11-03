@@ -10,8 +10,8 @@ gages_analysis <-
 
 ## load John's annual summary statistics
 gages_annual_summary <- 
-  file.path(dir_DataAnalysis, "data", 
-            "annual_no_flow_and_climate_metric_means_for_no_flow_sites_081919.csv") %>% 
+  file.path(dir_data, 
+            "annual_no_flow_and_climate_metrics_102719.csv") %>% 
   readr::read_csv() %>% 
   subset(site %in% gages_analysis$site)
 
@@ -45,7 +45,8 @@ for (s in 1:dim(gages_analysis)[1]){
   
   # summarize data
   df_site_out <- 
-    tibble::tibble(metric = c("noflowdays", "noflowperiods", "noflowlength"),
+    tibble::tibble(site = gages_analysis$site[s],
+                   metric = c("noflowdays", "noflowperiods", "noflowlength"),
                    slope = c(sen_noflowdays$estimates, sen_noflowperiods$estimates, sen_noflowlength$estimates),
                    p_value = c(sen_noflowdays$p.value, sen_noflowperiods$p.value, sen_noflowlength$p.value))
   

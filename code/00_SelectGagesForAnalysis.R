@@ -6,29 +6,23 @@ source(file.path("code", "paths+packages.R"))
 
 ## load John's annual summary statistics
 gages_annual_summary <- 
-  file.path(dir_DataAnalysis, "data", 
-            "annual_no_flow_and_climate_metric_means_for_no_flow_sites_081919.csv") %>% 
+  file.path(dir_data, 
+            "annual_no_flow_and_climate_metrics_102719.csv") %>% 
   readr::read_csv()
 
-## overall geomorphic/setting summary statistics
-gages_summary <- 
-  file.path(dir_DataAnalysis, "data", 
-            "mean_annual_no_flow_and_climate_metric_coefvars_for_no_flow_sites_081919_with_info.csv") %>% 
-  readr::read_csv()
+## read in HPA boundary shapefile for preliminary analysis
+sf_HPA <- 
+  sf::st_read("C:/Users/samzipper/OneDrive - The University of Kansas/GIS_GeneralFiles/HPA_Boundary/hp_bound2010.shp") %>% 
+  subset(AQUIFER == "High Plains aquifer")
 
 ## locations of stream gages
 sf_gages <- 
   file.path("data", "USGS_GageLocations.gpkg") %>% 
-  sf::st_read()
+  sf::st_read() %>% 
+  sf::st_transform(proj_crs)
 
-# read in HPA boundary shapefile for preliminary analysis
-sf_HPA <- 
-  sf::st_read("C:/Users/samzipper/OneDrive - The University of Kansas/GIS_GeneralFiles/HPA_Boundary/hp_bound2010.shp") %>% 
-  sf::st_transform(sf::st_crs(sf_gages)) %>% 
-  subset(AQUIFER == "High Plains aquifer")
-
-# subset to gages within high plains aquifer
-HPA_gages <- sf::st_within(sf_gages, sf_HPA, sparse = F)
+# subset to gages within high plains aquifer or within a chosen distance of edge (to get streams just off edge)
+HPA_gages <- sf::st_is_within_distance(sf_gages, sf_HPA, dist = 50*1000, sparse = F)  # distance units are [m]
 sf_HPA_gages <- sf_gages[HPA_gages[,1], ]
 
 ## variables we care about:
@@ -40,20 +34,11 @@ sf_HPA_gages <- sf_gages[HPA_gages[,1], ]
 # count number of years with >= 1 no-flow day per site
 gages_allyears_summary <- 
   gages_annual_summary %>% 
-  dplyr::group_by(site) %>% 
+  dplyr::group_by(site, CLASS) %>% 
   dplyr::summarize(total_flow_years = n(), 
-                   no_flow_years = sum(totalnoflowperwyear >= 1)) %>% 
-  dplyr::left_join(sf_gages, by = c("site" = "site_no")) %>% 
-  dplyr::left_join(
-    gages_summary[,c("site", "dec_lat_va", "dec_long_va", "DRAIN_SQKM", "STATE", "CLASS", "SNOW_PCT_PRECIP", 
-                     "GEOL_REEDBUSH_DOM", "GEOL_REEDBUSH_SITE", "GEOL_HUNT_DOM_DESC", "FRESHW_WITHDRAWAL", 
-                     "PCT_IRRIG_AG", "POWER_NUM_PTS", "POWER_SUM_MW", "DEVNLCD06", 
-                     "FORESTNLCD06", "PLANTNLCD06", "WATERNLCD06", "SNOWICENLCD06", 
-                     "IMPNLCD06", "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
-                     "CLAYAVE", "SILTAVE", "SANDAVE", "ECO3_SITE", "ECO3")],
-    by = "site")
+                   no_flow_years = sum(totalnoflowperwyear >= 1))
 
-## subset to gages meeting criteria and in western kansas
+## subset to gages meeting criteria and in HPA
 gages_analysis <- 
   gages_allyears_summary %>% 
   subset(site %in% sf_HPA_gages$site) %>% 
