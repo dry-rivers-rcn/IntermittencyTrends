@@ -47,7 +47,7 @@ vars_keep <-
     "srad_wm2_son", "srad_wm2_djf", "srad_wm2_mam", "pdsi_wy", "pdsi_jja", 
     "pdsi_son", "pdsi_djf", "pdsi_mam", 
     "annualfractionnoflow", 
-    "zeroflowfirst", 
+    "zeroflowcentroiddate", 
     "totalnoflowperiods")
 
 ## save sample to repository
