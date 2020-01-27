@@ -8,42 +8,51 @@ source(file.path("code", "paths+packages.R"))
 gages_annual_summary <- 
   file.path(dir_data, 
             "annual_no_flow_and_climate_metrics_102719.csv") %>% 
-  readr::read_csv()
+  readr::read_csv() %>% 
+  dplyr::rename(lat = dec_lat_va, lon = dec_long_va)
 
-## read in HPA boundary shapefile for preliminary analysis
-sf_HPA <- 
-  sf::st_read("C:/Users/samzipper/OneDrive - The University of Kansas/GIS_GeneralFiles/HPA_Boundary/hp_bound2010.shp") %>% 
-  subset(AQUIFER == "High Plains aquifer")
-
-## locations of stream gages
-sf_gages <- 
-  file.path("data", "USGS_GageLocations.gpkg") %>% 
-  sf::st_read() %>% 
-  sf::st_transform(proj_crs)
-
-# subset to gages within high plains aquifer or within a chosen distance of edge (to get streams just off edge)
-HPA_gages <- sf::st_is_within_distance(sf_gages, sf_HPA, dist = 50*1000, sparse = F)  # distance units are [m]
-sf_HPA_gages <- sf_gages[HPA_gages[,1], ]
-
-## variables we care about:
-#  -totalnoflowperwyear = number of days with no flow per water year
-#  -totalnoflowperiods = number of discrete no flow periods per year
-#  -maxlengthnoflow = maximum no flow length
-# (variable descriptions: dir_DataAnalysis/code/Variable_explanations.xlsx)
-
-# count number of years with >= 1 no-flow day per site
-gages_allyears_summary <- 
+# summarize mean no-flow days/yr
+gages_summary <-
   gages_annual_summary %>% 
-  dplyr::group_by(site, CLASS) %>% 
-  dplyr::summarize(total_flow_years = n(), 
-                   no_flow_years = sum(totalnoflowperwyear >= 1))
+  dplyr::group_by(site, CLASS, lat, lon) %>% 
+  dplyr::summarize(noflowfraction_mean = mean(annualfractionnoflow),
+                   n_years = n())
 
-## subset to gages meeting criteria and in HPA
-gages_analysis <- 
-  gages_allyears_summary %>% 
-  subset(site %in% sf_HPA_gages$site) %>% 
-  na.omit()
+# subset to gages meeting threshold
+noflowfraction_min_threshold <- 15/365   # Eng et al used 15 days
+noflowfraction_max_threshold <- 350/365  # also at least 15 no-flow days/yr
+year_threshold <- 30
 
-# save file
-gages_analysis %>% 
-  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis.csv"))
+# sites to sample
+gage_sample <- gages_summary[gages_summary$noflowfraction_mean > noflowfraction_min_threshold &
+                               gages_summary$noflowfraction_mean < noflowfraction_max_threshold &
+                               gages_summary$n_years > year_threshold, ]
+
+sum(gage_sample$CLASS == "Ref")
+sum(gage_sample$CLASS == "Non-ref")
+
+# subset annual stats for sampled gages
+gage_sample_annual <- 
+  gages_annual_summary %>% 
+  subset(site %in% gage_sample$site)
+
+vars_keep <- 
+  c("site", "wyear", "p/pet", 
+    "p_mm_wy", "p_mm_jja", "p_mm_son", "p_mm_djf", "p_mm_mam", "pet_mm_wy", 
+    "pet_mm_jja", "pet_mm_son", "pet_mm_djf", "pet_mm_mam", "T_max_c_wy", 
+    "T_max_c_jja", "T_max_c_son", "T_max_c_djf", "T_max_c_mam", "T_min_c_wy", 
+    "T_min_c_jja", "T_min_c_son", "T_min_c_djf", "T_min_c_mam", "pcumdist10days", 
+    "pcumdist50days", "pcumdist90days", "swe_mm_wy", "swe_mm_jja", 
+    "swe_mm_son", "swe_mm_djf", "swe_mm_mam", "srad_wm2_wy", "srad_wm2_jja", 
+    "srad_wm2_son", "srad_wm2_djf", "srad_wm2_mam", "pdsi_wy", "pdsi_jja", 
+    "pdsi_son", "pdsi_djf", "pdsi_mam", 
+    "annualfractionnoflow", 
+    "zeroflowfirst", 
+    "totalnoflowperiods")
+
+## save sample to repository
+gage_sample %>% 
+  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSample.csv"))
+
+gage_sample_annual[, vars_keep] %>% 
+  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv"))
