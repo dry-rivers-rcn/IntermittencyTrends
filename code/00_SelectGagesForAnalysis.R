@@ -7,14 +7,13 @@ source(file.path("code", "paths+packages.R"))
 ## load John's annual summary statistics
 gages_annual_summary <- 
   file.path(dir_data, 
-            "annual_no_flow_and_climate_metrics_102719.csv") %>% 
-  readr::read_csv() %>% 
-  dplyr::rename(lat = dec_lat_va, lon = dec_long_va)
+            "annual_no_flow_and_climate_metrics_020720_trends.csv") %>% 
+  readr::read_csv()
 
 # summarize mean no-flow days/yr
 gages_summary <-
   gages_annual_summary %>% 
-  dplyr::group_by(site, CLASS, lat, lon) %>% 
+  dplyr::group_by(gage_ID) %>% 
   dplyr::summarize(noflowfraction_mean = mean(annualfractionnoflow),
                    n_years = n())
 
