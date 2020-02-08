@@ -33,9 +33,25 @@ gage_sample_annual <-
   gages_annual_summary %>% 
   subset(gage_ID %in% gage_sample$gage_ID)
 
+## subset trends data for sampled gages
+gage_trends <- 
+  file.path(dir_data, "trends_in_no_flow_and_climate_for_no_flow_sites_34_plus_years_020720.csv") %>% 
+  readr::read_csv() %>% 
+  # remove first column - it is just the row number
+  dplyr::select(-X1) %>% 
+  # rename X - it is the metric for each column. also rename site to gage_ID to match other files
+  dplyr::rename(metric = X, gage_ID = site) %>% 
+  # subset to sites in sample
+  subset(gage_ID %in% gage_sample$gage_ID) %>% 
+  # remove 'currentwyear'
+  subset(metric != "currentwyear")
+
 ## save data to repository
 gage_sample %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
 gage_sample_annual %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv"))
+
+gage_trends %>% 
+  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
