@@ -1,113 +1,66 @@
-## 02_SeparateDrivers.R
+## SeparateDrivers.R
 # This script calculates the relative impacts of climate and anthropogenic impacts through time.
+# General goal is to build statistical relationships for reference gages and extend to nonref gages.
 
 source(file.path("code", "paths+packages.R"))
 
-## load list of gages to study
-gages_analysis <- 
-  file.path("results", "00_SelectGagesForAnalysis.csv") %>% 
-  readr::read_csv()
+## load data - gage mean properties and annual values
+gage_sample <- 
+  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
-## load John's annual summary statistics
-gages_annual_summary <- 
-  file.path(dir_data, 
-            "annual_no_flow_and_climate_metrics_102719.csv") %>% 
-  readr::read_csv() %>% 
-  subset(site %in% gages_analysis$site)
+gage_sample_annual <-
+  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv")) %>% 
+  dplyr::rename(p_pet = `p/pet`)  # need to rename to remove slash
 
-## save for joanna
-gages_annual_summary %>% 
-  readr::write_csv("C:/Users/samzipper/Desktop/DryRivers_AnnualData_HPAgages.csv")
+gage_trends <-
+  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
 
-gages_ref <- gages_analysis$site[gages_analysis$CLASS == "Ref"]
-gages_nonref <- gages_analysis$site[gages_analysis$CLASS == "Non-ref"]
+## test on a single region
+r <- "South Great Plains"
 
-## load shapefiles
-sf_gages <- 
-  file.path("data", "USGS_GageLocations.gpkg") %>% 
-  sf::st_read() %>% 
-  sf::st_transform(proj_crs)
+# subset data to region
+gage_sample_r <- subset(gage_sample, region == r)
+gage_sample_annual_r <- subset(gage_sample_annual, region == r)
 
-sf_gages_ref <- 
-  sf_gages %>% 
-  subset(site_no %in% gages_ref)
+## clean up data and get ready to fit statistical model
+# predictors and metrics to retain; to get full list of options: 
+#   dput(names(gage_sample_annual_r))
+#   dput(names(gage_sample_r))
+predictors_annual <- c("p_pet", "p_mm_wy", "pet_mm_wy", "swe_mm_wy", "srad_wm2_wy", "pdsi_wy")  # change year to year
+predictors_static <- c("dec_lat_va", "dec_long_va", "DRAIN_SQKM")  # don't change year to year
+metrics <- c("annualfractionnoflow", "zeroflowcentroiddate", "totalnoflowperiods")
 
-## for each gage: calculate sen's slope
-for (s in 1:length(gages_nonref)){
-  # grab site data
-  df_site <- 
-    gages_annual_summary %>% 
-    subset(site %in% gages_nonref[s])
- 
-  # metric
-  metric <- "totalnoflowperwyear"
-  
-  # for each site, collect predictors:
-  #  -annual precip
-  #  -annual PET
-  #  -annual P-PET
-  #  -metric value at reference gage(s)
-  predictors <- 
-    tibble::tibble(wyear = df_site$wyear,
-                   metric = dplyr::pull(df_site, metric),
-                   p_mm_wy = df_site$p_mm_wy,
-                   pet_mm_wy = df_site$pet_mm_wy) %>% 
-    dplyr::mutate(defc_mm_wy = pet_mm_wy - p_mm_wy)
-  
-  ## get only closest reference gage as predictor
-  # find closest reference gage
-  ref_closest <- sf_gages_ref$site_no[which.min(sf::st_distance(subset(sf_gages, site_no == gages_nonref[s]),
-                                                                sf_gages_ref))]
-  df_r <-
-    gages_annual_summary %>%
-    subset(site == ref_closest & wyear %in% predictors$wyear) %>%
-    dplyr::select(wyear, totalnoflowperwyear)
-  predictors <-
-    dplyr::left_join(predictors, df_r, by = "wyear")
-  colnames(predictors)[dim(predictors)[2]] <- "ref_closest"
-  
-  # ## grab all references gages as predictors
-  # for (r in 1:length(gages_ref)){
-  #   df_r <- 
-  #     gages_annual_summary %>% 
-  #     subset(site == gages_ref[r] & wyear %in% predictors$wyear) %>% 
-  #     dplyr::select(wyear, totalnoflowperwyear)
-  #   predictors <- 
-  #     dplyr::left_join(predictors, df_r, by = "wyear")
-  #   colnames(predictors)[dim(predictors)[2]] <- paste0("ref", gages_ref[r])
-  # }
-  
-  # set up output file
-  df_fit_s <- 
-    tibble::tibble(site = gages_nonref[s],
-                   wyear = predictors$wyear,
-                   metric = metric,
-                   observed = predictors$metric,
-                   predicted = NaN)
-  
-  ## regression
-  # get rid of water year
-  predictors$wyear <- NULL
-  pls_fit <- pls::plsr(metric ~ ., data = predictors)
-  
-  # get predicted and observed
-  df_fit_s$predicted[as.numeric(row.names(predict(pls_fit, ncomp = 3)))] <- predict(pls_fit, ncomp = 3)
-  
-  #plot(pls_fit, ncomp = 3, line = T)
-  
-  if (s == 1){
-    df_fit_all <- df_fit_s
-  } else {
-    df_fit_all <- dplyr::bind_rows(df_fit_all, df_fit_s)
-  }
-  
-}
+fit_data_in <- 
+  gage_sample_annual_r %>% 
+  # subset to fewer columns - metrics and predictors
+  dplyr::select(c("gage_ID", "currentwyear", all_of(metrics), all_of(predictors_annual))) %>% 
+  # join with static predictors
+  dplyr::left_join(gage_sample_r[ , c("gage_ID", "CLASS", predictors_static)], by = "gage_ID") %>% 
+  # there are some NAs in the SWE data - remove for now
+  subset(is.finite(swe_mm_wy))
 
-## plot
-ggplot(df_fit_all, aes(x = observed, y = predicted)) +
-  geom_point(alpha = 0.5) +
-  geom_abline(intercept = 0, slope = 1, color = "red") +
-  labs(title = "No Flow Days/Year, all non-reference gages") +
-  scale_x_continuous(name = "Observed") +
-  scale_y_continuous(name = "Predicted") +
-  ggsave(file.path("results", "02_SeparateDrivers_ScatterFit.png"))
+# subset to reference gages
+fit_ref_data_in <- 
+  fit_data_in %>% 
+  subset(CLASS == "Ref")
+
+# select sample
+fit_sample <- sample(1:nrow(fit_ref_data_in), round(nrow(fit_ref_data_in)*0.75))
+
+# build formula
+fit_formula <- as.formula(paste0(metrics[1], " ~ ", paste(c(predictors_annual, predictors_static), collapse = "+")))
+
+# fit random forest model
+fit_rf <- randomForest::randomForest(fit_formula,
+                                     data = fit_ref_data_in,
+                                     subset = fit_sample)
+
+# predict with random forest
+fit_ref_data_in$rf_prediction <- predict(fit_rf, fit_ref_data_in)
+fit_ref_data_in$train <- FALSE
+fit_ref_data_in$train[fit_sample] <- TRUE
+
+ggplot(fit_ref_data_in, aes(x = annualfractionnoflow, y = rf_prediction, color = train)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1) +
+  stat_smooth(method = "lm")

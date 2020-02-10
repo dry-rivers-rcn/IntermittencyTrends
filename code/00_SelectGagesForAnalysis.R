@@ -47,6 +47,7 @@ gage_trends <-
   subset(metric != "currentwyear")
 
 ## define regions - for now, use the NA_L1NAME column as a preliminary start and refine it to fewer groups
+# (eventually these will be replaced with output from John's analysis of spatial patterns)
 gage_sample$region <- NA
 gage_sample$region[gage_sample$NA_L1NAME == "GREAT PLAINS" & gage_sample$dec_lat_va > 43] <- "North Great Plains"
 gage_sample$region[gage_sample$NA_L1NAME == "GREAT PLAINS" & gage_sample$dec_lat_va <= 43] <- "South Great Plains"
@@ -54,6 +55,8 @@ gage_sample$region[gage_sample$NA_L1NAME %in% c("MEDITERRANEAN CALIFORNIA", "MAR
 gage_sample$region[gage_sample$NA_L1NAME %in% c("SOUTHERN SEMI-ARID HIGHLANDS", "NORTH AMERICAN DESERTS")] <- "Western Desert"
 gage_sample$region[gage_sample$NA_L1NAME %in% c("NORTHWESTERN FORESTED MOUNTAINS", "TEMPERATE SIERRAS")] <- "Western Mountains"
 gage_sample$region[gage_sample$NA_L1NAME == "EASTERN TEMPERATE FORESTS"] <- "Eastern Temperate"
+
+table(gage_sample$region, gage_sample$CLASS)
 
 ## save data to repository
 gage_sample %>% 
