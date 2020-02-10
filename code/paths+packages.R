@@ -13,8 +13,17 @@ dir_DataAnalysis <- file.path("..", "DataAnalysis")
 # OneDrive directory with bigger data files
 dir_data <- file.path("C:/Users/samzipper/OneDrive - The University of Kansas/Research/DryRiversRCN/data")
 
-s## common CRS for projecting files
+## common CRS for projecting files
 proj_crs <- structure(list(epsg = NA_integer_, proj4string = "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"), class = "crs")
+
+## color palettes
+# categorical color palette from https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
+col.cat.grn <- "#3cb44b"   # green
+col.cat.yel <- "#ffe119"   # yellow
+col.cat.org <- "#f58231"   # orange
+col.cat.red <- "#e6194b"   # red
+col.cat.blu <- "#0082c8"   # blue
+col.gray <- "gray65"       # gray for annotation lines, etc
 
 ## ggplot theme
 windowsFonts(Arial=windowsFont("TT Arial"))
