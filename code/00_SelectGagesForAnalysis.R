@@ -4,12 +4,32 @@
 
 source(file.path("code", "paths+packages.R"))
 
-## load mean annual long-term stats for each gage from John
-gages_mean <-
-  file.path(dir_data, "mean_annual_no_flow_and_climate_metrics_110419.csv") %>% 
-  readr::read_csv()
+## load data from John - mean annual data
+# mean annual long-term stats for each gage
+gages_mean_new <-
+  file.path(dir_data, "data_for_spearman_rank_correlations.csv") %>% 
+  readr::read_csv() %>% 
+  dplyr::select(-X1)
 
-# subset to gages meeting threshold
+# old version of gages_mean, which has ref/nonref info
+gages_mean_old <-
+  file.path(dir_data, "mean_annual_no_flow_and_climate_metrics_110419.csv") %>% 
+  readr::read_csv() 
+
+# drop flow metrics - the ones we care about are in gages_mean_new
+gages_mean_old <- gages_mean_old[,-(56:99)]
+
+# drop columns from gages_mean_old that are contained in gages_mean_new
+same_cols <- names(gages_mean_old)[names(gages_mean_old) %in% names(gages_mean_new)]
+same_cols <- same_cols[-1]  # keep 'gage_ID'
+gages_mean_old <- 
+  gages_mean_old %>% 
+  dplyr::select(-all_of(same_cols), -(`p/pet`), -(`swe/P`))
+
+# combine gages_mean_old and gages_mean_new
+gages_mean <- dplyr::left_join(gages_mean_new, gages_mean_old, by = c("gage_ID"))
+
+## subset to gages meeting threshold
 noflowfraction_min_threshold <- 15/365   # Eng et al used 15 days
 noflowfraction_max_threshold <- 350/365  # also at least 15 no-flow days/yr
 year_threshold <- 30
@@ -22,29 +42,73 @@ gage_sample <- gages_mean[gages_mean$annualfractionnoflow > noflowfraction_min_t
 sum(gage_sample$CLASS == "Ref")
 sum(gage_sample$CLASS == "Non-ref")
 
-## subset annual stats for sampled gages
-# load data from john
-gages_annual_summary <- 
+## load annual stats for each gage
+# annual stats for each gage - climate and flow metrics, but only extract flow
+gages_annual_flow <- 
   file.path(dir_data, 
             "annual_no_flow_and_climate_metrics_020720_trends.csv") %>% 
-  readr::read_csv()
-
-gage_sample_annual <- 
-  gages_annual_summary %>% 
+  readr::read_csv() %>% 
+  dplyr::select(gage_ID, currentwyear, annualfractionnoflow, totalnoflowperiods, 
+                firstnoflowcaly, zeroflowcentroiddate, peak2z_length) %>% 
   subset(gage_ID %in% gage_sample$gage_ID)
 
-## subset trends data for sampled gages
-gage_trends <- 
-  file.path(dir_data, "trends_in_no_flow_and_climate_for_no_flow_sites_34_plus_years_020720.csv") %>% 
+# annual stats for each gage - climate only (these should replace climate stats from gages_annual_summary)
+gages_annual_climate <- 
+  file.path(dir_data, "annual_climate_metrics_for_CONUS_USGS_101719.csv") %>% 
   readr::read_csv() %>% 
-  # remove first column - it is just the row number
-  dplyr::select(-X1) %>% 
-  # rename X - it is the metric for each column. also rename site to gage_ID to match other files
-  dplyr::rename(metric = X, gage_ID = site) %>% 
-  # subset to sites in sample
-  subset(gage_ID %in% gage_sample$gage_ID) %>% 
-  # remove 'currentwyear'
-  subset(metric != "currentwyear")
+  dplyr::rename(gage_ID = sitewith0) %>% 
+  subset(gage_ID %in% gage_sample$gage_ID)
+
+# combine climate and flow stats
+gages_annual_summary <-
+  dplyr::right_join(gages_annual_flow, gages_annual_climate, by = c("gage_ID", "currentwyear"))
+
+## calculate trends - this is modified from John's script, CalculateTrends_020720.R
+fulllengthwyears <- tibble::tibble(currentwyear = c(1980:2018))
+sites <- unique(gages_annual_summary$gage_ID)
+
+for(i in seq_along(sites)){
+  current <- subset(gages_annual_summary, gage_ID == sites[i])
+  current[current==-Inf] <- NA
+  current[current==Inf] <- NA
+  
+  # which columns to calculate trends?
+  cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentwyear"))
+  
+  results <- tibble::tibble(metric = colnames(gages_annual_summary[cols_trend]),
+                            tau = NA, 
+                            pval = NA, 
+                            slope = NA)
+  
+  for(col in cols_trend){
+    currentcolumnname <- colnames(current)[col]
+    currentcolumn <- tibble::tibble(variable = dplyr::pull(current, col))
+    currentcolumn$currentwyear <- current$currentwyear
+    currentcolumn <- dplyr::right_join(currentcolumn, fulllengthwyears, by = "currentwyear")
+    years_data <-  sum(is.finite(currentcolumn$variable))
+    
+    # only calculate trend if at least 30 years of data
+    if(years_data >= 30){
+      manken <- Kendall::MannKendall(currentcolumn$variable)
+      sen <- zyp::zyp.sen(variable ~ currentwyear, currentcolumn)
+      tau <- manken$tau
+      pval <- manken$sl
+      output <- c(tau, pval, sen$coefficients[2])
+      results[results$metric == currentcolumnname, c("tau", "pval", "slope")] <- output
+    } 
+  }
+  
+  results$gage_ID <- sites[i]
+  
+  if (i == 1){
+    gage_trends <- results
+  } else {
+    gage_trends <- dplyr::bind_rows(gage_trends, results)
+  }
+  
+  # status update
+  print(paste0("Site ", i, " complete"))
+}
 
 ## define regions - for now, use the NA_L1NAME column as a preliminary start and refine it to fewer groups
 # (eventually these will be replaced with output from John's analysis of spatial patterns)
@@ -62,7 +126,7 @@ table(gage_sample$region, gage_sample$CLASS)
 gage_sample %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
-gage_sample_annual %>% 
+gages_annual_summary %>% 
   dplyr::left_join(gage_sample[ , c("gage_ID", "region")], by = "gage_ID") %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv"))
 
