@@ -1,4 +1,4 @@
-## SeparateDrivers-Global.R
+## SeparateDrivers-National.R
 # This script calculates the relative impacts of climate and anthropogenic impacts through time.
 # General goal is to build statistical relationships for reference gages and extend to nonref gages.
 
@@ -56,12 +56,19 @@ for (metric in metrics){
   fit_rf <- randomForest::randomForest(fit_formula,
                                        data = fit_ref_data_in,
                                        subset = fit_sample,
-                                       ntree = 250)
-  
+                                       ntree = 250,
+                                       importance = T)
+
   # predict with random forest
   fit_ref_data_in$predicted <- predict(fit_rf, fit_ref_data_in)
   fit_ref_data_in$sample <- "Test"
   fit_ref_data_in$sample[fit_sample] <- "Train"
+  
+  # extract variable importance
+  fit_rf_imp <- tibble::tibble(predictor = rownames(fit_rf$importance),
+                               IncNodePurity = fit_rf$importance[,'IncNodePurity'],
+                               IncMSE = fit_rf$importance[,'%IncMSE'],
+                               metric = metric)
   
   # add grouping columns
   fit_ref_data_in$metric <- metric
@@ -69,9 +76,11 @@ for (metric in metrics){
   # combine into one data frame
   if (start_flag){
     fit_results <- fit_ref_data_in
+    fit_importance <- fit_rf_imp
     start_flag <- F
   } else {
     fit_results <- dplyr::bind_rows(fit_results, fit_ref_data_in)
+    fit_importance <- dplyr::bind_rows(fit_importance, fit_rf_imp)
   }
   
   print(paste0(metric, " complete"))
@@ -92,12 +101,31 @@ fit_results <- dplyr::left_join(fit_results, gage_sample[,c("gage_ID", "region")
 #     scale_x_continuous(name = "Observed", limits = axes_limits, expand = c(0,0)) +
 #     scale_y_continuous(name = "Predicted", limits = axes_limits, expand = c(0,0)) +
 #     labs(title = paste0("Predicted vs. observed ", m), 
-#          subtitle = "Global random forest model, reference gages") +
+#          subtitle = "National random forest model, reference gages") +
 #     stat_smooth(method = "lm") +
 #     theme(legend.position = "bottom") +
-#     ggsave(file.path("results", paste0("SeparateDrivers-Global_RandomForest_", m, ".png")),
+#     ggsave(file.path("results", paste0("SeparateDrivers-National_RandomForest_", m, ".png")),
 #            width = 160, height = 120, units = "mm")
 # }
+
+# variable importance
+# rank based on annualfractionnoflow
+rank_importance <- 
+  fit_importance %>% 
+  subset(metric == "annualfractionnoflow") %>% 
+  dplyr::arrange(IncMSE) %>% 
+  dplyr::pull(predictor)
+fit_importance$predictor <- factor(fit_importance$predictor, levels = rank_importance)
+
+ggplot(fit_importance, aes(x = IncMSE, y = predictor)) + 
+  geom_vline(xintercept = 0, color = col.gray) +
+  geom_point() +
+  facet_wrap(~metric, scales = "free_x") +
+  scale_x_continuous(name = "Increase in MSE caused by predictor variability\n[Higher Value = more important variable]") +
+  scale_y_discrete(name = "Predictor") +
+  labs(title = "Predictor importance, national random forest models") +
+  ggsave(file.path("results", "SeparateDrivers-National_RandomForest.png"),
+         width = 160, height = 120, units = "mm")
 
 ## fit statistics
 # fit by region
