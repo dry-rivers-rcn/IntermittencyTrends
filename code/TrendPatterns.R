@@ -7,6 +7,8 @@
 
 source(file.path("code", "paths+packages.R"))
 library(gclus)
+library(ggplot2)
+library(gridExtra)
 
 # --- load trends data ----
 gage_trends <- 
@@ -49,12 +51,42 @@ summary(reg3)
 plot(gage_trends$tau[gage_trends$metric == "p_mm_wy"], gage_trends$tau[gage_trends$metric == "totalnoflowperiods"], pch = 20, xlab='Precipitation Trend Over Time', ylab= 'Total No Flow Periods')
 abline(reg3) #significant and r2 = .13
 
-# --- Boxplots of Tau by Region and Metric of interest --- #
-# might not be useful by regiona since there doesnt not appear to be a regional grouping, but perhaps by other gage characteristics
- 
+# --- Boxplots of Slope by Region and Metric of interest --- #
+
+gages<-as.data.frame(gages)
+afnf_sig<-gages_sig[gages_sig$metric == "annualfractionnoflow",] #this is 174 observations
+afnf_sig$region.x<- factor(afnf_sig$region.x, levels=c("Eastern Temperate", "North Great Plains", "South Great Plains",  "Western Mountains", "Western Desert", "Mediterranean California"))
+
+p_sig<-gages_sig[gages_sig$metric == "p_mm_wy",] # this only results in 71 locations
+p_sig$region.x<- factor(p_sig$region.x, levels=c("Eastern Temperate", "North Great Plains", "South Great Plains",  "Western Mountains", "Western Desert", "Mediterranean California"))
 
 
+af<- ggplot(afnf_sig, aes(x=fct_reorder(region.x, slope), y= slope, fill =region.x)) +
+  geom_boxplot() + 
+  geom_hline(yintercept=0) +
+  geom_jitter(width=0.05,alpha=0.2)+
+  theme_bw()+
+  xlab('Region')+
+  ylab('Significant Slopes of Annual Fraction No Flow (n =174)')+
+  theme(legend.position='none', axis.text.x = element_text(angle = 45))
 
+p<- ggplot(p_sig, aes(x=region.x, y= slope, fill =region.x)) +
+  geom_boxplot() + 
+  theme_bw()+
+  geom_hline(yintercept=0) +
+  geom_jitter(width=0.05,alpha=0.2)+
+  xlab('Region')+
+  ylab('Significant Slopes of Annual Precip (n=71)')+
+  theme(legend.position = c(0.85, 0.83), axis.text.x = element_text(angle = 45))
+
+grid.arrange(af, p, ncol=2)
+
+
+pet_sig<-gages_sig[gages_sig$metric == "pet_mm_wy",]
+ggplot(pet_sig, aes(x=fct_reorder(region.x, slope), y= slope)) +geom_boxplot() + 
+  geom_jitter(width=0.05,alpha=0.2)+
+  xlab('Region')+
+  ylab('Slope of PET')
 
 # --- subset data for plotting and regressions ---- 
 #%>% filter(CLASS =='Ref')
