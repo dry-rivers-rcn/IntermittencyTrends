@@ -60,33 +60,54 @@ afnf_sig$region.x<- factor(afnf_sig$region.x, levels=c("Eastern Temperate", "Nor
 p_sig<-gages_sig[gages_sig$metric == "p_mm_wy",] # this only results in 71 locations
 p_sig$region.x<- factor(p_sig$region.x, levels=c("Eastern Temperate", "North Great Plains", "South Great Plains",  "Western Mountains", "Western Desert", "Mediterranean California"))
 
+T_max_sig<-gages_sig[gages_sig$metric == "T_max_c_wy",] # this only results in 97 locations
+T_max_sig$region.x<- factor(T_max_sig$region.x, levels=c("Eastern Temperate", "North Great Plains", "South Great Plains",  "Western Mountains", "Western Desert", "Mediterranean California"))
+
+pet_sig<-gages_sig[gages_sig$metric == "pet_mm_wy",]
+pet_sig$region.x<- factor(pet_sig$region.x, levels=c("Eastern Temperate", "North Great Plains", "South Great Plains",  "Western Mountains", "Western Desert", "Mediterranean California"))
 
 af<- ggplot(afnf_sig, aes(x=fct_reorder(region.x, slope), y= slope, fill =region.x)) +
   geom_boxplot() + 
   geom_hline(yintercept=0) +
   geom_jitter(width=0.05,alpha=0.2)+
   theme_bw()+
-  xlab('Region')+
-  ylab('Significant Slopes of Annual Fraction No Flow (n =174)')+
-  theme(legend.position='none', axis.text.x = element_text(angle = 45))
+  xlab('')+
+  ylab('Slopes of Annual Frac No Flow (n =174)')+
+  theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
 p<- ggplot(p_sig, aes(x=region.x, y= slope, fill =region.x)) +
   geom_boxplot() + 
   theme_bw()+
   geom_hline(yintercept=0) +
   geom_jitter(width=0.05,alpha=0.2)+
-  xlab('Region')+
-  ylab('Significant Slopes of Annual Precip (n=71)')+
-  theme(legend.position = c(0.85, 0.83), axis.text.x = element_text(angle = 45))
+  xlab('')+
+  ylab('Slopes of Annual Precip (n=71)')+
+  theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
-grid.arrange(af, p, ncol=2)
+t<- ggplot(T_max_sig, aes(x=region.x, y= slope, fill =region.x)) +
+  geom_boxplot() + 
+  theme_bw()+
+  geom_hline(yintercept=0) +
+  geom_jitter(width=0.05,alpha=0.2)+
+  xlab('')+
+  ylab('Slopes of Annual Temperature (n=97)')+
+  theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
-
-pet_sig<-gages_sig[gages_sig$metric == "pet_mm_wy",]
-ggplot(pet_sig, aes(x=fct_reorder(region.x, slope), y= slope)) +geom_boxplot() + 
+pet<- ggplot(pet_sig, aes(x=region.x, y= slope, fill =region.x)) + 
+  geom_boxplot() + 
+  theme_bw()+
   geom_jitter(width=0.05,alpha=0.2)+
   xlab('Region')+
-  ylab('Slope of PET')
+  ylab('Slopes of PET (n= 212) ')+
+  theme(legend.position='none', axis.text.x = element_text(angle = 30))
+  
+  #theme(legend.position = "bottom", legend.title = element_blank(), axis.text.x = element_text(angle = 30)) +
+  #guides(fill = guide_legend(nrow = 3), byrow=TRUE)
+
+  grid.arrange(af, p, t, pet, ncol=1)
+
+
+
 
 # --- subset data for plotting and regressions ---- 
 #%>% filter(CLASS =='Ref')
