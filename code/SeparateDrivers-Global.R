@@ -8,22 +8,58 @@ source(file.path("code", "paths+packages.R"))
 gage_sample <- 
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
+gage_regions <- 
+  readr::read_csv(file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
+
 gage_sample_annual <-
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv")) %>% 
+  dplyr::left_join(gage_regions, by = "gage_ID") %>% 
   # add some derived variables
   dplyr::mutate(p.pet_wy = p_mm_wy/pet_mm_wy,
                 swe.p_wy = swe_mm_wy/p_mm_wy)
 
 gage_trends <-
-  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
+  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv")) %>% 
+  dplyr::left_join(gage_regions, by = "gage_ID")
 
 ## clean up data and get ready to fit statistical model
 # predictors and metrics to retain; to get full list of options: 
-#   dput(names(gage_sample_annual_r))
-#   dput(names(gage_sample_r))
+#   dput(names(gage_sample_annual))
+#   dput(names(gage_sample))
+predictors_annual_all <- c("p_mm_wy", "p_mm_jja", "p_mm_son", "p_mm_djf", "p_mm_mam", "pet_mm_wy", 
+                           "pet_mm_jja", "pet_mm_son", "pet_mm_djf", "pet_mm_mam", "T_max_c_wy", 
+                           "T_max_c_jja", "T_max_c_son", "T_max_c_djf", "T_max_c_mam", "T_min_c_wy", 
+                           "T_min_c_jja", "T_min_c_son", "T_min_c_djf", "T_min_c_mam", "pcumdist10days", 
+                           "pcumdist50days", "pcumdist90days", "swe_mm_wy", "swe_mm_jja", 
+                           "swe_mm_son", "swe_mm_djf", "swe_mm_mam", "srad_wm2_wy", "srad_wm2_jja", 
+                           "srad_wm2_son", "srad_wm2_djf", "srad_wm2_mam", "pdsi_wy", "pdsi_jja", 
+                           "pdsi_son", "pdsi_djf", "pdsi_mam", "p.pet_wy", "swe.p_wy")
+
+predictors_static_all <- c("DRAIN_SQKM", "accumulated_NID_storage", "POWER_SUM_MW", 
+                           "FORESTNLCD06", "PLANTNLCD06", "WATERNLCD06", "SNOWICENLCD06", 
+                           "IMPNLCD06", "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
+                           "TOPWET", "depth_bedrock_m", "porosity", "storage_m", 
+                           "p_mm_jja", "p_mm_son", "p_mm_djf", "p_mm_mam", "pet_mm_jja", 
+                           "dec_lat_va", "dec_long_va", 
+                           "GEOL_REEDBUSH_DOM", "GEOL_REEDBUSH_SITE", "GEOL_HUNT_DOM_DESC", 
+                           "FRESHW_WITHDRAWAL", "PCT_IRRIG_AG", "POWER_NUM_PTS", "DEVNLCD06", 
+                           "CLAYAVE", "SILTAVE", "SANDAVE", "log_k", "log_q0")
+
+## first: test predictors for normality
+for (p in predictors_annual_all){
+  p <- "swe.p_wy"  # for testing
+  
+  shapiro.test(unlist(gage_sample_annual[,p]))
+  
+  hist(unlist(gage_sample_annual[,p]))
+  
+}
+
+## second: develop statistical models
 predictors_annual <- c("p.pet_wy", "swe.p_wy", "p_mm_wy", "pet_mm_wy", "swe_mm_wy", "srad_wm2_wy", "pdsi_wy")  # change year to year
 predictors_static <- c("dec_lat_va", "dec_long_va", "DRAIN_SQKM", "ELEV_MEAN_M_BASIN", "SLOPE_PCT")  # don't change year to year
 metrics <- c("annualfractionnoflow", "zeroflowcentroiddate", "totalnoflowperiods")
+
 
 fit_data_in <- 
   gage_sample_annual %>% 

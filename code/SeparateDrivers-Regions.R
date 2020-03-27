@@ -8,14 +8,19 @@ source(file.path("code", "paths+packages.R"))
 gage_sample <- 
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
+gage_regions <- 
+  readr::read_csv(file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
+
 gage_sample_annual <-
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv")) %>% 
+  dplyr::left_join(gage_regions, by = "gage_ID") %>% 
   # add some derived variables
   dplyr::mutate(p.pet_wy = p_mm_wy/pet_mm_wy,
                 swe.p_wy = swe_mm_wy/p_mm_wy)
 
 gage_trends <-
-  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
+  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv")) %>% 
+  dplyr::left_join(gage_regions, by = "gage_ID")
 
 ## loop through regions
 regions <- unique(gage_sample$region)
