@@ -5,16 +5,25 @@
 source(file.path("code", "paths+packages.R"))
 
 ## load data from John - mean annual data
+# load ecoregions
+gage_regions <- 
+  file.path(dir_data, "gages_majority_epaNAeco1.csv") %>% 
+  readr::read_csv() %>% 
+ # dplyr::select(-include) %>% 
+  dplyr::rename(gage_ID = gage)
+
 # mean annual long-term stats for each gage
 gages_mean_new <-
   file.path(dir_data, "data_for_spearman_rank_correlations.csv") %>% 
   readr::read_csv() %>% 
-  dplyr::select(-X1)
+  dplyr::select(-X1) %>% 
+  subset(gage_ID %in% gage_regions$gage_ID)
 
 # old version of gages_mean, which has ref/nonref info
 gages_mean_old <-
   file.path(dir_data, "mean_annual_no_flow_and_climate_metrics_110419.csv") %>% 
-  readr::read_csv() 
+  readr::read_csv()  %>% 
+  subset(gage_ID %in% gage_regions$gage_ID)
 
 # drop flow metrics - the ones we care about are in gages_mean_new
 gages_mean_old <- gages_mean_old[,-(56:99)]
@@ -27,17 +36,22 @@ gages_mean_old <-
   dplyr::select(-all_of(same_cols), -(`p/pet`), -(`swe/P`))
 
 # combine gages_mean_old and gages_mean_new
-gages_mean <- dplyr::left_join(gages_mean_new, gages_mean_old, by = c("gage_ID"))
+gages_mean <- 
+  dplyr::left_join(gages_mean_new, gages_mean_old, by = c("gage_ID")) %>% 
+  unique() %>% 
+  # drop old ecoregions and add new ecoregions
+  dplyr::left_join(gage_regions, by = "gage_ID") %>% 
+  dplyr::select(-US_L3NAME, -NA_L2NAME, -NA_L1NAME)
 
 ## subset to gages meeting threshold
-noflowfraction_min_threshold <- 15/365   # Eng et al used 15 days
-noflowfraction_max_threshold <- 350/365  # also at least 15 no-flow days/yr
+noflowfraction_min_threshold <- 5/365   # Eng et al used 15 days
+noflowfraction_max_threshold <- 360/365  # also at least 15 no-flow days/yr
 year_threshold <- 30
 
-# sites to sample
-gage_sample <- gages_mean[gages_mean$annualfractionnoflow > noflowfraction_min_threshold &
-                            gages_mean$annualfractionnoflow < noflowfraction_max_threshold &
-                            gages_mean$years_data > year_threshold, ]
+# sites to sample- add a little buffer for rounding error
+gage_sample <- gages_mean[gages_mean$annualfractionnoflow >= noflowfraction_min_threshold-0.001 &
+                            gages_mean$annualfractionnoflow <= noflowfraction_max_threshold+0.001 &
+                            gages_mean$years_data >= year_threshold, ]
 
 sum(gage_sample$CLASS == "Ref")
 sum(gage_sample$CLASS == "Non-ref")
@@ -113,25 +127,34 @@ for(i in seq_along(sites)){
 ## define regions - for now, use the NA_L1NAME column as a preliminary start and refine it to fewer groups
 # (eventually these will be replaced with output from John's analysis of spatial patterns)
 gage_sample$region <- NA
-gage_sample$region[gage_sample$NA_L1NAME == "GREAT PLAINS" & gage_sample$dec_lat_va > 43] <- "North Great Plains"
-gage_sample$region[gage_sample$NA_L1NAME == "GREAT PLAINS" & gage_sample$dec_lat_va <= 43] <- "South Great Plains"
-gage_sample$region[gage_sample$NA_L1NAME %in% c("MEDITERRANEAN CALIFORNIA", "MARINE WEST COAST FOREST")] <- "Mediterranean California"
-gage_sample$region[gage_sample$NA_L1NAME %in% c("SOUTHERN SEMI-ARID HIGHLANDS", "NORTH AMERICAN DESERTS")] <- "Western Desert"
-gage_sample$region[gage_sample$NA_L1NAME %in% c("NORTHWESTERN FORESTED MOUNTAINS", "TEMPERATE SIERRAS")] <- "Western Mountains"
-gage_sample$region[gage_sample$NA_L1NAME == "EASTERN TEMPERATE FORESTS"] <- "Eastern Temperate"
+gage_sample$region[gage_sample$Econame == "GREAT PLAINS" & gage_sample$dec_lat_va > 41.5] <- "North Great Plains"
+gage_sample$region[gage_sample$Econame == "GREAT PLAINS" & gage_sample$dec_lat_va <= 41.5] <- "South Great Plains"
+gage_sample$region[gage_sample$Econame %in% c("MEDITERRANEAN CALIFORNIA", "MARINE WEST COAST FOREST")] <- "Mediterranean California"
+gage_sample$region[gage_sample$Econame %in% c("SOUTHERN SEMIARID HIGHLANDS", "NORTH AMERICAN DESERTS")] <- "Western Desert"
+gage_sample$region[gage_sample$Econame %in% c("NORTHWESTERN FORESTED MOUNTAINS", "TEMPERATE SIERRAS")] <- "Western Mountains"
+gage_sample$region[gage_sample$Econame  %in% c("EASTERN TEMPERATE FORESTS", "NORTHERN FORESTS")] <- "Eastern Forests"
+sum(is.na(gage_sample$region))
 
+table(gage_sample$Econame, gage_sample$CLASS)
 table(gage_sample$region, gage_sample$CLASS)
+
+ggplot(gage_sample, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_point()
+
 
 ## save data to repository
 gage_sample %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
-gages_annual_summary %>% 
+gage_regions %>% 
+  dplyr::select(gage_ID, Eco, Econame) %>% 
+  dplyr::rename(EPA_Ecoregion = Eco, EPA_Ecoregion_Name = Econame) %>% 
   dplyr::left_join(gage_sample[ , c("gage_ID", "region")], by = "gage_ID") %>% 
+  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
+
+gages_annual_summary %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv"))
 
 gage_trends %>% 
-  dplyr::left_join(gage_sample[ , c("gage_ID", "region")], by = "gage_ID") %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
 
 ## plot
@@ -145,7 +168,7 @@ ggplot() +
   scale_y_continuous(name = "Latitude") +
   scale_color_discrete(name = "Region") +
   scale_shape_discrete(name = "Class") +
-  labs(title = "Gages Selected for Analysis", subtitle = "Tentative grouping by regions from NA_L1NAME") +
+  labs(title = "Gages Selected for Analysis", subtitle = "Tentative grouping by regions from Econame") +
   coord_map() +
   ggsave(file.path("results", "00_SelectGagesForAnalysis_Map.png"),
          width = 190, height = 90, units= "mm")
