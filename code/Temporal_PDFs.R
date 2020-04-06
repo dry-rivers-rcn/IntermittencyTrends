@@ -1,6 +1,6 @@
 ## Temporal_PDFs.R
 
-## This script is mean to create a visualization of how the distribution of different no flow metrics
+## This script is meant to create a visualization of how the distribution of different no flow metrics
 ## change through time
 
 ## Metrics of interest: annual fraction no flow; date of 1st no flow;
