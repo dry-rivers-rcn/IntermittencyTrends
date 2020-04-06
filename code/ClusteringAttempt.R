@@ -9,12 +9,19 @@
 ## This approach has also been detailed in Olden et al. 2012 Ecohydrology
 
 ## Prior to clustering, each variable needs to be z-normalized
-## Next, compute a Euclidean distance matrix
+## Next, compute a Euclidean distance matrix (package 'TSdist' - Dissim distance)
 ## Then, define the number of clusters
-## Use NbClust to compute cluster validity indices (CVIs)
+## Compute cluster validity indices (CVIs) (package 'NbClust')
+
+lapply(c("plyr","dplyr","ggplot2","cowplot","ggridges",
+         "lubridate","tidyverse", "viridis","data.table",
+         "NbClust", "TSdist"), require, character.only=T)
 
 
-
+## Import Data
+setwd("../results")
+gsm <- fread("00_SelectGagesForAnalysis_GageSampleMean.csv")
+gsa <- fread("00_SelectGagesForAnalysis_GageSampleAnnual.csv")
 
 
 
