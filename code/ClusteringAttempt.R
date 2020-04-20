@@ -8,7 +8,7 @@
 ## I am going to start by attempting #2
 ## This approach has also been detailed in Olden et al. 2012 Ecohydrology
 
-## Prior to clustering, each variable needs to be z-normalized
+## Depending on the variable, some need to be z-normalized and others don't (e.g. if between 0 to 1, they don't)
 ## Next, compute a Euclidean distance matrix (package 'TSdist' - Dissim distance)
 ## Then, define the number of clusters
 ## Compute cluster validity indices (CVIs) (package 'NbClust')
@@ -22,6 +22,31 @@ lapply(c("plyr","dplyr","ggplot2","cowplot","ggridges",
 setwd("../results")
 gsm <- fread("00_SelectGagesForAnalysis_GageSampleMean.csv")
 gsa <- fread("00_SelectGagesForAnalysis_GageSampleAnnual.csv")
+
+## Subset gsa time series
+names(gsa)
+dat <- gsa[,c("gage_ID","currentwyear","annualfractionnoflow",
+              "firstnoflowcaly","peak2z_length")]
+l <- split(dat, dat$gage_ID)
+
+## z-normalize function for time series of variables that are not on the same scale
+znorm <- function(ts){
+  ts.mean <- mean(ts)
+  ts.dev <- sd(ts)
+  (ts - ts.mean)/ts.dev
+}
+
+#############################
+## Annual fraction no flow
+#############################
+
+
+
+
+
+
+
+
 
 
 
