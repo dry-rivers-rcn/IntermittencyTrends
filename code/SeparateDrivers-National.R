@@ -45,20 +45,11 @@ predictors_static_all <- c("DRAIN_SQKM", "accumulated_NID_storage", "POWER_SUM_M
                            "FRESHW_WITHDRAWAL", "PCT_IRRIG_AG", "POWER_NUM_PTS", "DEVNLCD06", 
                            "CLAYAVE", "SILTAVE", "SANDAVE", "log_k", "log_q0")
 
-## first: test predictors for normality
-for (p in predictors_annual_all){
-  p <- "swe.p_wy"  # for testing
-  
-  shapiro.test(unlist(gage_sample_annual[,p]))
-  
-  hist(unlist(gage_sample_annual[,p]))
-  
-}
 
 ## second: develop statistical models
 predictors_annual <- c("p.pet_wy", "swe.p_wy", "p_mm_wy", "pet_mm_wy", "swe_mm_wy", "srad_wm2_wy", "pdsi_wy")  # change year to year
 predictors_static <- c("dec_lat_va", "dec_long_va", "DRAIN_SQKM", "ELEV_MEAN_M_BASIN", "SLOPE_PCT")  # don't change year to year
-metrics <- c("annualfractionnoflow", "zeroflowcentroiddate", "totalnoflowperiods")
+metrics <- c("annualfractionnoflow", "firstnoflowcaly", "peak2z_length")
 
 
 fit_data_in <- 
@@ -81,24 +72,18 @@ for (metric in metrics){
   # rename metric columln
   names(fit_ref_data_in)[names(fit_ref_data_in) == metric] <- "observed"
   
-  # select sample
-  set.seed(1)
-  fit_sample <- sample(1:nrow(fit_ref_data_in), round(nrow(fit_ref_data_in)*0.75))
-  
   # build formula
   fit_formula <- as.formula(paste0("observed ~ ", paste(c(predictors_annual, predictors_static), collapse = "+")))
   
   # fit random forest model
+  set.seed(1)
   fit_rf <- randomForest::randomForest(fit_formula,
                                        data = fit_ref_data_in,
-                                       subset = fit_sample,
-                                       ntree = 250,
+                                       ntree = 500,
                                        importance = T)
 
   # predict with random forest
   fit_ref_data_in$predicted <- predict(fit_rf, fit_ref_data_in)
-  fit_ref_data_in$sample <- "Test"
-  fit_ref_data_in$sample[fit_sample] <- "Train"
   
   # extract variable importance
   fit_rf_imp <- tibble::tibble(predictor = rownames(fit_rf$importance),
@@ -125,24 +110,36 @@ for (metric in metrics){
 # add region back in
 fit_results <- dplyr::left_join(fit_results, gage_sample[,c("gage_ID", "region")], by = "gage_ID")
 
-# ## make plots
-# for (m in metrics){
-#   if (m == "annualfractionnoflow") axes_limits <- c(0,1)
-#   if (m == "zeroflowcentroiddate") axes_limits <- c(0,366)
-#   if (m == "totalnoflowperiods") axes_limits <- c(0,30)
-#   ggplot(subset(fit_results, metric == m), aes(x = observed, y = predicted, color = sample)) +
-#     geom_abline(intercept = 0, slope = 1) +
-#     geom_point(shape = 21) +
-#     facet_wrap(region ~ ., scales = "free", ncol = 3) +
-#     scale_x_continuous(name = "Observed", limits = axes_limits, expand = c(0,0)) +
-#     scale_y_continuous(name = "Predicted", limits = axes_limits, expand = c(0,0)) +
-#     labs(title = paste0("Predicted vs. observed ", m), 
-#          subtitle = "National random forest model, reference gages") +
-#     stat_smooth(method = "lm") +
-#     theme(legend.position = "bottom") +
-#     ggsave(file.path("results", paste0("SeparateDrivers-National_RandomForest_", m, ".png")),
-#            width = 160, height = 120, units = "mm")
-# }
+## make plots
+for (m in metrics){
+  if (m == "annualfractionnoflow") axes_limits <- c(0,1)
+  if (m == "firstnoflowcaly") axes_limits <- c(0,366)
+  if (m == "peak2z_length") axes_limits <- c(0,150)
+  ggplot(subset(fit_results, metric == m), aes(x = observed, y = predicted, color = region)) +
+    geom_abline(intercept = 0, slope = 1) +
+    geom_point(shape = 21) +
+    facet_wrap(region ~ ., scales = "free", ncol = 3) +
+    scale_x_continuous(name = "Observed", limits = axes_limits, expand = c(0,0)) +
+    scale_y_continuous(name = "Predicted", limits = axes_limits, expand = c(0,0)) +
+    labs(title = paste0("Predicted vs. observed ", m),
+         subtitle = "National random forest model, reference gages") +
+    stat_smooth(method = "lm") +
+    theme(legend.position = "bottom") +
+    ggsave(file.path("results", paste0("SeparateDrivers-NationalByRegions_RandomForest_", m, ".png")),
+           width = 160, height = 120, units = "mm")
+  
+  ggplot(subset(fit_results, metric == m), aes(x = observed, y = predicted)) +
+    geom_abline(intercept = 0, slope = 1) +
+    geom_point(aes(color = region), shape = 21) +
+    scale_x_continuous(name = "Observed", limits = axes_limits, expand = c(0,0)) +
+    scale_y_continuous(name = "Predicted", limits = axes_limits, expand = c(0,0)) +
+    labs(title = paste0("Predicted vs. observed ", m),
+         subtitle = "National random forest model, reference gages") +
+    stat_smooth(method = "lm") +
+    theme(legend.position = "bottom") +
+    ggsave(file.path("results", paste0("SeparateDrivers-National_RandomForest_", m, ".png")),
+           width = 125, height = 140, units = "mm")
+}
 
 # variable importance
 # rank based on annualfractionnoflow
@@ -160,7 +157,7 @@ ggplot(fit_importance, aes(x = IncMSE, y = predictor)) +
   scale_x_continuous(name = "Increase in MSE caused by predictor variability\n[Higher Value = more important variable]") +
   scale_y_discrete(name = "Predictor") +
   labs(title = "Predictor importance, national random forest models") +
-  ggsave(file.path("results", "SeparateDrivers-National_RandomForest.png"),
+  ggsave(file.path("results", "SeparateDrivers-National_RandomForest_Importance.png"),
          width = 160, height = 120, units = "mm")
 
 ## fit statistics
