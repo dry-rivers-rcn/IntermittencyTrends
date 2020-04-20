@@ -77,11 +77,14 @@ gages_annual_climate <-
 gages_annual_summary <-
   dplyr::right_join(gages_annual_flow, gages_annual_climate, by = c("gage_ID", "currentwyear"))
 
+# there are 8 gages that have peak2z_length > 365; set these to NA
+gages_annual_summary$peak2z_length[gages_annual_summary$peak2z_length > 365] <- NA
+
 ## calculate trends - this is modified from John's script, CalculateTrends_020720.R
 fulllengthwyears <- tibble::tibble(currentwyear = c(1980:2018))
 sites <- unique(gages_annual_summary$gage_ID)
 
-for(i in seq_along(sites)){
+for (i in seq_along(sites)){
   current <- subset(gages_annual_summary, gage_ID == sites[i])
   current[current==-Inf] <- NA
   current[current==Inf] <- NA
@@ -90,10 +93,11 @@ for(i in seq_along(sites)){
   cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentwyear"))
   
   results <- tibble::tibble(metric = colnames(gages_annual_summary[cols_trend]),
-                            tau = NA, 
-                            pval = NA, 
-                            slope = NA)
+                            tau = as.numeric(rep(NA, length = length(cols_trend))), 
+                            pval = as.numeric(rep(NA, length = length(cols_trend))), 
+                            slope = as.numeric(rep(NA, length = length(cols_trend))))
   
+  site_start <- T
   for(col in cols_trend){
     currentcolumnname <- colnames(current)[col]
     currentcolumn <- tibble::tibble(variable = dplyr::pull(current, col))
@@ -102,14 +106,26 @@ for(i in seq_along(sites)){
     years_data <-  sum(is.finite(currentcolumn$variable))
     
     # only calculate trend if at least 30 years of data
-    if(years_data >= 30){
+    if (years_data >= 30){
       manken <- Kendall::MannKendall(currentcolumn$variable)
       sen <- zyp::zyp.sen(variable ~ currentwyear, currentcolumn)
-      tau <- manken$tau
-      pval <- manken$sl
-      output <- c(tau, pval, sen$coefficients[2])
-      results[results$metric == currentcolumnname, c("tau", "pval", "slope")] <- output
-    } 
+      
+      trend <- tibble::tibble(metric = currentcolumnname,
+                              tau = manken$tau,
+                              pval = manken$sl,
+                              slope = sen$coefficients[2])
+    } else {
+      trend <- tibble::tibble(metric = currentcolumnname,
+                              tau = NA,
+                              pval = NA,
+                              slope = NA)
+    }
+    if (site_start){
+      results <- trend
+      site_start <- F
+    } else {
+      results <- dplyr::bind_rows(results, trend)
+    }
   }
   
   results$gage_ID <- sites[i]
