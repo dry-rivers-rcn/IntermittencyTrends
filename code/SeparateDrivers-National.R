@@ -38,17 +38,19 @@ predictors_annual_all <- c("p_mm_wy", "p_mm_jja", "p_mm_son", "p_mm_djf", "p_mm_
 predictors_static_all <- c("DRAIN_SQKM", "accumulated_NID_storage", "POWER_SUM_MW", 
                            "FORESTNLCD06", "PLANTNLCD06", "WATERNLCD06", "SNOWICENLCD06", 
                            "IMPNLCD06", "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
-                           "TOPWET", "depth_bedrock_m", "porosity", "storage_m", 
-                           "p_mm_jja", "p_mm_son", "p_mm_djf", "p_mm_mam", "pet_mm_jja", 
-                           "dec_lat_va", "dec_long_va", 
+                           "TOPWET", "depth_bedrock_m", "porosity", "storage_m",  
+                           #"dec_lat_va", "dec_long_va", 
                            "GEOL_REEDBUSH_DOM", "GEOL_REEDBUSH_SITE", "GEOL_HUNT_DOM_DESC", 
                            "FRESHW_WITHDRAWAL", "PCT_IRRIG_AG", "POWER_NUM_PTS", "DEVNLCD06", 
                            "CLAYAVE", "SILTAVE", "SANDAVE", "log_k", "log_q0")
 
 
 ## second: develop statistical models
-predictors_annual <- c("p.pet_wy", "swe.p_wy", "p_mm_wy", "pet_mm_wy", "swe_mm_wy", "srad_wm2_wy", "pdsi_wy")  # change year to year
-predictors_static <- c("dec_lat_va", "dec_long_va", "DRAIN_SQKM", "ELEV_MEAN_M_BASIN", "SLOPE_PCT")  # don't change year to year
+#predictors_annual <- c("p.pet_wy", "swe.p_wy", "p_mm_wy", "pet_mm_wy", "swe_mm_wy", "srad_wm2_wy", "pdsi_wy")  # change year to year
+#predictors_static <- c("DRAIN_SQKM", "ELEV_MEAN_M_BASIN", "SLOPE_PCT")  # don't change year to year
+predictors_annual <- predictors_annual_all
+predictors_static <- predictors_static_all
+
 metrics <- c("annualfractionnoflow", "firstnoflowcaly", "peak2z_length")
 
 
@@ -157,14 +159,13 @@ ggplot(fit_importance, aes(x = IncMSE, y = predictor)) +
   scale_x_continuous(name = "Increase in MSE caused by predictor variability\n[Higher Value = more important variable]") +
   scale_y_discrete(name = "Predictor") +
   labs(title = "Predictor importance, national random forest models") +
-  ggsave(file.path("results", "SeparateDrivers-National_RandomForest_Importance.png"),
+  ggsave(file.path("results", "SeparateDrivers-National_RandomForest_VariableImportance.png"),
          width = 160, height = 120, units = "mm")
 
 ## fit statistics
 # fit by region
 fit_stats <- 
   fit_results %>% 
-  subset(sample == "Test") %>% 
   dplyr::group_by(metric, region) %>% 
   dplyr::summarize(RMSE = hydroGOF::rmse(predicted, observed),
                    NRMSE = hydroGOF::nrmse(predicted, observed, norm = "maxmin"),
@@ -172,7 +173,6 @@ fit_stats <-
 
 # overall fit
 fit_results %>% 
-  subset(sample == "Test") %>% 
   dplyr::group_by(metric) %>% 
   dplyr::summarize(RMSE = hydroGOF::rmse(predicted, observed),
                    NRMSE = hydroGOF::nrmse(predicted, observed, norm = "maxmin"),

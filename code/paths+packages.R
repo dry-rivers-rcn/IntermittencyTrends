@@ -25,6 +25,14 @@ col.cat.red <- "#e6194b"   # red
 col.cat.blu <- "#0082c8"   # blue
 col.gray <- "gray65"       # gray for annotation lines, etc
 
+pal_regions <- 
+  c("Eastern Forests" = "#009E73",
+    "Mediterranean California" = "#F0E442",
+    "North Great Plains" = "#0072B2",
+    "South Great Plains" = "#E69F00",
+    "Western Desert" = "#D55E00",
+    "Western Mountains" = "#56B4E9")
+
 ## ggplot theme
 windowsFonts(Arial=windowsFont("TT Arial"))
 theme_scz <- function(...){
