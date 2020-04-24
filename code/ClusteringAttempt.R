@@ -15,7 +15,7 @@
 
 lapply(c("plyr","dplyr","ggplot2","cowplot","ggridges",
          "lubridate","tidyverse", "viridis","data.table",
-         "NbClust", "TSdist"), require, character.only=T)
+         "NbClust", "TSdist", "TSclust","proxy", "reshape2"), require, character.only=T)
 
 
 ## Import Data
@@ -40,13 +40,30 @@ znorm <- function(ts){
 ## Annual fraction no flow
 #############################
 
+## Calculate Euclidean distance matrix
+af <- dat[,c("gage_ID","currentwyear","annualfractionnoflow")]
+af <- dcast(af, gage_ID ~ currentwyear, value.var = "annualfractionnoflow")
+
+## for now set NAs to zero
+af[is.na(af)] <- 0
+
+## turn data frame into matrix
+afm <- data.matrix(af[1:30,])
+
+## calculate distance matrix
+distance_matrix <- proxy::dist(afm, method = "euclidean", upper = TRUE, diag = TRUE)
+print(distance_matrix)
+## not working
 
 
 
+## Next work session use examples from here:
+
+## https://rdrr.io/cran/dtwclust/man/tsclust.html
 
 
 
-
+data(uciCT)
 
 
 
