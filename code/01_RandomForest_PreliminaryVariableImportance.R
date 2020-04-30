@@ -104,7 +104,6 @@ for (m in metrics){
       
       # extract variable importance
       fit_rf_imp_i <- tibble::tibble(predictor = rownames(fit_rf$importance),
-                                     IncNodePurity = fit_rf$importance[,'IncNodePurity'],
                                      IncMSE = fit_rf$importance[,'%IncMSE'],
                                      metric = m,
                                      region = r,
