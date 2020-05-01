@@ -179,7 +179,24 @@ for (m in metrics){
   }
 }
 
+# save data
+fit_data_out %>% 
+  readr::write_csv(file.path("results", "02_RandomForest_RunModels_Predictions.csv"))
+
+fit_rf_imp %>% 
+  readr::write_csv(file.path("results", "02_RandomForest_RunModels_VariableImportance.csv"))
+
+# plots
+min(subset(fit_data_out, metric == "annualfractionnoflow")$predicted)
+
 ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & CLASS == "Ref"), 
+       aes(x = predicted, y = observed, color = region)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(values = pal_regions) +
+  facet_wrap(~region_rf)
+
+ggplot(subset(fit_data_out, metric == "annualfractionnoflow"), 
        aes(x = predicted, y = observed, color = region)) +
   geom_point() +
   geom_abline(intercept = 0, slope = 1, color = col.gray) +
@@ -193,9 +210,8 @@ ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & CLASS == "Ref"),
   scale_color_manual(values = pal_regions) +
   facet_wrap(~region_rf)
 
-# save data
-fit_data_out %>% 
-  readr::write_csv(file.path("results", "02_RandomForest_RunModels_Predictions.csv"))
-
-fit_rf_imp %>% 
-  readr::write_csv(file.path("results", "02_RandomForest_RunModels_VariableImportance.csv"))
+ggplot(subset(fit_rf_imp, metric == "annualfractionnoflow"), 
+       aes(x = predictor, y = VarPrcIncMSE, color = region_rf)) +
+  geom_hline(yintercept = 0, color = col.gray) +
+  geom_point() +
+  facet_wrap(~region_rf)

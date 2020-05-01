@@ -46,10 +46,8 @@ predictors_annual <- c("p_mm_wy", "p_mm_jja", "p_mm_son", "p_mm_djf", "p_mm_mam"
                        "pdsi_son", "pdsi_djf", "pdsi_mam", "p.pet_wy", "swe.p_wy", "p.pet_djf", "swe.p_djf",
                        "p.pet_mam", "swe.p_mam", "p.pet_jja", "swe.p_jja", "p.pet_son", "swe.p_son")
 
-predictors_static <- c("DRAIN_SQKM", "accumulated_NID_storage", 
-                       "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
-                       "TOPWET", "depth_bedrock_m", 
-                       "CLAYAVE", "SILTAVE", "SANDAVE")
+predictors_static <- c("DRAIN_SQKM", "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
+                       "TOPWET", "depth_bedrock_m", "CLAYAVE", "SILTAVE", "SANDAVE")
 
 # metrics and regions to predict
 metrics <- c("annualfractionnoflow", "firstnoflowcaly", "peak2z_length")

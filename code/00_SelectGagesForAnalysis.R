@@ -56,28 +56,21 @@ gage_sample <- gages_mean[gages_mean$annualfractionnoflow >= noflowfraction_min_
 sum(gage_sample$CLASS == "Ref")
 sum(gage_sample$CLASS == "Non-ref")
 
+# one gage is missing lat/long; fill it in
+gage_sample$dec_lat_va[gage_sample$gage_ID==208111310] <- 36.04778
+gage_sample$dec_long_va[gage_sample$gage_ID==208111310] <- -76.98417
+
+
 ## load annual stats for each gage
 # annual stats for each gage - climate and flow metrics, but only extract flow
-gages_annual_flow <- 
+gages_annual_summary <- 
   file.path(dir_data, 
-            "annual_no_flow_and_climate_metrics_020720_trends.csv") %>% 
+            "annual_no_flow_and_climate_metrics_050120.csv") %>% 
   readr::read_csv() %>% 
-  dplyr::select(gage_ID, currentwyear, annualfractionnoflow, totalnoflowperiods, 
-                firstnoflowcaly, zeroflowcentroiddate, peak2z_length) %>% 
+  dplyr::rename(peak2z_length = p2z_mean) %>% 
   subset(gage_ID %in% gage_sample$gage_ID)
 
-# annual stats for each gage - climate only (these should replace climate stats from gages_annual_summary)
-gages_annual_climate <- 
-  file.path(dir_data, "annual_climate_metrics_for_CONUS_USGS_101719.csv") %>% 
-  readr::read_csv() %>% 
-  dplyr::rename(gage_ID = sitewith0) %>% 
-  subset(gage_ID %in% gage_sample$gage_ID)
-
-# combine climate and flow stats
-gages_annual_summary <-
-  dplyr::right_join(gages_annual_flow, gages_annual_climate, by = c("gage_ID", "currentwyear"))
-
-# there are 8 gages that have peak2z_length > 365; set these to NA
+# there are a few (n=9) peak2z_length > 365; set these to NA
 gages_annual_summary$peak2z_length[gages_annual_summary$peak2z_length > 365] <- NA
 
 ## calculate trends - this is modified from John's script, CalculateTrends_020720.R
