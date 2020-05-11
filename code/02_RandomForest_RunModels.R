@@ -18,16 +18,16 @@ gage_sample_annual <-
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv")) %>% 
   dplyr::left_join(gage_regions, by = "gage_ID") %>% 
   # add some derived variables
-  dplyr::mutate(p.pet_wy = p_mm_wy/pet_mm_wy,
-                swe.p_wy = swe_mm_wy/p_mm_wy,
-                p.pet_djf = p_mm_djf/pet_mm_djf,
-                swe.p_djf = swe_mm_djf/p_mm_djf,
-                p.pet_mam = p_mm_mam/pet_mm_mam,
-                swe.p_mam = swe_mm_mam/p_mm_mam,
-                p.pet_jja = p_mm_jja/pet_mm_jja,
-                swe.p_jja = swe_mm_jja/p_mm_jja,
-                p.pet_son = p_mm_son/pet_mm_son,
-                swe.p_son = swe_mm_son/p_mm_son)
+  dplyr::mutate(p.pet_cy = p_mm_cy/pet_mm_cy,
+                swe.p_cy = swe_mm_cy/p_mm_cy,
+                p.pet_jfm = p_mm_jfm/pet_mm_jfm,
+                swe.p_jfm = swe_mm_jfm/p_mm_jfm,
+                p.pet_amj = p_mm_amj/pet_mm_amj,
+                swe.p_amj = swe_mm_amj/p_mm_amj,
+                p.pet_jas = p_mm_jas/pet_mm_jas,
+                swe.p_jas = swe_mm_jas/p_mm_jas,
+                p.pet_ond = p_mm_ond/pet_mm_ond,
+                swe.p_ond = swe_mm_ond/p_mm_ond)
 
 rf_var_importance <- 
   file.path("results", "01_RandomForest_PreliminaryVariableImportance.csv") %>% 
@@ -37,30 +37,41 @@ rf_var_importance <-
   dplyr::ungroup()
 
 # metrics and regions to predict
-metrics <- c("annualfractionnoflow", "firstnoflowcaly", "peak2z_length")
+metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
 regions <- c("National", unique(gage_sample$region))
 
 # all possible predictors
-predictors_annual <- c("p_mm_wy", "p_mm_jja", "p_mm_son", "p_mm_djf", "p_mm_mam", "pet_mm_wy", 
-                       "pet_mm_jja", "pet_mm_son", "pet_mm_djf", "pet_mm_mam", "T_max_c_wy", 
-                       "T_max_c_jja", "T_max_c_son", "T_max_c_djf", "T_max_c_mam", "T_min_c_wy", 
-                       "T_min_c_jja", "T_min_c_son", "T_min_c_djf", "T_min_c_mam", "pcumdist10days", 
-                       "pcumdist50days", "pcumdist90days", "swe_mm_wy", "swe_mm_jja", 
-                       "swe_mm_son", "swe_mm_djf", "swe_mm_mam", "srad_wm2_wy", "srad_wm2_jja", 
-                       "srad_wm2_son", "srad_wm2_djf", "srad_wm2_mam", "pdsi_wy", "pdsi_jja", 
-                       "pdsi_son", "pdsi_djf", "pdsi_mam", "p.pet_wy", "swe.p_wy", "p.pet_djf", "swe.p_djf",
-                       "p.pet_mam", "swe.p_mam", "p.pet_jja", "swe.p_jja", "p.pet_son", "swe.p_son")
+predictors_annual <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj", "pet_mm_cy", 
+                       "pet_mm_jas", "pet_mm_ond", "pet_mm_jfm", "pet_mm_amj", "T_max_c_cy", 
+                       "T_max_c_jas", "T_max_c_ond", "T_max_c_jfm", "T_max_c_amj", "T_min_c_cy", 
+                       "T_min_c_jas", "T_min_c_ond", "T_min_c_jfm", "T_min_c_amj", "pcumdist10days", 
+                       "pcumdist50days", "pcumdist90days", "swe_mm_cy", "swe_mm_jas", 
+                       "swe_mm_ond", "swe_mm_jfm", "swe_mm_amj", "srad_wm2_cy", "srad_wm2_jas", 
+                       "srad_wm2_ond", "srad_wm2_jfm", "srad_wm2_amj", "pdsi_cy", "pdsi_jas", 
+                       "pdsi_ond", "pdsi_jfm", "pdsi_amj", "p.pet_cy", "swe.p_cy", "p.pet_jfm", "swe.p_jfm",
+                       "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond")
 
 predictors_static <- c("DRAIN_SQKM", "accumulated_NID_storage", 
                        "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
                        "TOPWET", "depth_bedrock_m", 
                        "CLAYAVE", "SILTAVE", "SANDAVE")
 
+
+# get previous water year climate metrics
+gage_sample_prevyear <- 
+  gage_sample_annual[,c("gage_ID", "currentclimyear", predictors_annual)] %>% 
+  dplyr::mutate(wyearjoin = currentclimyear + 1) %>% 
+  dplyr::select(-currentclimyear)
+
 # combine into one data frame
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
-  dplyr::select(c("gage_ID", "currentwyear", all_of(metrics), all_of(predictors_annual))) %>% 
+  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), all_of(predictors_annual))) %>% 
+  # join with previous water year
+  dplyr::left_join(gage_sample_prevyear, 
+                   by = c("gage_ID", "currentclimyear"="wyearjoin"), 
+                   suffix = c("", ".previous")) %>% 
   # join with static predictors
   dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", predictors_static)], by = "gage_ID")
 
@@ -77,11 +88,11 @@ for (n_pred in 5:20){
   # subset
   fit_data_predtest <- 
     fit_data_in %>% 
-    dplyr::select(-all_of(metrics[metrics != m])) %>%  # drop metrics you aren't interested in
+    dplyr::select(-all_of(metrics[metrics != "annualfractionnoflow"])) %>%  # drop metrics you aren't interested in
     subset(complete.cases(.))
   
   # rename metric column
-  names(fit_data_predtest)[names(fit_data_predtest) == m] <- "observed"
+  names(fit_data_predtest)[names(fit_data_predtest) == "annualfractionnoflow"] <- "observed"
   
   # fit model
   set.seed(1)
@@ -115,7 +126,7 @@ ggplot(fit_predtest, aes(x = n, y = TotalMSE)) +
          width = 120, height = 95, units = "mm")
 
 # choose n_pred
-n_pred <- 16
+n_pred <- 15
 
 ## loop through metrics and regions
 for (m in metrics){
@@ -156,7 +167,7 @@ for (m in metrics){
     fit_data_r$region_rf <- r
     fit_data_i <- 
       fit_data_r %>% 
-      dplyr::select(gage_ID, CLASS, currentwyear, observed, predicted, metric, region, region_rf)
+      dplyr::select(gage_ID, CLASS, currentclimyear, observed, predicted, metric, region, region_rf)
     
     # extract variable importance
     fit_rf_imp_i <- tibble::tibble(predictor = rownames(fit_rf$importance),
@@ -204,7 +215,7 @@ ggplot(subset(fit_data_out, metric == "annualfractionnoflow"),
   facet_wrap(~region_rf)
 
 ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & CLASS == "Ref"), 
-       aes(x = currentwyear, y = (predicted - observed), color = region)) +
+       aes(x = currentclimyear, y = (predicted - observed), color = region)) +
   geom_hline(yintercept = 0, color = col.gray) +
   geom_point() +
   scale_color_manual(values = pal_regions) +

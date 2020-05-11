@@ -1,6 +1,5 @@
 ## 00_SelectGagesForAnalysis.R
-# This script will select gages for analysis based on the following characteristics:
-#  -At least 1 no-flow day in at least 10 of the 30 years
+# This script will select and aggregate data for analysis.
 
 source(file.path("code", "paths+packages.R"))
 
@@ -62,19 +61,67 @@ gage_sample$dec_long_va[gage_sample$gage_ID==208111310] <- -76.98417
 
 
 ## load annual stats for each gage
-# annual stats for each gage - climate and flow metrics, but only extract flow
+# load and calculate peak2zero length from raw data
+p2z_all <- 
+  file.path(dir_data, 
+            "all_p2z_dates_043020.csv") %>% 
+  readr::read_csv() %>% 
+  dplyr::mutate(date = lubridate::mdy(date)) %>% 
+  dplyr::mutate(currentclimyear = lubridate::year(date - lubridate::days(91)))
+
+p2z_mean_climyear <-
+  p2z_all %>% 
+  subset(peak2z_length <= 365) %>% 
+  dplyr::group_by(site, currentclimyear) %>% 
+  dplyr::summarize(p2z_mean = mean(peak2z_length))
+
+p2z_mean_site <- 
+  p2z_all %>% 
+  subset(peak2z_length <= 365) %>% 
+  dplyr::group_by(site) %>% 
+  dplyr::summarize(p2z_mean = mean(peak2z_length))
+
+# replace p2z_mean from john file with updated one
+gage_sample$p2z_mean <- NULL
+gage_sample <-
+  gage_sample %>% 
+  dplyr::left_join(p2z_mean_site[,c("site", "p2z_mean")], by = c("gage_ID" = "site"))
+
+# annual stats for each gage - climate and flow metrics
 gages_annual_summary <- 
   file.path(dir_data, 
-            "annual_no_flow_and_climate_metrics_050120.csv") %>% 
+            "annual_no_flow_and_climate_metrics_climatic_year_050820.csv") %>% 
   readr::read_csv() %>% 
-  dplyr::rename(peak2z_length = p2z_mean) %>% 
+  dplyr::left_join(p2z_mean_climyear, by = c("sitewith0" = "site", "currentclimyear")) %>% 
+  dplyr::rename(peak2z_length = p2z_mean, gage_ID = sitewith0) %>% 
   subset(gage_ID %in% gage_sample$gage_ID)
 
-# there are a few (n=9) peak2z_length > 365; set these to NA
-gages_annual_summary$peak2z_length[gages_annual_summary$peak2z_length > 365] <- NA
+# variables to calculate trends in and save
+annual_vars <- 
+  c("gage_ID", "currentclimyear",
+    "annualfractionnoflow", "zeroflowfirst", "peak2z_length", "p_mm_wy", "p_mm_amj", 
+    "p_mm_jas", "p_mm_ond", "p_mm_jfm", "pet_mm_wy", "pet_mm_amj", "pet_mm_jas", 
+    "pet_mm_ond", "pet_mm_jfm", "T_max_c_wy", "T_max_c_amj", "T_max_c_jas", 
+    "T_max_c_ond", "T_max_c_jfm", "T_min_c_wy", "T_min_c_amj", "T_min_c_jas", 
+    "T_min_c_ond", "T_min_c_jfm", "pcumdist10days", "pcumdist50days", 
+    "pcumdist90days", "swe_mm_wy", "swe_mm_amj", "swe_mm_jas", "swe_mm_ond", 
+    "swe_mm_jfm", "srad_wm2_wy", "srad_wm2_amj", "srad_wm2_jas", 
+    "srad_wm2_ond", "srad_wm2_jfm", "pdsi_wy", "pdsi_amj", "pdsi_jas", 
+    "pdsi_ond", "pdsi_jfm")
+
+gages_annual_summary <- 
+  gages_annual_summary %>% 
+  dplyr::select(all_of(annual_vars)) %>% 
+  dplyr::rename(p_mm_cy = p_mm_wy,
+                pet_mm_cy = pet_mm_wy,
+                T_max_c_cy = T_max_c_wy,
+                T_min_c_cy = T_min_c_wy,
+                swe_mm_cy = swe_mm_wy,
+                srad_wm2_cy = srad_wm2_wy,
+                pdsi_cy = pdsi_wy)
 
 ## calculate trends - this is modified from John's script, CalculateTrends_020720.R
-fulllengthwyears <- tibble::tibble(currentwyear = c(1980:2018))
+fulllengthwyears <- tibble::tibble(currentclimyear = c(min(gages_annual_summary$currentclimyear):max(gages_annual_summary$currentclimyear)))
 sites <- unique(gages_annual_summary$gage_ID)
 
 for (i in seq_along(sites)){
@@ -83,7 +130,7 @@ for (i in seq_along(sites)){
   current[current==Inf] <- NA
   
   # which columns to calculate trends?
-  cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentwyear"))
+  cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentclimyear"))
   
   results <- tibble::tibble(metric = colnames(gages_annual_summary[cols_trend]),
                             tau = as.numeric(rep(NA, length = length(cols_trend))), 
@@ -94,14 +141,14 @@ for (i in seq_along(sites)){
   for(col in cols_trend){
     currentcolumnname <- colnames(current)[col]
     currentcolumn <- tibble::tibble(variable = dplyr::pull(current, col))
-    currentcolumn$currentwyear <- current$currentwyear
-    currentcolumn <- dplyr::right_join(currentcolumn, fulllengthwyears, by = "currentwyear")
+    currentcolumn$currentclimyear <- current$currentclimyear
+    currentcolumn <- dplyr::right_join(currentcolumn, fulllengthwyears, by = "currentclimyear")
     years_data <-  sum(is.finite(currentcolumn$variable))
     
     # only calculate trend if at least 30 years of data
     if (years_data >= 30){
       manken <- Kendall::MannKendall(currentcolumn$variable)
-      sen <- zyp::zyp.sen(variable ~ currentwyear, currentcolumn)
+      sen <- zyp::zyp.sen(variable ~ currentclimyear, currentcolumn)
       
       trend <- tibble::tibble(metric = currentcolumnname,
                               tau = manken$tau,
@@ -148,7 +195,6 @@ table(gage_sample$Econame, gage_sample$CLASS)
 table(gage_sample$region, gage_sample$CLASS)
 
 ggplot(gage_sample, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_point()
-
 
 ## save data to repository
 gage_sample %>% 
