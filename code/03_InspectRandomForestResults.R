@@ -16,14 +16,14 @@ gage_sample <-
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv")) %>% 
   dplyr::mutate(gage_ID = as.numeric(gage_ID)) %>% 
   # add some derived variables
-  dplyr::mutate(p.pet_wy = p_mm_wy/pet_mm_wy,
-                swe.p_wy = swe_mm_wy/p_mm_wy,
-                p.pet_djf = p_mm_djf/pet_mm_djf,
-                swe.p_djf = swe_mm_djf/p_mm_djf,
-                p.pet_mam = p_mm_mam/pet_mm_mam,
-                swe.p_mam = swe_mm_mam/p_mm_mam,
-                p.pet_jja = p_mm_jja/pet_mm_jja,
-                swe.p_jja = swe_mm_jja/p_mm_jja,
+  dplyr::mutate(p.pet_cy = p_mm_cy/pet_mm_cy,
+                swe.p_cy = swe_mm_cy/p_mm_cy,
+                p.pet_jfm = p_mm_jfm/pet_mm_jfm,
+                swe.p_jfm = swe_mm_jfm/p_mm_jfm,
+                p.pet_amj = p_mm_amj/pet_mm_amj,
+                swe.p_amj = swe_mm_amj/p_mm_amj,
+                p.pet_ond = p_mm_ond/pet_mm_ond,
+                swe.p_ond = swe_mm_ond/p_mm_ond,
                 p.pet_son = p_mm_son/pet_mm_son,
                 swe.p_son = swe_mm_son/p_mm_son)
 
@@ -32,14 +32,14 @@ gage_sample_annual <-
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv")) %>% 
   dplyr::left_join(gage_sample[,c("gage_ID", "region")], by = "gage_ID") %>% 
   # add some derived variables
-  dplyr::mutate(p.pet_wy = p_mm_wy/pet_mm_wy,
-                swe.p_wy = swe_mm_wy/p_mm_wy,
-                p.pet_djf = p_mm_djf/pet_mm_djf,
-                swe.p_djf = swe_mm_djf/p_mm_djf,
-                p.pet_mam = p_mm_mam/pet_mm_mam,
-                swe.p_mam = swe_mm_mam/p_mm_mam,
-                p.pet_jja = p_mm_jja/pet_mm_jja,
-                swe.p_jja = swe_mm_jja/p_mm_jja,
+  dplyr::mutate(p.pet_cy = p_mm_cy/pet_mm_cy,
+                swe.p_cy = swe_mm_cy/p_mm_cy,
+                p.pet_jfm = p_mm_jfm/pet_mm_jfm,
+                swe.p_jfm = swe_mm_jfm/p_mm_jfm,
+                p.pet_amj = p_mm_amj/pet_mm_amj,
+                swe.p_amj = swe_mm_amj/p_mm_amj,
+                p.pet_ond = p_mm_ond/pet_mm_ond,
+                swe.p_ond = swe_mm_ond/p_mm_ond,
                 p.pet_son = p_mm_son/pet_mm_son,
                 swe.p_son = swe_mm_son/p_mm_son)
 
@@ -110,18 +110,18 @@ rf_bygage %>%
 hull_ppet.srad <- 
   rf_bygage %>%
   dplyr::group_by(CLASS) %>% 
-  slice(chull(p.pet_wy, srad_wm2_wy))
-ggplot(rf_bygage, aes(x = srad_wm2_wy, y = p.pet_wy)) +
+  slice(chull(p.pet_cy, srad_wm2_cy))
+ggplot(rf_bygage, aes(x = srad_wm2_cy, y = p.pet_cy)) +
   geom_polygon(data = hull_ppet.srad, aes(linetype = CLASS, fill = CLASS), alpha = 0.5) +
   geom_point(aes(color = region, shape = CLASS)) +
   scale_color_manual(name = "Region", values = pal_regions)
 
-# scatterplot - ref gage space vs nonref gage space, drainage area and p.pet_wy
+# scatterplot - ref gage space vs nonref gage space, drainage area and p.pet_cy
 hull_ppet.da <- 
   rf_bygage %>%
   dplyr::group_by(CLASS) %>% 
-  slice(chull(p.pet_wy, DRAIN_SQKM))
-ggplot(rf_bygage, aes(x = DRAIN_SQKM, y = p.pet_wy)) +
+  slice(chull(p.pet_cy, DRAIN_SQKM))
+ggplot(rf_bygage, aes(x = DRAIN_SQKM, y = p.pet_cy)) +
   geom_polygon(data = hull_ppet.da, aes(linetype = CLASS, fill = CLASS), alpha = 0.5) +
   geom_point(aes(color = region, shape = CLASS)) +
   scale_color_manual(name = "Region", values = pal_regions)
