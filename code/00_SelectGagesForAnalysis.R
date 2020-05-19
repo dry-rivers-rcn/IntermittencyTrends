@@ -11,46 +11,20 @@ gage_regions <-
  # dplyr::select(-include) %>% 
   dplyr::rename(gage_ID = gage)
 
-# mean annual long-term stats for each gage
-gages_mean_new <-
-  file.path(dir_data, "data_for_spearman_rank_correlations.csv") %>% 
-  readr::read_csv() %>% 
-  dplyr::select(-X1) %>% 
-  subset(gage_ID %in% gage_regions$gage_ID)
-
-# old version of gages_mean, which has ref/nonref info
-gages_mean_old <-
+# load gage summary for things that don't vary annual (not climate or flow metrics)
+gage_sample <-
   file.path(dir_data, "mean_annual_no_flow_and_climate_metrics_110419.csv") %>% 
   readr::read_csv()  %>% 
-  subset(gage_ID %in% gage_regions$gage_ID)
-
-# drop flow metrics - the ones we care about are in gages_mean_new
-gages_mean_old <- gages_mean_old[,-(56:99)]
-
-# drop columns from gages_mean_old that are contained in gages_mean_new
-same_cols <- names(gages_mean_old)[names(gages_mean_old) %in% names(gages_mean_new)]
-same_cols <- same_cols[-1]  # keep 'gage_ID'
-gages_mean_old <- 
-  gages_mean_old %>% 
-  dplyr::select(-all_of(same_cols), -(`p/pet`), -(`swe/P`))
-
-# combine gages_mean_old and gages_mean_new
-gages_mean <- 
-  dplyr::left_join(gages_mean_new, gages_mean_old, by = c("gage_ID")) %>% 
-  unique() %>% 
-  # drop old ecoregions and add new ecoregions
-  dplyr::left_join(gage_regions, by = "gage_ID") %>% 
-  dplyr::select(-US_L3NAME, -NA_L2NAME, -NA_L1NAME)
-
-## subset to gages meeting threshold
-noflowfraction_min_threshold <- 5/365   # Eng et al used 15 days
-noflowfraction_max_threshold <- 360/365  # also at least 15 no-flow days/yr
-year_threshold <- 30
-
-# sites to sample- add a little buffer for rounding error
-gage_sample <- gages_mean[gages_mean$annualfractionnoflow >= noflowfraction_min_threshold-0.001 &
-                            gages_mean$annualfractionnoflow <= noflowfraction_max_threshold+0.001 &
-                            gages_mean$years_data >= year_threshold, ]
+  subset(gage_ID %in% gage_regions$gage_ID) %>% 
+  dplyr::select(all_of(c("gage_ID", "station_nm", "dec_lat_va", "dec_long_va", 
+                         "DRAIN_SQKM", "STATE", "CLASS", "SNOW_PCT_PRECIP", "GEOL_REEDBUSH_DOM", 
+                         "GEOL_REEDBUSH_SITE", "GEOL_HUNT_DOM_DESC", "FRESHW_WITHDRAWAL", 
+                         "PCT_IRRIG_AG", "POWER_NUM_PTS", "POWER_SUM_MW", "DEVNLCD06", 
+                         "FORESTNLCD06", "PLANTNLCD06", "WATERNLCD06", "SNOWICENLCD06", 
+                         "IMPNLCD06", "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
+                         "CLAYAVE", "SILTAVE", "SANDAVE", "TOPWET", "depth_bedrock_m", 
+                         "porosity", "storage_m", "log_k", "log_q0", "p_value", "k"))) %>% 
+  dplyr::left_join(gage_regions, by = "gage_ID")
 
 sum(gage_sample$CLASS == "Ref")
 sum(gage_sample$CLASS == "Non-ref")
@@ -99,26 +73,36 @@ gages_annual_summary <-
 # variables to calculate trends in and save
 annual_vars <- 
   c("gage_ID", "currentclimyear",
-    "annualfractionnoflow", "zeroflowfirst", "peak2z_length", "p_mm_wy", "p_mm_amj", 
-    "p_mm_jas", "p_mm_ond", "p_mm_jfm", "pet_mm_wy", "pet_mm_amj", "pet_mm_jas", 
-    "pet_mm_ond", "pet_mm_jfm", "T_max_c_wy", "T_max_c_amj", "T_max_c_jas", 
-    "T_max_c_ond", "T_max_c_jfm", "T_min_c_wy", "T_min_c_amj", "T_min_c_jas", 
+    "annualfractionnoflow", "zeroflowfirst", "peak2z_length", "p_mm_cy", "p_mm_amj", 
+    "p_mm_jas", "p_mm_ond", "p_mm_jfm", "pet_mm_cy", "pet_mm_amj", "pet_mm_jas", 
+    "pet_mm_ond", "pet_mm_jfm", "T_max_c_cy", "T_max_c_amj", "T_max_c_jas", 
+    "T_max_c_ond", "T_max_c_jfm", "T_min_c_cy", "T_min_c_amj", "T_min_c_jas", 
     "T_min_c_ond", "T_min_c_jfm", "pcumdist10days", "pcumdist50days", 
-    "pcumdist90days", "swe_mm_wy", "swe_mm_amj", "swe_mm_jas", "swe_mm_ond", 
-    "swe_mm_jfm", "srad_wm2_wy", "srad_wm2_amj", "srad_wm2_jas", 
-    "srad_wm2_ond", "srad_wm2_jfm", "pdsi_wy", "pdsi_amj", "pdsi_jas", 
+    "pcumdist90days", "swe_mm_cy", "swe_mm_amj", "swe_mm_jas", "swe_mm_ond", 
+    "swe_mm_jfm", "srad_wm2_cy", "srad_wm2_amj", "srad_wm2_jas", 
+    "srad_wm2_ond", "srad_wm2_jfm", "pdsi_cy", "pdsi_amj", "pdsi_jas", 
     "pdsi_ond", "pdsi_jfm")
 
 gages_annual_summary <- 
   gages_annual_summary %>% 
   dplyr::select(all_of(annual_vars)) %>% 
-  dplyr::rename(p_mm_cy = p_mm_wy,
-                pet_mm_cy = pet_mm_wy,
-                T_max_c_cy = T_max_c_wy,
-                T_min_c_cy = T_min_c_wy,
-                swe_mm_cy = swe_mm_wy,
-                srad_wm2_cy = srad_wm2_wy,
-                pdsi_cy = pdsi_wy)
+  dplyr::rename(p_mm_cy = p_mm_cy,
+                pet_mm_cy = pet_mm_cy,
+                T_max_c_cy = T_max_c_cy,
+                T_min_c_cy = T_min_c_cy,
+                swe_mm_cy = swe_mm_cy,
+                srad_wm2_cy = srad_wm2_cy,
+                pdsi_cy = pdsi_cy)
+
+## calculate mean for each gage
+gages_mean <-
+  gages_annual_summary %>% 
+  dplyr::group_by(gage_ID) %>% 
+  dplyr::summarize_all(mean, na.rm = T) %>% 
+  dplyr::select(-currentclimyear, -pdsi_cy, -pdsi_jfm, -pdsi_amj, -pdsi_jas, -pdsi_ond)
+
+gage_sample <-
+  dplyr::left_join(gage_sample, gages_mean, by = "gage_ID")
 
 ## calculate trends - this is modified from John's script, CalculateTrends_020720.R
 fulllengthwyears <- tibble::tibble(currentclimyear = c(min(gages_annual_summary$currentclimyear):max(gages_annual_summary$currentclimyear)))
@@ -198,6 +182,7 @@ ggplot(gage_sample, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_p
 
 ## save data to repository
 gage_sample %>% 
+  dplyr::select(-Eco, -Econame, -include) %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
 gage_regions %>% 

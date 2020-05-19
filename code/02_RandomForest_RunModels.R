@@ -51,7 +51,7 @@ predictors_annual <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj"
                        "pdsi_ond", "pdsi_jfm", "pdsi_amj", "p.pet_cy", "swe.p_cy", "p.pet_jfm", "swe.p_jfm",
                        "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond")
 
-predictors_static <- c("DRAIN_SQKM", "accumulated_NID_storage", 
+predictors_static <- c("DRAIN_SQKM", 
                        "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
                        "TOPWET", "depth_bedrock_m", 
                        "CLAYAVE", "SILTAVE", "SANDAVE")
@@ -130,27 +130,33 @@ n_pred <- 15
 
 ## loop through metrics and regions
 for (m in metrics){
-  # subset to complete cases and references gages only
+  # subset to complete cases only
   fit_data_m <- 
     fit_data_in %>% 
-    dplyr::select(-all_of(metrics[metrics != m])) %>%  # drop metrics you aren't interested in
-    subset(complete.cases(.))
+    dplyr::select(-all_of(metrics[metrics != m]))
   
   # rename metric column
   names(fit_data_m)[names(fit_data_m) == m] <- "observed"
   
   for (r in regions){
-    if (r == "National") {
-      fit_data_r <- fit_data_m
-    } else {
-      fit_data_r <- subset(fit_data_m, region == r)
-    }
-    
     # get predictor variables
     rf_var_m_r <-
       rf_var_importance %>% 
       subset(metric == m & region == r) %>% 
       dplyr::top_n(n = n_pred, wt = IncMSE_mean)
+    
+    if (r == "National") {
+      fit_data_r <- 
+        fit_data_m %>% 
+        dplyr::select(gage_ID, CLASS, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
+        subset(complete.cases(.))
+    } else {
+      fit_data_r <- 
+        fit_data_m %>% 
+        subset(region == r) %>% 
+        dplyr::select(gage_ID, CLASS, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
+        subset(complete.cases(.))
+    }
     
     fit_formula <- as.formula(paste0("observed ~ ", paste(unique(rf_var_m_r$predictor), collapse = "+")))
     
