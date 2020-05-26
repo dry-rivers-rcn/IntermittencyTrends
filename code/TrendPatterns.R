@@ -40,16 +40,15 @@ summary_trends <- gages_sig %>% group_by(metric, region.x) %>% filter(pval < 0.0
 regions<-unique(gages$region.x)
 
 gages<-as.data.frame(gages)
+
 afnf<-gages[gages$metric == "annualfractionnoflow",] 
 afnf$region.x<- factor(afnf$region.x, levels=regions)
-
 afnf_sig<-gages_sig[gages_sig$metric == "annualfractionnoflow",] 
 afnf_sig$region.x<- factor(afnf_sig$region.x, levels=regions)
 
-fnf<-gages[gages$metric == "firstnoflowcaly",] 
+fnf<-gages[gages$metric == "zeroflowfirst",] 
 fnf$region.x<- factor(fnf$region.x, levels=regions)
-
-fnf_sig<-gages_sig[gages_sig$metric == "firstnoflowcaly",] 
+fnf_sig<-gages_sig[gages_sig$metric == "zeroflowfirst",] 
 fnf_sig$region.x<- factor(fnf_sig$region.x, levels=regions)
 
 p2l<-gages[gages$metric == "peak2z_length",] 
@@ -57,19 +56,19 @@ p2l$region.x<- factor(p2l$region.x, levels=regions)
 p2l_sig<-gages_sig[gages_sig$metric == "peak2z_length",] 
 p2l_sig$region.x<- factor(p2l_sig$region.x, levels=regions)
 
-p<-gages[gages$metric == "p_mm_wy",]
+p<-gages[gages$metric == "p_mm_cy",]
 p$region.x<- factor(p$region.x, levels=regions)
-p_sig<-gages_sig[gages_sig$metric == "p_mm_wy",] 
+p_sig<-gages_sig[gages_sig$metric == "p_mm_cy",] 
 p_sig$region.x<- factor(p_sig$region.x, levels=regions)
 
-T_max<-gages[gages$metric == "T_max_c_wy",] 
+T_max<-gages[gages$metric == "T_max_c_cy",] 
 T_max$region.x<- factor(T_max$region.x, levels=regions)
-T_max_sig<-gages_sig[gages_sig$metric == "T_max_c_wy",] 
+T_max_sig<-gages_sig[gages_sig$metric == "T_max_c_cy",] 
 T_max_sig$region.x<- factor(T_max_sig$region.x, levels=regions)
 
-pet<-gages[gages$metric == "pet_mm_wy",]
+pet<-gages[gages$metric == "pet_mm_cy",]
 pet$region.x<- factor(pet$region.x, levels=regions)
-pet_sig<-gages_sig[gages_sig$metric == "pet_mm_wy",]
+pet_sig<-gages_sig[gages_sig$metric == "pet_mm_cy",]
 pet_sig$region.x<- factor(pet_sig$region.x, levels=regions)
 
 af<- ggplot(afnf, aes(x=fct_reorder(region.x, slope), y= slope, fill =region.x)) +
