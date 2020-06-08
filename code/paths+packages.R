@@ -4,7 +4,6 @@
 # load packages
 library(tidyverse)
 library(lwgeom)
-library(cowplot)
 
 # relative path to directory containing John's data analysis 
 # GitHub repository with scripts and data
