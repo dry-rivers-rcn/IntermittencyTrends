@@ -37,19 +37,26 @@ summary_trends <- gages_sig %>% group_by(metric, region.x) %>% filter(pval < 0.0
 # --- Boxplots of Slope by Region and Metric of interest --- #
 # --- Seems like there should be a cleaner way to code this - would love input #
 
+pal_regions_dk <- 
+  c("Eastern Forests" = "#007756",
+    "Mediterranean California" = "#c1b40f",
+    "North Great Plains" = "#004064",
+    "South Great Plains" = "#bf8400",
+    "Western Desert" = "#9a4400",
+    "Western Mountains" = "#1986c3")
+
 regions<-unique(gages$region.x)
 
 gages<-as.data.frame(gages)
+
 afnf<-gages[gages$metric == "annualfractionnoflow",] 
 afnf$region.x<- factor(afnf$region.x, levels=regions)
-
 afnf_sig<-gages_sig[gages_sig$metric == "annualfractionnoflow",] 
 afnf_sig$region.x<- factor(afnf_sig$region.x, levels=regions)
 
-fnf<-gages[gages$metric == "firstnoflowcaly",] 
+fnf<-gages[gages$metric == "zeroflowfirst",] 
 fnf$region.x<- factor(fnf$region.x, levels=regions)
-
-fnf_sig<-gages_sig[gages_sig$metric == "firstnoflowcaly",] 
+fnf_sig<-gages_sig[gages_sig$metric == "zeroflowfirst",] 
 fnf_sig$region.x<- factor(fnf_sig$region.x, levels=regions)
 
 p2l<-gages[gages$metric == "peak2z_length",] 
@@ -57,43 +64,49 @@ p2l$region.x<- factor(p2l$region.x, levels=regions)
 p2l_sig<-gages_sig[gages_sig$metric == "peak2z_length",] 
 p2l_sig$region.x<- factor(p2l_sig$region.x, levels=regions)
 
-p<-gages[gages$metric == "p_mm_wy",]
+p<-gages[gages$metric == "p_mm_cy",]
 p$region.x<- factor(p$region.x, levels=regions)
-p_sig<-gages_sig[gages_sig$metric == "p_mm_wy",] 
+p_sig<-gages_sig[gages_sig$metric == "p_mm_cy",] 
 p_sig$region.x<- factor(p_sig$region.x, levels=regions)
 
-T_max<-gages[gages$metric == "T_max_c_wy",] 
+T_max<-gages[gages$metric == "T_max_c_cy",] 
 T_max$region.x<- factor(T_max$region.x, levels=regions)
-T_max_sig<-gages_sig[gages_sig$metric == "T_max_c_wy",] 
+T_max_sig<-gages_sig[gages_sig$metric == "T_max_c_cy",] 
 T_max_sig$region.x<- factor(T_max_sig$region.x, levels=regions)
 
-pet<-gages[gages$metric == "pet_mm_wy",]
+pet<-gages[gages$metric == "pet_mm_cy",]
 pet$region.x<- factor(pet$region.x, levels=regions)
-pet_sig<-gages_sig[gages_sig$metric == "pet_mm_wy",]
+pet_sig<-gages_sig[gages_sig$metric == "pet_mm_cy",]
 pet_sig$region.x<- factor(pet_sig$region.x, levels=regions)
 
-af<- ggplot(afnf, aes(x=fct_reorder(region.x, slope), y= slope, fill =region.x)) +
+af<- ggplot(afnf, aes(x=fct_reorder(region.x, slope), y= slope, fill = region.x, color =region.x)) +
   geom_boxplot() + 
   geom_hline(yintercept=0) +
-  geom_jitter(width=0.05,alpha=0.2)+
+  scale_fill_manual(values = pal_regions) +
+  scale_color_manual(values = pal_regions_dk) +
+  #geom_jitter(width=0.05,alpha=0.2)+
   theme_bw()+
   xlab('')+
   ylab('Annual Frac No Flow')+
   theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
-fnf<- ggplot(fnf, aes(x=fct_reorder(region.x, slope), y= slope, fill =region.x)) +
+fn<- ggplot(fnf, aes(x=fct_reorder(region.x, slope), y= slope, fill = region.x, color =region.x)) + 
   geom_boxplot() + 
+  scale_fill_manual(values = pal_regions) +
+  scale_color_manual(values = pal_regions_dk) +
   geom_hline(yintercept=0) +
-  geom_jitter(width=0.05,alpha=0.2)+
+  #geom_jitter(width=0.05,alpha=0.2)+
   theme_bw()+
   xlab('')+
-  ylab('First No Flow (timing')+
+  ylab('First No Flow')+
   theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
-peak<- ggplot(p2l, aes(x=fct_reorder(region.x, slope), y= slope, fill =region.x)) +
+peak<- ggplot(p2l, aes(x=fct_reorder(region.x, slope), y= slope, fill = region.x, color =region.x)) + 
   geom_boxplot() + 
+  scale_fill_manual(values = pal_regions) +
+  scale_color_manual(values = pal_regions_dk) +
   geom_hline(yintercept=0) +
-  geom_jitter(width=0.05,alpha=0.2)+
+  #geom_jitter(width=0.05,alpha=0.2)+
   theme_bw()+
   xlab('')+
   ylab('Peak to Zero (rate)')+
@@ -125,52 +138,7 @@ pet<- ggplot(pet, aes(x=region.x, y= slope, fill =region.x)) +
   ylab('PET')+
   theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
-  grid.arrange(af, p, fnf, t, peak, pet, ncol=2)
+  grid.arrange(af, p, fn, t, peak, pet, ncol=2)
+  grid.arrange(af, fn, peak, ncol=1)
 
 
-# --- subset data for plotting and regressions ---- 
-
-annfracnoflow <- gages_sig %>% filter(metric == "annualfractionnoflow") %>% select(slope, p.pet, tmean_c, swe.p, pdsi_wy, DRAIN_SQKM, FORESTNLCD06, PLANTNLCD06, IMPNLCD06, ELEV_MEAN_M_BASIN, SLOPE_PCT, PRECIP_SEAS_IND, depth_bedrock_m, porosity, storage_m, T_max_c_wy, PCT_IRRIG_AG, SNOW_PCT_PRECIP)
-  
-zeroflowcentroid  <- gages_sig %>% filter(metric == "zeroflowcentroiddate") %>% select(slope, p.pet, tmean_c, swe.p, pdsi_wy, DRAIN_SQKM, FORESTNLCD06, PLANTNLCD06, IMPNLCD06, ELEV_MEAN_M_BASIN, SLOPE_PCT, PRECIP_SEAS_IND, depth_bedrock_m, porosity, storage_m, T_max_c_wy, PCT_IRRIG_AG, SNOW_PCT_PRECIP)
-
-totnoflowper <- gages_sig %>% filter(metric == "totalnoflowperiods") %>% select(slope, p.pet, tmean_c, swe.p, pdsi_wy, DRAIN_SQKM, FORESTNLCD06, PLANTNLCD06, IMPNLCD06, ELEV_MEAN_M_BASIN, SLOPE_PCT, PRECIP_SEAS_IND, depth_bedrock_m, porosity, storage_m, T_max_c_wy, PCT_IRRIG_AG, SNOW_PCT_PRECIP)
-
-#--- Pearson r linear correlations between trend in flow metrics versus average watershed characteristics ----
-
-source("code/panelutils.R") 
-
-annfract_cor <- cor(annfracnoflow)#, method = "kendall") 
-annfrac_o <- order.single(annfract_cor)
-quartz(title ='', 12, 12)
-op <- par(mfrow=c(1,1), pty ='s')
-pairs(annfracnoflow[,annfrac_o], lower.panel = panel.smooth, upper.panel = panel.cor, diag.panel = panel.hist, main= "Linear correlation btw Annual Fraction No Flow Trends and Gage Characteristics")
-par(op)
-
-quartz.save("results/AnnFrac_cor.pdf", type="pdf")
-
-# total no flow periods
-totnoflowper_cor <- cor(totnoflowper) 
-totnoflowper_o <- order.single(totnoflowper_cor)
-quartz(title ='', 12, 12)
-op <- par(mfrow=c(1,1), pty ='s')
-pairs(totnoflowper[,totnoflowper_o], lower.panel = panel.smooth, upper.panel = panel.cor, diag.panel = panel.hist, main= "Linear correlation btw Total No Flow Period Trends and Gage Characteristics")
-par(op)
-
-quartz.save("results/totnoflowper_cor.pdf", type="pdf")
-
-# centroid date
-zeroflowcentroid_cor <- cor(zeroflowcentroid) 
-zeroflowcentroid_o <- order.single(zeroflowcentroid_cor)
-quartz(title ='', 12, 12)
-op <- par(mfrow=c(1,1), pty ='s')
-pairs(zeroflowcentroid[,annfrac_o], lower.panel = panel.smooth, upper.panel = panel.cor, diag.panel = panel.hist, main= "Linear correlation btw Zero Flow Centroid Date Trends and Gage Characteristics")
-par(op)
-
-quartz.save("results/ZeroFlowCentroid_cor.pdf", type="pdf")
-
-
-# --- combine correlations into one datatable for export ----
-cors<- data.frame(annfracnoflow= annfract_cor[,1], totnoflowper= totnoflowper_cor[,1], zerocentroid= zeroflowcentroid_cor[,1])
-
-write.csv(cors, "results/Metric Trend Correlation of All Gages to Static Variables.csv")

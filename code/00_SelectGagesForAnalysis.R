@@ -152,25 +152,33 @@ for (i in seq_along(sites)){
   print(paste0("Site ", i, " complete"))
 }
 
-table(gage_sample$region, gage_sample$CLASS)
-table(gage_sample$CLASS)
+# subset to final sample: sites that have data for all records
+gage_sample_out <- 
+  gage_sample %>% 
+  dplyr::select(-epa_level_1_ecoregion_name) %>% 
+  subset(is.finite(annualfractionnoflow) & is.finite(zeroflowfirst) & is.finite(peak2z_length))  # screen out any with missing data
 
-ggplot(gage_sample, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_point()
+table(gage_sample_out$region, gage_sample_out$CLASS)
+table(gage_sample_out$CLASS)
+
+ggplot(gage_sample_out, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_point()
 
 ## save data to repository
-gage_sample %>% 
-  dplyr::select(-epa_level_1_ecoregion_name) %>% 
+gage_sample_out %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
 gage_sample %>% 
   dplyr::select(gage_ID, epa_level_1_ecoregion_name, region) %>% 
   dplyr::rename(EPA_Ecoregion_Name = epa_level_1_ecoregion_name) %>% 
+  subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
 
 gages_annual_summary %>% 
+  subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv"))
 
 gage_trends %>% 
+  subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
 
 ## plot

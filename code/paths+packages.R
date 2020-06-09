@@ -4,6 +4,7 @@
 # load packages
 library(tidyverse)
 library(lwgeom)
+library(cowplot)
 
 # relative path to directory containing John's data analysis 
 # GitHub repository with scripts and data
@@ -31,6 +32,14 @@ pal_regions <-
     "South Great Plains" = "#E69F00",
     "Western Desert" = "#D55E00",
     "Western Mountains" = "#56B4E9")
+
+pal_regions_dk <- 
+  c("Eastern Forests" = "#007756",
+    "Mediterranean California" = "#c1b40f",
+    "North Great Plains" = "#004064",
+    "South Great Plains" = "#bf8400",
+    "Western Desert" = "#9a4400",
+    "Western Mountains" = "#1986c3")
 
 ## ggplot theme
 windowsFonts(Arial=windowsFont("TT Arial"))
