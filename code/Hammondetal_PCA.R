@@ -1,10 +1,8 @@
 ### Code for PCA in Fig. 1, Hammond et al. "Assessing spatial patterns and drivers of non-perennial flow in the continguous U.S." ###
-### Edited by M.C. Mims, 2020.06.01 ###
+### Edited by M.C. Mims, 2020.06.13 ###
 
 # libraries
-require(rcompanion)
-require(standardize)
-require(ellipse)
+require(vegan)
 
 # Set working directory (MCM laptop)
 setwd("D:/Meryl - Professional/Projects/Active Projects/NSF_IR-RCN/Hammond paper")
@@ -12,7 +10,7 @@ source('colorRampPaletteAlpha.R', encoding = 'UTF-8')
 
 # Read in John's dataset
 
-  flow_vars <- read.delim("D:/Meryl - Professional/Projects/Active Projects/NSF_IR-RCN/Hammond paper/mean_annual_no_flow_climate_watershed_EPA1_032920.txt")
+  flow_vars <- read.delim("D:/Meryl - Professional/Projects/Active Projects/NSF_IR-RCN/Hammond paper/mean_annual_metrics_060320.txt")
 
 # Subset to three vars identified by M. Zimmer and J. Hammond: annualfractionnoflow, firstnoflowcaly, p2z_mean
 
@@ -22,20 +20,14 @@ source('colorRampPaletteAlpha.R', encoding = 'UTF-8')
 # Explore data and evaluate need for transformation
 
   hist(log(target_vars$annualfractionnoflow)) #log transform due to right skew
-  hist(target_vars$firstnoflowcaly) #do not transform
-  hist(log(target_vars$p2z_mean)) #log transform due to high degree of right skew
+  hist(target_vars$zeroflowfirst) #do not transform
+  hist(log(target_vars$p2z)) #log transform due to high degree of right skew
 
 # Transform appropriate variables, set column names
 
   log_AFNF <- log(target_vars$annualfractionnoflow)
-  FirstnF <- target_vars$firstnoflowcaly
-  log_P2Z <- log(target_vars$p2z_mean)
-
-# Standardize variables (z-score calculation), create dataframe for PCA
-
-  AFNF_std <- (log_AFNF - mean(log_AFNF))/sd(log_AFNF)
-  FirstnF_std <- (FirstnF - mean(FirstnF, na.rm= TRUE))/sd(FirstnF, na.rm = TRUE)
-  P2Z_std <- (log_P2Z - mean(log_P2Z))/sd(log_P2Z)
+  FirstnF <- target_vars$zeroflowfirst
+  log_P2Z <- log(target_vars$p2z)
   
   trans_vars <- as.data.frame(cbind(log_AFNF, FirstnF, log_P2Z)) #creat new dataframe with 2 of 3 vars log transformed
   colnames(trans_vars) <- colnames(target_vars) #set column names for new dataframe
@@ -46,6 +38,7 @@ source('colorRampPaletteAlpha.R', encoding = 'UTF-8')
   summary(PCA1) #PCA output summary with proportion of variance
   evs <- as.data.frame(PCA1$sdev^2)
   loads <- as.data.frame(PCA1$rotation) #loadings
+  loads
   scores <- as.data.frame(PCA1$x) # principal components (scores)
 
 # Combine scores with Gage IDs for plotting
@@ -82,11 +75,11 @@ source('colorRampPaletteAlpha.R', encoding = 'UTF-8')
     
   #Export plot
     
-  png("Hammondetal_Fig1_PCA.png", width=8.0, height=8.0, units="in", res=300)
+  png("Hammondetal_PCA_2020.06.13.png", width=8.0, height=8.0, units="in", res=300)
   
   par(mar=c(5,6,1,1), mgp=c(4,1,0))
-  plot(Gage_scores$PC1, Gage_scores$PC2, type="n",  xlim=c(-2.5,3),ylim=c(-4.5,3), xaxt="n", main="",
-       yaxt="n", xlab="PC1 (57.7%)", ylab="PC2 (33.3%)", cex.lab=1.5)
+  plot(Gage_scores$PC1, Gage_scores$PC2, type="n",  xlim=c(-4,4),ylim=c(-3.5,3), xaxt="n", main="",
+       yaxt="n", xlab="PC1 (74.6%)", ylab="PC2 (14.7%)", cex.lab=1.5) #manually update % variation explained
   axis(2, at=c(-4.5,-3.0,-1.5,0,1.5,3.0), cex.axis=1.5, las=1.5)
   axis(1, at=c(-3.0,-1.5,0,1.5,3.0), cex.axis=1.5, las=1.5)
   points(Gage_scores$PC1, Gage_scores$PC2, cex=2, pch=gage.sym, col="grey60", bg=region.col_alph) #individual points
@@ -97,7 +90,7 @@ source('colorRampPaletteAlpha.R', encoding = 'UTF-8')
   legcolors_alph <- addalpha(legcolors, 0.4)
   legpch <- c(21, 21, 21, 21, 21, 21)
   leglabs <- c("Eastern Forests", "Mediterranean California", "North Great Plains", "South Great Plains", "Western Desert", "Western Mountains")
-  legend("bottomleft", leglabs, pch = legpch, pt.cex=2, col = "grey20", pt.bg=legcolors_alph, bty = "n")
+  legend("bottomright", leglabs, pch = legpch, pt.cex=2, col = "grey20", pt.bg=legcolors_alph, bty = "n")
   
   #Gage legend
   g_legcolor <- "grey80"
@@ -111,11 +104,30 @@ source('colorRampPaletteAlpha.R', encoding = 'UTF-8')
   arrows(0,0,3*loads[3,1], 3*loads[3,2], lwd=3) #p2z_mean
 
   
-  labels_x <- c(1.9,-2,0) #adjusted manually for the plot
-  labels_y <- c(-0.4,0.6,-3.3) #adjusted manually for the plot
+  labels_x <- c(1.9,-1.5,-0.8) #adjusted manually for the plot
+  labels_y <- c(-1,2,-2.5) #adjusted manually for the plot
   text(labels_x, labels_y, c("No flow fraction", "First no flow","Peak to zero"), cex=1.5) #labels requested by J.Hammond
   
   
   dev.off()
 
+  
+  #perMANOVA
+  adonis(trans_vars~Aggregated_region+Class, data=flow_vars, permutations=1000, method="gower")
+
+  #betadisper for regions
+  trans_vars.d <- vegdist(trans_vars, "gower")
+  vars.bd <- betadisper(trans_vars.d, flow_vars$Aggregated_region)
+  anova(vars.bd)
+  permutest(vars.bd, pairwise=TRUE)
+  
+  #betadisper for gage type
+  trans_vars.d <- vegdist(trans_vars, "gower")
+  vars.bd <- betadisper(trans_vars.d, flow_vars$Class)
+  anova(vars.bd)
+  permutest(vars.bd, pairwise=TRUE)
+  
+  
+  #citations
+  citation("vegan")
   
