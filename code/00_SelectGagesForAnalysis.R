@@ -4,27 +4,29 @@
 source(file.path("code", "paths+packages.R"))
 
 ## load data from John - mean annual data
-# load ecoregions
-gage_regions <- 
-  file.path(dir_data, "gages_majority_epaNAeco1.csv") %>% 
+# load gage summary of gages for analysis
+gage_sample_new <-
+  file.path(dir_data, "USGS_non_perenial_flow_climate_and_watershed_properties_060520.csv") %>% 
   readr::read_csv() %>% 
- # dplyr::select(-include) %>% 
-  dplyr::rename(gage_ID = gage)
+  dplyr::rename(gage_ID = staid, CLASS = class, region = aggregated_region) %>% 
+  # eliminate a bunch of mean flow and climate values because we will calculate those based on annual data
+  dplyr::select(-annualfractionnoflow, -p2z, -zeroflowfirst, -pet_mm_climy, -t_max_c_climy,
+                -t_min_c_climy, -t_mean_c_climy, -swe_mm_climy, -pdsi_climy,
+                -swe.p, -p.pet, -tmean, -p_mm_climy)  
 
-# load gage summary for things that don't vary annual (not climate or flow metrics)
-gage_sample <-
+# get some additional watershed characteristics that don't change
+gage_sample_old <-
   file.path(dir_data, "mean_annual_no_flow_and_climate_metrics_110419.csv") %>% 
   readr::read_csv()  %>% 
-  subset(gage_ID %in% gage_regions$gage_ID) %>% 
-  dplyr::select(all_of(c("gage_ID", "station_nm", "dec_lat_va", "dec_long_va", 
-                         "DRAIN_SQKM", "STATE", "CLASS", "SNOW_PCT_PRECIP", "GEOL_REEDBUSH_DOM", 
-                         "GEOL_REEDBUSH_SITE", "GEOL_HUNT_DOM_DESC", "FRESHW_WITHDRAWAL", 
-                         "PCT_IRRIG_AG", "POWER_NUM_PTS", "POWER_SUM_MW", "DEVNLCD06", 
-                         "FORESTNLCD06", "PLANTNLCD06", "WATERNLCD06", "SNOWICENLCD06", 
-                         "IMPNLCD06", "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
-                         "CLAYAVE", "SILTAVE", "SANDAVE", "TOPWET", "depth_bedrock_m", 
-                         "porosity", "storage_m", "log_k", "log_q0", "p_value", "k"))) %>% 
-  dplyr::left_join(gage_regions, by = "gage_ID")
+  subset(gage_ID %in% gage_sample_new$gage_ID) %>% 
+  dplyr::select(all_of(c("gage_ID", "dec_lat_va", "dec_long_va", 
+                         "FRESHW_WITHDRAWAL", 
+                         "PCT_IRRIG_AG", "POWER_NUM_PTS", "DEVNLCD06", 
+                         "CLAYAVE", "SILTAVE", "SANDAVE")))
+names(gage_sample_old)[4:10] <- stringr::str_to_lower(names(gage_sample_old)[4:10])
+
+# combine characteristics into a single data frame
+gage_sample <- dplyr::left_join(gage_sample_new, gage_sample_old, by = "gage_ID")
 
 sum(gage_sample$CLASS == "Ref")
 sum(gage_sample$CLASS == "Non-ref")
@@ -33,66 +35,52 @@ sum(gage_sample$CLASS == "Non-ref")
 gage_sample$dec_lat_va[gage_sample$gage_ID==208111310] <- 36.04778
 gage_sample$dec_long_va[gage_sample$gage_ID==208111310] <- -76.98417
 
-
 ## load annual stats for each gage
 # load and calculate peak2zero length from raw data
 p2z_all <- 
   file.path(dir_data, 
-            "all_p2z_dates_043020.csv") %>% 
+            "p2z_by_event_final_060320.csv") %>% 
   readr::read_csv() %>% 
-  dplyr::mutate(date = lubridate::mdy(date)) %>% 
-  dplyr::mutate(currentclimyear = lubridate::year(date - lubridate::days(91)))
+  dplyr::rename(gage_ID = gage)
 
 p2z_mean_climyear <-
   p2z_all %>% 
-  subset(peak2z_length <= 365) %>% 
-  dplyr::group_by(site, currentclimyear) %>% 
-  dplyr::summarize(p2z_mean = mean(peak2z_length))
-
-p2z_mean_site <- 
-  p2z_all %>% 
-  subset(peak2z_length <= 365) %>% 
-  dplyr::group_by(site) %>% 
-  dplyr::summarize(p2z_mean = mean(peak2z_length))
-
-# replace p2z_mean from john file with updated one
-gage_sample$p2z_mean <- NULL
-gage_sample <-
-  gage_sample %>% 
-  dplyr::left_join(p2z_mean_site[,c("site", "p2z_mean")], by = c("gage_ID" = "site"))
+  dplyr::group_by(gage_ID, dry_climyear) %>% 
+  dplyr::summarize(peak2z_length = mean(peak2zero),
+                   peak2z_count = n())
 
 # annual stats for each gage - climate and flow metrics
 gages_annual_summary <- 
   file.path(dir_data, 
             "annual_no_flow_and_climate_metrics_climatic_year_050820.csv") %>% 
   readr::read_csv() %>% 
-  dplyr::left_join(p2z_mean_climyear, by = c("sitewith0" = "site", "currentclimyear")) %>% 
-  dplyr::rename(peak2z_length = p2z_mean, gage_ID = sitewith0) %>% 
+  dplyr::rename(gage_ID = sitewith0) %>% 
+  dplyr::left_join(p2z_mean_climyear, by = c("gage_ID", "currentclimyear" = "dry_climyear")) %>% 
   subset(gage_ID %in% gage_sample$gage_ID)
 
 # variables to calculate trends in and save
 annual_vars <- 
   c("gage_ID", "currentclimyear",
-    "annualfractionnoflow", "zeroflowfirst", "peak2z_length", "p_mm_cy", "p_mm_amj", 
-    "p_mm_jas", "p_mm_ond", "p_mm_jfm", "pet_mm_cy", "pet_mm_amj", "pet_mm_jas", 
-    "pet_mm_ond", "pet_mm_jfm", "T_max_c_cy", "T_max_c_amj", "T_max_c_jas", 
-    "T_max_c_ond", "T_max_c_jfm", "T_min_c_cy", "T_min_c_amj", "T_min_c_jas", 
+    "annualfractionnoflow", "zeroflowfirst", "peak2z_length", "p_mm_wy", "p_mm_amj", 
+    "p_mm_jas", "p_mm_ond", "p_mm_jfm", "pet_mm_wy", "pet_mm_amj", "pet_mm_jas", 
+    "pet_mm_ond", "pet_mm_jfm", "T_max_c_wy", "T_max_c_amj", "T_max_c_jas", 
+    "T_max_c_ond", "T_max_c_jfm", "T_min_c_wy", "T_min_c_amj", "T_min_c_jas", 
     "T_min_c_ond", "T_min_c_jfm", "pcumdist10days", "pcumdist50days", 
-    "pcumdist90days", "swe_mm_cy", "swe_mm_amj", "swe_mm_jas", "swe_mm_ond", 
-    "swe_mm_jfm", "srad_wm2_cy", "srad_wm2_amj", "srad_wm2_jas", 
-    "srad_wm2_ond", "srad_wm2_jfm", "pdsi_cy", "pdsi_amj", "pdsi_jas", 
+    "pcumdist90days", "swe_mm_wy", "swe_mm_amj", "swe_mm_jas", "swe_mm_ond", 
+    "swe_mm_jfm", "srad_wm2_wy", "srad_wm2_amj", "srad_wm2_jas", 
+    "srad_wm2_ond", "srad_wm2_jfm", "pdsi_wy", "pdsi_amj", "pdsi_jas", 
     "pdsi_ond", "pdsi_jfm")
 
 gages_annual_summary <- 
   gages_annual_summary %>% 
   dplyr::select(all_of(annual_vars)) %>% 
-  dplyr::rename(p_mm_cy = p_mm_cy,
-                pet_mm_cy = pet_mm_cy,
-                T_max_c_cy = T_max_c_cy,
-                T_min_c_cy = T_min_c_cy,
-                swe_mm_cy = swe_mm_cy,
-                srad_wm2_cy = srad_wm2_cy,
-                pdsi_cy = pdsi_cy)
+  dplyr::rename(p_mm_cy = p_mm_wy,
+                pet_mm_cy = pet_mm_wy,
+                T_max_c_cy = T_max_c_wy,
+                T_min_c_cy = T_min_c_wy,
+                swe_mm_cy = swe_mm_wy,
+                srad_wm2_cy = srad_wm2_wy,
+                pdsi_cy = pdsi_wy)
 
 ## calculate mean for each gage
 gages_mean <-
@@ -164,37 +152,33 @@ for (i in seq_along(sites)){
   print(paste0("Site ", i, " complete"))
 }
 
-## define regions - for now, use the NA_L1NAME column as a preliminary start and refine it to fewer groups
-# (eventually these will be replaced with output from John's analysis of spatial patterns)
-gage_sample$region <- NA
-gage_sample$region[gage_sample$Econame == "GREAT PLAINS" & gage_sample$dec_lat_va > 41.5] <- "North Great Plains"
-gage_sample$region[gage_sample$Econame == "GREAT PLAINS" & gage_sample$dec_lat_va <= 41.5] <- "South Great Plains"
-gage_sample$region[gage_sample$Econame %in% c("MEDITERRANEAN CALIFORNIA", "MARINE WEST COAST FOREST")] <- "Mediterranean California"
-gage_sample$region[gage_sample$Econame %in% c("SOUTHERN SEMIARID HIGHLANDS", "NORTH AMERICAN DESERTS")] <- "Western Desert"
-gage_sample$region[gage_sample$Econame %in% c("NORTHWESTERN FORESTED MOUNTAINS", "TEMPERATE SIERRAS")] <- "Western Mountains"
-gage_sample$region[gage_sample$Econame  %in% c("EASTERN TEMPERATE FORESTS", "NORTHERN FORESTS")] <- "Eastern Forests"
-sum(is.na(gage_sample$region))
+# subset to final sample: sites that have data for all records
+gage_sample_out <- 
+  gage_sample %>% 
+  dplyr::select(-epa_level_1_ecoregion_name) %>% 
+  subset(is.finite(annualfractionnoflow) & is.finite(zeroflowfirst) & is.finite(peak2z_length))  # screen out any with missing data
 
-table(gage_sample$Econame, gage_sample$CLASS)
-table(gage_sample$region, gage_sample$CLASS)
+table(gage_sample_out$region, gage_sample_out$CLASS)
+table(gage_sample_out$CLASS)
 
-ggplot(gage_sample, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_point()
+ggplot(gage_sample_out, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_point()
 
 ## save data to repository
-gage_sample %>% 
-  dplyr::select(-Eco, -Econame, -include) %>% 
+gage_sample_out %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
-gage_regions %>% 
-  dplyr::select(gage_ID, Eco, Econame) %>% 
-  dplyr::rename(EPA_Ecoregion = Eco, EPA_Ecoregion_Name = Econame) %>% 
-  dplyr::left_join(gage_sample[ , c("gage_ID", "region")], by = "gage_ID") %>% 
+gage_sample %>% 
+  dplyr::select(gage_ID, epa_level_1_ecoregion_name, region) %>% 
+  dplyr::rename(EPA_Ecoregion_Name = epa_level_1_ecoregion_name) %>% 
+  subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
 
 gages_annual_summary %>% 
+  subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv"))
 
 gage_trends %>% 
+  subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
 
 ## plot
