@@ -37,14 +37,6 @@ summary_trends <- gages_sig %>% group_by(metric, region.x) %>% filter(pval < 0.0
 # --- Boxplots of Slope by Region and Metric of interest --- #
 # --- Seems like there should be a cleaner way to code this - would love input #
 
-pal_regions_dk <- 
-  c("Eastern Forests" = "#007756",
-    "Mediterranean California" = "#c1b40f",
-    "North Great Plains" = "#004064",
-    "South Great Plains" = "#bf8400",
-    "Western Desert" = "#9a4400",
-    "Western Mountains" = "#1986c3")
-
 regions<-unique(gages$region.x)
 
 gages<-as.data.frame(gages)
@@ -112,8 +104,10 @@ peak<- ggplot(p2l, aes(x=fct_reorder(region.x, slope), y= slope, fill = region.x
   ylab('Peak to Zero (rate)')+
   theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
-p<- ggplot(p, aes(x=region.x, y= slope, fill =region.x)) +
-  geom_boxplot() + 
+p<- ggplot(p, aes(x=region.x, y= slope, fill = region.x, color =region.x)) +
+  geom_boxplot() +
+  scale_fill_manual(values = pal_regions) +
+  scale_color_manual(values = pal_regions_dk) +
   theme_bw()+
   geom_hline(yintercept=0) +
   geom_jitter(width=0.05,alpha=0.2)+
@@ -121,8 +115,10 @@ p<- ggplot(p, aes(x=region.x, y= slope, fill =region.x)) +
   ylab('Annual Precip')+
   theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
-t<- ggplot(T_max, aes(x=region.x, y= slope, fill =region.x)) +
-  geom_boxplot() + 
+t<- ggplot(T_max, aes(x=region.x, y= slope, fill = region.x, color =region.x)) +
+  geom_boxplot() +
+  scale_fill_manual(values = pal_regions) +
+  scale_color_manual(values = pal_regions_dk) +
   theme_bw()+
   geom_hline(yintercept=0) +
   geom_jitter(width=0.05,alpha=0.2)+
@@ -130,8 +126,10 @@ t<- ggplot(T_max, aes(x=region.x, y= slope, fill =region.x)) +
   ylab('Annual Temp')+
   theme(legend.position='none', axis.text.x = element_text(angle = 30))
 
-pet<- ggplot(pet, aes(x=region.x, y= slope, fill =region.x)) + 
+pet<- ggplot(pet, aes(x=region.x, y= slope, fill = region.x, color =region.x)) + 
   geom_boxplot() + 
+  scale_fill_manual(values = pal_regions) +
+  scale_color_manual(values = pal_regions_dk) +
   theme_bw()+
   geom_jitter(width=0.05,alpha=0.2)+
   xlab('')+
@@ -140,5 +138,5 @@ pet<- ggplot(pet, aes(x=region.x, y= slope, fill =region.x)) +
 
   grid.arrange(af, p, fn, t, peak, pet, ncol=2)
   grid.arrange(af, fn, peak, ncol=1)
-
+  grid.arrange(p, t, pet, ncol=1)
 
