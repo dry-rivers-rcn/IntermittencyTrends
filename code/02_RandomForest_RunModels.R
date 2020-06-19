@@ -36,6 +36,7 @@ rf_var_importance <-
   dplyr::summarize(IncMSE_mean = mean(IncMSE)) %>% 
   dplyr::ungroup()
 
+## set up predictions
 # metrics and regions to predict
 metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
 regions <- c("National", unique(gage_sample$region))
@@ -51,19 +52,42 @@ predictors_annual <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj"
                        "pdsi_ond", "pdsi_jfm", "pdsi_amj", "p.pet_cy", "swe.p_cy", "p.pet_jfm", "swe.p_jfm",
                        "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond")
 
-predictors_static <- c("DRAIN_SQKM", 
-                       "ELEV_MEAN_M_BASIN", "SLOPE_PCT", "AWCAVE", "PERMAVE", 
-                       "TOPWET", "depth_bedrock_m", 
-                       "CLAYAVE", "SILTAVE", "SANDAVE")
+predictors_static <- c("drain_sqkm", "elev_mean_m_basin", "slope_pct", 
+                       "awcave", "permave", "topwet", "depth_bedrock_m", 
+                       "porosity", "storage_m", "clayave", "siltave", "sandave")
 
+## divide gage sample into train (80% of ref), test (20% of ref), and non-ref (all non-ref)
+# choose fraction of gages to use as validation
+frac_val <- 0.8
 
-# get previous water year climate metrics
+# want to use same sample for all regions, metrics so need to take 80% from each region
+set.seed(1)
+gage_val_sample <-
+  gage_sample %>% 
+  subset(CLASS == "Ref") %>% 
+  dplyr::group_by(region) %>% 
+  dplyr::sample_frac(frac_val) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::select(gage_ID) %>% 
+  dplyr::mutate(Sample = "Train")
+
+# add to gage_sample; everything that is not selected will be Train (if ref) or non-ref
+gage_sample <- dplyr::left_join(gage_sample, gage_val_sample, by = "gage_ID")
+gage_sample$Sample[is.na(gage_sample$Sample) & gage_sample$CLASS == "Non-ref"] <- "Non-ref"
+gage_sample$Sample[is.na(gage_sample$Sample) & gage_sample$CLASS == "Ref"] <- "Test"
+
+# check count in each sample
+gage_sample %>% 
+  dplyr::select(region, Sample) %>% 
+  table()
+
+## calculate previous water year climate metrics
 gage_sample_prevyear <- 
   gage_sample_annual[,c("gage_ID", "currentclimyear", predictors_annual)] %>% 
   dplyr::mutate(wyearjoin = currentclimyear + 1) %>% 
   dplyr::select(-currentclimyear)
 
-# combine into one data frame
+## combine into one data frame
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
@@ -73,60 +97,70 @@ fit_data_in <-
                    by = c("gage_ID", "currentclimyear"="wyearjoin"), 
                    suffix = c("", ".previous")) %>% 
   # join with static predictors
-  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", predictors_static)], by = "gage_ID")
+  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", "Sample", predictors_static)], by = "gage_ID")
 
 ## test number of predictors to use in final models
-for (n_pred in 5:20){
-  # get predictor variables
-  rf_var_predtest <-
-    rf_var_importance %>% 
-    subset(metric == "annualfractionnoflow" & region == "National") %>% 
-    dplyr::top_n(n = n_pred, wt = IncMSE_mean)
-  
-  fit_formula <- as.formula(paste0("observed ~ ", paste(unique(rf_var_predtest$predictor), collapse = "+")))
-  
-  # subset
-  fit_data_predtest <- 
-    fit_data_in %>% 
-    dplyr::select(-all_of(metrics[metrics != "annualfractionnoflow"])) %>%  # drop metrics you aren't interested in
-    subset(complete.cases(.))
-  
-  # rename metric column
-  names(fit_data_predtest)[names(fit_data_predtest) == "annualfractionnoflow"] <- "observed"
-  
-  # fit model
-  set.seed(1)
-  fit_rf <- randomForest::randomForest(fit_formula,
-                                       data = subset(fit_data_predtest, CLASS == "Ref"),
-                                       ntree = 500,
-                                       importance = T)
-  
-  if (n_pred == 5){
-    fit_predtest <- tibble::tibble(n = n_pred,
-                                   TotalMSE = fit_rf$mse[length(fit_rf$mse)],
-                                   TotalR2 = fit_rf$rsq[length(fit_rf$rsq)])
-  } else {
-    fit_predtest <- dplyr::bind_rows(fit_predtest,
-                                     tibble::tibble(n = n_pred,
-                                                    TotalMSE = fit_rf$mse[length(fit_rf$mse)],
-                                                    TotalR2 = fit_rf$rsq[length(fit_rf$rsq)]))
+for (m in metrics){
+  for (n_pred in 5:20){
+    
+    # get predictor variables
+    rf_var_predtest <-
+      rf_var_importance %>% 
+      subset(metric == m & region == "National") %>% 
+      dplyr::top_n(n = n_pred, wt = IncMSE_mean)
+    
+    fit_formula <- as.formula(paste0("observed ~ ", paste(unique(rf_var_predtest$predictor), collapse = "+")))
+    
+    # subset
+    fit_data_predtest <- 
+      fit_data_in %>% 
+      dplyr::select(-all_of(metrics[metrics != m])) %>%  # drop metrics you aren't interested in
+      subset(complete.cases(.))
+    
+    # rename metric column
+    names(fit_data_predtest)[names(fit_data_predtest) == m] <- "observed"
+    
+    # fit model
+    set.seed(1)
+    fit_rf <- randomForest::randomForest(fit_formula,
+                                         data = subset(fit_data_predtest, Sample == "Train"),
+                                         ntree = 500,
+                                         importance = T)
+    
+    if (n_pred == 5 & m == metrics[1]){
+      fit_predtest <- tibble::tibble(metric = m,
+                                     n = n_pred,
+                                     TotalMSE = fit_rf$mse[length(fit_rf$mse)],
+                                     TotalR2 = fit_rf$rsq[length(fit_rf$rsq)])
+    } else {
+      fit_predtest <- dplyr::bind_rows(fit_predtest,
+                                       tibble::tibble(metric= m,
+                                                      n = n_pred,
+                                                      TotalMSE = fit_rf$mse[length(fit_rf$mse)],
+                                                      TotalR2 = fit_rf$rsq[length(fit_rf$rsq)]))
+    }
+    
+    print(paste0(m, " ", n_pred, " complete"))
   }
-  
-  print(paste0(n_pred, " complete"))
 }
+
 
 # plot and look for elbow
 ggplot(fit_predtest, aes(x = n, y = TotalMSE)) + 
   geom_point() + geom_line() +
   scale_x_continuous(name = "Number of Predictors", breaks = seq(5,20)) +
-  scale_y_continuous(name = "Model MSE") +
+  scale_y_continuous(name = "Random Forest MSE [training gages only]") +
+  facet_grid(metric~., scales = "free_y",
+             labeller = as_labeller(c("annualfractionnoflow" = "Annual Fraction\nZero Flow [-]", 
+                                    "peak2z_length" = "Peak-to-Zero\nLength [days]",
+                                    "zeroflowfirst" = "First Zero Flow\nDay [climate year]"))) +
   labs(title = "Random forest MSE as a function of number of predictors",
-       subtitle = "Predicting annualfractionnoflow for national model") +
+       subtitle = "National model for each metric") +
   ggsave(file.path("figures_manuscript", "RandomForest_MSEvNumberPredictors.png"),
-         width = 120, height = 95, units = "mm")
+         width = 150, height = 150, units = "mm")
 
 # choose n_pred
-n_pred <- 15
+n_pred <- 16
 
 ## loop through metrics and regions
 for (m in metrics){
@@ -148,13 +182,13 @@ for (m in metrics){
     if (r == "National") {
       fit_data_r <- 
         fit_data_m %>% 
-        dplyr::select(gage_ID, CLASS, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
+        dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
         subset(complete.cases(.))
     } else {
       fit_data_r <- 
         fit_data_m %>% 
         subset(region == r) %>% 
-        dplyr::select(gage_ID, CLASS, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
+        dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
         subset(complete.cases(.))
     }
     
@@ -173,7 +207,7 @@ for (m in metrics){
     fit_data_r$region_rf <- r
     fit_data_i <- 
       fit_data_r %>% 
-      dplyr::select(gage_ID, CLASS, currentclimyear, observed, predicted, metric, region, region_rf)
+      dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, predicted, metric, region, region_rf)
     
     # extract variable importance
     fit_rf_imp_i <- tibble::tibble(predictor = rownames(fit_rf$importance),
@@ -203,10 +237,14 @@ fit_data_out %>%
 fit_rf_imp %>% 
   readr::write_csv(file.path("results", "02_RandomForest_RunModels_VariableImportance.csv"))
 
+gage_sample %>% 
+  dplyr::select(gage_ID, Sample) %>% 
+  readr::write_csv(path = file.path("results", "02_RandomForest_TestTrainSample.csv"))
+
 # plots
 min(subset(fit_data_out, metric == "annualfractionnoflow")$predicted)
 
-ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & CLASS == "Ref"), 
+ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & Sample == "Test"), 
        aes(x = predicted, y = observed, color = region)) +
   geom_point() +
   geom_abline(intercept = 0, slope = 1, color = col.gray) +
