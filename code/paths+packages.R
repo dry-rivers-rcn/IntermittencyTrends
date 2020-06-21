@@ -5,6 +5,7 @@
 library(tidyverse)
 library(lwgeom)
 library(cowplot)
+library(patchwork)
 
 # relative path to directory containing John's data analysis 
 # GitHub repository with scripts and data
