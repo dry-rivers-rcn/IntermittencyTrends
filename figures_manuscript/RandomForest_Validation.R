@@ -31,6 +31,22 @@ rf_fit$metric[rf_fit$metric == "zeroflowfirst"] <- "First Zero Flow [day of year
 rf_fit %>% 
   readr::write_csv(file.path("figures_manuscript", "RandomForest_Validation-FitTable.csv"))
 
+# plot model error: national vs regional models
+rf_fit_wide <-
+  rf_fit %>% 
+  dplyr::select(metric, region_rf, region, RMSE) %>% 
+  tidyr::pivot_wider(id_cols = c("metric", "region"),
+                     names_from = "region_rf",
+                     values_from = "RMSE")
+
+ggplot(rf_fit_wide, aes(x = National, y = Regional, color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
+  geom_point() +
+  facet_wrap(~metric, scales = "free") +
+  scale_color_manual(name = "Region", values = pal_regions) +
+  labs(title = "RMSE from regional and national random forest models") +
+  theme(legend.position = "bottom")
+
 ## scatterplot: national models, test data only
 p_nat_afnf_test <-
   rf_all %>% 

@@ -1,37 +1,37 @@
 metric,region_rf,region,RMSE,NRMSE,KGE
-Annual Fraction Zero Flow [-],National,Eastern Forests,0.053,5.3,0.625
-Annual Fraction Zero Flow [-],National,Mediterranean California,0.095,9.5,0.782
-Annual Fraction Zero Flow [-],National,North Great Plains,0.039,8.7,0.536
-Annual Fraction Zero Flow [-],National,South Great Plains,0.063,6.6,0.87
-Annual Fraction Zero Flow [-],National,Western Desert,0.058,20.8,0.107
-Annual Fraction Zero Flow [-],National,Western Mountains,0.067,7.2,0.87
-Annual Fraction Zero Flow [-],Regional,Eastern Forests,0.05,5,0.652
-Annual Fraction Zero Flow [-],Regional,Mediterranean California,0.078,7.9,0.851
-Annual Fraction Zero Flow [-],Regional,North Great Plains,0.038,8.4,0.586
-Annual Fraction Zero Flow [-],Regional,South Great Plains,0.064,6.6,0.887
-Annual Fraction Zero Flow [-],Regional,Western Desert,0.055,19.7,0.345
-Annual Fraction Zero Flow [-],Regional,Western Mountains,0.063,6.7,0.872
-Peak to Zero [days],National,Eastern Forests,6.638,8.4,0.618
-Peak to Zero [days],National,Mediterranean California,8.207,6.8,0.71
-Peak to Zero [days],National,North Great Plains,7.601,9.7,0.523
-Peak to Zero [days],National,South Great Plains,8.026,3.6,0.799
-Peak to Zero [days],National,Western Desert,18.598,10.7,0.572
-Peak to Zero [days],National,Western Mountains,6.779,8.3,0.613
-Peak to Zero [days],Regional,Eastern Forests,6.753,8.5,0.625
-Peak to Zero [days],Regional,Mediterranean California,8.357,6.9,0.682
-Peak to Zero [days],Regional,North Great Plains,7.431,9.5,0.556
-Peak to Zero [days],Regional,South Great Plains,8.929,4,0.806
-Peak to Zero [days],Regional,Western Desert,13.287,7.6,0.644
-Peak to Zero [days],Regional,Western Mountains,6.149,7.5,0.666
-First Zero Flow [day of year],National,Eastern Forests,21.332,6,0.777
-First Zero Flow [day of year],National,Mediterranean California,15.061,9.1,0.748
-First Zero Flow [day of year],National,North Great Plains,25.619,9.2,0.631
-First Zero Flow [day of year],National,South Great Plains,15.603,7.6,0.84
-First Zero Flow [day of year],National,Western Desert,15.835,11.4,0.485
-First Zero Flow [day of year],National,Western Mountains,9.335,5.9,0.828
-First Zero Flow [day of year],Regional,Eastern Forests,21.724,6.1,0.761
-First Zero Flow [day of year],Regional,Mediterranean California,12.271,7.4,0.793
-First Zero Flow [day of year],Regional,North Great Plains,28.862,10.4,0.567
-First Zero Flow [day of year],Regional,South Great Plains,14.861,7.3,0.869
-First Zero Flow [day of year],Regional,Western Desert,20.907,15,0.287
-First Zero Flow [day of year],Regional,Western Mountains,8.816,5.5,0.83
+Annual Fraction Zero Flow [-],National,Eastern Forests,0.154,15.4,-0.365
+Annual Fraction Zero Flow [-],National,Mediterranean California,0.27,27.1,0.205
+Annual Fraction Zero Flow [-],National,North Great Plains,0.268,59.2,-4.556
+Annual Fraction Zero Flow [-],National,South Great Plains,0.225,23.4,0.338
+Annual Fraction Zero Flow [-],National,Western Desert,0.344,123.3,-6.057
+Annual Fraction Zero Flow [-],National,Western Mountains,0.216,22.9,0.39
+Annual Fraction Zero Flow [-],Regional,Eastern Forests,0.124,12.4,0.007
+Annual Fraction Zero Flow [-],Regional,Mediterranean California,0.251,25.2,0.227
+Annual Fraction Zero Flow [-],Regional,North Great Plains,0.107,23.8,-0.761
+Annual Fraction Zero Flow [-],Regional,South Great Plains,0.17,17.6,0.377
+Annual Fraction Zero Flow [-],Regional,Western Desert,0.55,197,-10.403
+Annual Fraction Zero Flow [-],Regional,Western Mountains,0.306,32.5,-0.472
+Peak to Zero [days],National,Eastern Forests,16.591,21,-0.129
+Peak to Zero [days],National,Mediterranean California,19.619,16.2,-0.012
+Peak to Zero [days],National,North Great Plains,14.682,18.8,-0.028
+Peak to Zero [days],National,South Great Plains,20.822,9.4,0.241
+Peak to Zero [days],National,Western Desert,37.431,21.5,-0.369
+Peak to Zero [days],National,Western Mountains,15.403,18.9,-0.134
+Peak to Zero [days],Regional,Eastern Forests,15.161,19.2,-0.194
+Peak to Zero [days],Regional,Mediterranean California,21.099,17.4,-0.359
+Peak to Zero [days],Regional,North Great Plains,15.328,19.6,-0.333
+Peak to Zero [days],Regional,South Great Plains,24.112,10.9,0.059
+Peak to Zero [days],Regional,Western Desert,43.552,25,-0.052
+Peak to Zero [days],Regional,Western Mountains,15.108,18.5,0.217
+First Zero Flow [day of year],National,Eastern Forests,49.93,13.9,0.366
+First Zero Flow [day of year],National,Mediterranean California,34.051,20.5,0.464
+First Zero Flow [day of year],National,North Great Plains,62.319,22.5,0.04
+First Zero Flow [day of year],National,South Great Plains,46.77,22.9,0.477
+First Zero Flow [day of year],National,Western Desert,36.678,52.4,-0.116
+First Zero Flow [day of year],National,Western Mountains,17.375,10.9,0.664
+First Zero Flow [day of year],Regional,Eastern Forests,46.05,12.9,0.487
+First Zero Flow [day of year],Regional,Mediterranean California,28.144,17,0.575
+First Zero Flow [day of year],Regional,North Great Plains,56.158,20.3,-0.01
+First Zero Flow [day of year],Regional,South Great Plains,43.86,21.5,0.526
+First Zero Flow [day of year],Regional,Western Desert,62.49,89.3,-0.057
+First Zero Flow [day of year],Regional,Western Mountains,24.543,15.4,0.775
