@@ -33,7 +33,7 @@ rf_var_importance <-
   file.path("results", "01_RandomForest_PreliminaryVariableImportance.csv") %>% 
   readr::read_csv() %>% 
   dplyr::group_by(metric, region, predictor) %>% 
-  dplyr::summarize(IncMSE_mean = mean(IncMSE)) %>% 
+  dplyr::summarize(PrcIncMSE_mean = mean(PrcIncMSE)) %>% 
   dplyr::ungroup()
 
 ## set up predictions
@@ -55,6 +55,25 @@ predictors_annual <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj"
 predictors_static <- c("drain_sqkm", "elev_mean_m_basin", "slope_pct", 
                        "awcave", "permave", "topwet", "depth_bedrock_m", 
                        "porosity", "storage_m", "clayave", "siltave", "sandave")
+
+# previous year predictors will be calculated further down
+predictors_annual_with_previous <- 
+  c(predictors_annual, c("p_mm_cy.previous", "p_mm_jas.previous", "p_mm_ond.previous", 
+                         "p_mm_jfm.previous", "p_mm_amj.previous", "pet_mm_cy.previous", 
+                         "pet_mm_jas.previous", "pet_mm_ond.previous", "pet_mm_jfm.previous", 
+                         "pet_mm_amj.previous", "T_max_c_cy.previous", "T_max_c_jas.previous", 
+                         "T_max_c_ond.previous", "T_max_c_jfm.previous", "T_max_c_amj.previous", 
+                         "T_min_c_cy.previous", "T_min_c_jas.previous", "T_min_c_ond.previous", 
+                         "T_min_c_jfm.previous", "T_min_c_amj.previous", "pcumdist10days.previous", 
+                         "pcumdist50days.previous", "pcumdist90days.previous", "swe_mm_cy.previous", 
+                         "swe_mm_jas.previous", "swe_mm_ond.previous", "swe_mm_jfm.previous", 
+                         "swe_mm_amj.previous", "srad_wm2_cy.previous", "srad_wm2_jas.previous", 
+                         "srad_wm2_ond.previous", "srad_wm2_jfm.previous", "srad_wm2_amj.previous", 
+                         "pdsi_cy.previous", "pdsi_jas.previous", "pdsi_ond.previous", 
+                         "pdsi_jfm.previous", "pdsi_amj.previous", "p.pet_cy.previous", 
+                         "swe.p_cy.previous", "p.pet_jfm.previous", "swe.p_jfm.previous", 
+                         "p.pet_amj.previous", "swe.p_amj.previous", "p.pet_jas.previous", 
+                         "swe.p_jas.previous", "p.pet_ond.previous", "swe.p_ond.previous"))
 
 ## divide gage sample into train (80% of ref), test (20% of ref), and non-ref (all non-ref)
 # choose fraction of gages to use as validation
@@ -100,14 +119,15 @@ fit_data_in <-
   dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", "Sample", predictors_static)], by = "gage_ID")
 
 ## test number of predictors to use in final models
+pred_test_range <- 3:20
 for (m in metrics){
-  for (n_pred in 5:20){
+  for (n_pred in pred_test_range){
     
     # get predictor variables
     rf_var_predtest <-
       rf_var_importance %>% 
       subset(metric == m & region == "National") %>% 
-      dplyr::top_n(n = n_pred, wt = IncMSE_mean)
+      dplyr::top_n(n = n_pred, wt = PrcIncMSE_mean)
     
     fit_formula <- as.formula(paste0("observed ~ ", paste(unique(rf_var_predtest$predictor), collapse = "+")))
     
@@ -127,7 +147,7 @@ for (m in metrics){
                                          ntree = 500,
                                          importance = T)
     
-    if (n_pred == 5 & m == metrics[1]){
+    if (n_pred == pred_test_range[1] & m == metrics[1]){
       fit_predtest <- tibble::tibble(metric = m,
                                      n = n_pred,
                                      TotalMSE = fit_rf$mse[length(fit_rf$mse)],
@@ -148,7 +168,7 @@ for (m in metrics){
 # plot and look for elbow
 ggplot(fit_predtest, aes(x = n, y = TotalMSE)) + 
   geom_point() + geom_line() +
-  scale_x_continuous(name = "Number of Predictors", breaks = seq(5,20)) +
+  scale_x_continuous(name = "Number of Predictors", breaks = seq(3,20)) +
   scale_y_continuous(name = "Random Forest MSE [training gages only]") +
   facet_grid(metric~., scales = "free_y",
              labeller = as_labeller(c("annualfractionnoflow" = "Annual Fraction\nZero Flow [-]", 
@@ -160,11 +180,11 @@ ggplot(fit_predtest, aes(x = n, y = TotalMSE)) +
          width = 150, height = 150, units = "mm")
 
 # choose n_pred
-n_pred <- 16
+n_pred <- 10
 
 ## loop through metrics and regions
 for (m in metrics){
-  # subset to complete cases only
+  # get rid of unneeded metrics
   fit_data_m <- 
     fit_data_in %>% 
     dplyr::select(-all_of(metrics[metrics != m]))
@@ -177,7 +197,7 @@ for (m in metrics){
     rf_var_m_r <-
       rf_var_importance %>% 
       subset(metric == m & region == r) %>% 
-      dplyr::top_n(n = n_pred, wt = IncMSE_mean)
+      dplyr::top_n(n = n_pred, wt = PrcIncMSE_mean)
     
     if (r == "National") {
       fit_data_r <- 
@@ -197,10 +217,10 @@ for (m in metrics){
     # fit model
     set.seed(1)
     fit_rf <- randomForest::randomForest(fit_formula,
-                                         data = subset(fit_data_r, CLASS == "Ref"),
+                                         data = subset(fit_data_r, Sample == "Train"),
                                          ntree = 500,
-                                         importance = T)
-    
+                                         localImp = T)
+  
     # run model
     fit_data_r$predicted <- predict(fit_rf, fit_data_r)
     fit_data_r$metric <- m
@@ -210,10 +230,8 @@ for (m in metrics){
       dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, predicted, metric, region, region_rf)
     
     # extract variable importance
-    fit_rf_imp_i <- tibble::tibble(predictor = rownames(fit_rf$importance),
-                                   VarPrcIncMSE = fit_rf$importance[,'%IncMSE'],
-                                   TotalMSE = fit_rf$mse[length(fit_rf$mse)],
-                                   TotalR2 = fit_rf$rsq[length(fit_rf$rsq)],
+    fit_rf_imp_i <- tibble::tibble(predictor = rownames(randomForest::importance(fit_rf, type = 1)),
+                                   VarPrcIncMSE = randomForest::importance(fit_rf, type = 1)[,'%IncMSE'],
                                    metric = m,
                                    region_rf = r)
     
@@ -258,7 +276,7 @@ ggplot(subset(fit_data_out, metric == "annualfractionnoflow"),
   scale_color_manual(values = pal_regions) +
   facet_wrap(~region_rf)
 
-ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & CLASS == "Ref"), 
+ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & Sample == "Test"), 
        aes(x = currentclimyear, y = (predicted - observed), color = region)) +
   geom_hline(yintercept = 0, color = col.gray) +
   geom_point() +

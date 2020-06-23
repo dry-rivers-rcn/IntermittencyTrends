@@ -50,6 +50,25 @@ predictors_static <- c("drain_sqkm", "elev_mean_m_basin", "slope_pct",
                        "awcave", "permave", "topwet", "depth_bedrock_m", 
                        "porosity", "storage_m", "clayave", "siltave", "sandave")
 
+# previous year predictors will be calculated further down
+predictors_annual_with_previous <- 
+  c(predictors_annual, c("p_mm_cy.previous", "p_mm_jas.previous", "p_mm_ond.previous", 
+                         "p_mm_jfm.previous", "p_mm_amj.previous", "pet_mm_cy.previous", 
+                         "pet_mm_jas.previous", "pet_mm_ond.previous", "pet_mm_jfm.previous", 
+                         "pet_mm_amj.previous", "T_max_c_cy.previous", "T_max_c_jas.previous", 
+                         "T_max_c_ond.previous", "T_max_c_jfm.previous", "T_max_c_amj.previous", 
+                         "T_min_c_cy.previous", "T_min_c_jas.previous", "T_min_c_ond.previous", 
+                         "T_min_c_jfm.previous", "T_min_c_amj.previous", "pcumdist10days.previous", 
+                         "pcumdist50days.previous", "pcumdist90days.previous", "swe_mm_cy.previous", 
+                         "swe_mm_jas.previous", "swe_mm_ond.previous", "swe_mm_jfm.previous", 
+                         "swe_mm_amj.previous", "srad_wm2_cy.previous", "srad_wm2_jas.previous", 
+                         "srad_wm2_ond.previous", "srad_wm2_jfm.previous", "srad_wm2_amj.previous", 
+                         "pdsi_cy.previous", "pdsi_jas.previous", "pdsi_ond.previous", 
+                         "pdsi_jfm.previous", "pdsi_amj.previous", "p.pet_cy.previous", 
+                         "swe.p_cy.previous", "p.pet_jfm.previous", "swe.p_jfm.previous", 
+                         "p.pet_amj.previous", "swe.p_amj.previous", "p.pet_jas.previous", 
+                         "swe.p_jas.previous", "p.pet_ond.previous", "swe.p_ond.previous"))
+
 # metrics and regions to predict
 metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
 regions <- c("National", unique(gage_sample$region))
@@ -73,7 +92,7 @@ fit_data_in <-
   dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", predictors_static)], by = "gage_ID")
 
 # number of iterations and percent of gages to sample each iteration
-n_iter <- 25
+n_iter <- 50
 prc_sample <- 0.8
 
 ## loop through metrics and regions
@@ -89,7 +108,7 @@ for (m in metrics){
   names(fit_data_m)[names(fit_data_m) == m] <- "observed"
   
   # build formula
-  fit_formula <- as.formula(paste0("observed ~ ", paste(c(predictors_annual, predictors_static), collapse = "+")))
+  fit_formula <- as.formula(paste0("observed ~ ", paste(c(predictors_annual_with_previous, predictors_static), collapse = "+")))
   
   for (r in regions){
     if (r == "National") {
@@ -109,11 +128,11 @@ for (m in metrics){
       fit_rf <- randomForest::randomForest(fit_formula,
                                            data = subset(fit_data_r, gage_ID %in% gages_i),
                                            ntree = 500,
-                                           importance = T)
+                                           localImp = T)
       
       # extract variable importance
-      fit_rf_imp_i <- tibble::tibble(predictor = rownames(fit_rf$importance),
-                                     IncMSE = fit_rf$importance[,'%IncMSE'],
+      fit_rf_imp_i <- tibble::tibble(predictor = rownames(randomForest::importance(fit_rf, type = 1)),
+                                     PrcIncMSE = randomForest::importance(fit_rf, type = 1)[,'%IncMSE'],
                                      metric = m,
                                      region = r,
                                      iteration = iter)
