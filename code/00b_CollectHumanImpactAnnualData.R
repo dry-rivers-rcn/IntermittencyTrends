@@ -1,4 +1,4 @@
-### 00a_CollectHumanImpactData.R
+### 00a_CollectHumanImpactAnnualData.R
 # This script will compile land use data and other human impacts
 # and add it to the output from 00_SelectGagesForAnalysis.R
 
@@ -9,12 +9,8 @@ gage_sample <-
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv")) %>% 
   dplyr::mutate(gage_ID = as.numeric(gage_ID))
 
-gage_regions <- 
-  readr::read_csv(file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
-
 gage_sample_annual <-
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual_NoHumanImpacts.csv")) %>% 
-  dplyr::left_join(gage_regions, by = "gage_ID") %>% 
   # add some derived variables
   dplyr::mutate(p.pet_cy = p_mm_cy/pet_mm_cy,
                 swe.p_cy = swe_mm_cy/p_mm_cy,

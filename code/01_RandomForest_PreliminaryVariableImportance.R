@@ -44,7 +44,11 @@ predictors_annual <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj"
                        "swe_mm_ond", "swe_mm_jfm", "swe_mm_amj", "srad_wm2_cy", "srad_wm2_jas", 
                        "srad_wm2_ond", "srad_wm2_jfm", "srad_wm2_amj", "pdsi_cy", "pdsi_jas", 
                        "pdsi_ond", "pdsi_jfm", "pdsi_amj", "p.pet_cy", "swe.p_cy", "p.pet_jfm", "swe.p_jfm",
-                       "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond")
+                       "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond",
+                       "dams_n", "maxstorage_af", 
+                       "normstorage_af", "majordams_n", "wuse_mm", "irrig_prc", "harvcrop_prc", 
+                       "lulc_water_prc", "lulc_dev_prc", "lulc_forest_prc", "lulc_barren_prc", 
+                       "lulc_grass_prc", "lulc_ag_prc", "lulc_wetland_prc")
 
 predictors_static <- c("drain_sqkm", "elev_mean_m_basin", "slope_pct", 
                        "awcave", "permave", "topwet", "depth_bedrock_m", 
