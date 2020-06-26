@@ -105,13 +105,38 @@ lulc_all$total_area <-
   lulc_all$agriculture_area + lulc_all$wetland_area
 
 # calculate percentage
-lulc_all$water_prc <- lulc_all$water_area/lulc_all$total_area
-lulc_all$developed_prc <- lulc_all$developed_area/lulc_all$total_area
-lulc_all$forest_prc <- lulc_all$forest_area/lulc_all$total_area
-lulc_all$barren_prc <- lulc_all$barren_area/lulc_all$total_area
-lulc_all$grass_prc <- lulc_all$grass_area/lulc_all$total_area
-lulc_all$agriculture_prc <- lulc_all$agriculture_area/lulc_all$total_area
-lulc_all$wetland_prc <- lulc_all$wetland_area/lulc_all$total_area
-lulc_all$total_prc <- lulc_all$total_area/lulc_all$total_area
+lulc_all$prc_water <- lulc_all$water_area/lulc_all$total_area
+lulc_all$prc_dev <- lulc_all$developed_area/lulc_all$total_area
+lulc_all$prc_forest <- lulc_all$forest_area/lulc_all$total_area
+lulc_all$prc_barren <- lulc_all$barren_area/lulc_all$total_area
+lulc_all$prc_grass <- lulc_all$grass_area/lulc_all$total_area
+lulc_all$prc_ag <- lulc_all$agriculture_area/lulc_all$total_area
+lulc_all$prc_wetland <- lulc_all$wetland_area/lulc_all$total_area
 
 summary(lulc_all)
+
+# check percentages to see if Hindcast and Historic are the same
+inspect1992prc <- 
+  lulc_all %>% 
+  subset(year == 1992) %>% 
+  dplyr::select(gage_ID, prc_water, prc_dev, prc_forest, prc_barren, 
+                prc_grass, prc_ag, prc_wetland, Source) %>% 
+  pivot_longer(cols = starts_with("prc_"),
+               values_to = "prc") %>% 
+  pivot_wider(id_cols = c(gage_ID, name),
+              names_from = Source,
+              values_from = prc) %>% 
+  dplyr::mutate(prc_diff = Historic - Hindcast)
+
+ggplot(inspect1992prc, aes(x = Historic, y = Hindcast, color = name)) +
+  geom_point()
+
+# since Hindcast and Historic are the same, drop one of them (hindcast)
+lulc_out <- 
+  lulc_all %>% 
+  dplyr::select(gage_ID, year, Source, starts_with("prc_")) %>% 
+  subset(!(year == 1992 & Source == "Hindcast")) %>% 
+  dplyr::arrange(gage_ID, year)
+
+ggplot(lulc_out, aes(x = year, y = prc_forest, group = gage_ID)) +
+  geom_line(alpha = 0.25)
