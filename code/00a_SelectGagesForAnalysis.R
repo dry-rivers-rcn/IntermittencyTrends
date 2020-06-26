@@ -1,4 +1,4 @@
-## 00_SelectGagesForAnalysis.R
+## 00a_SelectGagesForAnalysis.R
 # This script will select and aggregate data for analysis.
 
 source(file.path("code", "paths+packages.R"))
@@ -162,6 +162,38 @@ table(gage_sample_out$region, gage_sample_out$CLASS)
 table(gage_sample_out$CLASS)
 
 ggplot(gage_sample_out, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_point()
+
+## divide gage sample into train (80%), test (20%)
+# choose fraction of gages to use as validation
+frac_val <- 0.8
+
+# want to use same sample for all regions and metrics so need to take 80% from each region
+# and mix of ref/nonref
+set.seed(1)
+gage_val_sample <-
+  gage_sample %>% 
+  dplyr::group_by(region, CLASS) %>% 
+  dplyr::sample_frac(frac_val) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::select(gage_ID) %>% 
+  dplyr::mutate(Sample = "Train")
+
+# add to gage_sample; everything that is not selected will be Train (if ref) or non-ref
+gage_sample_out <- dplyr::left_join(gage_sample_out, gage_val_sample, by = "gage_ID")
+gage_sample_out$Sample[is.na(gage_sample_out$Sample)] <- "Test"
+
+# check count in each sample
+gage_sample_out %>% 
+  dplyr::select(region, Sample) %>% 
+  table()
+
+gage_sample_out %>% 
+  dplyr::select(CLASS, Sample) %>% 
+  table()
+
+gage_sample_out %>% 
+  dplyr::select(region, CLASS, Sample) %>% 
+  table()
 
 ## save data to repository
 gage_sample_out %>% 
