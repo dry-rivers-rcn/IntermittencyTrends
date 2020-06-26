@@ -42,63 +42,43 @@ metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
 regions <- c("National", unique(gage_sample$region))
 
 # all possible predictors
-predictors_annual <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj", "pet_mm_cy", 
-                       "pet_mm_jas", "pet_mm_ond", "pet_mm_jfm", "pet_mm_amj", "T_max_c_cy", 
-                       "T_max_c_jas", "T_max_c_ond", "T_max_c_jfm", "T_max_c_amj", "T_min_c_cy", 
-                       "T_min_c_jas", "T_min_c_ond", "T_min_c_jfm", "T_min_c_amj", "pcumdist10days", 
-                       "pcumdist50days", "pcumdist90days", "swe_mm_cy", "swe_mm_jas", 
-                       "swe_mm_ond", "swe_mm_jfm", "swe_mm_amj", "srad_wm2_cy", "srad_wm2_jas", 
-                       "srad_wm2_ond", "srad_wm2_jfm", "srad_wm2_amj", "pdsi_cy", "pdsi_jas", 
-                       "pdsi_ond", "pdsi_jfm", "pdsi_amj", "p.pet_cy", "swe.p_cy", "p.pet_jfm", "swe.p_jfm",
-                       "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond")
+predictors_climate <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj", "pet_mm_cy", 
+                        "pet_mm_jas", "pet_mm_ond", "pet_mm_jfm", "pet_mm_amj", "T_max_c_cy", 
+                        "T_max_c_jas", "T_max_c_ond", "T_max_c_jfm", "T_max_c_amj", "T_min_c_cy", 
+                        "T_min_c_jas", "T_min_c_ond", "T_min_c_jfm", "T_min_c_amj", "pcumdist10days", 
+                        "pcumdist50days", "pcumdist90days", "swe_mm_cy", "swe_mm_jas", 
+                        "swe_mm_ond", "swe_mm_jfm", "swe_mm_amj", "srad_wm2_cy", "srad_wm2_jas", 
+                        "srad_wm2_ond", "srad_wm2_jfm", "srad_wm2_amj", "pdsi_cy", "pdsi_jas", 
+                        "pdsi_ond", "pdsi_jfm", "pdsi_amj", "p.pet_cy", "swe.p_cy", "p.pet_jfm", "swe.p_jfm",
+                        "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond")
+
+predictors_human <- c("dams_n", "maxstorage_af", 
+                      "normstorage_af", "majordams_n", "wuse_mm", "irrig_prc", "harvcrop_prc", 
+                      "lulc_water_prc", "lulc_dev_prc", "lulc_forest_prc", "lulc_barren_prc", 
+                      "lulc_grass_prc", "lulc_ag_prc", "lulc_wetland_prc")
 
 predictors_static <- c("drain_sqkm", "elev_mean_m_basin", "slope_pct", 
                        "awcave", "permave", "topwet", "depth_bedrock_m", 
                        "porosity", "storage_m", "clayave", "siltave", "sandave")
 
 # previous year predictors will be calculated further down
-predictors_annual_with_previous <- 
-  c(predictors_annual, c("p_mm_cy.previous", "p_mm_jas.previous", "p_mm_ond.previous", 
-                         "p_mm_jfm.previous", "p_mm_amj.previous", "pet_mm_cy.previous", 
-                         "pet_mm_jas.previous", "pet_mm_ond.previous", "pet_mm_jfm.previous", 
-                         "pet_mm_amj.previous", "T_max_c_cy.previous", "T_max_c_jas.previous", 
-                         "T_max_c_ond.previous", "T_max_c_jfm.previous", "T_max_c_amj.previous", 
-                         "T_min_c_cy.previous", "T_min_c_jas.previous", "T_min_c_ond.previous", 
-                         "T_min_c_jfm.previous", "T_min_c_amj.previous", "pcumdist10days.previous", 
-                         "pcumdist50days.previous", "pcumdist90days.previous", "swe_mm_cy.previous", 
-                         "swe_mm_jas.previous", "swe_mm_ond.previous", "swe_mm_jfm.previous", 
-                         "swe_mm_amj.previous", "srad_wm2_cy.previous", "srad_wm2_jas.previous", 
-                         "srad_wm2_ond.previous", "srad_wm2_jfm.previous", "srad_wm2_amj.previous", 
-                         "pdsi_cy.previous", "pdsi_jas.previous", "pdsi_ond.previous", 
-                         "pdsi_jfm.previous", "pdsi_amj.previous", "p.pet_cy.previous", 
-                         "swe.p_cy.previous", "p.pet_jfm.previous", "swe.p_jfm.previous", 
-                         "p.pet_amj.previous", "swe.p_amj.previous", "p.pet_jas.previous", 
-                         "swe.p_jas.previous", "p.pet_ond.previous", "swe.p_ond.previous"))
-
-## divide gage sample into train (80% of ref), test (20% of ref), and non-ref (all non-ref)
-# choose fraction of gages to use as validation
-frac_val <- 0.8
-
-# want to use same sample for all regions, metrics so need to take 80% from each region
-set.seed(1)
-gage_val_sample <-
-  gage_sample %>% 
-  subset(CLASS == "Ref") %>% 
-  dplyr::group_by(region) %>% 
-  dplyr::sample_frac(frac_val) %>% 
-  dplyr::ungroup() %>% 
-  dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Train")
-
-# add to gage_sample; everything that is not selected will be Train (if ref) or non-ref
-gage_sample <- dplyr::left_join(gage_sample, gage_val_sample, by = "gage_ID")
-gage_sample$Sample[is.na(gage_sample$Sample) & gage_sample$CLASS == "Non-ref"] <- "Non-ref"
-gage_sample$Sample[is.na(gage_sample$Sample) & gage_sample$CLASS == "Ref"] <- "Test"
-
-# check count in each sample
-gage_sample %>% 
-  dplyr::select(region, Sample) %>% 
-  table()
+predictors_climate_with_previous <- 
+  c(predictors_climate, c("p_mm_cy.previous", "p_mm_jas.previous", "p_mm_ond.previous", 
+                          "p_mm_jfm.previous", "p_mm_amj.previous", "pet_mm_cy.previous", 
+                          "pet_mm_jas.previous", "pet_mm_ond.previous", "pet_mm_jfm.previous", 
+                          "pet_mm_amj.previous", "T_max_c_cy.previous", "T_max_c_jas.previous", 
+                          "T_max_c_ond.previous", "T_max_c_jfm.previous", "T_max_c_amj.previous", 
+                          "T_min_c_cy.previous", "T_min_c_jas.previous", "T_min_c_ond.previous", 
+                          "T_min_c_jfm.previous", "T_min_c_amj.previous", "pcumdist10days.previous", 
+                          "pcumdist50days.previous", "pcumdist90days.previous", "swe_mm_cy.previous", 
+                          "swe_mm_jas.previous", "swe_mm_ond.previous", "swe_mm_jfm.previous", 
+                          "swe_mm_amj.previous", "srad_wm2_cy.previous", "srad_wm2_jas.previous", 
+                          "srad_wm2_ond.previous", "srad_wm2_jfm.previous", "srad_wm2_amj.previous", 
+                          "pdsi_cy.previous", "pdsi_jas.previous", "pdsi_ond.previous", 
+                          "pdsi_jfm.previous", "pdsi_amj.previous", "p.pet_cy.previous", 
+                          "swe.p_cy.previous", "p.pet_jfm.previous", "swe.p_jfm.previous", 
+                          "p.pet_amj.previous", "swe.p_amj.previous", "p.pet_jas.previous", 
+                          "swe.p_jas.previous", "p.pet_ond.previous", "swe.p_ond.previous"))
 
 ## calculate previous water year climate metrics
 gage_sample_prevyear <- 
@@ -110,13 +90,14 @@ gage_sample_prevyear <-
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
-  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), all_of(predictors_annual))) %>% 
+  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), 
+                  all_of(predictors_climate), all_of(predictors_human))) %>% 
   # join with previous water year
   dplyr::left_join(gage_sample_prevyear, 
                    by = c("gage_ID", "currentclimyear"="wyearjoin"), 
                    suffix = c("", ".previous")) %>% 
   # join with static predictors
-  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", "Sample", predictors_static)], by = "gage_ID")
+  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
 
 ## test number of predictors to use in final models
 pred_test_range <- 3:20

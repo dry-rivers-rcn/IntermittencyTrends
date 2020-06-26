@@ -195,6 +195,19 @@ gage_sample_out %>%
   dplyr::select(region, CLASS, Sample) %>% 
   table()
 
+## there are a few instances that have swe > p; this should be impossible
+i_swe_cy <- which(gages_annual_summary$swe_mm_cy > gages_annual_summary$p_mm_cy)
+i_swe_amj <- which(gages_annual_summary$swe_mm_amj > gages_annual_summary$p_mm_amj)
+i_swe_jas <- which(gages_annual_summary$swe_mm_jas > gages_annual_summary$p_mm_jas)
+i_swe_ond <- which(gages_annual_summary$swe_mm_ond > gages_annual_summary$p_mm_ond)
+i_swe_jfm <- which(gages_annual_summary$swe_mm_jfm > gages_annual_summary$p_mm_jfm)
+
+gages_annual_summary$swe_mm_cy[i_swe_cy] <- gages_annual_summary$p_mm_cy[i_swe_cy]
+gages_annual_summary$swe_mm_amj[i_swe_amj] <- gages_annual_summary$p_mm_amj[i_swe_amj]
+gages_annual_summary$swe_mm_jas[i_swe_jas] <- gages_annual_summary$p_mm_jas[i_swe_jas]
+gages_annual_summary$swe_mm_ond[i_swe_ond] <- gages_annual_summary$p_mm_ond[i_swe_ond]
+gages_annual_summary$swe_mm_jfm[i_swe_jfm] <- gages_annual_summary$p_mm_jfm[i_swe_jfm]
+
 ## save data to repository
 gage_sample_out %>% 
   readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))

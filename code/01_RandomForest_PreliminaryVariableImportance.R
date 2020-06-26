@@ -36,7 +36,7 @@ gage_sample_annual <-
 # predictors and metrics to retain; to get full list of options: 
 #   dput(names(gage_sample_annual))
 #   dput(names(gage_sample))
-predictors_annual <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj", "pet_mm_cy", 
+predictors_climate <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj", "pet_mm_cy", 
                        "pet_mm_jas", "pet_mm_ond", "pet_mm_jfm", "pet_mm_amj", "T_max_c_cy", 
                        "T_max_c_jas", "T_max_c_ond", "T_max_c_jfm", "T_max_c_amj", "T_min_c_cy", 
                        "T_min_c_jas", "T_min_c_ond", "T_min_c_jfm", "T_min_c_amj", "pcumdist10days", 
@@ -44,19 +44,20 @@ predictors_annual <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj"
                        "swe_mm_ond", "swe_mm_jfm", "swe_mm_amj", "srad_wm2_cy", "srad_wm2_jas", 
                        "srad_wm2_ond", "srad_wm2_jfm", "srad_wm2_amj", "pdsi_cy", "pdsi_jas", 
                        "pdsi_ond", "pdsi_jfm", "pdsi_amj", "p.pet_cy", "swe.p_cy", "p.pet_jfm", "swe.p_jfm",
-                       "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond",
-                       "dams_n", "maxstorage_af", 
-                       "normstorage_af", "majordams_n", "wuse_mm", "irrig_prc", "harvcrop_prc", 
-                       "lulc_water_prc", "lulc_dev_prc", "lulc_forest_prc", "lulc_barren_prc", 
-                       "lulc_grass_prc", "lulc_ag_prc", "lulc_wetland_prc")
+                       "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond")
+
+predictors_human <- c("dams_n", "maxstorage_af", 
+                      "normstorage_af", "majordams_n", "wuse_mm", "irrig_prc", "harvcrop_prc", 
+                      "lulc_water_prc", "lulc_dev_prc", "lulc_forest_prc", "lulc_barren_prc", 
+                      "lulc_grass_prc", "lulc_ag_prc", "lulc_wetland_prc")
 
 predictors_static <- c("drain_sqkm", "elev_mean_m_basin", "slope_pct", 
                        "awcave", "permave", "topwet", "depth_bedrock_m", 
                        "porosity", "storage_m", "clayave", "siltave", "sandave")
 
 # previous year predictors will be calculated further down
-predictors_annual_with_previous <- 
-  c(predictors_annual, c("p_mm_cy.previous", "p_mm_jas.previous", "p_mm_ond.previous", 
+predictors_climate_with_previous <- 
+  c(predictors_climate, c("p_mm_cy.previous", "p_mm_jas.previous", "p_mm_ond.previous", 
                          "p_mm_jfm.previous", "p_mm_amj.previous", "pet_mm_cy.previous", 
                          "pet_mm_jas.previous", "pet_mm_ond.previous", "pet_mm_jfm.previous", 
                          "pet_mm_amj.previous", "T_max_c_cy.previous", "T_max_c_jas.previous", 
@@ -79,7 +80,7 @@ regions <- c("National", unique(gage_sample$region))
 
 # get previous water year climate metrics
 gage_sample_prevyear <- 
-  gage_sample_annual[,c("gage_ID", "currentclimyear", predictors_annual)] %>% 
+  gage_sample_annual[,c("gage_ID", "currentclimyear", predictors_climate)] %>% 
   dplyr::mutate(wyearjoin = currentclimyear + 1) %>% 
   dplyr::select(-currentclimyear)
 
@@ -87,13 +88,14 @@ gage_sample_prevyear <-
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
-  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), all_of(predictors_annual))) %>% 
+  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), 
+                  all_of(predictors_climate), all_of(predictors_human))) %>% 
   # join with previous water year
   dplyr::left_join(gage_sample_prevyear, 
                    by = c("gage_ID", "currentclimyear"="wyearjoin"), 
                    suffix = c("", ".previous")) %>% 
   # join with static predictors
-  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", predictors_static)], by = "gage_ID")
+  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
 
 # number of iterations and percent of gages to sample each iteration
 n_iter <- 50
@@ -101,18 +103,18 @@ prc_sample <- 0.8
 
 ## loop through metrics and regions
 for (m in metrics){
-  # subset to complete cases and references gages only
+  # subset to complete cases
   fit_data_m <- 
     fit_data_in %>% 
     dplyr::select(-all_of(metrics[metrics != m])) %>%  # drop metrics you aren't interested in
-    subset(CLASS == "Ref") %>% 
+    subset(Sample == "Train") %>% 
     subset(complete.cases(.))
   
   # rename metric column
   names(fit_data_m)[names(fit_data_m) == m] <- "observed"
   
   # build formula
-  fit_formula <- as.formula(paste0("observed ~ ", paste(c(predictors_annual_with_previous, predictors_static), collapse = "+")))
+  fit_formula <- as.formula(paste0("observed ~ ", paste(c(predictors_climate_with_previous, predictors_human, predictors_static), collapse = "+")))
   
   for (r in regions){
     if (r == "National") {
