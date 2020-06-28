@@ -1,5 +1,6 @@
-## 02_RandomForest_RunModels.R
-#' This script is intended to train random forest models on reference gages and apply them to all gages.
+## 02_RandomForest_FigureOutNumPredictors.R
+#' This script is intended to figure out the parsimonious number of predictors to use
+#' in random forest models.
 #' 
 #' Input variables will be selected using the output from 01_RandomForest_PreliminaryVariableImportance.R
 #' 
@@ -73,7 +74,7 @@ predictors_climate_with_previous <-
 
 ## calculate previous water year climate metrics
 gage_sample_prevyear <- 
-  gage_sample_annual[,c("gage_ID", "currentclimyear", predictors_annual)] %>% 
+  gage_sample_annual[,c("gage_ID", "currentclimyear", predictors_climate)] %>% 
   dplyr::mutate(wyearjoin = currentclimyear + 1) %>% 
   dplyr::select(-currentclimyear)
 
@@ -115,7 +116,7 @@ for (m in metrics){
     # fit model
     set.seed(1)
     fit_rf <- randomForest::randomForest(fit_formula,
-                                         data = subset(fit_data_predtest, Sample == "Train"),
+                                         data = subset(fit_data_predtest, Sample != "Test1"),
                                          ntree = 500,
                                          importance = T)
     
@@ -150,113 +151,3 @@ ggplot(fit_predtest, aes(x = n, y = TotalMSE)) +
        subtitle = "National model for each metric") +
   ggsave(file.path("figures_manuscript", "RandomForest_MSEvNumberPredictors.png"),
          width = 150, height = 150, units = "mm")
-
-# choose n_pred
-n_pred <- 10
-
-## loop through metrics and regions
-for (m in metrics){
-  # get rid of unneeded metrics
-  fit_data_m <- 
-    fit_data_in %>% 
-    dplyr::select(-all_of(metrics[metrics != m]))
-  
-  # rename metric column
-  names(fit_data_m)[names(fit_data_m) == m] <- "observed"
-  
-  for (r in regions){
-    # get predictor variables
-    rf_var_m_r <-
-      rf_var_importance %>% 
-      subset(metric == m & region == r) %>% 
-      dplyr::top_n(n = n_pred, wt = PrcIncMSE_mean)
-    
-    if (r == "National") {
-      fit_data_r <- 
-        fit_data_m %>% 
-        dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
-        subset(complete.cases(.))
-    } else {
-      fit_data_r <- 
-        fit_data_m %>% 
-        subset(region == r) %>% 
-        dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
-        subset(complete.cases(.))
-    }
-    
-    fit_formula <- as.formula(paste0("observed ~ ", paste(unique(rf_var_m_r$predictor), collapse = "+")))
-    
-    # fit model
-    set.seed(1)
-    fit_rf <- randomForest::randomForest(fit_formula,
-                                         data = subset(fit_data_r, Sample == "Train"),
-                                         ntree = 500,
-                                         localImp = T)
-  
-    # run model
-    fit_data_r$predicted <- predict(fit_rf, fit_data_r)
-    fit_data_r$metric <- m
-    fit_data_r$region_rf <- r
-    fit_data_i <- 
-      fit_data_r %>% 
-      dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, predicted, metric, region, region_rf)
-    
-    # extract variable importance
-    fit_rf_imp_i <- tibble::tibble(predictor = rownames(randomForest::importance(fit_rf, type = 1)),
-                                   VarPrcIncMSE = randomForest::importance(fit_rf, type = 1)[,'%IncMSE'],
-                                   metric = m,
-                                   region_rf = r)
-    
-    if (m == metrics[1] & r == regions[1]){
-      fit_data_out <- fit_data_i
-      fit_rf_imp <- fit_rf_imp_i
-    } else {
-      fit_data_out <- dplyr::bind_rows(fit_data_out, fit_data_i)
-      fit_rf_imp <- dplyr::bind_rows(fit_rf_imp, fit_rf_imp_i)
-    }
-    
-    # status update
-    print(paste0(m, " ", r, " complete, ", Sys.time()))
-  }
-}
-
-# save data
-fit_data_out %>% 
-  readr::write_csv(file.path("results", "02_RandomForest_RunModels_Predictions.csv"))
-
-fit_rf_imp %>% 
-  readr::write_csv(file.path("results", "02_RandomForest_RunModels_VariableImportance.csv"))
-
-gage_sample %>% 
-  dplyr::select(gage_ID, Sample) %>% 
-  readr::write_csv(path = file.path("results", "02_RandomForest_TestTrainSample.csv"))
-
-# plots
-min(subset(fit_data_out, metric == "annualfractionnoflow")$predicted)
-
-ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & Sample == "Test"), 
-       aes(x = predicted, y = observed, color = region)) +
-  geom_point() +
-  geom_abline(intercept = 0, slope = 1, color = col.gray) +
-  scale_color_manual(values = pal_regions) +
-  facet_wrap(~region_rf)
-
-ggplot(subset(fit_data_out, metric == "annualfractionnoflow"), 
-       aes(x = predicted, y = observed, color = region)) +
-  geom_point() +
-  geom_abline(intercept = 0, slope = 1, color = col.gray) +
-  scale_color_manual(values = pal_regions) +
-  facet_wrap(~region_rf)
-
-ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & Sample == "Test"), 
-       aes(x = currentclimyear, y = (predicted - observed), color = region)) +
-  geom_hline(yintercept = 0, color = col.gray) +
-  geom_point() +
-  scale_color_manual(values = pal_regions) +
-  facet_wrap(~region_rf)
-
-ggplot(subset(fit_rf_imp, metric == "annualfractionnoflow"), 
-       aes(x = predictor, y = VarPrcIncMSE, color = region_rf)) +
-  geom_hline(yintercept = 0, color = col.gray) +
-  geom_point() +
-  facet_wrap(~region_rf)

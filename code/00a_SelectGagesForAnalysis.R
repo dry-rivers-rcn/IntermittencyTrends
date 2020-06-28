@@ -165,22 +165,61 @@ ggplot(gage_sample_out, aes(x=dec_long_va, y = dec_lat_va, color = region)) + ge
 
 ## divide gage sample into train (80%), test (20%)
 # choose fraction of gages to use as validation
-frac_val <- 0.8
+n_folds <- 5
+frac_test <- 1/n_folds
 
-# want to use same sample for all regions and metrics so need to take 80% from each region
+# set up k-fold cross-validation - want to use same sample for 
+# all regions and metrics so need to take folds from each region
 # and mix of ref/nonref
 set.seed(1)
-gage_val_sample <-
+test1 <- 
   gage_sample %>% 
   dplyr::group_by(region, CLASS) %>% 
-  dplyr::sample_frac(frac_val) %>% 
+  dplyr::sample_frac(frac_test) %>% 
   dplyr::ungroup() %>% 
   dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Train")
+  dplyr::mutate(Sample = "Test1")
+test2 <- 
+  gage_sample %>% 
+  subset(!(gage_ID %in% test1$gage_ID)) %>% 
+  dplyr::group_by(region, CLASS) %>% 
+  dplyr::sample_frac(1/(n_folds-1)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::select(gage_ID) %>% 
+  dplyr::mutate(Sample = "Test2")
+test3 <- 
+  gage_sample %>% 
+  subset(!(gage_ID %in% test1$gage_ID) &
+           !(gage_ID %in% test2$gage_ID)) %>% 
+  dplyr::group_by(region, CLASS) %>% 
+  dplyr::sample_frac(1/(n_folds-2)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::select(gage_ID) %>% 
+  dplyr::mutate(Sample = "Test3")
+test4 <- 
+  gage_sample %>% 
+  subset(!(gage_ID %in% test1$gage_ID) &
+           !(gage_ID %in% test2$gage_ID) &
+           !(gage_ID %in% test3$gage_ID)) %>% 
+  dplyr::group_by(region, CLASS) %>% 
+  dplyr::sample_frac(1/(n_folds-3)) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::select(gage_ID) %>% 
+  dplyr::mutate(Sample = "Test4")
+test5 <- 
+  gage_sample %>% 
+  subset(!(gage_ID %in% test1$gage_ID) &
+           !(gage_ID %in% test2$gage_ID) &
+           !(gage_ID %in% test3$gage_ID) &
+           !(gage_ID %in% test4$gage_ID)) %>% 
+  dplyr::select(gage_ID) %>% 
+  dplyr::mutate(Sample = "Test5")
+
+gage_val_sample <-
+  dplyr::bind_rows(test1, test2, test3, test4, test5)
 
 # add to gage_sample; everything that is not selected will be Train (if ref) or non-ref
 gage_sample_out <- dplyr::left_join(gage_sample_out, gage_val_sample, by = "gage_ID")
-gage_sample_out$Sample[is.na(gage_sample_out$Sample)] <- "Test"
 
 # check count in each sample
 gage_sample_out %>% 

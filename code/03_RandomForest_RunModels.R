@@ -1,11 +1,8 @@
-## 01_RandomForest_PreliminaryVariableImportance.R
-#' This script selects the variables that will be used for each random forest model
-#' with the following approach:
-#'   - Build model with all predictor variables
-#'   - Repeat 25x using 80% of reference gages in each sample
-#' This variable importance will be used to build models.
+## 02_RandomForest_RunModels.R
+#' This script is intended to train and run random forest models.
 #' 
-#' A total of 21 models will be built: (6 regions + National) * (3 metrics) = 21 models
+#' Input variables will be selected using the output from 01_RandomForest_PreliminaryVariableImportance.R
+#' 
 
 source(file.path("code", "paths+packages.R"))
 
@@ -32,10 +29,19 @@ gage_sample_annual <-
                 p.pet_ond = p_mm_ond/pet_mm_ond,
                 swe.p_ond = swe_mm_ond/p_mm_ond)
 
-## clean up data and get ready to fit statistical model
-# predictors and metrics to retain; to get full list of options: 
-#   dput(names(gage_sample_annual))
-#   dput(names(gage_sample))
+rf_var_importance <- 
+  file.path("results", "01_RandomForest_PreliminaryVariableImportance.csv") %>% 
+  readr::read_csv() %>% 
+  dplyr::group_by(metric, region, predictor) %>% 
+  dplyr::summarize(PrcIncMSE_mean = mean(PrcIncMSE)) %>% 
+  dplyr::ungroup()
+
+## set up predictions
+# metrics and regions to predict
+metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
+regions <- c("National", unique(gage_sample$region))
+
+# all possible predictors
 predictors_climate <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj", "pet_mm_cy", 
                         "pet_mm_jas", "pet_mm_ond", "pet_mm_jfm", "pet_mm_amj", "T_max_c_cy", 
                         "T_max_c_jas", "T_max_c_ond", "T_max_c_jfm", "T_max_c_amj",
@@ -65,17 +71,13 @@ predictors_climate_with_previous <-
                           "p.pet_amj.previous", "swe.p_amj.previous", "p.pet_jas.previous", 
                           "swe.p_jas.previous", "p.pet_ond.previous", "swe.p_ond.previous"))
 
-# metrics and regions to predict
-metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
-regions <- c("National", unique(gage_sample$region))
-
-# get previous water year climate metrics
+## calculate previous water year climate metrics
 gage_sample_prevyear <- 
   gage_sample_annual[,c("gage_ID", "currentclimyear", predictors_climate)] %>% 
   dplyr::mutate(wyearjoin = currentclimyear + 1) %>% 
   dplyr::select(-currentclimyear)
 
-# combine into one data frame
+## combine into one data frame
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
@@ -88,62 +90,114 @@ fit_data_in <-
   # join with static predictors
   dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
 
-# number of iterations and percent of gages to sample each iteration
-n_iter <- 50
-prc_sample <- 0.8
-
 ## loop through metrics and regions
+n_pred <- 10 # choose number of predictors - based on script 02_RandomForest_FigureOutNumPredictors.R
+n_folds <- length(unique(gage_sample$Sample)) # choose number of folds for cross-val
+
 for (m in metrics){
-  # subset to complete cases
+  # get rid of unneeded metrics
   fit_data_m <- 
     fit_data_in %>% 
-    dplyr::select(-all_of(metrics[metrics != m])) %>%  # drop metrics you aren't interested in
-    subset(complete.cases(.))
+    dplyr::select(-all_of(metrics[metrics != m]))
   
   # rename metric column
   names(fit_data_m)[names(fit_data_m) == m] <- "observed"
   
-  # build formula
-  fit_formula <- as.formula(paste0("observed ~ ", paste(c(predictors_climate_with_previous, predictors_human, predictors_static), collapse = "+")))
-  
   for (r in regions){
+    # get predictor variables
+    rf_var_m_r <-
+      rf_var_importance %>% 
+      subset(metric == m & region == r) %>% 
+      dplyr::top_n(n = n_pred, wt = PrcIncMSE_mean)
+    
     if (r == "National") {
-      fit_data_r <- fit_data_m
+      fit_data_r <- 
+        fit_data_m %>% 
+        dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
+        subset(complete.cases(.))
     } else {
-      fit_data_r <- subset(fit_data_m, region == r)
+      fit_data_r <- 
+        fit_data_m %>% 
+        subset(region == r) %>% 
+        dplyr::select(gage_ID, CLASS, Sample, currentclimyear, observed, region, all_of(rf_var_m_r$predictor)) %>% 
+        subset(complete.cases(.))
     }
     
-    gages_r <- unique(fit_data_r$gage_ID)
+    fit_formula <- as.formula(paste0("observed ~ ", paste(unique(rf_var_m_r$predictor), collapse = "+")))
     
+    ## k-folds cross-validation and prediction
     set.seed(1)
-    for (iter in 1:n_iter){
-      # select gages
-      gages_i <- sample(gages_r, size = floor(length(gages_r)*prc_sample))
-      
-      # fit model
+    for (k in 1:n_folds){
+      ## train model
       fit_rf <- randomForest::randomForest(fit_formula,
-                                           data = subset(fit_data_r, gage_ID %in% gages_i),
+                                           data = subset(fit_data_r, Sample != paste0("Test", k)),
                                            ntree = 500,
                                            localImp = T)
       
+      # run model
+      fit_data_r$predicted <- predict(fit_rf, fit_data_r)
+      fit_data_r$metric <- m
+      fit_data_r$region_rf <- r
+      fit_data_i <- 
+        fit_data_r %>% 
+        dplyr::select(gage_ID, CLASS, currentclimyear, observed, predicted, metric, region_rf) %>% 
+        dplyr::mutate(kfold = k)
+      
       # extract variable importance
       fit_rf_imp_i <- tibble::tibble(predictor = rownames(randomForest::importance(fit_rf, type = 1)),
-                                     PrcIncMSE = randomForest::importance(fit_rf, type = 1)[,'%IncMSE'],
+                                     VarPrcIncMSE = randomForest::importance(fit_rf, type = 1)[,'%IncMSE'],
                                      metric = m,
-                                     region = r,
-                                     iteration = iter)
-      if (iter == 1 & m == metrics[1] & r == regions[1]){
+                                     region_rf = r,
+                                     kfold = k)
+      
+      if (m == metrics[1] & r == regions[1] & k == 1){
+        fit_data_out <- fit_data_i
         fit_rf_imp <- fit_rf_imp_i
       } else {
+        fit_data_out <- dplyr::bind_rows(fit_data_out, fit_data_i)
         fit_rf_imp <- dplyr::bind_rows(fit_rf_imp, fit_rf_imp_i)
       }
       
       # status update
-      print(paste0(m, " ", r, " ", iter, " complete, ", Sys.time()))
+      print(paste0(m, " ", r, " k", k, " complete, ", Sys.time()))
+      
     }
   }
 }
 
-# write csv file
+# save data
+fit_data_out %>% 
+  readr::write_csv(file.path("results", "03_RandomForest_RunModels_Predictions.csv"))
+
 fit_rf_imp %>% 
-  readr::write_csv(path = file.path("results", "01_RandomForest_PreliminaryVariableImportance.csv"))
+  readr::write_csv(file.path("results", "03_RandomForest_RunModels_VariableImportance.csv"))
+
+# plots
+min(subset(fit_data_out, metric == "annualfractionnoflow")$predicted)
+
+ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & Sample == "Test"), 
+       aes(x = predicted, y = observed, color = region)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(values = pal_regions) +
+  facet_wrap(~region_rf)
+
+ggplot(subset(fit_data_out, metric == "annualfractionnoflow"), 
+       aes(x = predicted, y = observed, color = region)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(values = pal_regions) +
+  facet_wrap(~region_rf)
+
+ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & Sample == "Test"), 
+       aes(x = currentclimyear, y = (predicted - observed), color = region)) +
+  geom_hline(yintercept = 0, color = col.gray) +
+  geom_point() +
+  scale_color_manual(values = pal_regions) +
+  facet_wrap(~region_rf)
+
+ggplot(subset(fit_rf_imp, metric == "annualfractionnoflow"), 
+       aes(x = predictor, y = VarPrcIncMSE, color = region_rf)) +
+  geom_hline(yintercept = 0, color = col.gray) +
+  geom_point() +
+  facet_wrap(~region_rf)
