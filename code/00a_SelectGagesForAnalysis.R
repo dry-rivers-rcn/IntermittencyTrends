@@ -26,14 +26,14 @@ gage_sample_old <-
 names(gage_sample_old)[4:10] <- stringr::str_to_lower(names(gage_sample_old)[4:10])
 
 # combine characteristics into a single data frame
-gage_sample <- dplyr::left_join(gage_sample_new, gage_sample_old, by = "gage_ID")
+gage_sample_prelim <- dplyr::left_join(gage_sample_new, gage_sample_old, by = "gage_ID")
 
-sum(gage_sample$CLASS == "Ref")
-sum(gage_sample$CLASS == "Non-ref")
+sum(gage_sample_prelim$CLASS == "Ref")
+sum(gage_sample_prelim$CLASS == "Non-ref")
 
 # one gage is missing lat/long; fill it in
-gage_sample$dec_lat_va[gage_sample$gage_ID==208111310] <- 36.04778
-gage_sample$dec_long_va[gage_sample$gage_ID==208111310] <- -76.98417
+gage_sample_prelim$dec_lat_va[gage_sample_prelim$gage_ID==208111310] <- 36.04778
+gage_sample_prelim$dec_long_va[gage_sample_prelim$gage_ID==208111310] <- -76.98417
 
 ## load annual stats for each gage
 # load and calculate peak2zero length from raw data
@@ -56,7 +56,7 @@ gages_annual_summary <-
   readr::read_csv() %>% 
   dplyr::rename(gage_ID = sitewith0) %>% 
   dplyr::left_join(p2z_mean_climyear, by = c("gage_ID", "currentclimyear" = "dry_climyear")) %>% 
-  subset(gage_ID %in% gage_sample$gage_ID)
+  subset(gage_ID %in% gage_sample_prelim$gage_ID)
 
 # variables to calculate trends in and save
 annual_vars <- 
@@ -89,8 +89,22 @@ gages_mean <-
   dplyr::summarize_all(mean, na.rm = T) %>% 
   dplyr::select(-currentclimyear, -pdsi_cy, -pdsi_jfm, -pdsi_amj, -pdsi_jas, -pdsi_ond)
 
+gages_n_noflow <-
+  gages_annual_summary %>% 
+  dplyr::group_by(gage_ID) %>% 
+  dplyr::summarize(yrs_noflow = sum(annualfractionnoflow > 0, na.rm = T),
+                   yrs_data = sum(is.finite(annualfractionnoflow))) %>% 
+  dplyr::ungroup()
+
+## trim to only gages with at least 5 years of no-flow values
+noflow_prc_threshold <- 0.0
 gage_sample <-
-  dplyr::left_join(gage_sample, gages_mean, by = "gage_ID")
+  dplyr::left_join(gage_sample_prelim, gages_mean, by = "gage_ID") %>% 
+  dplyr::left_join(gages_n_noflow, by = "gage_ID") %>% 
+  subset(yrs_noflow/yrs_data > noflow_prc_threshold)
+
+gages_annual_summary <-
+  subset(gages_annual_summary, gage_ID %in% gage_sample$gage_ID)
 
 ## calculate trends - this is modified from John's script, CalculateTrends_020720.R
 fulllengthwyears <- tibble::tibble(currentclimyear = c(min(gages_annual_summary$currentclimyear):max(gages_annual_summary$currentclimyear)))
@@ -102,12 +116,14 @@ for (i in seq_along(sites)){
   current[current==Inf] <- NA
   
   # which columns to calculate trends?
-  cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentclimyear"))
+  #cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentclimyear"))
+  cols_trend <- which(names(gages_annual_summary) %in% c("annualfractionnoflow", "zeroflowfirst", "peak2z_length"))
   
   results <- tibble::tibble(metric = colnames(gages_annual_summary[cols_trend]),
                             tau = as.numeric(rep(NA, length = length(cols_trend))), 
                             pval = as.numeric(rep(NA, length = length(cols_trend))), 
-                            slope = as.numeric(rep(NA, length = length(cols_trend))))
+                            slope = as.numeric(rep(NA, length = length(cols_trend))),
+                            n_years = as.numeric(rep(NA, length = length(cols_trend))))
   
   site_start <- T
   for(col in cols_trend){
@@ -119,18 +135,19 @@ for (i in seq_along(sites)){
     
     # only calculate trend if at least 30 years of data
     if (years_data >= 30){
-      manken <- Kendall::MannKendall(currentcolumn$variable)
-      sen <- zyp::zyp.sen(variable ~ currentclimyear, currentcolumn)
-      
+      manken <- rkt::rkt(currentcolumn$currentclimyear, currentcolumn$variable)
+
       trend <- tibble::tibble(metric = currentcolumnname,
                               tau = manken$tau,
-                              pval = manken$sl,
-                              slope = sen$coefficients[2])
+                              pval = manken$sl[1],
+                              slope = manken$B,
+                              n_years = years_data)
     } else {
       trend <- tibble::tibble(metric = currentcolumnname,
                               tau = NA,
                               pval = NA,
-                              slope = NA)
+                              slope = NA,
+                              n_years = years_data)
     }
     if (site_start){
       results <- trend
