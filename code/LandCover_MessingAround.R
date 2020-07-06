@@ -29,9 +29,23 @@ lulc_hindcast <-
            gage_ID %in% gage_sample$gage_ID) %>% 
   dplyr::mutate(Source = "Hindcast")
 
+
+lulc_nlcd <-   
+  readr::read_csv(file = file.path(dir_data, "LULC_nlcd.csv")) %>% 
+  dplyr::select(-rownum) %>% 
+  subset(year >= yr_start & year <= yr_stop & 
+           gage_ID %in% gage_sample$gage_ID) %>% 
+  dplyr::mutate(Source = "NLCD")
+
 lulc_all <- 
   dplyr::bind_rows(lulc_hindcast, lulc_historic) %>% 
   tidyr::replace_na(list(lu3 = 0, lu4 = 0, lu5 = 0))
+
+# spit out missing NLCD gages
+gage_sample$NLCD <- gage_sample$gage_ID %in% as.numeric(lulc_nlcd$gage_ID)
+gage_sample %>% 
+  dplyr::select(gage_ID, NLCD) %>% 
+  readr::write_csv(path = file.path("results", "LandCover_NLCDstatus.csv"))
 
 max(lulc_hindcast$year)
 min(lulc_historic$year)
