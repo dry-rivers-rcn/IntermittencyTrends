@@ -29,13 +29,6 @@ gage_sample_annual <-
                 p.pet_ond = p_mm_ond/pet_mm_ond,
                 swe.p_ond = swe_mm_ond/p_mm_ond)
 
-rf_var_importance <- 
-  file.path("results", "01_RandomForest_PreliminaryVariableImportance.csv") %>% 
-  readr::read_csv() %>% 
-  dplyr::group_by(metric, region, predictor) %>% 
-  dplyr::summarize(PrcIncMSE_mean = mean(PrcIncMSE)) %>% 
-  dplyr::ungroup()
-
 ## set up predictions
 # metrics and regions to predict
 metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
@@ -49,10 +42,9 @@ predictors_climate <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj
                         "swe_mm_ond", "swe_mm_jfm", "swe_mm_amj", "p.pet_cy", "swe.p_cy", "p.pet_jfm", "swe.p_jfm",
                         "p.pet_amj", "swe.p_amj", "p.pet_jas", "swe.p_jas", "p.pet_ond", "swe.p_ond")
 
-predictors_human <- c("dams_n", "maxstorage_af", 
-                      "normstorage_af", "majordams_n", "wuse_mm", "irrig_prc", 
-                      "lulc_water_prc", "lulc_dev_prc", "lulc_forest_prc", "lulc_barren_prc", 
-                      "lulc_grass_prc", "lulc_ag_prc", "lulc_wetland_prc")
+predictors_human <- c("dams_n", "maxstorage_af", "normstorage_af", "majordams_n", 
+                      "wuse_mm", "irrig_prc", "lulc_water_prc", "lulc_dev_prc", "lulc_wetland_prc",
+                      "lulc_forest_prc", "lulc_barren_prc", "lulc_grass_prc", "lulc_ag_prc")
 
 predictors_static <- c("drain_sqkm", "elev_mean_m_basin", "slope_pct", 
                        "awcave", "permave", "topwet", "depth_bedrock_m", 
@@ -91,7 +83,7 @@ fit_data_in <-
   dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
 
 ## loop through metrics and regions
-n_pred <- 10 # choose number of predictors - based on script 02_RandomForest_FigureOutNumPredictors.R
+n_pred <- 18 # choose number of predictors - based on script 02_RandomForest_FigureOutNumPredictors.R
 n_folds <- length(unique(gage_sample$Sample)) # choose number of folds for cross-val
 
 for (m in metrics){
@@ -106,8 +98,11 @@ for (m in metrics){
   for (r in regions){
     # get predictor variables
     rf_var_m_r <-
-      rf_var_importance %>% 
-      subset(metric == m & region == r) %>% 
+      file.path("results", paste0("01_RandomForest_PreliminaryVariableImportance_", m, "_", gsub(" ", "", r, fixed = TRUE), ".csv")) %>% 
+      readr::read_csv() %>% 
+      dplyr::group_by(metric, region, predictor) %>% 
+      dplyr::summarize(PrcIncMSE_mean = mean(PrcIncMSE)) %>% 
+      dplyr::ungroup() %>% 
       dplyr::top_n(n = n_pred, wt = PrcIncMSE_mean)
     
     if (r == "National") {

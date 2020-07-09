@@ -5,7 +5,7 @@ source(file.path("code", "paths+packages.R"))
 ## load data
 # random forest predictions
 rf_all <- 
-  readr::read_csv(file.path("results", "02_RandomForest_RunModels_Predictions.csv")) %>% 
+  readr::read_csv(file.path("results", "03_RandomForest_RunModels_Predictions.csv")) %>% 
   dplyr::mutate(residual = predicted - observed)
 
 # a positive residual means that the predicted is higher than the observed
@@ -16,7 +16,7 @@ rf_all <-
 #  making streams drier, with the first dry day earlier in the year, and a faster time from peak to dry. 
 
 # variable importance
-rf_imp <- readr::read_csv(file.path("results", "02_RandomForest_RunModels_VariableImportance.csv"))
+rf_imp <- readr::read_csv(file.path("results", "03_RandomForest_RunModels_VariableImportance.csv"))
 
 # load gage characteristics
 gage_sample <- 

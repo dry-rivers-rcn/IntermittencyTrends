@@ -31,10 +31,10 @@ lulc_hindcast <-
 
 
 lulc_nlcd <-   
-  readr::read_csv(file = file.path(dir_data, "LULC_nlcd.csv")) %>% 
+  readr::read_csv(file = file.path(dir_data, "LULC_nlcd-new.csv")) %>% 
   dplyr::select(-rownum) %>% 
   subset(year >= yr_start & year <= yr_stop & 
-           gage_ID %in% gage_sample$gage_ID) %>% 
+           as.numeric(gage_ID) %in% gage_sample$gage_ID) %>% 
   dplyr::mutate(Source = "NLCD")
 
 lulc_all <- 

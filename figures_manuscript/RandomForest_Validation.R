@@ -5,18 +5,26 @@
 source(file.path("code", "paths+packages.R"))
 
 ## load data
+# gage characteristics
+gage_sample <- 
+  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv")) %>% 
+  dplyr::mutate(gage_ID = as.numeric(gage_ID))
+
 # random forest predictions
-rf_all <- 
-  readr::read_csv(file.path("results", "02_RandomForest_RunModels_Predictions.csv")) %>% 
-  subset(CLASS == "Ref") %>% 
-  dplyr::mutate(residual = predicted - observed)
+rf_all <-
+  readr::read_csv(file.path("results", "03_RandomForest_RunModels_Predictions.csv")) %>% 
+  dplyr::mutate(residual = predicted - observed) %>% 
+  dplyr::left_join(gage_sample[,c("gage_ID", "region", "Sample")], by = "gage_ID")
 
 rf_all$region_rf[rf_all$region_rf != "National"] <- "Regional"
+
+# identify test vs. train
+rf_all$Test <- rf_all$Sample == paste0("Test", rf_all$kfold)
 
 ## calculate fit statistics
 rf_fit <-
   rf_all %>% 
-  subset(Sample == "Test") %>% 
+  subset(Test) %>% 
   dplyr::group_by(metric, region_rf, region) %>% 
   dplyr::summarize(RMSE = round(hydroGOF::rmse(predicted, observed), 3),
                    NRMSE = hydroGOF::nrmse(predicted, observed, norm = "maxmin"),
@@ -50,10 +58,10 @@ ggplot(rf_fit_wide, aes(x = National, y = Regional, color = region)) +
 ## scatterplot: national models, test data only
 p_nat_afnf_test <-
   rf_all %>% 
-  subset(region_rf == "National" & metric == "annualfractionnoflow" & Sample == "Test") %>% 
+  subset(region_rf == "National" & metric == "annualfractionnoflow" & Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [-]",
                      limits = c(0,1), expand = c(0,0)) +
@@ -64,10 +72,10 @@ p_nat_afnf_test <-
 
 p_nat_p2z_test <-
   rf_all %>% 
-  subset(region_rf == "National" & metric == "peak2z_length" & Sample == "Test") %>% 
+  subset(region_rf == "National" & metric == "peak2z_length" & Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [days]",
                      limits = c(0,225), expand = c(0,0)) +
@@ -78,10 +86,10 @@ p_nat_p2z_test <-
 
 p_nat_zff_test <-
   rf_all %>% 
-  subset(region_rf == "National" & metric == "zeroflowfirst" & Sample == "Test") %>% 
+  subset(region_rf == "National" & metric == "zeroflowfirst" & Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [day of year]",
                      limits = c(0,365), expand = c(0,0)) +
@@ -100,10 +108,10 @@ p_nat_zff_test <-
 ## scatterplot: Regional models, test data only
 p_reg_afnf_test <-
   rf_all %>% 
-  subset(region_rf != "National" & metric == "annualfractionnoflow" & Sample == "Test") %>% 
+  subset(region_rf != "National" & metric == "annualfractionnoflow" & Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [-]",
                      limits = c(0,1), expand = c(0,0)) +
@@ -114,10 +122,10 @@ p_reg_afnf_test <-
 
 p_reg_p2z_test <-
   rf_all %>% 
-  subset(region_rf != "National" & metric == "peak2z_length" & Sample == "Test") %>% 
+  subset(region_rf != "National" & metric == "peak2z_length" & Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [days]",
                      limits = c(0,225), expand = c(0,0)) +
@@ -128,10 +136,10 @@ p_reg_p2z_test <-
 
 p_reg_zff_test <-
   rf_all %>% 
-  subset(region_rf != "National" & metric == "zeroflowfirst" & Sample == "Test") %>% 
+  subset(region_rf != "National" & metric == "zeroflowfirst" & Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [day of year]",
                      limits = c(0,365), expand = c(0,0)) +
@@ -150,10 +158,10 @@ p_reg_zff_test <-
 ## scatterplot: national models, Train data only
 p_nat_afnf_Train <-
   rf_all %>% 
-  subset(region_rf == "National" & metric == "annualfractionnoflow" & Sample == "Train") %>% 
+  subset(region_rf == "National" & metric == "annualfractionnoflow" & !Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [-]",
                      limits = c(0,1), expand = c(0,0)) +
@@ -164,10 +172,10 @@ p_nat_afnf_Train <-
 
 p_nat_p2z_Train <-
   rf_all %>% 
-  subset(region_rf == "National" & metric == "peak2z_length" & Sample == "Train") %>% 
+  subset(region_rf == "National" & metric == "peak2z_length" & !Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [days]",
                      limits = c(0,225), expand = c(0,0)) +
@@ -178,10 +186,10 @@ p_nat_p2z_Train <-
 
 p_nat_zff_Train <-
   rf_all %>% 
-  subset(region_rf == "National" & metric == "zeroflowfirst" & Sample == "Train") %>% 
+  subset(region_rf == "National" & metric == "zeroflowfirst" & !Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [day of year]",
                      limits = c(0,365), expand = c(0,0)) +
@@ -200,7 +208,7 @@ p_nat_zff_Train <-
 ## scatterplot: Regional models, Train data only
 p_reg_afnf_Train <-
   rf_all %>% 
-  subset(region_rf != "National" & metric == "annualfractionnoflow" & Sample == "Train") %>% 
+  subset(region_rf != "National" & metric == "annualfractionnoflow" & !Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
   geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
@@ -214,7 +222,7 @@ p_reg_afnf_Train <-
 
 p_reg_p2z_Train <-
   rf_all %>% 
-  subset(region_rf != "National" & metric == "peak2z_length" & Sample == "Train") %>% 
+  subset(region_rf != "National" & metric == "peak2z_length" & !Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
   geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +
@@ -228,7 +236,7 @@ p_reg_p2z_Train <-
 
 p_reg_zff_Train <-
   rf_all %>% 
-  subset(region_rf != "National" & metric == "zeroflowfirst" & Sample == "Train") %>% 
+  subset(region_rf != "National" & metric == "zeroflowfirst" & !Test) %>% 
   ggplot(aes(x = predicted, y = observed)) + 
   geom_abline(intercept = 0, slope = 1) +
   geom_point(shape = 1, aes(color = region)) +

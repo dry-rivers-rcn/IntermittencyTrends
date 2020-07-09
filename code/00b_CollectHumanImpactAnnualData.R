@@ -332,7 +332,7 @@ ggplot(gage_sample_annual_NID_wuse_ag_lulc, aes(x=harvcrop_prc, y=lulc_ag_prc)) 
   geom_point() +
   geom_abline(intercept = 0, slope = 1, color = "red")
 
-ggplot(lulc_out, aes(x=year, y = lulc_dev_prc, group = gage_ID)) +
+ggplot(lulc_out, aes(x=year, y = lulc_ag_prc, group = gage_ID)) +
   geom_line()
 
 

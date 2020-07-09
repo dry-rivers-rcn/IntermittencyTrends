@@ -110,14 +110,13 @@ gages_annual_summary <-
 fulllengthwyears <- tibble::tibble(currentclimyear = c(min(gages_annual_summary$currentclimyear):max(gages_annual_summary$currentclimyear)))
 sites <- unique(gages_annual_summary$gage_ID)
 
+# which columns to calculate trends?
+cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentclimyear"))
+
 for (i in seq_along(sites)){
   current <- subset(gages_annual_summary, gage_ID == sites[i])
   current[current==-Inf] <- NA
   current[current==Inf] <- NA
-  
-  # which columns to calculate trends?
-  #cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentclimyear"))
-  cols_trend <- which(names(gages_annual_summary) %in% c("annualfractionnoflow", "zeroflowfirst", "peak2z_length"))
   
   results <- tibble::tibble(metric = colnames(gages_annual_summary[cols_trend]),
                             tau = as.numeric(rep(NA, length = length(cols_trend))), 
@@ -235,10 +234,14 @@ test5 <-
 gage_val_sample <-
   dplyr::bind_rows(test1, test2, test3, test4, test5)
 
-# add to gage_sample; everything that is not selected will be Train (if ref) or non-ref
+# add to gage_sample
 gage_sample_out <- dplyr::left_join(gage_sample_out, gage_val_sample, by = "gage_ID")
 
 # check count in each sample
+gage_sample_out %>% 
+  dplyr::select(Sample) %>% 
+  table()
+
 gage_sample_out %>% 
   dplyr::select(region, Sample) %>% 
   table()
