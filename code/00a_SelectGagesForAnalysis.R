@@ -181,58 +181,27 @@ ggplot(gage_sample_out, aes(x=dec_long_va, y = dec_lat_va, color = region)) + ge
 
 ## divide gage sample into train (80%), test (20%)
 # choose fraction of gages to use as validation
-n_folds <- 5
-frac_test <- 1/n_folds
+frac_test <- 0.2
 
 # set up k-fold cross-validation - want to use same sample for 
 # all regions and metrics so need to take folds from each region
 # and mix of ref/nonref
 set.seed(1)
-test1 <- 
-  gage_sample %>% 
+test <- 
+  gage_sample_out %>% 
   dplyr::group_by(region, CLASS) %>% 
   dplyr::sample_frac(frac_test) %>% 
   dplyr::ungroup() %>% 
   dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Test1")
-test2 <- 
-  gage_sample %>% 
-  subset(!(gage_ID %in% test1$gage_ID)) %>% 
-  dplyr::group_by(region, CLASS) %>% 
-  dplyr::sample_frac(1/(n_folds-1)) %>% 
-  dplyr::ungroup() %>% 
+  dplyr::mutate(Sample = "Test")
+train <- 
+  gage_sample_out %>% 
+  subset(!(gage_ID %in% test$gage_ID)) %>% 
   dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Test2")
-test3 <- 
-  gage_sample %>% 
-  subset(!(gage_ID %in% test1$gage_ID) &
-           !(gage_ID %in% test2$gage_ID)) %>% 
-  dplyr::group_by(region, CLASS) %>% 
-  dplyr::sample_frac(1/(n_folds-2)) %>% 
-  dplyr::ungroup() %>% 
-  dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Test3")
-test4 <- 
-  gage_sample %>% 
-  subset(!(gage_ID %in% test1$gage_ID) &
-           !(gage_ID %in% test2$gage_ID) &
-           !(gage_ID %in% test3$gage_ID)) %>% 
-  dplyr::group_by(region, CLASS) %>% 
-  dplyr::sample_frac(1/(n_folds-3)) %>% 
-  dplyr::ungroup() %>% 
-  dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Test4")
-test5 <- 
-  gage_sample %>% 
-  subset(!(gage_ID %in% test1$gage_ID) &
-           !(gage_ID %in% test2$gage_ID) &
-           !(gage_ID %in% test3$gage_ID) &
-           !(gage_ID %in% test4$gage_ID)) %>% 
-  dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Test5")
+  dplyr::mutate(Sample = "Train")
 
 gage_val_sample <-
-  dplyr::bind_rows(test1, test2, test3, test4, test5)
+  dplyr::bind_rows(test, train)
 
 # add to gage_sample
 gage_sample_out <- dplyr::left_join(gage_sample_out, gage_val_sample, by = "gage_ID")
