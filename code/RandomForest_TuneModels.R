@@ -103,6 +103,8 @@ m <- "annualfractionnoflow"
 r <- "National"
 predictors <- c(predictors_annual, predictors_annual_with_previous, predictors_static)
 
+## loop through metrics
+
 # get rid of unneeded metrics
 fit_data_m <- 
   fit_data_play %>% 
@@ -111,23 +113,129 @@ fit_data_m <-
 # rename metric column
 names(fit_data_m)[names(fit_data_m) == m] <- "observed"
 
+## loop through regions
+
 # subset to region
 fit_data_r <- 
   fit_data_m %>% 
   subset(complete.cases(.))
 
 # split into training/testing
-rf_split <- initial_split(fit_data_r, prop = 0.8)
+fit_data_train <- subset(fit_data_r, Sample == "Train")
+fit_data_test <- subset(fit_data_r, Sample == "Test")
 
-# set up recipe (formula)
-fit_formula <- as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+")))
-rf_recipe <- 
-  training(rf_split) %>% 
-  recipe(fit_formula) %>% 
-  step_corr(all_predictors()) %>%
-  step_center(all_predictors(), -all_outcomes()) %>%
-  step_scale(all_predictors(), -all_outcomes()) %>%
+# set up recipe
+tune_recipe <-
+  fit_data_train %>% 
+  recipe(as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+")))) %>%
+  step_nzv(all_predictors(), -all_outcomes()) %>%   # remove variables with near-zero variance (i.e., swe_jas)
+  step_normalize(all_predictors(), -all_outcomes()) %>%
   prep()
+
+#### next step: integrate recipe into workflow below
+
+
+
+# set up folds
+tune_folds <- vfold_cv(rf_train, v = 10)
+
+# set up tuning model
+rf_tune <- 
+  rand_forest(trees = tune(), 
+              mtry = tune(), 
+              min_n = tune()) %>% 
+  set_engine("ranger") %>% 
+  set_mode("regression")
+
+# create grid of parameters for tuning; reasonable values selected using functions from dials package
+rf_tune_grid <- grid_regular(trees(range = c(200, 400)),
+                             mtry(range = c(1, 10)),
+                             min_n(range = c(3, 100)),
+                             levels = 2)
+
+# build tuning workflow
+tune_wf <-
+  workflow() %>% 
+  add_model(rf_tune) %>% 
+  add_formula(as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+"))))
+
+# run tuning
+tune_res <-
+  tune_wf %>% 
+  tune_grid(
+    resamples = tune_folds,
+    grid = rf_tune_grid
+  )
+
+# collect results
+tune_res_m_r <-
+  tune_res %>% 
+  collect_metrics() %>% 
+  dplyr::mutate(metric = m, 
+                region_rf = r)
+
+# plot results
+tune_res %>%
+  collect_metrics() %>%
+  subset(trees == 150) %>% 
+  mutate(min_n = factor(min_n)) %>%
+  ggplot(aes(x = mtry, y = mean, color = min_n)) +
+  geom_line(size = 1.5, alpha = 0.6) +
+  geom_point(size = 2) +
+  facet_wrap(~ .metric, scales = "free", nrow = 2) +
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0)
+
+# look at best trees
+tune_res %>%
+  show_best("rmse")
+
+# choose best tree for final workflow
+best_tree <-
+  tune_res %>% 
+  select_best("rmse")
+
+final_wf <- 
+  tune_wf %>% 
+  finalize_workflow(best_tree)
+
+# fit with k-folds
+rf_fit_folds <-
+  final_wf %>% 
+  fit_resamples(rf_folds)
+
+collect_metrics(rf_fit_folds)
+
+# fit best model to test data
+final_fit <-
+  final_wf %>% 
+  last_fit(rf_split)
+
+collect_metrics(final_fit)
+
+# build model
+rf_ranger <- 
+  rand_forest(trees = 100, mode = "regression") %>% 
+  set_engine("ranger")
+
+# set up workflow
+rf_wflow <- 
+  workflow() %>% 
+  add_model(rf_ranger) %>% 
+  add_formula(observed ~ .)
+
+# fit model
+rf_fit <-
+  rf_wflow %>% 
+  fit(data = rf_train)
+
+# fit with k-folds
+rf_fit_folds <-
+  rf_wflow %>% 
+  fit_resamples(rf_folds)
+collect_metrics(rf_fit_folds)
+
+# use workflow to predict
+predict(rf_fit, rf_test)
 
 # transform test data
 rf_testing <-
@@ -137,11 +245,7 @@ rf_testing <-
 # prep training data
 rf_training <- juice(rf_recipe)
 
-# build model
-rf_ranger <- 
-  rand_forest(trees = 100, mode = "regression") %>% 
-  set_engine("ranger") %>% 
-  fit(observed ~ ., data = rf_training)
+
 
 # check fit
 rf_ranger %>%
@@ -150,6 +254,19 @@ rf_ranger %>%
   metrics(truth = observed, estimate = .pred)
 
 
+
+
+
+# set up recipe (formula)
+fit_formula <- as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+")))
+rf_recipe <- 
+  rf_train %>% 
+  recipe(fit_formula) %>% 
+  step_zv(all_predictors()) %>% 
+  step_corr(all_predictors()) %>%
+  step_center(all_predictors(), -all_outcomes()) %>%
+  step_scale(all_predictors(), -all_outcomes()) %>%
+  prep()
 
 
 
