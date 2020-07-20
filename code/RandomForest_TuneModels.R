@@ -90,6 +90,40 @@ fit_data_in <-
   # join with static predictors
   dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
 
+###
+### filter out predictor variables
+###
+check_cor <- 
+  cor(fit_data_in[,predictors_all], use = "pairwise.complete.obs", method = "pearson")
+#check_cor[lower.tri(check_cor, diag = T)] <- NA
+
+cor_high <-
+  check_cor %>% 
+  reshape2::melt() %>% 
+  subset(Var1 != Var2 & is.finite(value)) %>% 
+  subset(abs(value) > 0.9) %>% 
+  dplyr::distinct() %>% 
+  dplyr::arrange(Var1, Var2)
+
+# there are 51 highly-correlated pairs of predictor variables
+# (pearson r > 0.9, which is used in step_corr function)
+# we want to drop: 
+#  - seasonal variables when correlated with annual value
+#  - previous year variables when correlated with current year value
+predictors_drop <-
+  # highly correlated variables
+  c("T_max_c_jfm", "T_max_c_ond", "T_max_c_amj", "T_max_c_cy.previous",
+    "T_max_c_jfm.previous", "T_max_c_ond.previous", "T_max_c_jas.previous",
+    "T_max_c_amj.previous", "sandave", "storage_m", 'maxstorage_af', "swe_mm_cy.previous",
+    "swe_mm_jfm","p_mm_cy", "p_mm_jas", "p_mm_jfm", "p_mm_amj",
+    "p_mm_cy.previous", "p_mm_jas.previous", "p_mm_jfm.previous", "p_mm_amj.previous",
+    "pet_mm_cy.previous", "pet_mm_ond.previous", "pet_mm_ond",
+    # near-zero variance
+    "swe_mm_jas", "swe_mm_amj", "swe.p_jas", "normstorage_af", "swe_mm_jas.previous",
+    "swe_mm_amj.previous", "swe.p_jas.previous")
+
+#cor_high <- subset(cor_high, !(Var1 %in% predictors_drop | Var2 %in% predictors_drop))
+
 ## reduce to a subset of data for developing approach
 fit_data_play <- 
   fit_data_in %>% 
@@ -101,7 +135,8 @@ fit_data_play <-
 
 m <- "annualfractionnoflow"
 r <- "National"
-predictors <- c(predictors_annual, predictors_annual_with_previous, predictors_static)
+predictors_final <- predictors_all[!(predictors_all %in% predictors_drop)]
+
 
 ## loop through metrics
 
@@ -127,10 +162,8 @@ fit_data_test <- subset(fit_data_r, Sample == "Test")
 # set up recipe
 tune_recipe <-
   fit_data_train %>% 
-  recipe(as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+")))) %>%
-  step_nzv(all_predictors(), -all_outcomes()) %>%   # remove variables with near-zero variance (i.e., swe_jas)
+  recipe(as.formula(paste0("observed ~ ", paste(predictors_final, collapse = "+")))) %>%
   step_normalize(all_predictors(), -all_outcomes()) %>%
-  prep()
 
 #### next step: integrate recipe into workflow below
 
@@ -257,6 +290,7 @@ rf_ranger %>%
 
 
 
+<<<<<<< HEAD
 # set up recipe (formula)
 fit_formula <- as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+")))
 rf_recipe <- 
@@ -271,6 +305,9 @@ rf_recipe <-
 
 
 fit_formula <- as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+")))
+=======
+fit_formula <- as.formula(paste0("observed ~ ", paste(predictors_final, collapse = "+")))
+>>>>>>> 6ae9f35de94cb09c5b6ab7a9925c8fde47256c27
 system.time(fit_rf <- randomForest::randomForest(fit_formula,
                                                  data = fit_data_r,
                                                  ntree = 500))
