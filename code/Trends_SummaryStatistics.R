@@ -27,3 +27,5 @@ gage_trends %>%
                    n_sig_neg = sum(slope <= 0 & pval < p_thres, na.rm = T))
 
 207/512
+34/150
+23/123
