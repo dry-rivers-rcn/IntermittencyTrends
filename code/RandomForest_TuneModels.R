@@ -104,6 +104,7 @@ cor_high <-
   subset(abs(value) > 0.9) %>% 
   dplyr::distinct() %>% 
   dplyr::arrange(Var1, Var2)
+#cor_high <- subset(cor_high, !(Var1 %in% predictors_drop | Var2 %in% predictors_drop))
 
 # there are 51 highly-correlated pairs of predictor variables
 # (pearson r > 0.9, which is used in step_corr function)
@@ -122,8 +123,6 @@ predictors_drop <-
     "swe_mm_jas", "swe_mm_amj", "swe.p_jas", "normstorage_af", "swe_mm_jas.previous",
     "swe_mm_amj.previous", "swe.p_jas.previous")
 
-#cor_high <- subset(cor_high, !(Var1 %in% predictors_drop | Var2 %in% predictors_drop))
-
 ## reduce to a subset of data for developing approach
 fit_data_play <- 
   fit_data_in %>% 
@@ -137,8 +136,10 @@ m <- "annualfractionnoflow"
 r <- "National"
 predictors_final <- predictors_all[!(predictors_all %in% predictors_drop)]
 
+# prep for parallelization
+cores <- parallel::detectCores()
 
-## loop through metrics
+## loop through metrics will go here
 
 # get rid of unneeded metrics
 fit_data_m <- 
@@ -148,7 +149,7 @@ fit_data_m <-
 # rename metric column
 names(fit_data_m)[names(fit_data_m) == m] <- "observed"
 
-## loop through regions
+## loop through regions will go here
 
 # subset to region
 fit_data_r <- 
@@ -156,32 +157,41 @@ fit_data_r <-
   subset(complete.cases(.))
 
 # split into training/testing
-fit_data_train <- subset(fit_data_r, Sample == "Train")
-fit_data_test <- subset(fit_data_r, Sample == "Test")
+fit_data_train <- 
+  fit_data_r %>% 
+  subset(Sample == "Train") %>% 
+  dplyr::select(gage_ID, currentclimyear, region, observed, all_of(predictors_final))
+fit_data_test <- 
+  fit_data_r %>% 
+  subset(Sample == "Test") %>% 
+  dplyr::select(gage_ID, currentclimyear, region, observed, all_of(predictors_final))
 
 # set up recipe
 tune_recipe <-
   fit_data_train %>% 
-  recipe(as.formula(paste0("observed ~ ", paste(predictors_final, collapse = "+")))) %>%
-  step_normalize(all_predictors(), -all_outcomes()) %>%
+  recipe(observed ~ .) %>%
+  update_role(gage_ID, currentclimyear, region, new_role = "ID") %>% 
+  step_normalize(all_predictors(), -all_outcomes()) %>% 
+  prep()
 
-#### next step: integrate recipe into workflow below
-
-
+# bake the testing data too
+fit_data_test_baked <- 
+  tune_recipe %>%
+  bake(fit_data_test) 
 
 # set up folds
-tune_folds <- vfold_cv(rf_train, v = 10)
+tune_folds <- vfold_cv(fit_data_train, v = 5, strata = "region")
 
 # set up tuning model
 rf_tune <- 
   rand_forest(trees = tune(), 
               mtry = tune(), 
               min_n = tune()) %>% 
-  set_engine("ranger") %>% 
+  set_engine("ranger", num.threads = cores) %>% 
   set_mode("regression")
 
-# create grid of parameters for tuning; reasonable values selected using functions from dials package
-rf_tune_grid <- grid_regular(trees(range = c(200, 400)),
+# create grid of parameters for tuning
+rf_tune_grid <- grid_regular(trees(range = c(100, 500)),
                              mtry(range = c(1, 10)),
                              min_n(range = c(3, 100)),
                              levels = 2)
@@ -190,14 +200,15 @@ rf_tune_grid <- grid_regular(trees(range = c(200, 400)),
 tune_wf <-
   workflow() %>% 
   add_model(rf_tune) %>% 
-  add_formula(as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+"))))
+  add_recipe(tune_recipe)
 
 # run tuning
 tune_res <-
   tune_wf %>% 
   tune_grid(
     resamples = tune_folds,
-    grid = rf_tune_grid
+    grid = rf_tune_grid,
+    metrics = metric_set(mae, rmse, rsq)
   )
 
 # collect results
@@ -210,23 +221,19 @@ tune_res_m_r <-
 # plot results
 tune_res %>%
   collect_metrics() %>%
-  subset(trees == 150) %>% 
+  subset(.metric == "mae") %>% 
   mutate(min_n = factor(min_n)) %>%
   ggplot(aes(x = mtry, y = mean, color = min_n)) +
   geom_line(size = 1.5, alpha = 0.6) +
   geom_point(size = 2) +
-  facet_wrap(~ .metric, scales = "free", nrow = 2) +
+  facet_wrap(trees ~ ., scales = "free") +
   scale_color_viridis_d(option = "plasma", begin = .9, end = 0)
 
 # look at best trees
 tune_res %>%
-  show_best("rmse")
+  show_best("mae")
 
 # choose best tree for final workflow
-best_tree <-
-  tune_res %>% 
-  select_best("rmse")
-
 final_wf <- 
   tune_wf %>% 
   finalize_workflow(best_tree)
@@ -234,105 +241,37 @@ final_wf <-
 # fit with k-folds
 rf_fit_folds <-
   final_wf %>% 
-  fit_resamples(rf_folds)
-
+  fit_resamples(tune_folds,
+                metrics = metric_set(mae, rmse, rsq))
 collect_metrics(rf_fit_folds)
 
-# fit best model to test data
-final_fit <-
+
+### figure out how to apply to test data
+rf_testing_pred <- 
+  predict(rf_fit_folds, fit_data_test_baked)
+
+
+# fit best model to training data
+rf_fit_best <-
   final_wf %>% 
-  last_fit(rf_split)
+  fit(fit_data_test_baked)
 
-collect_metrics(final_fit)
-
-# build model
-rf_ranger <- 
-  rand_forest(trees = 100, mode = "regression") %>% 
-  set_engine("ranger")
-
-# set up workflow
-rf_wflow <- 
-  workflow() %>% 
-  add_model(rf_ranger) %>% 
-  add_formula(observed ~ .)
-
-# fit model
-rf_fit <-
-  rf_wflow %>% 
-  fit(data = rf_train)
-
-# fit with k-folds
-rf_fit_folds <-
-  rf_wflow %>% 
-  fit_resamples(rf_folds)
-collect_metrics(rf_fit_folds)
+rf_fit_test
 
 # use workflow to predict
-predict(rf_fit, rf_test)
-
-# transform test data
-rf_testing <-
-  rf_recipe %>% 
-  bake(testing(rf_split))
-
-# prep training data
-rf_training <- juice(rf_recipe)
-
-
+fit_data_test_baked$predicted <- predict(rf_fit_test, fit_data_test_baked)$.pred
 
 # check fit
-rf_ranger %>%
-  predict(rf_testing) %>%
-  bind_cols(rf_testing) %>%
-  metrics(truth = observed, estimate = .pred)
+fit_data_test %>%
+  metrics(truth = observed, estimate = predicted)
+
+ggplot(fit_data_test, aes(x = predicted, y = observed)) + geom_point() +
+  geom_abline(intercept = 0, slope = 1) +
+  scale_x_continuous(limits = c(0,1)) +
+  scale_y_continuous(limits = c(0,1))
 
 
 
-
-
-<<<<<<< HEAD
-# set up recipe (formula)
-fit_formula <- as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+")))
-rf_recipe <- 
-  rf_train %>% 
-  recipe(fit_formula) %>% 
-  step_zv(all_predictors()) %>% 
-  step_corr(all_predictors()) %>%
-  step_center(all_predictors(), -all_outcomes()) %>%
-  step_scale(all_predictors(), -all_outcomes()) %>%
-  prep()
-
-
-
-fit_formula <- as.formula(paste0("observed ~ ", paste(predictors_all, collapse = "+")))
-=======
-fit_formula <- as.formula(paste0("observed ~ ", paste(predictors_final, collapse = "+")))
->>>>>>> 6ae9f35de94cb09c5b6ab7a9925c8fde47256c27
-system.time(fit_rf <- randomForest::randomForest(fit_formula,
-                                                 data = fit_data_r,
-                                                 ntree = 500))
-system.time(fit_rg <- ranger::ranger(fit_formula,
-                                     data = fit_data_r,
-                                     num.trees = 500,
-                                     importance = "permutation",
-                                     seed = 1))
-fit_rg
-fit_rf
-
-ranger::importance(fit_rg)
-
-fit_ct <-
-  train(fit_formula,
-        data = fit_data_r,
-        method = "ranger",
-        trControl = trainControl(method="cv", number = 5, verboseIter = T),
-        tuneGrid = expand.grid(
-          mtry = 2:4,
-          splitrule = "gini",
-          min.node.size),
-        num.trees = 100,
-        importance = "permutation")
-varImp(fit_ct)
 
 Boruta::Boruta(fit_formula, data = fit_data_r, holdHistory = F) -> BorutaTest
 Boruta::Boruta(fit_formula, data = fit_data_r, getImp = getImpFerns, holdHistory = F) -> BorutaTestFerns
