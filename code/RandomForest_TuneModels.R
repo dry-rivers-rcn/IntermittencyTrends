@@ -1,12 +1,13 @@
 ## RandomForest_TuneModels.R
 #' This script is intended to tune random forest models by:
-#'   - determining the most important variables
-#'     - this study compared approaches: https://academic.oup.com/bib/article/20/2/492/4554516
-#'   - determining the best mtry and ntree
+#'   - eliminate redundant (highly correlated) variables and variables with near-zero variance
+#'   - determining the most important variables using default RF parameters
+#'   - with most important variables, tune hyperparameters
 
 source(file.path("code", "paths+packages.R"))
 library(tidymodels)
 library(ranger)
+library(Boruta)
 
 ####
 #### prep data
@@ -69,7 +70,7 @@ predictors_climate_with_previous <-
                           "p.pet_amj.previous", "swe.p_amj.previous", "p.pet_jas.previous", 
                           "swe.p_jas.previous", "p.pet_ond.previous", "swe.p_ond.previous"))
 
-predictors_all <- c(predictors_climate, predictors_human, predictors_static, predictors_climate_with_previous)
+predictors_all <- c(predictors_human, predictors_static, predictors_climate_with_previous)
 
 ## calculate previous water year climate metrics
 gage_sample_prevyear <- 
@@ -94,8 +95,7 @@ fit_data_in <-
 ### filter out predictor variables
 ###
 check_cor <- 
-  cor(fit_data_in[,predictors_all], use = "pairwise.complete.obs", method = "pearson")
-#check_cor[lower.tri(check_cor, diag = T)] <- NA
+  cor(fit_data_in[fit_data_in$Sample == "Train",predictors_all], use = "pairwise.complete.obs", method = "pearson")
 
 cor_high <-
   check_cor %>% 
@@ -126,35 +126,66 @@ predictors_drop <-
 ## reduce to a subset of data for developing approach
 fit_data_play <- 
   fit_data_in %>% 
-  dplyr::sample_frac(0.1)
+  dplyr::sample_frac(0.05)
+
+###
+### begin loop through metrics and regions
+###
+
+m <- "annualfractionnoflow"
+r <- "National"
+
+### 
+### input variable selection
+###
+
+# prep data and predictors
+predictors_trimmed <- predictors_all[!(predictors_all %in% predictors_drop)]
+
+# get rid of unneeded metrics
+fit_data_r <- 
+  fit_data_in %>% 
+  subset(Sample == "Train") %>% 
+  dplyr::select(gage_ID, currentclimyear, region, all_of(m), all_of(predictors_trimmed)) %>% 
+  # since testing on National, just take complete cases - once you add region loop, need to update here
+  subset(complete.cases(.))
+
+# variable selection; this study compared approaches: https://academic.oup.com/bib/article/20/2/492/4554516
+#  - vita and varSelRF are only for classification RFs
+#  - Boruta had high performance but slow computationally
+
+br <- Boruta(x = fit_data_r[ , predictors_trimmed], y = pull(fit_data_r, m), doTrace = 1)
+
+br_imp_median <- tibble(predictor = colnames(br$ImpHistory),
+                        boruta_imp_median = apply(br$ImpHistory, 2, median))
+
+br_vars <- 
+  tibble::tibble(predictor = names(br$finalDecision),
+                 boruta_decision = br$finalDecision) %>% 
+  dplyr::left_join(br_imp_median, by = "predictor") %>% 
+  dplyr::mutate(metric = m, 
+                region_rf = r)
+
+if (m == metrics[1] $ r == regions[1]){
+  br_all <- br_vars
+} else {
+  br_all <- dplyr::bind_rows(br_all, br_vars)
+}
 
 ####
 #### build model with tidymodels framework
 ####
 
-m <- "annualfractionnoflow"
-r <- "National"
-predictors_final <- predictors_all[!(predictors_all %in% predictors_drop)]
 
-# prep for parallelization
-cores <- parallel::detectCores()
 
 ## loop through metrics will go here
 
-# get rid of unneeded metrics
-fit_data_m <- 
-  fit_data_play %>% 
-  dplyr::select(-all_of(metrics[metrics != m]))
+
 
 # rename metric column
-names(fit_data_m)[names(fit_data_m) == m] <- "observed"
 
 ## loop through regions will go here
 
-# subset to region
-fit_data_r <- 
-  fit_data_m %>% 
-  subset(complete.cases(.))
 
 # split into training/testing
 fit_data_train <- 
