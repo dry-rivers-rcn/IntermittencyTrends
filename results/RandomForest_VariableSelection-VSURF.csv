@@ -1,0 +1,832 @@
+predictor,vsurf_group,metric,region_rf
+p.pet_cy.previous,Thresholding,annualfractionnoflow,National
+storage_m,Thresholding,annualfractionnoflow,National
+porosity,Thresholding,annualfractionnoflow,National
+p.pet_cy,Thresholding,annualfractionnoflow,National
+depth_bedrock_m,Thresholding,annualfractionnoflow,National
+drain_sqkm,Thresholding,annualfractionnoflow,National
+pet_mm_cy,Thresholding,annualfractionnoflow,National
+lulc_water_prc,Thresholding,annualfractionnoflow,National
+slope_pct,Thresholding,annualfractionnoflow,National
+siltave,Thresholding,annualfractionnoflow,National
+sandave,Thresholding,annualfractionnoflow,National
+elev_mean_m_basin,Thresholding,annualfractionnoflow,National
+normstorage_af,Thresholding,annualfractionnoflow,National
+lulc_grass_prc,Thresholding,annualfractionnoflow,National
+lulc_forest_prc,Thresholding,annualfractionnoflow,National
+lulc_ag_prc,Thresholding,annualfractionnoflow,National
+irrig_prc,Thresholding,annualfractionnoflow,National
+wuse_mm,Thresholding,annualfractionnoflow,National
+lulc_dev_prc,Thresholding,annualfractionnoflow,National
+p.pet_cy.previous,Interpretation,annualfractionnoflow,National
+storage_m,Interpretation,annualfractionnoflow,National
+porosity,Interpretation,annualfractionnoflow,National
+p.pet_cy,Interpretation,annualfractionnoflow,National
+depth_bedrock_m,Interpretation,annualfractionnoflow,National
+drain_sqkm,Interpretation,annualfractionnoflow,National
+pet_mm_cy,Interpretation,annualfractionnoflow,National
+lulc_water_prc,Interpretation,annualfractionnoflow,National
+slope_pct,Interpretation,annualfractionnoflow,National
+siltave,Interpretation,annualfractionnoflow,National
+sandave,Interpretation,annualfractionnoflow,National
+elev_mean_m_basin,Interpretation,annualfractionnoflow,National
+normstorage_af,Interpretation,annualfractionnoflow,National
+lulc_grass_prc,Interpretation,annualfractionnoflow,National
+lulc_forest_prc,Interpretation,annualfractionnoflow,National
+lulc_ag_prc,Interpretation,annualfractionnoflow,National
+irrig_prc,Interpretation,annualfractionnoflow,National
+wuse_mm,Interpretation,annualfractionnoflow,National
+lulc_dev_prc,Interpretation,annualfractionnoflow,National
+p.pet_cy.previous,Prediction,annualfractionnoflow,National
+storage_m,Prediction,annualfractionnoflow,National
+porosity,Prediction,annualfractionnoflow,National
+p.pet_cy,Prediction,annualfractionnoflow,National
+depth_bedrock_m,Prediction,annualfractionnoflow,National
+drain_sqkm,Prediction,annualfractionnoflow,National
+pet_mm_cy,Prediction,annualfractionnoflow,National
+lulc_water_prc,Prediction,annualfractionnoflow,National
+slope_pct,Prediction,annualfractionnoflow,National
+siltave,Prediction,annualfractionnoflow,National
+sandave,Prediction,annualfractionnoflow,National
+elev_mean_m_basin,Prediction,annualfractionnoflow,National
+normstorage_af,Prediction,annualfractionnoflow,National
+lulc_grass_prc,Prediction,annualfractionnoflow,National
+lulc_forest_prc,Prediction,annualfractionnoflow,National
+lulc_ag_prc,Prediction,annualfractionnoflow,National
+irrig_prc,Prediction,annualfractionnoflow,National
+wuse_mm,Prediction,annualfractionnoflow,National
+lulc_dev_prc,Prediction,annualfractionnoflow,National
+p_mm_cy,Thresholding,annualfractionnoflow,North Great Plains
+p.pet_cy,Thresholding,annualfractionnoflow,North Great Plains
+porosity,Thresholding,annualfractionnoflow,North Great Plains
+lulc_forest_prc,Thresholding,annualfractionnoflow,North Great Plains
+topwet,Thresholding,annualfractionnoflow,North Great Plains
+clayave,Thresholding,annualfractionnoflow,North Great Plains
+depth_bedrock_m,Thresholding,annualfractionnoflow,North Great Plains
+elev_mean_m_basin,Thresholding,annualfractionnoflow,North Great Plains
+p_mm_cy.previous,Thresholding,annualfractionnoflow,North Great Plains
+p.pet_cy.previous,Thresholding,annualfractionnoflow,North Great Plains
+lulc_ag_prc,Thresholding,annualfractionnoflow,North Great Plains
+p_mm_cy,Interpretation,annualfractionnoflow,North Great Plains
+p.pet_cy,Interpretation,annualfractionnoflow,North Great Plains
+porosity,Interpretation,annualfractionnoflow,North Great Plains
+lulc_forest_prc,Interpretation,annualfractionnoflow,North Great Plains
+topwet,Interpretation,annualfractionnoflow,North Great Plains
+clayave,Interpretation,annualfractionnoflow,North Great Plains
+depth_bedrock_m,Interpretation,annualfractionnoflow,North Great Plains
+elev_mean_m_basin,Interpretation,annualfractionnoflow,North Great Plains
+p_mm_cy.previous,Interpretation,annualfractionnoflow,North Great Plains
+p.pet_cy.previous,Interpretation,annualfractionnoflow,North Great Plains
+lulc_ag_prc,Interpretation,annualfractionnoflow,North Great Plains
+p_mm_cy,Prediction,annualfractionnoflow,North Great Plains
+p.pet_cy,Prediction,annualfractionnoflow,North Great Plains
+porosity,Prediction,annualfractionnoflow,North Great Plains
+lulc_forest_prc,Prediction,annualfractionnoflow,North Great Plains
+topwet,Prediction,annualfractionnoflow,North Great Plains
+clayave,Prediction,annualfractionnoflow,North Great Plains
+depth_bedrock_m,Prediction,annualfractionnoflow,North Great Plains
+elev_mean_m_basin,Prediction,annualfractionnoflow,North Great Plains
+p_mm_cy.previous,Prediction,annualfractionnoflow,North Great Plains
+p.pet_cy.previous,Prediction,annualfractionnoflow,North Great Plains
+lulc_ag_prc,Prediction,annualfractionnoflow,North Great Plains
+depth_bedrock_m,Thresholding,annualfractionnoflow,Mediterranean California
+p.pet_cy.previous,Thresholding,annualfractionnoflow,Mediterranean California
+lulc_grass_prc,Thresholding,annualfractionnoflow,Mediterranean California
+wuse_mm,Thresholding,annualfractionnoflow,Mediterranean California
+storage_m,Thresholding,annualfractionnoflow,Mediterranean California
+slope_pct,Thresholding,annualfractionnoflow,Mediterranean California
+lulc_forest_prc,Thresholding,annualfractionnoflow,Mediterranean California
+topwet,Thresholding,annualfractionnoflow,Mediterranean California
+siltave,Thresholding,annualfractionnoflow,Mediterranean California
+lulc_water_prc,Thresholding,annualfractionnoflow,Mediterranean California
+irrig_prc,Thresholding,annualfractionnoflow,Mediterranean California
+lulc_dev_prc,Thresholding,annualfractionnoflow,Mediterranean California
+depth_bedrock_m,Interpretation,annualfractionnoflow,Mediterranean California
+p.pet_cy.previous,Interpretation,annualfractionnoflow,Mediterranean California
+lulc_grass_prc,Interpretation,annualfractionnoflow,Mediterranean California
+wuse_mm,Interpretation,annualfractionnoflow,Mediterranean California
+storage_m,Interpretation,annualfractionnoflow,Mediterranean California
+slope_pct,Interpretation,annualfractionnoflow,Mediterranean California
+lulc_forest_prc,Interpretation,annualfractionnoflow,Mediterranean California
+topwet,Interpretation,annualfractionnoflow,Mediterranean California
+siltave,Interpretation,annualfractionnoflow,Mediterranean California
+lulc_water_prc,Interpretation,annualfractionnoflow,Mediterranean California
+irrig_prc,Interpretation,annualfractionnoflow,Mediterranean California
+lulc_dev_prc,Interpretation,annualfractionnoflow,Mediterranean California
+depth_bedrock_m,Prediction,annualfractionnoflow,Mediterranean California
+p.pet_cy.previous,Prediction,annualfractionnoflow,Mediterranean California
+lulc_grass_prc,Prediction,annualfractionnoflow,Mediterranean California
+wuse_mm,Prediction,annualfractionnoflow,Mediterranean California
+storage_m,Prediction,annualfractionnoflow,Mediterranean California
+slope_pct,Prediction,annualfractionnoflow,Mediterranean California
+lulc_forest_prc,Prediction,annualfractionnoflow,Mediterranean California
+topwet,Prediction,annualfractionnoflow,Mediterranean California
+siltave,Prediction,annualfractionnoflow,Mediterranean California
+lulc_water_prc,Prediction,annualfractionnoflow,Mediterranean California
+irrig_prc,Prediction,annualfractionnoflow,Mediterranean California
+lulc_dev_prc,Prediction,annualfractionnoflow,Mediterranean California
+elev_mean_m_basin,Thresholding,annualfractionnoflow,South Great Plains
+lulc_forest_prc,Thresholding,annualfractionnoflow,South Great Plains
+lulc_water_prc,Thresholding,annualfractionnoflow,South Great Plains
+siltave,Thresholding,annualfractionnoflow,South Great Plains
+permave,Thresholding,annualfractionnoflow,South Great Plains
+T_max_c_jas,Thresholding,annualfractionnoflow,South Great Plains
+drain_sqkm,Thresholding,annualfractionnoflow,South Great Plains
+T_max_c_amj,Thresholding,annualfractionnoflow,South Great Plains
+irrig_prc,Thresholding,annualfractionnoflow,South Great Plains
+slope_pct,Thresholding,annualfractionnoflow,South Great Plains
+porosity,Thresholding,annualfractionnoflow,South Great Plains
+p.pet_cy,Thresholding,annualfractionnoflow,South Great Plains
+normstorage_af,Thresholding,annualfractionnoflow,South Great Plains
+maxstorage_af,Thresholding,annualfractionnoflow,South Great Plains
+awcave,Thresholding,annualfractionnoflow,South Great Plains
+p.pet_cy.previous,Thresholding,annualfractionnoflow,South Great Plains
+elev_mean_m_basin,Interpretation,annualfractionnoflow,South Great Plains
+lulc_forest_prc,Interpretation,annualfractionnoflow,South Great Plains
+lulc_water_prc,Interpretation,annualfractionnoflow,South Great Plains
+siltave,Interpretation,annualfractionnoflow,South Great Plains
+permave,Interpretation,annualfractionnoflow,South Great Plains
+T_max_c_jas,Interpretation,annualfractionnoflow,South Great Plains
+drain_sqkm,Interpretation,annualfractionnoflow,South Great Plains
+T_max_c_amj,Interpretation,annualfractionnoflow,South Great Plains
+irrig_prc,Interpretation,annualfractionnoflow,South Great Plains
+slope_pct,Interpretation,annualfractionnoflow,South Great Plains
+porosity,Interpretation,annualfractionnoflow,South Great Plains
+p.pet_cy,Interpretation,annualfractionnoflow,South Great Plains
+normstorage_af,Interpretation,annualfractionnoflow,South Great Plains
+maxstorage_af,Interpretation,annualfractionnoflow,South Great Plains
+awcave,Interpretation,annualfractionnoflow,South Great Plains
+p.pet_cy.previous,Interpretation,annualfractionnoflow,South Great Plains
+elev_mean_m_basin,Prediction,annualfractionnoflow,South Great Plains
+lulc_forest_prc,Prediction,annualfractionnoflow,South Great Plains
+lulc_water_prc,Prediction,annualfractionnoflow,South Great Plains
+siltave,Prediction,annualfractionnoflow,South Great Plains
+permave,Prediction,annualfractionnoflow,South Great Plains
+T_max_c_jas,Prediction,annualfractionnoflow,South Great Plains
+drain_sqkm,Prediction,annualfractionnoflow,South Great Plains
+T_max_c_amj,Prediction,annualfractionnoflow,South Great Plains
+irrig_prc,Prediction,annualfractionnoflow,South Great Plains
+slope_pct,Prediction,annualfractionnoflow,South Great Plains
+porosity,Prediction,annualfractionnoflow,South Great Plains
+p.pet_cy,Prediction,annualfractionnoflow,South Great Plains
+normstorage_af,Prediction,annualfractionnoflow,South Great Plains
+maxstorage_af,Prediction,annualfractionnoflow,South Great Plains
+awcave,Prediction,annualfractionnoflow,South Great Plains
+p.pet_cy.previous,Prediction,annualfractionnoflow,South Great Plains
+porosity,Thresholding,annualfractionnoflow,Western Desert
+pet_mm_cy,Thresholding,annualfractionnoflow,Western Desert
+lulc_forest_prc,Thresholding,annualfractionnoflow,Western Desert
+wuse_mm,Thresholding,annualfractionnoflow,Western Desert
+permave,Thresholding,annualfractionnoflow,Western Desert
+porosity,Interpretation,annualfractionnoflow,Western Desert
+pet_mm_cy,Interpretation,annualfractionnoflow,Western Desert
+lulc_forest_prc,Interpretation,annualfractionnoflow,Western Desert
+wuse_mm,Interpretation,annualfractionnoflow,Western Desert
+permave,Interpretation,annualfractionnoflow,Western Desert
+porosity,Prediction,annualfractionnoflow,Western Desert
+pet_mm_cy,Prediction,annualfractionnoflow,Western Desert
+lulc_forest_prc,Prediction,annualfractionnoflow,Western Desert
+wuse_mm,Prediction,annualfractionnoflow,Western Desert
+permave,Prediction,annualfractionnoflow,Western Desert
+permave,Thresholding,annualfractionnoflow,Eastern Forests
+lulc_wetland_prc,Thresholding,annualfractionnoflow,Eastern Forests
+depth_bedrock_m,Thresholding,annualfractionnoflow,Eastern Forests
+pet_mm_amj,Thresholding,annualfractionnoflow,Eastern Forests
+lulc_water_prc,Thresholding,annualfractionnoflow,Eastern Forests
+pet_mm_jfm.previous,Thresholding,annualfractionnoflow,Eastern Forests
+topwet,Thresholding,annualfractionnoflow,Eastern Forests
+lulc_ag_prc,Thresholding,annualfractionnoflow,Eastern Forests
+p.pet_cy,Thresholding,annualfractionnoflow,Eastern Forests
+lulc_forest_prc,Thresholding,annualfractionnoflow,Eastern Forests
+irrig_prc,Thresholding,annualfractionnoflow,Eastern Forests
+wuse_mm,Thresholding,annualfractionnoflow,Eastern Forests
+lulc_dev_prc,Thresholding,annualfractionnoflow,Eastern Forests
+elev_mean_m_basin,Thresholding,annualfractionnoflow,Eastern Forests
+p.pet_jas,Thresholding,annualfractionnoflow,Eastern Forests
+permave,Interpretation,annualfractionnoflow,Eastern Forests
+lulc_wetland_prc,Interpretation,annualfractionnoflow,Eastern Forests
+depth_bedrock_m,Interpretation,annualfractionnoflow,Eastern Forests
+pet_mm_amj,Interpretation,annualfractionnoflow,Eastern Forests
+lulc_water_prc,Interpretation,annualfractionnoflow,Eastern Forests
+pet_mm_jfm.previous,Interpretation,annualfractionnoflow,Eastern Forests
+topwet,Interpretation,annualfractionnoflow,Eastern Forests
+lulc_ag_prc,Interpretation,annualfractionnoflow,Eastern Forests
+p.pet_cy,Interpretation,annualfractionnoflow,Eastern Forests
+lulc_forest_prc,Interpretation,annualfractionnoflow,Eastern Forests
+irrig_prc,Interpretation,annualfractionnoflow,Eastern Forests
+wuse_mm,Interpretation,annualfractionnoflow,Eastern Forests
+lulc_dev_prc,Interpretation,annualfractionnoflow,Eastern Forests
+elev_mean_m_basin,Interpretation,annualfractionnoflow,Eastern Forests
+p.pet_jas,Interpretation,annualfractionnoflow,Eastern Forests
+permave,Prediction,annualfractionnoflow,Eastern Forests
+lulc_wetland_prc,Prediction,annualfractionnoflow,Eastern Forests
+depth_bedrock_m,Prediction,annualfractionnoflow,Eastern Forests
+pet_mm_amj,Prediction,annualfractionnoflow,Eastern Forests
+lulc_water_prc,Prediction,annualfractionnoflow,Eastern Forests
+pet_mm_jfm.previous,Prediction,annualfractionnoflow,Eastern Forests
+topwet,Prediction,annualfractionnoflow,Eastern Forests
+lulc_ag_prc,Prediction,annualfractionnoflow,Eastern Forests
+p.pet_cy,Prediction,annualfractionnoflow,Eastern Forests
+lulc_forest_prc,Prediction,annualfractionnoflow,Eastern Forests
+irrig_prc,Prediction,annualfractionnoflow,Eastern Forests
+wuse_mm,Prediction,annualfractionnoflow,Eastern Forests
+lulc_dev_prc,Prediction,annualfractionnoflow,Eastern Forests
+elev_mean_m_basin,Prediction,annualfractionnoflow,Eastern Forests
+p.pet_jas,Prediction,annualfractionnoflow,Eastern Forests
+porosity,Thresholding,annualfractionnoflow,Western Mountains
+lulc_forest_prc,Thresholding,annualfractionnoflow,Western Mountains
+lulc_grass_prc,Thresholding,annualfractionnoflow,Western Mountains
+lulc_water_prc,Thresholding,annualfractionnoflow,Western Mountains
+maxstorage_af,Thresholding,annualfractionnoflow,Western Mountains
+wuse_mm,Thresholding,annualfractionnoflow,Western Mountains
+lulc_wetland_prc,Thresholding,annualfractionnoflow,Western Mountains
+p.pet_cy.previous,Thresholding,annualfractionnoflow,Western Mountains
+normstorage_af,Thresholding,annualfractionnoflow,Western Mountains
+irrig_prc,Thresholding,annualfractionnoflow,Western Mountains
+drain_sqkm,Thresholding,annualfractionnoflow,Western Mountains
+lulc_barren_prc,Thresholding,annualfractionnoflow,Western Mountains
+lulc_ag_prc,Thresholding,annualfractionnoflow,Western Mountains
+pet_mm_cy,Thresholding,annualfractionnoflow,Western Mountains
+porosity,Interpretation,annualfractionnoflow,Western Mountains
+lulc_forest_prc,Interpretation,annualfractionnoflow,Western Mountains
+lulc_grass_prc,Interpretation,annualfractionnoflow,Western Mountains
+lulc_water_prc,Interpretation,annualfractionnoflow,Western Mountains
+maxstorage_af,Interpretation,annualfractionnoflow,Western Mountains
+wuse_mm,Interpretation,annualfractionnoflow,Western Mountains
+lulc_wetland_prc,Interpretation,annualfractionnoflow,Western Mountains
+p.pet_cy.previous,Interpretation,annualfractionnoflow,Western Mountains
+normstorage_af,Interpretation,annualfractionnoflow,Western Mountains
+irrig_prc,Interpretation,annualfractionnoflow,Western Mountains
+drain_sqkm,Interpretation,annualfractionnoflow,Western Mountains
+lulc_barren_prc,Interpretation,annualfractionnoflow,Western Mountains
+lulc_ag_prc,Interpretation,annualfractionnoflow,Western Mountains
+pet_mm_cy,Interpretation,annualfractionnoflow,Western Mountains
+porosity,Prediction,annualfractionnoflow,Western Mountains
+lulc_forest_prc,Prediction,annualfractionnoflow,Western Mountains
+lulc_grass_prc,Prediction,annualfractionnoflow,Western Mountains
+lulc_water_prc,Prediction,annualfractionnoflow,Western Mountains
+maxstorage_af,Prediction,annualfractionnoflow,Western Mountains
+wuse_mm,Prediction,annualfractionnoflow,Western Mountains
+lulc_wetland_prc,Prediction,annualfractionnoflow,Western Mountains
+p.pet_cy.previous,Prediction,annualfractionnoflow,Western Mountains
+normstorage_af,Prediction,annualfractionnoflow,Western Mountains
+irrig_prc,Prediction,annualfractionnoflow,Western Mountains
+drain_sqkm,Prediction,annualfractionnoflow,Western Mountains
+lulc_barren_prc,Prediction,annualfractionnoflow,Western Mountains
+lulc_ag_prc,Prediction,annualfractionnoflow,Western Mountains
+pet_mm_cy,Prediction,annualfractionnoflow,Western Mountains
+pet_mm_cy.previous,Thresholding,zeroflowfirst,National
+p.pet_cy.previous,Thresholding,zeroflowfirst,National
+p.pet_jfm.previous,Thresholding,zeroflowfirst,National
+pet_mm_jfm.previous,Thresholding,zeroflowfirst,National
+pet_mm_cy,Thresholding,zeroflowfirst,National
+pet_mm_ond.previous,Thresholding,zeroflowfirst,National
+p.pet_ond.previous,Thresholding,zeroflowfirst,National
+pet_mm_amj,Thresholding,zeroflowfirst,National
+elev_mean_m_basin,Thresholding,zeroflowfirst,National
+awcave,Thresholding,zeroflowfirst,National
+slope_pct,Thresholding,zeroflowfirst,National
+T_max_c_cy.previous,Thresholding,zeroflowfirst,National
+storage_m,Thresholding,zeroflowfirst,National
+depth_bedrock_m,Thresholding,zeroflowfirst,National
+lulc_forest_prc,Thresholding,zeroflowfirst,National
+permave,Thresholding,zeroflowfirst,National
+clayave,Thresholding,zeroflowfirst,National
+normstorage_af,Thresholding,zeroflowfirst,National
+maxstorage_af,Thresholding,zeroflowfirst,National
+porosity,Thresholding,zeroflowfirst,National
+drain_sqkm,Thresholding,zeroflowfirst,National
+p_mm_amj,Thresholding,zeroflowfirst,National
+T_max_c_jfm,Thresholding,zeroflowfirst,National
+topwet,Thresholding,zeroflowfirst,National
+lulc_water_prc,Thresholding,zeroflowfirst,National
+lulc_grass_prc,Thresholding,zeroflowfirst,National
+lulc_ag_prc,Thresholding,zeroflowfirst,National
+wuse_mm,Thresholding,zeroflowfirst,National
+lulc_barren_prc,Thresholding,zeroflowfirst,National
+siltave,Thresholding,zeroflowfirst,National
+pet_mm_cy.previous,Interpretation,zeroflowfirst,National
+p.pet_cy.previous,Interpretation,zeroflowfirst,National
+p.pet_jfm.previous,Interpretation,zeroflowfirst,National
+pet_mm_jfm.previous,Interpretation,zeroflowfirst,National
+pet_mm_cy,Interpretation,zeroflowfirst,National
+pet_mm_ond.previous,Interpretation,zeroflowfirst,National
+p.pet_ond.previous,Interpretation,zeroflowfirst,National
+pet_mm_amj,Interpretation,zeroflowfirst,National
+elev_mean_m_basin,Interpretation,zeroflowfirst,National
+awcave,Interpretation,zeroflowfirst,National
+slope_pct,Interpretation,zeroflowfirst,National
+T_max_c_cy.previous,Interpretation,zeroflowfirst,National
+storage_m,Interpretation,zeroflowfirst,National
+depth_bedrock_m,Interpretation,zeroflowfirst,National
+lulc_forest_prc,Interpretation,zeroflowfirst,National
+permave,Interpretation,zeroflowfirst,National
+clayave,Interpretation,zeroflowfirst,National
+normstorage_af,Interpretation,zeroflowfirst,National
+maxstorage_af,Interpretation,zeroflowfirst,National
+porosity,Interpretation,zeroflowfirst,National
+drain_sqkm,Interpretation,zeroflowfirst,National
+p_mm_amj,Interpretation,zeroflowfirst,National
+T_max_c_jfm,Interpretation,zeroflowfirst,National
+topwet,Interpretation,zeroflowfirst,National
+lulc_water_prc,Interpretation,zeroflowfirst,National
+lulc_grass_prc,Interpretation,zeroflowfirst,National
+lulc_ag_prc,Interpretation,zeroflowfirst,National
+wuse_mm,Interpretation,zeroflowfirst,National
+lulc_barren_prc,Interpretation,zeroflowfirst,National
+siltave,Interpretation,zeroflowfirst,National
+pet_mm_cy.previous,Prediction,zeroflowfirst,National
+p.pet_cy.previous,Prediction,zeroflowfirst,National
+p.pet_jfm.previous,Prediction,zeroflowfirst,National
+pet_mm_jfm.previous,Prediction,zeroflowfirst,National
+pet_mm_cy,Prediction,zeroflowfirst,National
+pet_mm_ond.previous,Prediction,zeroflowfirst,National
+p.pet_ond.previous,Prediction,zeroflowfirst,National
+pet_mm_amj,Prediction,zeroflowfirst,National
+elev_mean_m_basin,Prediction,zeroflowfirst,National
+awcave,Prediction,zeroflowfirst,National
+slope_pct,Prediction,zeroflowfirst,National
+T_max_c_cy.previous,Prediction,zeroflowfirst,National
+storage_m,Prediction,zeroflowfirst,National
+depth_bedrock_m,Prediction,zeroflowfirst,National
+lulc_forest_prc,Prediction,zeroflowfirst,National
+permave,Prediction,zeroflowfirst,National
+clayave,Prediction,zeroflowfirst,National
+normstorage_af,Prediction,zeroflowfirst,National
+maxstorage_af,Prediction,zeroflowfirst,National
+porosity,Prediction,zeroflowfirst,National
+drain_sqkm,Prediction,zeroflowfirst,National
+p_mm_amj,Prediction,zeroflowfirst,National
+T_max_c_jfm,Prediction,zeroflowfirst,National
+topwet,Prediction,zeroflowfirst,National
+lulc_water_prc,Prediction,zeroflowfirst,National
+lulc_grass_prc,Prediction,zeroflowfirst,National
+lulc_ag_prc,Prediction,zeroflowfirst,National
+wuse_mm,Prediction,zeroflowfirst,National
+lulc_barren_prc,Prediction,zeroflowfirst,National
+siltave,Prediction,zeroflowfirst,National
+siltave,Thresholding,zeroflowfirst,North Great Plains
+pet_mm_cy.previous,Thresholding,zeroflowfirst,North Great Plains
+p.pet_cy.previous,Thresholding,zeroflowfirst,North Great Plains
+porosity,Thresholding,zeroflowfirst,North Great Plains
+permave,Thresholding,zeroflowfirst,North Great Plains
+dams_n,Thresholding,zeroflowfirst,North Great Plains
+p.pet_jas.previous,Thresholding,zeroflowfirst,North Great Plains
+lulc_grass_prc,Thresholding,zeroflowfirst,North Great Plains
+lulc_forest_prc,Thresholding,zeroflowfirst,North Great Plains
+T_max_c_cy.previous,Thresholding,zeroflowfirst,North Great Plains
+lulc_ag_prc,Thresholding,zeroflowfirst,North Great Plains
+p_mm_jas.previous,Thresholding,zeroflowfirst,North Great Plains
+p.pet_ond.previous,Thresholding,zeroflowfirst,North Great Plains
+storage_m,Thresholding,zeroflowfirst,North Great Plains
+T_max_c_jfm,Thresholding,zeroflowfirst,North Great Plains
+T_max_c_ond.previous,Thresholding,zeroflowfirst,North Great Plains
+T_max_c_jas,Thresholding,zeroflowfirst,North Great Plains
+irrig_prc,Thresholding,zeroflowfirst,North Great Plains
+elev_mean_m_basin,Thresholding,zeroflowfirst,North Great Plains
+pet_mm_amj,Thresholding,zeroflowfirst,North Great Plains
+siltave,Interpretation,zeroflowfirst,North Great Plains
+pet_mm_cy.previous,Interpretation,zeroflowfirst,North Great Plains
+p.pet_cy.previous,Interpretation,zeroflowfirst,North Great Plains
+porosity,Interpretation,zeroflowfirst,North Great Plains
+permave,Interpretation,zeroflowfirst,North Great Plains
+dams_n,Interpretation,zeroflowfirst,North Great Plains
+p.pet_jas.previous,Interpretation,zeroflowfirst,North Great Plains
+lulc_grass_prc,Interpretation,zeroflowfirst,North Great Plains
+lulc_forest_prc,Interpretation,zeroflowfirst,North Great Plains
+T_max_c_cy.previous,Interpretation,zeroflowfirst,North Great Plains
+lulc_ag_prc,Interpretation,zeroflowfirst,North Great Plains
+p_mm_jas.previous,Interpretation,zeroflowfirst,North Great Plains
+p.pet_ond.previous,Interpretation,zeroflowfirst,North Great Plains
+storage_m,Interpretation,zeroflowfirst,North Great Plains
+T_max_c_jfm,Interpretation,zeroflowfirst,North Great Plains
+T_max_c_ond.previous,Interpretation,zeroflowfirst,North Great Plains
+T_max_c_jas,Interpretation,zeroflowfirst,North Great Plains
+irrig_prc,Interpretation,zeroflowfirst,North Great Plains
+elev_mean_m_basin,Interpretation,zeroflowfirst,North Great Plains
+pet_mm_amj,Interpretation,zeroflowfirst,North Great Plains
+siltave,Prediction,zeroflowfirst,North Great Plains
+pet_mm_cy.previous,Prediction,zeroflowfirst,North Great Plains
+p.pet_cy.previous,Prediction,zeroflowfirst,North Great Plains
+porosity,Prediction,zeroflowfirst,North Great Plains
+permave,Prediction,zeroflowfirst,North Great Plains
+dams_n,Prediction,zeroflowfirst,North Great Plains
+p.pet_jas.previous,Prediction,zeroflowfirst,North Great Plains
+lulc_grass_prc,Prediction,zeroflowfirst,North Great Plains
+lulc_forest_prc,Prediction,zeroflowfirst,North Great Plains
+T_max_c_cy.previous,Prediction,zeroflowfirst,North Great Plains
+lulc_ag_prc,Prediction,zeroflowfirst,North Great Plains
+p_mm_jas.previous,Prediction,zeroflowfirst,North Great Plains
+p.pet_ond.previous,Prediction,zeroflowfirst,North Great Plains
+storage_m,Prediction,zeroflowfirst,North Great Plains
+T_max_c_jfm,Prediction,zeroflowfirst,North Great Plains
+T_max_c_ond.previous,Prediction,zeroflowfirst,North Great Plains
+T_max_c_jas,Prediction,zeroflowfirst,North Great Plains
+irrig_prc,Prediction,zeroflowfirst,North Great Plains
+elev_mean_m_basin,Prediction,zeroflowfirst,North Great Plains
+pet_mm_amj,Prediction,zeroflowfirst,North Great Plains
+p.pet_cy.previous,Thresholding,zeroflowfirst,Mediterranean California
+p_mm_cy.previous,Thresholding,zeroflowfirst,Mediterranean California
+clayave,Thresholding,zeroflowfirst,Mediterranean California
+depth_bedrock_m,Thresholding,zeroflowfirst,Mediterranean California
+wuse_mm,Thresholding,zeroflowfirst,Mediterranean California
+lulc_forest_prc,Thresholding,zeroflowfirst,Mediterranean California
+lulc_water_prc,Thresholding,zeroflowfirst,Mediterranean California
+lulc_grass_prc,Thresholding,zeroflowfirst,Mediterranean California
+slope_pct,Thresholding,zeroflowfirst,Mediterranean California
+drain_sqkm,Thresholding,zeroflowfirst,Mediterranean California
+maxstorage_af,Thresholding,zeroflowfirst,Mediterranean California
+pet_mm_jfm.previous,Thresholding,zeroflowfirst,Mediterranean California
+siltave,Thresholding,zeroflowfirst,Mediterranean California
+T_max_c_jfm,Thresholding,zeroflowfirst,Mediterranean California
+p.pet_amj,Thresholding,zeroflowfirst,Mediterranean California
+p.pet_cy.previous,Interpretation,zeroflowfirst,Mediterranean California
+p_mm_cy.previous,Interpretation,zeroflowfirst,Mediterranean California
+clayave,Interpretation,zeroflowfirst,Mediterranean California
+depth_bedrock_m,Interpretation,zeroflowfirst,Mediterranean California
+wuse_mm,Interpretation,zeroflowfirst,Mediterranean California
+lulc_forest_prc,Interpretation,zeroflowfirst,Mediterranean California
+lulc_water_prc,Interpretation,zeroflowfirst,Mediterranean California
+lulc_grass_prc,Interpretation,zeroflowfirst,Mediterranean California
+slope_pct,Interpretation,zeroflowfirst,Mediterranean California
+drain_sqkm,Interpretation,zeroflowfirst,Mediterranean California
+maxstorage_af,Interpretation,zeroflowfirst,Mediterranean California
+pet_mm_jfm.previous,Interpretation,zeroflowfirst,Mediterranean California
+siltave,Interpretation,zeroflowfirst,Mediterranean California
+T_max_c_jfm,Interpretation,zeroflowfirst,Mediterranean California
+p.pet_amj,Interpretation,zeroflowfirst,Mediterranean California
+p.pet_cy.previous,Prediction,zeroflowfirst,Mediterranean California
+p_mm_cy.previous,Prediction,zeroflowfirst,Mediterranean California
+clayave,Prediction,zeroflowfirst,Mediterranean California
+depth_bedrock_m,Prediction,zeroflowfirst,Mediterranean California
+wuse_mm,Prediction,zeroflowfirst,Mediterranean California
+lulc_forest_prc,Prediction,zeroflowfirst,Mediterranean California
+lulc_water_prc,Prediction,zeroflowfirst,Mediterranean California
+lulc_grass_prc,Prediction,zeroflowfirst,Mediterranean California
+slope_pct,Prediction,zeroflowfirst,Mediterranean California
+drain_sqkm,Prediction,zeroflowfirst,Mediterranean California
+maxstorage_af,Prediction,zeroflowfirst,Mediterranean California
+pet_mm_jfm.previous,Prediction,zeroflowfirst,Mediterranean California
+siltave,Prediction,zeroflowfirst,Mediterranean California
+T_max_c_jfm,Prediction,zeroflowfirst,Mediterranean California
+p.pet_amj,Prediction,zeroflowfirst,Mediterranean California
+p.pet_cy.previous,Thresholding,zeroflowfirst,South Great Plains
+slope_pct,Thresholding,zeroflowfirst,South Great Plains
+T_max_c_amj,Thresholding,zeroflowfirst,South Great Plains
+permave,Thresholding,zeroflowfirst,South Great Plains
+pet_mm_jfm.previous,Thresholding,zeroflowfirst,South Great Plains
+elev_mean_m_basin,Thresholding,zeroflowfirst,South Great Plains
+lulc_forest_prc,Thresholding,zeroflowfirst,South Great Plains
+topwet,Thresholding,zeroflowfirst,South Great Plains
+lulc_grass_prc,Thresholding,zeroflowfirst,South Great Plains
+p_mm_amj,Thresholding,zeroflowfirst,South Great Plains
+drain_sqkm,Thresholding,zeroflowfirst,South Great Plains
+irrig_prc,Thresholding,zeroflowfirst,South Great Plains
+clayave,Thresholding,zeroflowfirst,South Great Plains
+lulc_ag_prc,Thresholding,zeroflowfirst,South Great Plains
+storage_m,Thresholding,zeroflowfirst,South Great Plains
+awcave,Thresholding,zeroflowfirst,South Great Plains
+porosity,Thresholding,zeroflowfirst,South Great Plains
+p.pet_cy.previous,Interpretation,zeroflowfirst,South Great Plains
+slope_pct,Interpretation,zeroflowfirst,South Great Plains
+T_max_c_amj,Interpretation,zeroflowfirst,South Great Plains
+permave,Interpretation,zeroflowfirst,South Great Plains
+pet_mm_jfm.previous,Interpretation,zeroflowfirst,South Great Plains
+elev_mean_m_basin,Interpretation,zeroflowfirst,South Great Plains
+lulc_forest_prc,Interpretation,zeroflowfirst,South Great Plains
+topwet,Interpretation,zeroflowfirst,South Great Plains
+lulc_grass_prc,Interpretation,zeroflowfirst,South Great Plains
+p_mm_amj,Interpretation,zeroflowfirst,South Great Plains
+drain_sqkm,Interpretation,zeroflowfirst,South Great Plains
+irrig_prc,Interpretation,zeroflowfirst,South Great Plains
+clayave,Interpretation,zeroflowfirst,South Great Plains
+lulc_ag_prc,Interpretation,zeroflowfirst,South Great Plains
+storage_m,Interpretation,zeroflowfirst,South Great Plains
+awcave,Interpretation,zeroflowfirst,South Great Plains
+porosity,Interpretation,zeroflowfirst,South Great Plains
+p.pet_cy.previous,Prediction,zeroflowfirst,South Great Plains
+slope_pct,Prediction,zeroflowfirst,South Great Plains
+T_max_c_amj,Prediction,zeroflowfirst,South Great Plains
+permave,Prediction,zeroflowfirst,South Great Plains
+pet_mm_jfm.previous,Prediction,zeroflowfirst,South Great Plains
+elev_mean_m_basin,Prediction,zeroflowfirst,South Great Plains
+lulc_forest_prc,Prediction,zeroflowfirst,South Great Plains
+topwet,Prediction,zeroflowfirst,South Great Plains
+lulc_grass_prc,Prediction,zeroflowfirst,South Great Plains
+p_mm_amj,Prediction,zeroflowfirst,South Great Plains
+drain_sqkm,Prediction,zeroflowfirst,South Great Plains
+irrig_prc,Prediction,zeroflowfirst,South Great Plains
+clayave,Prediction,zeroflowfirst,South Great Plains
+lulc_ag_prc,Prediction,zeroflowfirst,South Great Plains
+storage_m,Prediction,zeroflowfirst,South Great Plains
+awcave,Prediction,zeroflowfirst,South Great Plains
+porosity,Prediction,zeroflowfirst,South Great Plains
+T_max_c_cy.previous,Thresholding,zeroflowfirst,Western Desert
+T_max_c_cy,Thresholding,zeroflowfirst,Western Desert
+T_max_c_ond,Thresholding,zeroflowfirst,Western Desert
+porosity,Thresholding,zeroflowfirst,Western Desert
+T_max_c_amj,Thresholding,zeroflowfirst,Western Desert
+p.pet_jfm,Thresholding,zeroflowfirst,Western Desert
+lulc_forest_prc,Thresholding,zeroflowfirst,Western Desert
+irrig_prc,Thresholding,zeroflowfirst,Western Desert
+pet_mm_cy.previous,Thresholding,zeroflowfirst,Western Desert
+storage_m,Thresholding,zeroflowfirst,Western Desert
+permave,Thresholding,zeroflowfirst,Western Desert
+T_max_c_ond.previous,Thresholding,zeroflowfirst,Western Desert
+wuse_mm,Thresholding,zeroflowfirst,Western Desert
+pet_mm_jfm.previous,Thresholding,zeroflowfirst,Western Desert
+p_mm_jas.previous,Thresholding,zeroflowfirst,Western Desert
+p_mm_jas,Thresholding,zeroflowfirst,Western Desert
+elev_mean_m_basin,Thresholding,zeroflowfirst,Western Desert
+slope_pct,Thresholding,zeroflowfirst,Western Desert
+T_max_c_cy.previous,Interpretation,zeroflowfirst,Western Desert
+T_max_c_cy,Interpretation,zeroflowfirst,Western Desert
+T_max_c_ond,Interpretation,zeroflowfirst,Western Desert
+porosity,Interpretation,zeroflowfirst,Western Desert
+T_max_c_amj,Interpretation,zeroflowfirst,Western Desert
+p.pet_jfm,Interpretation,zeroflowfirst,Western Desert
+lulc_forest_prc,Interpretation,zeroflowfirst,Western Desert
+irrig_prc,Interpretation,zeroflowfirst,Western Desert
+pet_mm_cy.previous,Interpretation,zeroflowfirst,Western Desert
+storage_m,Interpretation,zeroflowfirst,Western Desert
+permave,Interpretation,zeroflowfirst,Western Desert
+T_max_c_ond.previous,Interpretation,zeroflowfirst,Western Desert
+wuse_mm,Interpretation,zeroflowfirst,Western Desert
+pet_mm_jfm.previous,Interpretation,zeroflowfirst,Western Desert
+p_mm_jas.previous,Interpretation,zeroflowfirst,Western Desert
+p_mm_jas,Interpretation,zeroflowfirst,Western Desert
+elev_mean_m_basin,Interpretation,zeroflowfirst,Western Desert
+slope_pct,Interpretation,zeroflowfirst,Western Desert
+T_max_c_cy.previous,Prediction,zeroflowfirst,Western Desert
+T_max_c_cy,Prediction,zeroflowfirst,Western Desert
+T_max_c_ond,Prediction,zeroflowfirst,Western Desert
+porosity,Prediction,zeroflowfirst,Western Desert
+T_max_c_amj,Prediction,zeroflowfirst,Western Desert
+p.pet_jfm,Prediction,zeroflowfirst,Western Desert
+lulc_forest_prc,Prediction,zeroflowfirst,Western Desert
+irrig_prc,Prediction,zeroflowfirst,Western Desert
+pet_mm_cy.previous,Prediction,zeroflowfirst,Western Desert
+storage_m,Prediction,zeroflowfirst,Western Desert
+permave,Prediction,zeroflowfirst,Western Desert
+T_max_c_ond.previous,Prediction,zeroflowfirst,Western Desert
+wuse_mm,Prediction,zeroflowfirst,Western Desert
+pet_mm_jfm.previous,Prediction,zeroflowfirst,Western Desert
+p_mm_jas.previous,Prediction,zeroflowfirst,Western Desert
+p_mm_jas,Prediction,zeroflowfirst,Western Desert
+elev_mean_m_basin,Prediction,zeroflowfirst,Western Desert
+slope_pct,Prediction,zeroflowfirst,Western Desert
+p.pet_jfm.previous,Thresholding,zeroflowfirst,Eastern Forests
+p_mm_jfm.previous,Thresholding,zeroflowfirst,Eastern Forests
+sandave,Thresholding,zeroflowfirst,Eastern Forests
+T_max_c_jfm.previous,Thresholding,zeroflowfirst,Eastern Forests
+p.pet_ond.previous,Thresholding,zeroflowfirst,Eastern Forests
+siltave,Thresholding,zeroflowfirst,Eastern Forests
+p.pet_cy.previous,Thresholding,zeroflowfirst,Eastern Forests
+T_max_c_ond.previous,Thresholding,zeroflowfirst,Eastern Forests
+p_mm_jas,Thresholding,zeroflowfirst,Eastern Forests
+p.pet_amj,Thresholding,zeroflowfirst,Eastern Forests
+clayave,Thresholding,zeroflowfirst,Eastern Forests
+permave,Thresholding,zeroflowfirst,Eastern Forests
+depth_bedrock_m,Thresholding,zeroflowfirst,Eastern Forests
+pet_mm_jas,Thresholding,zeroflowfirst,Eastern Forests
+lulc_water_prc,Thresholding,zeroflowfirst,Eastern Forests
+drain_sqkm,Thresholding,zeroflowfirst,Eastern Forests
+p.pet_jfm.previous,Interpretation,zeroflowfirst,Eastern Forests
+p_mm_jfm.previous,Interpretation,zeroflowfirst,Eastern Forests
+sandave,Interpretation,zeroflowfirst,Eastern Forests
+T_max_c_jfm.previous,Interpretation,zeroflowfirst,Eastern Forests
+p.pet_ond.previous,Interpretation,zeroflowfirst,Eastern Forests
+siltave,Interpretation,zeroflowfirst,Eastern Forests
+p.pet_cy.previous,Interpretation,zeroflowfirst,Eastern Forests
+T_max_c_ond.previous,Interpretation,zeroflowfirst,Eastern Forests
+p_mm_jas,Interpretation,zeroflowfirst,Eastern Forests
+p.pet_amj,Interpretation,zeroflowfirst,Eastern Forests
+clayave,Interpretation,zeroflowfirst,Eastern Forests
+permave,Interpretation,zeroflowfirst,Eastern Forests
+depth_bedrock_m,Interpretation,zeroflowfirst,Eastern Forests
+pet_mm_jas,Interpretation,zeroflowfirst,Eastern Forests
+lulc_water_prc,Interpretation,zeroflowfirst,Eastern Forests
+drain_sqkm,Interpretation,zeroflowfirst,Eastern Forests
+p.pet_jfm.previous,Prediction,zeroflowfirst,Eastern Forests
+p_mm_jfm.previous,Prediction,zeroflowfirst,Eastern Forests
+sandave,Prediction,zeroflowfirst,Eastern Forests
+T_max_c_jfm.previous,Prediction,zeroflowfirst,Eastern Forests
+p.pet_ond.previous,Prediction,zeroflowfirst,Eastern Forests
+siltave,Prediction,zeroflowfirst,Eastern Forests
+p.pet_cy.previous,Prediction,zeroflowfirst,Eastern Forests
+T_max_c_ond.previous,Prediction,zeroflowfirst,Eastern Forests
+p_mm_jas,Prediction,zeroflowfirst,Eastern Forests
+p.pet_amj,Prediction,zeroflowfirst,Eastern Forests
+clayave,Prediction,zeroflowfirst,Eastern Forests
+permave,Prediction,zeroflowfirst,Eastern Forests
+depth_bedrock_m,Prediction,zeroflowfirst,Eastern Forests
+pet_mm_jas,Prediction,zeroflowfirst,Eastern Forests
+lulc_water_prc,Prediction,zeroflowfirst,Eastern Forests
+drain_sqkm,Prediction,zeroflowfirst,Eastern Forests
+maxstorage_af,Thresholding,zeroflowfirst,Western Mountains
+p.pet_cy.previous,Thresholding,zeroflowfirst,Western Mountains
+lulc_barren_prc,Thresholding,zeroflowfirst,Western Mountains
+porosity,Thresholding,zeroflowfirst,Western Mountains
+lulc_water_prc,Thresholding,zeroflowfirst,Western Mountains
+lulc_forest_prc,Thresholding,zeroflowfirst,Western Mountains
+pet_mm_amj,Thresholding,zeroflowfirst,Western Mountains
+wuse_mm,Thresholding,zeroflowfirst,Western Mountains
+pet_mm_jfm,Thresholding,zeroflowfirst,Western Mountains
+pet_mm_cy.previous,Thresholding,zeroflowfirst,Western Mountains
+storage_m,Thresholding,zeroflowfirst,Western Mountains
+topwet,Thresholding,zeroflowfirst,Western Mountains
+pet_mm_ond.previous,Thresholding,zeroflowfirst,Western Mountains
+T_max_c_ond.previous,Thresholding,zeroflowfirst,Western Mountains
+sandave,Thresholding,zeroflowfirst,Western Mountains
+maxstorage_af,Interpretation,zeroflowfirst,Western Mountains
+p.pet_cy.previous,Interpretation,zeroflowfirst,Western Mountains
+lulc_barren_prc,Interpretation,zeroflowfirst,Western Mountains
+porosity,Interpretation,zeroflowfirst,Western Mountains
+lulc_water_prc,Interpretation,zeroflowfirst,Western Mountains
+lulc_forest_prc,Interpretation,zeroflowfirst,Western Mountains
+pet_mm_amj,Interpretation,zeroflowfirst,Western Mountains
+wuse_mm,Interpretation,zeroflowfirst,Western Mountains
+pet_mm_jfm,Interpretation,zeroflowfirst,Western Mountains
+pet_mm_cy.previous,Interpretation,zeroflowfirst,Western Mountains
+storage_m,Interpretation,zeroflowfirst,Western Mountains
+topwet,Interpretation,zeroflowfirst,Western Mountains
+pet_mm_ond.previous,Interpretation,zeroflowfirst,Western Mountains
+T_max_c_ond.previous,Interpretation,zeroflowfirst,Western Mountains
+sandave,Interpretation,zeroflowfirst,Western Mountains
+maxstorage_af,Prediction,zeroflowfirst,Western Mountains
+p.pet_cy.previous,Prediction,zeroflowfirst,Western Mountains
+lulc_barren_prc,Prediction,zeroflowfirst,Western Mountains
+porosity,Prediction,zeroflowfirst,Western Mountains
+lulc_water_prc,Prediction,zeroflowfirst,Western Mountains
+lulc_forest_prc,Prediction,zeroflowfirst,Western Mountains
+pet_mm_amj,Prediction,zeroflowfirst,Western Mountains
+wuse_mm,Prediction,zeroflowfirst,Western Mountains
+pet_mm_jfm,Prediction,zeroflowfirst,Western Mountains
+pet_mm_cy.previous,Prediction,zeroflowfirst,Western Mountains
+storage_m,Prediction,zeroflowfirst,Western Mountains
+topwet,Prediction,zeroflowfirst,Western Mountains
+pet_mm_ond.previous,Prediction,zeroflowfirst,Western Mountains
+T_max_c_ond.previous,Prediction,zeroflowfirst,Western Mountains
+sandave,Prediction,zeroflowfirst,Western Mountains
+lulc_wetland_prc,Thresholding,peak2z_length,National
+drain_sqkm,Thresholding,peak2z_length,National
+lulc_forest_prc,Thresholding,peak2z_length,National
+lulc_wetland_prc,Interpretation,peak2z_length,National
+drain_sqkm,Interpretation,peak2z_length,National
+lulc_forest_prc,Interpretation,peak2z_length,National
+lulc_wetland_prc,Prediction,peak2z_length,National
+drain_sqkm,Prediction,peak2z_length,National
+lulc_forest_prc,Prediction,peak2z_length,National
+drain_sqkm,Thresholding,peak2z_length,North Great Plains
+siltave,Thresholding,peak2z_length,North Great Plains
+lulc_water_prc,Thresholding,peak2z_length,North Great Plains
+drain_sqkm,Interpretation,peak2z_length,North Great Plains
+siltave,Interpretation,peak2z_length,North Great Plains
+lulc_water_prc,Interpretation,peak2z_length,North Great Plains
+drain_sqkm,Prediction,peak2z_length,North Great Plains
+siltave,Prediction,peak2z_length,North Great Plains
+lulc_water_prc,Prediction,peak2z_length,North Great Plains
+wuse_mm,Thresholding,peak2z_length,Mediterranean California
+lulc_dev_prc,Thresholding,peak2z_length,Mediterranean California
+clayave,Thresholding,peak2z_length,Mediterranean California
+irrig_prc,Thresholding,peak2z_length,Mediterranean California
+lulc_water_prc,Thresholding,peak2z_length,Mediterranean California
+permave,Thresholding,peak2z_length,Mediterranean California
+depth_bedrock_m,Thresholding,peak2z_length,Mediterranean California
+elev_mean_m_basin,Thresholding,peak2z_length,Mediterranean California
+swe.p_cy.previous,Thresholding,peak2z_length,Mediterranean California
+T_max_c_ond,Thresholding,peak2z_length,Mediterranean California
+T_max_c_jas,Thresholding,peak2z_length,Mediterranean California
+T_max_c_cy.previous,Thresholding,peak2z_length,Mediterranean California
+wuse_mm,Interpretation,peak2z_length,Mediterranean California
+lulc_dev_prc,Interpretation,peak2z_length,Mediterranean California
+clayave,Interpretation,peak2z_length,Mediterranean California
+irrig_prc,Interpretation,peak2z_length,Mediterranean California
+lulc_water_prc,Interpretation,peak2z_length,Mediterranean California
+permave,Interpretation,peak2z_length,Mediterranean California
+depth_bedrock_m,Interpretation,peak2z_length,Mediterranean California
+elev_mean_m_basin,Interpretation,peak2z_length,Mediterranean California
+swe.p_cy.previous,Interpretation,peak2z_length,Mediterranean California
+T_max_c_ond,Interpretation,peak2z_length,Mediterranean California
+T_max_c_jas,Interpretation,peak2z_length,Mediterranean California
+T_max_c_cy.previous,Interpretation,peak2z_length,Mediterranean California
+wuse_mm,Prediction,peak2z_length,Mediterranean California
+lulc_dev_prc,Prediction,peak2z_length,Mediterranean California
+clayave,Prediction,peak2z_length,Mediterranean California
+irrig_prc,Prediction,peak2z_length,Mediterranean California
+lulc_water_prc,Prediction,peak2z_length,Mediterranean California
+permave,Prediction,peak2z_length,Mediterranean California
+depth_bedrock_m,Prediction,peak2z_length,Mediterranean California
+elev_mean_m_basin,Prediction,peak2z_length,Mediterranean California
+swe.p_cy.previous,Prediction,peak2z_length,Mediterranean California
+T_max_c_ond,Prediction,peak2z_length,Mediterranean California
+T_max_c_jas,Prediction,peak2z_length,Mediterranean California
+T_max_c_cy.previous,Prediction,peak2z_length,Mediterranean California
+maxstorage_af,Thresholding,peak2z_length,South Great Plains
+normstorage_af,Thresholding,peak2z_length,South Great Plains
+slope_pct,Thresholding,peak2z_length,South Great Plains
+maxstorage_af,Interpretation,peak2z_length,South Great Plains
+normstorage_af,Interpretation,peak2z_length,South Great Plains
+slope_pct,Interpretation,peak2z_length,South Great Plains
+maxstorage_af,Prediction,peak2z_length,South Great Plains
+normstorage_af,Prediction,peak2z_length,South Great Plains
+slope_pct,Prediction,peak2z_length,South Great Plains
+p_mm_jas.previous,Thresholding,peak2z_length,Western Desert
+p.pet_jas.previous,Thresholding,peak2z_length,Western Desert
+lulc_wetland_prc,Thresholding,peak2z_length,Western Desert
+lulc_grass_prc,Thresholding,peak2z_length,Western Desert
+slope_pct,Thresholding,peak2z_length,Western Desert
+p_mm_cy,Thresholding,peak2z_length,Western Desert
+p.pet_cy,Thresholding,peak2z_length,Western Desert
+permave,Thresholding,peak2z_length,Western Desert
+p_mm_jas.previous,Interpretation,peak2z_length,Western Desert
+p.pet_jas.previous,Interpretation,peak2z_length,Western Desert
+lulc_wetland_prc,Interpretation,peak2z_length,Western Desert
+lulc_grass_prc,Interpretation,peak2z_length,Western Desert
+slope_pct,Interpretation,peak2z_length,Western Desert
+p_mm_cy,Interpretation,peak2z_length,Western Desert
+p.pet_cy,Interpretation,peak2z_length,Western Desert
+permave,Interpretation,peak2z_length,Western Desert
+p_mm_jas.previous,Prediction,peak2z_length,Western Desert
+p.pet_jas.previous,Prediction,peak2z_length,Western Desert
+lulc_wetland_prc,Prediction,peak2z_length,Western Desert
+lulc_grass_prc,Prediction,peak2z_length,Western Desert
+slope_pct,Prediction,peak2z_length,Western Desert
+p_mm_cy,Prediction,peak2z_length,Western Desert
+p.pet_cy,Prediction,peak2z_length,Western Desert
+permave,Prediction,peak2z_length,Western Desert
+drain_sqkm,Thresholding,peak2z_length,Eastern Forests
+drain_sqkm,Interpretation,peak2z_length,Eastern Forests
+drain_sqkm,Prediction,peak2z_length,Eastern Forests
+lulc_grass_prc,Thresholding,peak2z_length,Western Mountains
+lulc_forest_prc,Thresholding,peak2z_length,Western Mountains
+p.pet_ond.previous,Thresholding,peak2z_length,Western Mountains
+siltave,Thresholding,peak2z_length,Western Mountains
+drain_sqkm,Thresholding,peak2z_length,Western Mountains
+slope_pct,Thresholding,peak2z_length,Western Mountains
+topwet,Thresholding,peak2z_length,Western Mountains
+storage_m,Thresholding,peak2z_length,Western Mountains
+p.pet_cy.previous,Thresholding,peak2z_length,Western Mountains
+depth_bedrock_m,Thresholding,peak2z_length,Western Mountains
+porosity,Thresholding,peak2z_length,Western Mountains
+pet_mm_ond,Thresholding,peak2z_length,Western Mountains
+p.pet_jas.previous,Thresholding,peak2z_length,Western Mountains
+p_mm_cy,Thresholding,peak2z_length,Western Mountains
+sandave,Thresholding,peak2z_length,Western Mountains
+pet_mm_jas,Thresholding,peak2z_length,Western Mountains
+swe.p_ond,Thresholding,peak2z_length,Western Mountains
+p_mm_cy.previous,Thresholding,peak2z_length,Western Mountains
+p.pet_jas,Thresholding,peak2z_length,Western Mountains
+pet_mm_jfm,Thresholding,peak2z_length,Western Mountains
+p.pet_ond,Thresholding,peak2z_length,Western Mountains
+irrig_prc,Thresholding,peak2z_length,Western Mountains
+maxstorage_af,Thresholding,peak2z_length,Western Mountains
+swe_mm_cy.previous,Thresholding,peak2z_length,Western Mountains
+lulc_grass_prc,Interpretation,peak2z_length,Western Mountains
+lulc_forest_prc,Interpretation,peak2z_length,Western Mountains
+p.pet_ond.previous,Interpretation,peak2z_length,Western Mountains
+siltave,Interpretation,peak2z_length,Western Mountains
+drain_sqkm,Interpretation,peak2z_length,Western Mountains
+slope_pct,Interpretation,peak2z_length,Western Mountains
+topwet,Interpretation,peak2z_length,Western Mountains
+storage_m,Interpretation,peak2z_length,Western Mountains
+p.pet_cy.previous,Interpretation,peak2z_length,Western Mountains
+depth_bedrock_m,Interpretation,peak2z_length,Western Mountains
+porosity,Interpretation,peak2z_length,Western Mountains
+pet_mm_ond,Interpretation,peak2z_length,Western Mountains
+p.pet_jas.previous,Interpretation,peak2z_length,Western Mountains
+p_mm_cy,Interpretation,peak2z_length,Western Mountains
+sandave,Interpretation,peak2z_length,Western Mountains
+pet_mm_jas,Interpretation,peak2z_length,Western Mountains
+swe.p_ond,Interpretation,peak2z_length,Western Mountains
+p_mm_cy.previous,Interpretation,peak2z_length,Western Mountains
+p.pet_jas,Interpretation,peak2z_length,Western Mountains
+pet_mm_jfm,Interpretation,peak2z_length,Western Mountains
+p.pet_ond,Interpretation,peak2z_length,Western Mountains
+irrig_prc,Interpretation,peak2z_length,Western Mountains
+maxstorage_af,Interpretation,peak2z_length,Western Mountains
+swe_mm_cy.previous,Interpretation,peak2z_length,Western Mountains
+lulc_grass_prc,Prediction,peak2z_length,Western Mountains
+lulc_forest_prc,Prediction,peak2z_length,Western Mountains
+p.pet_ond.previous,Prediction,peak2z_length,Western Mountains
+siltave,Prediction,peak2z_length,Western Mountains
+drain_sqkm,Prediction,peak2z_length,Western Mountains
+slope_pct,Prediction,peak2z_length,Western Mountains
+topwet,Prediction,peak2z_length,Western Mountains
+storage_m,Prediction,peak2z_length,Western Mountains
+p.pet_cy.previous,Prediction,peak2z_length,Western Mountains
+depth_bedrock_m,Prediction,peak2z_length,Western Mountains
+porosity,Prediction,peak2z_length,Western Mountains
+pet_mm_ond,Prediction,peak2z_length,Western Mountains
+p.pet_jas.previous,Prediction,peak2z_length,Western Mountains
+p_mm_cy,Prediction,peak2z_length,Western Mountains
+sandave,Prediction,peak2z_length,Western Mountains
+pet_mm_jas,Prediction,peak2z_length,Western Mountains
+swe.p_ond,Prediction,peak2z_length,Western Mountains
+p_mm_cy.previous,Prediction,peak2z_length,Western Mountains
+p.pet_jas,Prediction,peak2z_length,Western Mountains
+pet_mm_jfm,Prediction,peak2z_length,Western Mountains
+p.pet_ond,Prediction,peak2z_length,Western Mountains
+irrig_prc,Prediction,peak2z_length,Western Mountains
+maxstorage_af,Prediction,peak2z_length,Western Mountains
+swe_mm_cy.previous,Prediction,peak2z_length,Western Mountains

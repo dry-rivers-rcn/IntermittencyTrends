@@ -1,0 +1,1786 @@
+predictor,boruta_decision,boruta_imp_median,metric,region_rf
+dams_n,Confirmed,18.21583242317236,annualfractionnoflow,National
+maxstorage_af,Confirmed,20.294369817688356,annualfractionnoflow,National
+normstorage_af,Confirmed,20.27490320706802,annualfractionnoflow,National
+majordams_n,Confirmed,17.021654773415595,annualfractionnoflow,National
+wuse_mm,Confirmed,25.21324509685644,annualfractionnoflow,National
+irrig_prc,Confirmed,20.603482196200147,annualfractionnoflow,National
+lulc_water_prc,Confirmed,21.71225052957956,annualfractionnoflow,National
+lulc_dev_prc,Confirmed,24.136709630357565,annualfractionnoflow,National
+lulc_wetland_prc,Confirmed,20.640238739677198,annualfractionnoflow,National
+lulc_forest_prc,Confirmed,25.38600403039191,annualfractionnoflow,National
+lulc_barren_prc,Confirmed,23.25366462366026,annualfractionnoflow,National
+lulc_grass_prc,Confirmed,23.330494215389475,annualfractionnoflow,National
+lulc_ag_prc,Confirmed,19.31643957667342,annualfractionnoflow,National
+drain_sqkm,Confirmed,31.21289704587888,annualfractionnoflow,National
+elev_mean_m_basin,Confirmed,20.74310223813655,annualfractionnoflow,National
+slope_pct,Confirmed,21.373969233500475,annualfractionnoflow,National
+awcave,Confirmed,14.541921017788525,annualfractionnoflow,National
+permave,Confirmed,29.126492901221194,annualfractionnoflow,National
+topwet,Confirmed,18.796431565858445,annualfractionnoflow,National
+depth_bedrock_m,Confirmed,23.836864217692266,annualfractionnoflow,National
+porosity,Confirmed,26.585297892864425,annualfractionnoflow,National
+storage_m,Confirmed,24.039107483416377,annualfractionnoflow,National
+clayave,Confirmed,26.378312420912515,annualfractionnoflow,National
+siltave,Confirmed,26.880126820887575,annualfractionnoflow,National
+sandave,Confirmed,27.28896325464242,annualfractionnoflow,National
+p_mm_cy,Confirmed,16.243109331721737,annualfractionnoflow,National
+p_mm_jas,Confirmed,16.454381018910922,annualfractionnoflow,National
+p_mm_ond,Confirmed,13.21702663043544,annualfractionnoflow,National
+p_mm_jfm,Confirmed,14.42067920737385,annualfractionnoflow,National
+p_mm_amj,Confirmed,15.297828649695834,annualfractionnoflow,National
+pet_mm_cy,Confirmed,15.005126618912035,annualfractionnoflow,National
+pet_mm_jas,Confirmed,14.238906434787971,annualfractionnoflow,National
+pet_mm_ond,Confirmed,11.811767937405872,annualfractionnoflow,National
+pet_mm_jfm,Confirmed,10.46117152466473,annualfractionnoflow,National
+pet_mm_amj,Confirmed,16.467253939730714,annualfractionnoflow,National
+T_max_c_cy,Confirmed,15.307300103749547,annualfractionnoflow,National
+T_max_c_jas,Confirmed,17.056984785806524,annualfractionnoflow,National
+T_max_c_ond,Confirmed,13.327039611544327,annualfractionnoflow,National
+T_max_c_jfm,Confirmed,11.785224075187172,annualfractionnoflow,National
+T_max_c_amj,Confirmed,15.412385245228887,annualfractionnoflow,National
+swe_mm_cy,Confirmed,10.751521929218315,annualfractionnoflow,National
+swe_mm_jas,Tentative,2.898492212114788,annualfractionnoflow,National
+swe_mm_ond,Confirmed,10.444928845014283,annualfractionnoflow,National
+swe_mm_jfm,Confirmed,10.144305449300923,annualfractionnoflow,National
+swe_mm_amj,Confirmed,8.81447440606017,annualfractionnoflow,National
+p.pet_cy,Confirmed,17.18005540869789,annualfractionnoflow,National
+swe.p_cy,Confirmed,12.060171634345542,annualfractionnoflow,National
+p.pet_jfm,Confirmed,12.596866003841631,annualfractionnoflow,National
+swe.p_jfm,Confirmed,10.67312328528907,annualfractionnoflow,National
+p.pet_amj,Confirmed,17.127750514460196,annualfractionnoflow,National
+swe.p_amj,Confirmed,8.986717692415269,annualfractionnoflow,National
+p.pet_jas,Confirmed,17.139169206114598,annualfractionnoflow,National
+swe.p_jas,Confirmed,3.7653675096015102,annualfractionnoflow,National
+p.pet_ond,Confirmed,11.028726213381049,annualfractionnoflow,National
+swe.p_ond,Confirmed,11.6066937591653,annualfractionnoflow,National
+p_mm_cy.previous,Confirmed,16.865893460139176,annualfractionnoflow,National
+p_mm_jas.previous,Confirmed,11.790941154048584,annualfractionnoflow,National
+p_mm_ond.previous,Confirmed,14.410121815916503,annualfractionnoflow,National
+p_mm_jfm.previous,Confirmed,15.706891660529283,annualfractionnoflow,National
+p_mm_amj.previous,Confirmed,10.487354051444571,annualfractionnoflow,National
+pet_mm_cy.previous,Confirmed,14.006205224057052,annualfractionnoflow,National
+pet_mm_jas.previous,Confirmed,11.146137677566994,annualfractionnoflow,National
+pet_mm_ond.previous,Confirmed,11.215163467161338,annualfractionnoflow,National
+pet_mm_jfm.previous,Confirmed,12.222491795262258,annualfractionnoflow,National
+pet_mm_amj.previous,Confirmed,12.08496098706718,annualfractionnoflow,National
+T_max_c_cy.previous,Confirmed,15.36743217065945,annualfractionnoflow,National
+T_max_c_jas.previous,Confirmed,15.473220456797122,annualfractionnoflow,National
+T_max_c_ond.previous,Confirmed,13.357879028237024,annualfractionnoflow,National
+T_max_c_jfm.previous,Confirmed,12.048169565162542,annualfractionnoflow,National
+T_max_c_amj.previous,Confirmed,14.129298530966446,annualfractionnoflow,National
+swe_mm_cy.previous,Confirmed,11.289254640325174,annualfractionnoflow,National
+swe_mm_jas.previous,Tentative,2.7453428343393553,annualfractionnoflow,National
+swe_mm_ond.previous,Confirmed,9.9572819381498,annualfractionnoflow,National
+swe_mm_jfm.previous,Confirmed,9.974675725253784,annualfractionnoflow,National
+swe_mm_amj.previous,Confirmed,8.383246610200395,annualfractionnoflow,National
+p.pet_cy.previous,Confirmed,19.209126955602866,annualfractionnoflow,National
+swe.p_cy.previous,Confirmed,12.142086822704625,annualfractionnoflow,National
+p.pet_jfm.previous,Confirmed,13.353340545437742,annualfractionnoflow,National
+swe.p_jfm.previous,Confirmed,10.816952351213207,annualfractionnoflow,National
+p.pet_amj.previous,Confirmed,10.985847259964496,annualfractionnoflow,National
+swe.p_amj.previous,Confirmed,8.777398728303575,annualfractionnoflow,National
+p.pet_jas.previous,Confirmed,12.126912305377859,annualfractionnoflow,National
+swe.p_jas.previous,Confirmed,3.5627179857941846,annualfractionnoflow,National
+p.pet_ond.previous,Confirmed,13.99349261780806,annualfractionnoflow,National
+swe.p_ond.previous,Confirmed,10.629634500598735,annualfractionnoflow,National
+dams_n,Confirmed,6.000854131392162,annualfractionnoflow,North Great Plains
+maxstorage_af,Confirmed,5.9912000694242655,annualfractionnoflow,North Great Plains
+normstorage_af,Confirmed,6.033613982721281,annualfractionnoflow,North Great Plains
+majordams_n,Confirmed,3.623528328046001,annualfractionnoflow,North Great Plains
+wuse_mm,Confirmed,5.693266344170187,annualfractionnoflow,North Great Plains
+irrig_prc,Confirmed,6.807930383373712,annualfractionnoflow,North Great Plains
+lulc_water_prc,Confirmed,6.279018070657248,annualfractionnoflow,North Great Plains
+lulc_dev_prc,Confirmed,7.109742587625451,annualfractionnoflow,North Great Plains
+lulc_wetland_prc,Confirmed,6.437602681541593,annualfractionnoflow,North Great Plains
+lulc_forest_prc,Confirmed,16.39053676023869,annualfractionnoflow,North Great Plains
+lulc_barren_prc,Confirmed,9.64766516533054,annualfractionnoflow,North Great Plains
+lulc_grass_prc,Confirmed,7.365592640787306,annualfractionnoflow,North Great Plains
+lulc_ag_prc,Confirmed,9.416489350166692,annualfractionnoflow,North Great Plains
+drain_sqkm,Confirmed,7.106528294567156,annualfractionnoflow,North Great Plains
+elev_mean_m_basin,Confirmed,7.508367726139189,annualfractionnoflow,North Great Plains
+slope_pct,Confirmed,7.154433110578969,annualfractionnoflow,North Great Plains
+awcave,Confirmed,6.995955959338212,annualfractionnoflow,North Great Plains
+permave,Confirmed,11.465670110312711,annualfractionnoflow,North Great Plains
+topwet,Confirmed,11.344362252241588,annualfractionnoflow,North Great Plains
+depth_bedrock_m,Confirmed,10.472011543011446,annualfractionnoflow,North Great Plains
+porosity,Confirmed,13.743615115110766,annualfractionnoflow,North Great Plains
+storage_m,Confirmed,7.59967245161232,annualfractionnoflow,North Great Plains
+clayave,Confirmed,11.19944017418009,annualfractionnoflow,North Great Plains
+siltave,Confirmed,9.316259003054572,annualfractionnoflow,North Great Plains
+sandave,Confirmed,9.067703000931358,annualfractionnoflow,North Great Plains
+p_mm_cy,Confirmed,15.900592265343729,annualfractionnoflow,North Great Plains
+p_mm_jas,Confirmed,6.854324251780411,annualfractionnoflow,North Great Plains
+p_mm_ond,Confirmed,6.947304475439342,annualfractionnoflow,North Great Plains
+p_mm_jfm,Tentative,2.5304980835716084,annualfractionnoflow,North Great Plains
+p_mm_amj,Confirmed,10.086133868812466,annualfractionnoflow,North Great Plains
+pet_mm_cy,Confirmed,6.948318561613247,annualfractionnoflow,North Great Plains
+pet_mm_jas,Confirmed,5.694747509006555,annualfractionnoflow,North Great Plains
+pet_mm_ond,Confirmed,5.702725733035393,annualfractionnoflow,North Great Plains
+pet_mm_jfm,Confirmed,4.880991048756675,annualfractionnoflow,North Great Plains
+pet_mm_amj,Confirmed,9.83130017682789,annualfractionnoflow,North Great Plains
+T_max_c_cy,Confirmed,5.572959618016677,annualfractionnoflow,North Great Plains
+T_max_c_jas,Confirmed,4.179770662104614,annualfractionnoflow,North Great Plains
+T_max_c_ond,Confirmed,6.26809738891322,annualfractionnoflow,North Great Plains
+T_max_c_jfm,Confirmed,5.184881616096624,annualfractionnoflow,North Great Plains
+T_max_c_amj,Confirmed,8.00153539007182,annualfractionnoflow,North Great Plains
+swe_mm_cy,Confirmed,3.3568031105766805,annualfractionnoflow,North Great Plains
+swe_mm_jas,Rejected,-Inf,annualfractionnoflow,North Great Plains
+swe_mm_ond,Confirmed,3.342625414845851,annualfractionnoflow,North Great Plains
+swe_mm_jfm,Tentative,2.895487768389295,annualfractionnoflow,North Great Plains
+swe_mm_amj,Confirmed,3.203895321984368,annualfractionnoflow,North Great Plains
+p.pet_cy,Confirmed,13.245864384200372,annualfractionnoflow,North Great Plains
+swe.p_cy,Tentative,2.7842989536795106,annualfractionnoflow,North Great Plains
+p.pet_jfm,Confirmed,3.887995330759215,annualfractionnoflow,North Great Plains
+swe.p_jfm,Tentative,2.9250245275171816,annualfractionnoflow,North Great Plains
+p.pet_amj,Confirmed,11.24059986945289,annualfractionnoflow,North Great Plains
+swe.p_amj,Confirmed,3.1586487833123886,annualfractionnoflow,North Great Plains
+p.pet_jas,Confirmed,6.953324297943537,annualfractionnoflow,North Great Plains
+swe.p_jas,Tentative,2.23512976625705,annualfractionnoflow,North Great Plains
+p.pet_ond,Confirmed,5.659350042651071,annualfractionnoflow,North Great Plains
+swe.p_ond,Confirmed,4.8319861468286875,annualfractionnoflow,North Great Plains
+p_mm_cy.previous,Confirmed,9.854864338289708,annualfractionnoflow,North Great Plains
+p_mm_jas.previous,Confirmed,5.397997402422828,annualfractionnoflow,North Great Plains
+p_mm_ond.previous,Confirmed,7.984473511721559,annualfractionnoflow,North Great Plains
+p_mm_jfm.previous,Tentative,2.293215453478601,annualfractionnoflow,North Great Plains
+p_mm_amj.previous,Confirmed,6.496848811247619,annualfractionnoflow,North Great Plains
+pet_mm_cy.previous,Confirmed,8.680883193964336,annualfractionnoflow,North Great Plains
+pet_mm_jas.previous,Confirmed,5.334440104836039,annualfractionnoflow,North Great Plains
+pet_mm_ond.previous,Confirmed,5.898352605556189,annualfractionnoflow,North Great Plains
+pet_mm_jfm.previous,Confirmed,4.7089273036603565,annualfractionnoflow,North Great Plains
+pet_mm_amj.previous,Confirmed,9.098526321131214,annualfractionnoflow,North Great Plains
+T_max_c_cy.previous,Confirmed,5.705685860814826,annualfractionnoflow,North Great Plains
+T_max_c_jas.previous,Confirmed,4.705566859309323,annualfractionnoflow,North Great Plains
+T_max_c_ond.previous,Confirmed,5.73321146193226,annualfractionnoflow,North Great Plains
+T_max_c_jfm.previous,Confirmed,5.101454052888117,annualfractionnoflow,North Great Plains
+T_max_c_amj.previous,Confirmed,8.318658711453882,annualfractionnoflow,North Great Plains
+swe_mm_cy.previous,Confirmed,4.819031742390579,annualfractionnoflow,North Great Plains
+swe_mm_jas.previous,Rejected,-Inf,annualfractionnoflow,North Great Plains
+swe_mm_ond.previous,Confirmed,4.2300908284592245,annualfractionnoflow,North Great Plains
+swe_mm_jfm.previous,Confirmed,4.635136864889593,annualfractionnoflow,North Great Plains
+swe_mm_amj.previous,Tentative,3.0256180315866095,annualfractionnoflow,North Great Plains
+p.pet_cy.previous,Confirmed,9.872089137429871,annualfractionnoflow,North Great Plains
+swe.p_cy.previous,Confirmed,3.6940911878169924,annualfractionnoflow,North Great Plains
+p.pet_jfm.previous,Confirmed,3.919677512137614,annualfractionnoflow,North Great Plains
+swe.p_jfm.previous,Confirmed,4.687517271885536,annualfractionnoflow,North Great Plains
+p.pet_amj.previous,Confirmed,7.8617594274157545,annualfractionnoflow,North Great Plains
+swe.p_amj.previous,Confirmed,3.5889844340921906,annualfractionnoflow,North Great Plains
+p.pet_jas.previous,Confirmed,5.2102796113778975,annualfractionnoflow,North Great Plains
+swe.p_jas.previous,Rejected,-Inf,annualfractionnoflow,North Great Plains
+p.pet_ond.previous,Confirmed,7.649247007315418,annualfractionnoflow,North Great Plains
+swe.p_ond.previous,Confirmed,3.3978104339147035,annualfractionnoflow,North Great Plains
+dams_n,Confirmed,12.352327684025322,annualfractionnoflow,Mediterranean California
+maxstorage_af,Confirmed,12.587382281169432,annualfractionnoflow,Mediterranean California
+normstorage_af,Confirmed,11.253894893216886,annualfractionnoflow,Mediterranean California
+majordams_n,Confirmed,12.577423726272109,annualfractionnoflow,Mediterranean California
+wuse_mm,Confirmed,15.239147341635055,annualfractionnoflow,Mediterranean California
+irrig_prc,Confirmed,13.968782264635404,annualfractionnoflow,Mediterranean California
+lulc_water_prc,Confirmed,12.824812274344916,annualfractionnoflow,Mediterranean California
+lulc_dev_prc,Confirmed,12.238376576537537,annualfractionnoflow,Mediterranean California
+lulc_wetland_prc,Confirmed,10.713661076641367,annualfractionnoflow,Mediterranean California
+lulc_forest_prc,Confirmed,12.699209469507405,annualfractionnoflow,Mediterranean California
+lulc_barren_prc,Confirmed,9.809677264589169,annualfractionnoflow,Mediterranean California
+lulc_grass_prc,Confirmed,16.19730311654626,annualfractionnoflow,Mediterranean California
+lulc_ag_prc,Confirmed,13.05714478089854,annualfractionnoflow,Mediterranean California
+drain_sqkm,Confirmed,14.009320178949476,annualfractionnoflow,Mediterranean California
+elev_mean_m_basin,Confirmed,12.923526694112285,annualfractionnoflow,Mediterranean California
+slope_pct,Confirmed,14.94591464709263,annualfractionnoflow,Mediterranean California
+awcave,Confirmed,11.506947283137295,annualfractionnoflow,Mediterranean California
+permave,Confirmed,13.690823021945798,annualfractionnoflow,Mediterranean California
+topwet,Confirmed,14.820636970811126,annualfractionnoflow,Mediterranean California
+depth_bedrock_m,Confirmed,17.67344322586872,annualfractionnoflow,Mediterranean California
+porosity,Confirmed,12.088595194884697,annualfractionnoflow,Mediterranean California
+storage_m,Confirmed,13.980987091350285,annualfractionnoflow,Mediterranean California
+clayave,Confirmed,12.163979877319898,annualfractionnoflow,Mediterranean California
+siltave,Confirmed,14.089577860397146,annualfractionnoflow,Mediterranean California
+sandave,Confirmed,12.551676364320251,annualfractionnoflow,Mediterranean California
+p_mm_cy,Confirmed,5.012805565178759,annualfractionnoflow,Mediterranean California
+p_mm_jas,Confirmed,4.342264871406791,annualfractionnoflow,Mediterranean California
+p_mm_ond,Confirmed,5.166699449148539,annualfractionnoflow,Mediterranean California
+p_mm_jfm,Tentative,3.0120580024131414,annualfractionnoflow,Mediterranean California
+p_mm_amj,Confirmed,5.643023382307963,annualfractionnoflow,Mediterranean California
+pet_mm_cy,Confirmed,9.65228680719645,annualfractionnoflow,Mediterranean California
+pet_mm_jas,Confirmed,7.210968111116561,annualfractionnoflow,Mediterranean California
+pet_mm_ond,Confirmed,8.895323590807434,annualfractionnoflow,Mediterranean California
+pet_mm_jfm,Confirmed,5.138002934531693,annualfractionnoflow,Mediterranean California
+pet_mm_amj,Confirmed,6.900593371609579,annualfractionnoflow,Mediterranean California
+T_max_c_cy,Confirmed,10.722549433096342,annualfractionnoflow,Mediterranean California
+T_max_c_jas,Confirmed,8.267933596970144,annualfractionnoflow,Mediterranean California
+T_max_c_ond,Confirmed,8.051517917946805,annualfractionnoflow,Mediterranean California
+T_max_c_jfm,Confirmed,7.07457202512484,annualfractionnoflow,Mediterranean California
+T_max_c_amj,Confirmed,7.3172575862652485,annualfractionnoflow,Mediterranean California
+swe_mm_cy,Confirmed,5.3474054934992,annualfractionnoflow,Mediterranean California
+swe_mm_jas,Rejected,-Inf,annualfractionnoflow,Mediterranean California
+swe_mm_ond,Confirmed,3.8514857116315975,annualfractionnoflow,Mediterranean California
+swe_mm_jfm,Confirmed,4.545350008101675,annualfractionnoflow,Mediterranean California
+swe_mm_amj,Confirmed,3.4351621514579684,annualfractionnoflow,Mediterranean California
+p.pet_cy,Confirmed,5.168386796397048,annualfractionnoflow,Mediterranean California
+swe.p_cy,Confirmed,6.430998390224405,annualfractionnoflow,Mediterranean California
+p.pet_jfm,Confirmed,3.4946943042246543,annualfractionnoflow,Mediterranean California
+swe.p_jfm,Confirmed,6.210467662793337,annualfractionnoflow,Mediterranean California
+p.pet_amj,Confirmed,5.837290798558778,annualfractionnoflow,Mediterranean California
+swe.p_amj,Confirmed,4.203489701369021,annualfractionnoflow,Mediterranean California
+p.pet_jas,Confirmed,4.65505650024695,annualfractionnoflow,Mediterranean California
+swe.p_jas,Rejected,-Inf,annualfractionnoflow,Mediterranean California
+p.pet_ond,Confirmed,6.204366889089481,annualfractionnoflow,Mediterranean California
+swe.p_ond,Confirmed,4.5240882214307705,annualfractionnoflow,Mediterranean California
+p_mm_cy.previous,Confirmed,14.433223355336024,annualfractionnoflow,Mediterranean California
+p_mm_jas.previous,Confirmed,4.376677342379653,annualfractionnoflow,Mediterranean California
+p_mm_ond.previous,Confirmed,8.091507537348082,annualfractionnoflow,Mediterranean California
+p_mm_jfm.previous,Confirmed,9.698144214273803,annualfractionnoflow,Mediterranean California
+p_mm_amj.previous,Tentative,2.6570747123327676,annualfractionnoflow,Mediterranean California
+pet_mm_cy.previous,Confirmed,11.62347733895017,annualfractionnoflow,Mediterranean California
+pet_mm_jas.previous,Confirmed,6.824329194659356,annualfractionnoflow,Mediterranean California
+pet_mm_ond.previous,Confirmed,8.529695493832284,annualfractionnoflow,Mediterranean California
+pet_mm_jfm.previous,Confirmed,11.107899576970636,annualfractionnoflow,Mediterranean California
+pet_mm_amj.previous,Confirmed,5.739066443522605,annualfractionnoflow,Mediterranean California
+T_max_c_cy.previous,Confirmed,10.671435498145678,annualfractionnoflow,Mediterranean California
+T_max_c_jas.previous,Confirmed,7.582790457673933,annualfractionnoflow,Mediterranean California
+T_max_c_ond.previous,Confirmed,8.729347561819308,annualfractionnoflow,Mediterranean California
+T_max_c_jfm.previous,Confirmed,7.5259294899455895,annualfractionnoflow,Mediterranean California
+T_max_c_amj.previous,Confirmed,6.515056133194532,annualfractionnoflow,Mediterranean California
+swe_mm_cy.previous,Confirmed,5.820851221608039,annualfractionnoflow,Mediterranean California
+swe_mm_jas.previous,Rejected,-Inf,annualfractionnoflow,Mediterranean California
+swe_mm_ond.previous,Confirmed,4.388513644017475,annualfractionnoflow,Mediterranean California
+swe_mm_jfm.previous,Confirmed,4.842723149758434,annualfractionnoflow,Mediterranean California
+swe_mm_amj.previous,Tentative,2.714933718337811,annualfractionnoflow,Mediterranean California
+p.pet_cy.previous,Confirmed,15.013129423426935,annualfractionnoflow,Mediterranean California
+swe.p_cy.previous,Confirmed,6.274357648302071,annualfractionnoflow,Mediterranean California
+p.pet_jfm.previous,Confirmed,10.8529210938946,annualfractionnoflow,Mediterranean California
+swe.p_jfm.previous,Confirmed,5.901833091590291,annualfractionnoflow,Mediterranean California
+p.pet_amj.previous,Tentative,2.736258627921817,annualfractionnoflow,Mediterranean California
+swe.p_amj.previous,Confirmed,4.415004000519636,annualfractionnoflow,Mediterranean California
+p.pet_jas.previous,Confirmed,4.28757503092018,annualfractionnoflow,Mediterranean California
+swe.p_jas.previous,Rejected,-Inf,annualfractionnoflow,Mediterranean California
+p.pet_ond.previous,Confirmed,8.926615659509222,annualfractionnoflow,Mediterranean California
+swe.p_ond.previous,Confirmed,4.730430758142241,annualfractionnoflow,Mediterranean California
+dams_n,Confirmed,13.583819069808271,annualfractionnoflow,South Great Plains
+maxstorage_af,Confirmed,16.892773914575727,annualfractionnoflow,South Great Plains
+normstorage_af,Confirmed,16.800238386659764,annualfractionnoflow,South Great Plains
+majordams_n,Confirmed,14.222920344057432,annualfractionnoflow,South Great Plains
+wuse_mm,Confirmed,15.287022933376603,annualfractionnoflow,South Great Plains
+irrig_prc,Confirmed,15.892253369212739,annualfractionnoflow,South Great Plains
+lulc_water_prc,Confirmed,17.610497436946698,annualfractionnoflow,South Great Plains
+lulc_dev_prc,Confirmed,16.736913612032996,annualfractionnoflow,South Great Plains
+lulc_wetland_prc,Confirmed,14.040315605489479,annualfractionnoflow,South Great Plains
+lulc_forest_prc,Confirmed,17.836677688505826,annualfractionnoflow,South Great Plains
+lulc_barren_prc,Confirmed,13.657220115829809,annualfractionnoflow,South Great Plains
+lulc_grass_prc,Confirmed,17.138990388133937,annualfractionnoflow,South Great Plains
+lulc_ag_prc,Confirmed,14.32722092404689,annualfractionnoflow,South Great Plains
+drain_sqkm,Confirmed,18.070063223744242,annualfractionnoflow,South Great Plains
+elev_mean_m_basin,Confirmed,17.331359481758348,annualfractionnoflow,South Great Plains
+slope_pct,Confirmed,17.27613370730676,annualfractionnoflow,South Great Plains
+awcave,Confirmed,13.254490776490313,annualfractionnoflow,South Great Plains
+permave,Confirmed,17.86531142904061,annualfractionnoflow,South Great Plains
+topwet,Confirmed,16.89689757109407,annualfractionnoflow,South Great Plains
+depth_bedrock_m,Confirmed,14.462030460759758,annualfractionnoflow,South Great Plains
+porosity,Confirmed,15.430144168258517,annualfractionnoflow,South Great Plains
+storage_m,Confirmed,13.78856968096881,annualfractionnoflow,South Great Plains
+clayave,Confirmed,13.650244746792035,annualfractionnoflow,South Great Plains
+siltave,Confirmed,17.58034653394077,annualfractionnoflow,South Great Plains
+sandave,Confirmed,15.833696795739982,annualfractionnoflow,South Great Plains
+p_mm_cy,Confirmed,13.623812867902128,annualfractionnoflow,South Great Plains
+p_mm_jas,Confirmed,12.840970289120436,annualfractionnoflow,South Great Plains
+p_mm_ond,Confirmed,7.934600569882185,annualfractionnoflow,South Great Plains
+p_mm_jfm,Confirmed,7.384614839793418,annualfractionnoflow,South Great Plains
+p_mm_amj,Confirmed,11.684994314771096,annualfractionnoflow,South Great Plains
+pet_mm_cy,Confirmed,12.4956644042698,annualfractionnoflow,South Great Plains
+pet_mm_jas,Confirmed,13.946711844372834,annualfractionnoflow,South Great Plains
+pet_mm_ond,Confirmed,6.48152311174379,annualfractionnoflow,South Great Plains
+pet_mm_jfm,Confirmed,7.718264458121491,annualfractionnoflow,South Great Plains
+pet_mm_amj,Confirmed,13.115993427808052,annualfractionnoflow,South Great Plains
+T_max_c_cy,Confirmed,10.096131156419958,annualfractionnoflow,South Great Plains
+T_max_c_jas,Confirmed,14.724705036700836,annualfractionnoflow,South Great Plains
+T_max_c_ond,Confirmed,7.931274718228629,annualfractionnoflow,South Great Plains
+T_max_c_jfm,Confirmed,8.197667683948664,annualfractionnoflow,South Great Plains
+T_max_c_amj,Confirmed,11.976238783111906,annualfractionnoflow,South Great Plains
+swe_mm_cy,Confirmed,4.949521672476246,annualfractionnoflow,South Great Plains
+swe_mm_jas,Rejected,-Inf,annualfractionnoflow,South Great Plains
+swe_mm_ond,Confirmed,4.454101083400052,annualfractionnoflow,South Great Plains
+swe_mm_jfm,Confirmed,4.819470729569522,annualfractionnoflow,South Great Plains
+swe_mm_amj,Tentative,2.7669019555921097,annualfractionnoflow,South Great Plains
+p.pet_cy,Confirmed,14.538101122880956,annualfractionnoflow,South Great Plains
+swe.p_cy,Confirmed,6.542445749197758,annualfractionnoflow,South Great Plains
+p.pet_jfm,Confirmed,7.777386403466704,annualfractionnoflow,South Great Plains
+swe.p_jfm,Confirmed,6.229938160695262,annualfractionnoflow,South Great Plains
+p.pet_amj,Confirmed,13.535958004728739,annualfractionnoflow,South Great Plains
+swe.p_amj,Tentative,2.7043850220116075,annualfractionnoflow,South Great Plains
+p.pet_jas,Confirmed,14.17692645730073,annualfractionnoflow,South Great Plains
+swe.p_jas,Rejected,-Inf,annualfractionnoflow,South Great Plains
+p.pet_ond,Confirmed,7.577283291282681,annualfractionnoflow,South Great Plains
+swe.p_ond,Confirmed,6.180795621836689,annualfractionnoflow,South Great Plains
+p_mm_cy.previous,Confirmed,12.26110814947996,annualfractionnoflow,South Great Plains
+p_mm_jas.previous,Confirmed,7.6777990748884015,annualfractionnoflow,South Great Plains
+p_mm_ond.previous,Confirmed,8.009705909526579,annualfractionnoflow,South Great Plains
+p_mm_jfm.previous,Confirmed,9.433507472498887,annualfractionnoflow,South Great Plains
+p_mm_amj.previous,Confirmed,6.168779143717323,annualfractionnoflow,South Great Plains
+pet_mm_cy.previous,Confirmed,11.986623703846119,annualfractionnoflow,South Great Plains
+pet_mm_jas.previous,Confirmed,10.869373966965895,annualfractionnoflow,South Great Plains
+pet_mm_ond.previous,Confirmed,10.164028222306888,annualfractionnoflow,South Great Plains
+pet_mm_jfm.previous,Confirmed,7.725287678135723,annualfractionnoflow,South Great Plains
+pet_mm_amj.previous,Confirmed,8.408363623759112,annualfractionnoflow,South Great Plains
+T_max_c_cy.previous,Confirmed,10.078667024283266,annualfractionnoflow,South Great Plains
+T_max_c_jas.previous,Confirmed,10.844651272418563,annualfractionnoflow,South Great Plains
+T_max_c_ond.previous,Confirmed,8.721863333692943,annualfractionnoflow,South Great Plains
+T_max_c_jfm.previous,Confirmed,8.384690874147202,annualfractionnoflow,South Great Plains
+T_max_c_amj.previous,Confirmed,8.59101659007587,annualfractionnoflow,South Great Plains
+swe_mm_cy.previous,Confirmed,5.59694315672866,annualfractionnoflow,South Great Plains
+swe_mm_jas.previous,Rejected,-Inf,annualfractionnoflow,South Great Plains
+swe_mm_ond.previous,Confirmed,4.819799887669613,annualfractionnoflow,South Great Plains
+swe_mm_jfm.previous,Confirmed,4.878129850444056,annualfractionnoflow,South Great Plains
+swe_mm_amj.previous,Tentative,2.484314460085824,annualfractionnoflow,South Great Plains
+p.pet_cy.previous,Confirmed,13.33109372581004,annualfractionnoflow,South Great Plains
+swe.p_cy.previous,Confirmed,5.9470172025459895,annualfractionnoflow,South Great Plains
+p.pet_jfm.previous,Confirmed,9.602249282526374,annualfractionnoflow,South Great Plains
+swe.p_jfm.previous,Confirmed,5.467132093075527,annualfractionnoflow,South Great Plains
+p.pet_amj.previous,Confirmed,6.626993856045359,annualfractionnoflow,South Great Plains
+swe.p_amj.previous,Tentative,2.7638092664653526,annualfractionnoflow,South Great Plains
+p.pet_jas.previous,Confirmed,8.470183616656717,annualfractionnoflow,South Great Plains
+swe.p_jas.previous,Rejected,-Inf,annualfractionnoflow,South Great Plains
+p.pet_ond.previous,Confirmed,8.174861490616399,annualfractionnoflow,South Great Plains
+swe.p_ond.previous,Confirmed,6.183433514357512,annualfractionnoflow,South Great Plains
+dams_n,Confirmed,7.603907417534185,annualfractionnoflow,Western Desert
+maxstorage_af,Confirmed,6.68158855250322,annualfractionnoflow,Western Desert
+normstorage_af,Confirmed,6.39459838817147,annualfractionnoflow,Western Desert
+majordams_n,Confirmed,7.247438278094378,annualfractionnoflow,Western Desert
+wuse_mm,Confirmed,11.928435630687272,annualfractionnoflow,Western Desert
+irrig_prc,Confirmed,8.132100515738182,annualfractionnoflow,Western Desert
+lulc_water_prc,Confirmed,9.324153746593723,annualfractionnoflow,Western Desert
+lulc_dev_prc,Confirmed,8.321286566261616,annualfractionnoflow,Western Desert
+lulc_wetland_prc,Confirmed,7.690424175792659,annualfractionnoflow,Western Desert
+lulc_forest_prc,Confirmed,12.678048000583408,annualfractionnoflow,Western Desert
+lulc_barren_prc,Confirmed,9.886425252368465,annualfractionnoflow,Western Desert
+lulc_grass_prc,Confirmed,12.423399257731722,annualfractionnoflow,Western Desert
+lulc_ag_prc,Confirmed,6.448088351527909,annualfractionnoflow,Western Desert
+drain_sqkm,Confirmed,9.486979952242411,annualfractionnoflow,Western Desert
+elev_mean_m_basin,Confirmed,8.523870482632445,annualfractionnoflow,Western Desert
+slope_pct,Confirmed,11.528865951909594,annualfractionnoflow,Western Desert
+awcave,Confirmed,9.153264015350775,annualfractionnoflow,Western Desert
+permave,Confirmed,12.156642386027496,annualfractionnoflow,Western Desert
+topwet,Confirmed,9.180096194252283,annualfractionnoflow,Western Desert
+depth_bedrock_m,Confirmed,11.182779934579912,annualfractionnoflow,Western Desert
+porosity,Confirmed,14.788326898547048,annualfractionnoflow,Western Desert
+storage_m,Confirmed,12.441690273115434,annualfractionnoflow,Western Desert
+clayave,Confirmed,8.69689090189482,annualfractionnoflow,Western Desert
+siltave,Confirmed,8.912423976124291,annualfractionnoflow,Western Desert
+sandave,Confirmed,11.061056106014899,annualfractionnoflow,Western Desert
+p_mm_cy,Confirmed,8.460405366906622,annualfractionnoflow,Western Desert
+p_mm_jas,Confirmed,7.257629120887984,annualfractionnoflow,Western Desert
+p_mm_ond,Confirmed,3.8370605933741357,annualfractionnoflow,Western Desert
+p_mm_jfm,Confirmed,3.991123086263835,annualfractionnoflow,Western Desert
+p_mm_amj,Confirmed,4.585411293017269,annualfractionnoflow,Western Desert
+pet_mm_cy,Confirmed,8.438667419385748,annualfractionnoflow,Western Desert
+pet_mm_jas,Confirmed,7.722340338612554,annualfractionnoflow,Western Desert
+pet_mm_ond,Confirmed,6.979918971913117,annualfractionnoflow,Western Desert
+pet_mm_jfm,Confirmed,7.081714439524358,annualfractionnoflow,Western Desert
+pet_mm_amj,Confirmed,6.044611422776483,annualfractionnoflow,Western Desert
+T_max_c_cy,Confirmed,9.60113103697559,annualfractionnoflow,Western Desert
+T_max_c_jas,Confirmed,7.96065664368191,annualfractionnoflow,Western Desert
+T_max_c_ond,Confirmed,5.949037324133271,annualfractionnoflow,Western Desert
+T_max_c_jfm,Confirmed,5.995674331005774,annualfractionnoflow,Western Desert
+T_max_c_amj,Confirmed,5.9296971117902695,annualfractionnoflow,Western Desert
+swe_mm_cy,Confirmed,5.987617079921052,annualfractionnoflow,Western Desert
+swe_mm_jas,Rejected,-Inf,annualfractionnoflow,Western Desert
+swe_mm_ond,Tentative,2.9299739960413045,annualfractionnoflow,Western Desert
+swe_mm_jfm,Confirmed,5.591383098297658,annualfractionnoflow,Western Desert
+swe_mm_amj,Confirmed,7.791997456989088,annualfractionnoflow,Western Desert
+p.pet_cy,Confirmed,8.248391339321918,annualfractionnoflow,Western Desert
+swe.p_cy,Confirmed,5.951045607639451,annualfractionnoflow,Western Desert
+p.pet_jfm,Confirmed,4.470101718688991,annualfractionnoflow,Western Desert
+swe.p_jfm,Confirmed,4.364103306170034,annualfractionnoflow,Western Desert
+p.pet_amj,Confirmed,4.981682059677804,annualfractionnoflow,Western Desert
+swe.p_amj,Confirmed,7.674364554538516,annualfractionnoflow,Western Desert
+p.pet_jas,Confirmed,8.060731923379112,annualfractionnoflow,Western Desert
+swe.p_jas,Tentative,2.230068977277502,annualfractionnoflow,Western Desert
+p.pet_ond,Confirmed,3.8327910422984353,annualfractionnoflow,Western Desert
+swe.p_ond,Confirmed,3.7150778261580917,annualfractionnoflow,Western Desert
+p_mm_cy.previous,Confirmed,6.674628526836292,annualfractionnoflow,Western Desert
+p_mm_jas.previous,Confirmed,5.772089485853747,annualfractionnoflow,Western Desert
+p_mm_ond.previous,Confirmed,3.4228219445001313,annualfractionnoflow,Western Desert
+p_mm_jfm.previous,Confirmed,4.9802823409972135,annualfractionnoflow,Western Desert
+p_mm_amj.previous,Tentative,3.088809026136974,annualfractionnoflow,Western Desert
+pet_mm_cy.previous,Confirmed,7.577516173464731,annualfractionnoflow,Western Desert
+pet_mm_jas.previous,Confirmed,6.920482327201363,annualfractionnoflow,Western Desert
+pet_mm_ond.previous,Confirmed,6.0395060270231395,annualfractionnoflow,Western Desert
+pet_mm_jfm.previous,Confirmed,6.483986668869176,annualfractionnoflow,Western Desert
+pet_mm_amj.previous,Confirmed,5.83755691179243,annualfractionnoflow,Western Desert
+T_max_c_cy.previous,Confirmed,9.334640787912692,annualfractionnoflow,Western Desert
+T_max_c_jas.previous,Confirmed,7.763419733227347,annualfractionnoflow,Western Desert
+T_max_c_ond.previous,Confirmed,5.863517756781853,annualfractionnoflow,Western Desert
+T_max_c_jfm.previous,Confirmed,5.991703121681643,annualfractionnoflow,Western Desert
+T_max_c_amj.previous,Confirmed,6.427567960822967,annualfractionnoflow,Western Desert
+swe_mm_cy.previous,Confirmed,6.757117110438627,annualfractionnoflow,Western Desert
+swe_mm_jas.previous,Rejected,-Inf,annualfractionnoflow,Western Desert
+swe_mm_ond.previous,Confirmed,3.22595244038249,annualfractionnoflow,Western Desert
+swe_mm_jfm.previous,Confirmed,6.452004324501232,annualfractionnoflow,Western Desert
+swe_mm_amj.previous,Confirmed,7.038433894477211,annualfractionnoflow,Western Desert
+p.pet_cy.previous,Confirmed,7.145269584332384,annualfractionnoflow,Western Desert
+swe.p_cy.previous,Confirmed,6.602107409904717,annualfractionnoflow,Western Desert
+p.pet_jfm.previous,Confirmed,5.291088704181829,annualfractionnoflow,Western Desert
+swe.p_jfm.previous,Confirmed,4.713250758522186,annualfractionnoflow,Western Desert
+p.pet_amj.previous,Confirmed,3.2682297309159174,annualfractionnoflow,Western Desert
+swe.p_amj.previous,Confirmed,6.8314734794212235,annualfractionnoflow,Western Desert
+p.pet_jas.previous,Confirmed,5.828881421448178,annualfractionnoflow,Western Desert
+swe.p_jas.previous,Rejected,-Inf,annualfractionnoflow,Western Desert
+p.pet_ond.previous,Confirmed,3.3924232887329753,annualfractionnoflow,Western Desert
+swe.p_ond.previous,Confirmed,3.764703890951467,annualfractionnoflow,Western Desert
+dams_n,Confirmed,9.133868356666088,annualfractionnoflow,Eastern Forests
+maxstorage_af,Confirmed,9.49818654616527,annualfractionnoflow,Eastern Forests
+normstorage_af,Confirmed,9.263424525242435,annualfractionnoflow,Eastern Forests
+majordams_n,Confirmed,4.21975071352869,annualfractionnoflow,Eastern Forests
+wuse_mm,Confirmed,11.474798865704335,annualfractionnoflow,Eastern Forests
+irrig_prc,Confirmed,8.601685515367807,annualfractionnoflow,Eastern Forests
+lulc_water_prc,Confirmed,12.411619047122244,annualfractionnoflow,Eastern Forests
+lulc_dev_prc,Confirmed,10.966566477007428,annualfractionnoflow,Eastern Forests
+lulc_wetland_prc,Confirmed,9.521674154664764,annualfractionnoflow,Eastern Forests
+lulc_forest_prc,Confirmed,10.746680615935258,annualfractionnoflow,Eastern Forests
+lulc_barren_prc,Confirmed,10.483633747931199,annualfractionnoflow,Eastern Forests
+lulc_grass_prc,Confirmed,10.560590746741006,annualfractionnoflow,Eastern Forests
+lulc_ag_prc,Confirmed,11.05453598768917,annualfractionnoflow,Eastern Forests
+drain_sqkm,Confirmed,16.95153094348891,annualfractionnoflow,Eastern Forests
+elev_mean_m_basin,Confirmed,8.55376181423713,annualfractionnoflow,Eastern Forests
+slope_pct,Confirmed,10.661428885202715,annualfractionnoflow,Eastern Forests
+awcave,Confirmed,7.247062273190702,annualfractionnoflow,Eastern Forests
+permave,Confirmed,10.711917405696731,annualfractionnoflow,Eastern Forests
+topwet,Confirmed,8.474014311131546,annualfractionnoflow,Eastern Forests
+depth_bedrock_m,Confirmed,11.408197412214026,annualfractionnoflow,Eastern Forests
+porosity,Confirmed,8.558006772517896,annualfractionnoflow,Eastern Forests
+storage_m,Confirmed,11.215289898692289,annualfractionnoflow,Eastern Forests
+clayave,Confirmed,9.864041311874102,annualfractionnoflow,Eastern Forests
+siltave,Confirmed,9.419134838358339,annualfractionnoflow,Eastern Forests
+sandave,Confirmed,9.53879605836716,annualfractionnoflow,Eastern Forests
+p_mm_cy,Confirmed,10.14913292508202,annualfractionnoflow,Eastern Forests
+p_mm_jas,Confirmed,9.843048349491628,annualfractionnoflow,Eastern Forests
+p_mm_ond,Rejected,0.821502525130071,annualfractionnoflow,Eastern Forests
+p_mm_jfm,Confirmed,4.839789027175397,annualfractionnoflow,Eastern Forests
+p_mm_amj,Confirmed,8.260247079868671,annualfractionnoflow,Eastern Forests
+pet_mm_cy,Confirmed,8.392045629800643,annualfractionnoflow,Eastern Forests
+pet_mm_jas,Confirmed,9.744204207488309,annualfractionnoflow,Eastern Forests
+pet_mm_ond,Confirmed,5.7280054453804725,annualfractionnoflow,Eastern Forests
+pet_mm_jfm,Confirmed,4.88694506091241,annualfractionnoflow,Eastern Forests
+pet_mm_amj,Confirmed,10.648589917844395,annualfractionnoflow,Eastern Forests
+T_max_c_cy,Confirmed,6.533975612857859,annualfractionnoflow,Eastern Forests
+T_max_c_jas,Confirmed,8.673900460008085,annualfractionnoflow,Eastern Forests
+T_max_c_ond,Confirmed,5.881087631023296,annualfractionnoflow,Eastern Forests
+T_max_c_jfm,Confirmed,5.37354766905595,annualfractionnoflow,Eastern Forests
+T_max_c_amj,Confirmed,8.2558902803964,annualfractionnoflow,Eastern Forests
+swe_mm_cy,Tentative,2.855689687452751,annualfractionnoflow,Eastern Forests
+swe_mm_jas,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+swe_mm_ond,Tentative,2.7920668793329093,annualfractionnoflow,Eastern Forests
+swe_mm_jfm,Tentative,2.439649266587447,annualfractionnoflow,Eastern Forests
+swe_mm_amj,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+p.pet_cy,Confirmed,12.47869867301809,annualfractionnoflow,Eastern Forests
+swe.p_cy,Confirmed,3.1157012296950506,annualfractionnoflow,Eastern Forests
+p.pet_jfm,Confirmed,5.023444255389925,annualfractionnoflow,Eastern Forests
+swe.p_jfm,Tentative,2.89618861057521,annualfractionnoflow,Eastern Forests
+p.pet_amj,Confirmed,8.45161906524863,annualfractionnoflow,Eastern Forests
+swe.p_amj,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+p.pet_jas,Confirmed,11.225015684646259,annualfractionnoflow,Eastern Forests
+swe.p_jas,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+p.pet_ond,Confirmed,3.6878279873553224,annualfractionnoflow,Eastern Forests
+swe.p_ond,Confirmed,3.4487068387385205,annualfractionnoflow,Eastern Forests
+p_mm_cy.previous,Confirmed,8.015846044143908,annualfractionnoflow,Eastern Forests
+p_mm_jas.previous,Confirmed,6.067573402937921,annualfractionnoflow,Eastern Forests
+p_mm_ond.previous,Confirmed,4.658146841057099,annualfractionnoflow,Eastern Forests
+p_mm_jfm.previous,Confirmed,5.291135074698088,annualfractionnoflow,Eastern Forests
+p_mm_amj.previous,Confirmed,3.3368816499703327,annualfractionnoflow,Eastern Forests
+pet_mm_cy.previous,Confirmed,6.682977576235294,annualfractionnoflow,Eastern Forests
+pet_mm_jas.previous,Confirmed,6.15283446312644,annualfractionnoflow,Eastern Forests
+pet_mm_ond.previous,Confirmed,6.427147440097895,annualfractionnoflow,Eastern Forests
+pet_mm_jfm.previous,Confirmed,7.567928648004054,annualfractionnoflow,Eastern Forests
+pet_mm_amj.previous,Confirmed,5.6960138126986255,annualfractionnoflow,Eastern Forests
+T_max_c_cy.previous,Confirmed,5.641700938927418,annualfractionnoflow,Eastern Forests
+T_max_c_jas.previous,Confirmed,5.002463258060519,annualfractionnoflow,Eastern Forests
+T_max_c_ond.previous,Confirmed,5.691141533812577,annualfractionnoflow,Eastern Forests
+T_max_c_jfm.previous,Confirmed,6.3356998022984135,annualfractionnoflow,Eastern Forests
+T_max_c_amj.previous,Confirmed,5.49994182424373,annualfractionnoflow,Eastern Forests
+swe_mm_cy.previous,Tentative,2.7590239891250965,annualfractionnoflow,Eastern Forests
+swe_mm_jas.previous,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+swe_mm_ond.previous,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+swe_mm_jfm.previous,Confirmed,3.064076262209985,annualfractionnoflow,Eastern Forests
+swe_mm_amj.previous,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+p.pet_cy.previous,Confirmed,7.622037915918269,annualfractionnoflow,Eastern Forests
+swe.p_cy.previous,Confirmed,3.1065264348045085,annualfractionnoflow,Eastern Forests
+p.pet_jfm.previous,Confirmed,4.963809083697925,annualfractionnoflow,Eastern Forests
+swe.p_jfm.previous,Confirmed,3.5974222286883513,annualfractionnoflow,Eastern Forests
+p.pet_amj.previous,Confirmed,4.043468896060021,annualfractionnoflow,Eastern Forests
+swe.p_amj.previous,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+p.pet_jas.previous,Confirmed,6.442711787101508,annualfractionnoflow,Eastern Forests
+swe.p_jas.previous,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+p.pet_ond.previous,Confirmed,5.4588390440373615,annualfractionnoflow,Eastern Forests
+swe.p_ond.previous,Rejected,-Inf,annualfractionnoflow,Eastern Forests
+dams_n,Confirmed,8.075991659859252,annualfractionnoflow,Western Mountains
+maxstorage_af,Confirmed,11.957661878357102,annualfractionnoflow,Western Mountains
+normstorage_af,Confirmed,11.033435873326118,annualfractionnoflow,Western Mountains
+majordams_n,Confirmed,9.18363100451053,annualfractionnoflow,Western Mountains
+wuse_mm,Confirmed,14.662088495946003,annualfractionnoflow,Western Mountains
+irrig_prc,Confirmed,11.689929945796179,annualfractionnoflow,Western Mountains
+lulc_water_prc,Confirmed,12.451960971960233,annualfractionnoflow,Western Mountains
+lulc_dev_prc,Confirmed,11.429085317949614,annualfractionnoflow,Western Mountains
+lulc_wetland_prc,Confirmed,12.30640610861925,annualfractionnoflow,Western Mountains
+lulc_forest_prc,Confirmed,15.972571731657355,annualfractionnoflow,Western Mountains
+lulc_barren_prc,Confirmed,12.808909011066254,annualfractionnoflow,Western Mountains
+lulc_grass_prc,Confirmed,14.657565950125802,annualfractionnoflow,Western Mountains
+lulc_ag_prc,Confirmed,10.094866273758969,annualfractionnoflow,Western Mountains
+drain_sqkm,Confirmed,12.825816128302161,annualfractionnoflow,Western Mountains
+elev_mean_m_basin,Confirmed,14.854053754534474,annualfractionnoflow,Western Mountains
+slope_pct,Confirmed,14.474028496700948,annualfractionnoflow,Western Mountains
+awcave,Confirmed,9.7567130732987,annualfractionnoflow,Western Mountains
+permave,Confirmed,14.245322066107672,annualfractionnoflow,Western Mountains
+topwet,Confirmed,11.726325777461001,annualfractionnoflow,Western Mountains
+depth_bedrock_m,Confirmed,11.680536504852927,annualfractionnoflow,Western Mountains
+porosity,Confirmed,14.98989596721395,annualfractionnoflow,Western Mountains
+storage_m,Confirmed,11.550245957361028,annualfractionnoflow,Western Mountains
+clayave,Confirmed,13.533905593598645,annualfractionnoflow,Western Mountains
+siltave,Confirmed,12.107918315805719,annualfractionnoflow,Western Mountains
+sandave,Confirmed,11.706305718923344,annualfractionnoflow,Western Mountains
+p_mm_cy,Confirmed,8.00540481965895,annualfractionnoflow,Western Mountains
+p_mm_jas,Confirmed,8.145447091733553,annualfractionnoflow,Western Mountains
+p_mm_ond,Confirmed,5.904746549582775,annualfractionnoflow,Western Mountains
+p_mm_jfm,Confirmed,7.1785578385284055,annualfractionnoflow,Western Mountains
+p_mm_amj,Confirmed,7.177895284186206,annualfractionnoflow,Western Mountains
+pet_mm_cy,Confirmed,8.455583859117796,annualfractionnoflow,Western Mountains
+pet_mm_jas,Confirmed,8.180071468068087,annualfractionnoflow,Western Mountains
+pet_mm_ond,Confirmed,7.769681060497441,annualfractionnoflow,Western Mountains
+pet_mm_jfm,Confirmed,7.475499407145211,annualfractionnoflow,Western Mountains
+pet_mm_amj,Confirmed,7.446016574100134,annualfractionnoflow,Western Mountains
+T_max_c_cy,Confirmed,10.325883935325082,annualfractionnoflow,Western Mountains
+T_max_c_jas,Confirmed,9.153232660837142,annualfractionnoflow,Western Mountains
+T_max_c_ond,Confirmed,10.071023294797508,annualfractionnoflow,Western Mountains
+T_max_c_jfm,Confirmed,8.344138615933332,annualfractionnoflow,Western Mountains
+T_max_c_amj,Confirmed,7.38112812965757,annualfractionnoflow,Western Mountains
+swe_mm_cy,Confirmed,7.523759152826098,annualfractionnoflow,Western Mountains
+swe_mm_jas,Rejected,1.9405414009157986,annualfractionnoflow,Western Mountains
+swe_mm_ond,Confirmed,6.8050770894912915,annualfractionnoflow,Western Mountains
+swe_mm_jfm,Confirmed,7.7235525444054325,annualfractionnoflow,Western Mountains
+swe_mm_amj,Confirmed,6.549939910575731,annualfractionnoflow,Western Mountains
+p.pet_cy,Confirmed,7.830740010831462,annualfractionnoflow,Western Mountains
+swe.p_cy,Confirmed,7.674963154662905,annualfractionnoflow,Western Mountains
+p.pet_jfm,Confirmed,7.053932433599328,annualfractionnoflow,Western Mountains
+swe.p_jfm,Confirmed,6.340311078345612,annualfractionnoflow,Western Mountains
+p.pet_amj,Confirmed,7.557699813289179,annualfractionnoflow,Western Mountains
+swe.p_amj,Confirmed,6.55352779120071,annualfractionnoflow,Western Mountains
+p.pet_jas,Confirmed,8.495013306223274,annualfractionnoflow,Western Mountains
+swe.p_jas,Tentative,2.579706384412821,annualfractionnoflow,Western Mountains
+p.pet_ond,Confirmed,6.448829578426987,annualfractionnoflow,Western Mountains
+swe.p_ond,Confirmed,7.638094995331719,annualfractionnoflow,Western Mountains
+p_mm_cy.previous,Confirmed,11.578315308462157,annualfractionnoflow,Western Mountains
+p_mm_jas.previous,Confirmed,6.997931941916977,annualfractionnoflow,Western Mountains
+p_mm_ond.previous,Confirmed,9.115101518317193,annualfractionnoflow,Western Mountains
+p_mm_jfm.previous,Confirmed,9.344944596578113,annualfractionnoflow,Western Mountains
+p_mm_amj.previous,Confirmed,6.891041686311415,annualfractionnoflow,Western Mountains
+pet_mm_cy.previous,Confirmed,8.568564002700336,annualfractionnoflow,Western Mountains
+pet_mm_jas.previous,Confirmed,6.72979315390424,annualfractionnoflow,Western Mountains
+pet_mm_ond.previous,Confirmed,7.298658517868264,annualfractionnoflow,Western Mountains
+pet_mm_jfm.previous,Confirmed,8.702542972616415,annualfractionnoflow,Western Mountains
+pet_mm_amj.previous,Confirmed,6.872382580386715,annualfractionnoflow,Western Mountains
+T_max_c_cy.previous,Confirmed,10.49770227832279,annualfractionnoflow,Western Mountains
+T_max_c_jas.previous,Confirmed,8.950920307328415,annualfractionnoflow,Western Mountains
+T_max_c_ond.previous,Confirmed,8.86554782263048,annualfractionnoflow,Western Mountains
+T_max_c_jfm.previous,Confirmed,8.700820751256275,annualfractionnoflow,Western Mountains
+T_max_c_amj.previous,Confirmed,6.945997105209146,annualfractionnoflow,Western Mountains
+swe_mm_cy.previous,Confirmed,7.72594352879897,annualfractionnoflow,Western Mountains
+swe_mm_jas.previous,Tentative,2.4945093931784625,annualfractionnoflow,Western Mountains
+swe_mm_ond.previous,Confirmed,6.851637120919866,annualfractionnoflow,Western Mountains
+swe_mm_jfm.previous,Confirmed,7.312221156097315,annualfractionnoflow,Western Mountains
+swe_mm_amj.previous,Confirmed,6.335185151230787,annualfractionnoflow,Western Mountains
+p.pet_cy.previous,Confirmed,11.151631080639115,annualfractionnoflow,Western Mountains
+swe.p_cy.previous,Confirmed,7.2652865019765125,annualfractionnoflow,Western Mountains
+p.pet_jfm.previous,Confirmed,9.515554890376217,annualfractionnoflow,Western Mountains
+swe.p_jfm.previous,Confirmed,5.653627481026016,annualfractionnoflow,Western Mountains
+p.pet_amj.previous,Confirmed,7.1075234638976585,annualfractionnoflow,Western Mountains
+swe.p_amj.previous,Confirmed,6.288331044097774,annualfractionnoflow,Western Mountains
+p.pet_jas.previous,Confirmed,7.277553509305779,annualfractionnoflow,Western Mountains
+swe.p_jas.previous,Confirmed,3.26190179059235,annualfractionnoflow,Western Mountains
+p.pet_ond.previous,Confirmed,9.213927690110019,annualfractionnoflow,Western Mountains
+swe.p_ond.previous,Confirmed,7.823319215497493,annualfractionnoflow,Western Mountains
+dams_n,Confirmed,14.586726004724369,zeroflowfirst,National
+maxstorage_af,Confirmed,17.578722111872363,zeroflowfirst,National
+normstorage_af,Confirmed,18.026935281946695,zeroflowfirst,National
+majordams_n,Confirmed,13.570008121189721,zeroflowfirst,National
+wuse_mm,Confirmed,15.917181623048688,zeroflowfirst,National
+irrig_prc,Confirmed,14.743498918284946,zeroflowfirst,National
+lulc_water_prc,Confirmed,18.168089396643907,zeroflowfirst,National
+lulc_dev_prc,Confirmed,14.57241073887264,zeroflowfirst,National
+lulc_wetland_prc,Confirmed,12.35266425634792,zeroflowfirst,National
+lulc_forest_prc,Confirmed,16.886805610962945,zeroflowfirst,National
+lulc_barren_prc,Confirmed,13.690193751050364,zeroflowfirst,National
+lulc_grass_prc,Confirmed,17.052544673111253,zeroflowfirst,National
+lulc_ag_prc,Confirmed,14.302588494547278,zeroflowfirst,National
+drain_sqkm,Confirmed,19.40836957418003,zeroflowfirst,National
+elev_mean_m_basin,Confirmed,17.670479613431358,zeroflowfirst,National
+slope_pct,Confirmed,16.12332454679555,zeroflowfirst,National
+awcave,Confirmed,15.025010825322301,zeroflowfirst,National
+permave,Confirmed,17.765608636345313,zeroflowfirst,National
+topwet,Confirmed,15.822716436142814,zeroflowfirst,National
+depth_bedrock_m,Confirmed,13.852728792771623,zeroflowfirst,National
+porosity,Confirmed,20.480080488974977,zeroflowfirst,National
+storage_m,Confirmed,15.747098581240547,zeroflowfirst,National
+clayave,Confirmed,15.481934835916292,zeroflowfirst,National
+siltave,Confirmed,14.624232654863537,zeroflowfirst,National
+sandave,Confirmed,12.862736607361004,zeroflowfirst,National
+p_mm_cy,Confirmed,12.145747859482636,zeroflowfirst,National
+p_mm_jas,Confirmed,10.053817294838248,zeroflowfirst,National
+p_mm_ond,Confirmed,13.288616819938328,zeroflowfirst,National
+p_mm_jfm,Confirmed,11.565750145899893,zeroflowfirst,National
+p_mm_amj,Confirmed,15.322305526988695,zeroflowfirst,National
+pet_mm_cy,Confirmed,10.844514784489293,zeroflowfirst,National
+pet_mm_jas,Confirmed,7.934384823304345,zeroflowfirst,National
+pet_mm_ond,Confirmed,10.186901279647692,zeroflowfirst,National
+pet_mm_jfm,Confirmed,9.486343632057883,zeroflowfirst,National
+pet_mm_amj,Confirmed,15.331196056338403,zeroflowfirst,National
+T_max_c_cy,Confirmed,10.281748542589048,zeroflowfirst,National
+T_max_c_jas,Confirmed,11.893801998447689,zeroflowfirst,National
+T_max_c_ond,Confirmed,11.307294627275889,zeroflowfirst,National
+T_max_c_jfm,Confirmed,10.292875970621477,zeroflowfirst,National
+T_max_c_amj,Confirmed,12.956167061769435,zeroflowfirst,National
+swe_mm_cy,Confirmed,7.676042419220274,zeroflowfirst,National
+swe_mm_jas,Confirmed,3.991059261402866,zeroflowfirst,National
+swe_mm_ond,Confirmed,7.663381783232111,zeroflowfirst,National
+swe_mm_jfm,Confirmed,6.55229316123069,zeroflowfirst,National
+swe_mm_amj,Confirmed,7.261588095494894,zeroflowfirst,National
+p.pet_cy,Confirmed,11.046397733966492,zeroflowfirst,National
+swe.p_cy,Confirmed,9.640861252361624,zeroflowfirst,National
+p.pet_jfm,Confirmed,12.525614273889076,zeroflowfirst,National
+swe.p_jfm,Confirmed,8.221853555539242,zeroflowfirst,National
+p.pet_amj,Confirmed,15.933015708465689,zeroflowfirst,National
+swe.p_amj,Confirmed,6.90495589585074,zeroflowfirst,National
+p.pet_jas,Confirmed,9.013226681735313,zeroflowfirst,National
+swe.p_jas,Confirmed,5.339508992668456,zeroflowfirst,National
+p.pet_ond,Confirmed,12.844257343592066,zeroflowfirst,National
+swe.p_ond,Confirmed,8.982732630722724,zeroflowfirst,National
+p_mm_cy.previous,Confirmed,17.898897576815987,zeroflowfirst,National
+p_mm_jas.previous,Confirmed,11.26117020908746,zeroflowfirst,National
+p_mm_ond.previous,Confirmed,14.416380854421,zeroflowfirst,National
+p_mm_jfm.previous,Confirmed,14.693315482898758,zeroflowfirst,National
+p_mm_amj.previous,Confirmed,10.523076029827152,zeroflowfirst,National
+pet_mm_cy.previous,Confirmed,14.09542824795767,zeroflowfirst,National
+pet_mm_jas.previous,Confirmed,10.173431261934232,zeroflowfirst,National
+pet_mm_ond.previous,Confirmed,12.599503222799882,zeroflowfirst,National
+pet_mm_jfm.previous,Confirmed,13.14540281833144,zeroflowfirst,National
+pet_mm_amj.previous,Confirmed,12.799772595764649,zeroflowfirst,National
+T_max_c_cy.previous,Confirmed,12.26811956373852,zeroflowfirst,National
+T_max_c_jas.previous,Confirmed,10.494668172992544,zeroflowfirst,National
+T_max_c_ond.previous,Confirmed,10.598873754100035,zeroflowfirst,National
+T_max_c_jfm.previous,Confirmed,12.212805044227151,zeroflowfirst,National
+T_max_c_amj.previous,Confirmed,9.954289141102251,zeroflowfirst,National
+swe_mm_cy.previous,Confirmed,9.150046660982994,zeroflowfirst,National
+swe_mm_jas.previous,Rejected,1.588417898823216,zeroflowfirst,National
+swe_mm_ond.previous,Confirmed,7.9528766860953395,zeroflowfirst,National
+swe_mm_jfm.previous,Confirmed,8.463165221444237,zeroflowfirst,National
+swe_mm_amj.previous,Confirmed,8.373958803888682,zeroflowfirst,National
+p.pet_cy.previous,Confirmed,20.59937091844451,zeroflowfirst,National
+swe.p_cy.previous,Confirmed,9.560253076657236,zeroflowfirst,National
+p.pet_jfm.previous,Confirmed,17.88339278808053,zeroflowfirst,National
+swe.p_jfm.previous,Confirmed,8.821537963475677,zeroflowfirst,National
+p.pet_amj.previous,Confirmed,11.177949087480368,zeroflowfirst,National
+swe.p_amj.previous,Confirmed,7.839832757452978,zeroflowfirst,National
+p.pet_jas.previous,Confirmed,12.75563844176889,zeroflowfirst,National
+swe.p_jas.previous,Rejected,1.6529917958295395,zeroflowfirst,National
+p.pet_ond.previous,Confirmed,15.740532035947792,zeroflowfirst,National
+swe.p_ond.previous,Confirmed,8.863219990033516,zeroflowfirst,National
+dams_n,Confirmed,7.689119010145069,zeroflowfirst,North Great Plains
+maxstorage_af,Confirmed,5.644270437198379,zeroflowfirst,North Great Plains
+normstorage_af,Confirmed,5.949097625807406,zeroflowfirst,North Great Plains
+majordams_n,Rejected,-Inf,zeroflowfirst,North Great Plains
+wuse_mm,Confirmed,5.732702306508891,zeroflowfirst,North Great Plains
+irrig_prc,Confirmed,5.764972503144464,zeroflowfirst,North Great Plains
+lulc_water_prc,Confirmed,3.699626096452336,zeroflowfirst,North Great Plains
+lulc_dev_prc,Confirmed,5.424650567946349,zeroflowfirst,North Great Plains
+lulc_wetland_prc,Confirmed,5.21573615418762,zeroflowfirst,North Great Plains
+lulc_forest_prc,Confirmed,7.4043643194159,zeroflowfirst,North Great Plains
+lulc_barren_prc,Confirmed,4.566621149973637,zeroflowfirst,North Great Plains
+lulc_grass_prc,Confirmed,7.441949931645439,zeroflowfirst,North Great Plains
+lulc_ag_prc,Confirmed,6.743966904288081,zeroflowfirst,North Great Plains
+drain_sqkm,Confirmed,6.9128880805564155,zeroflowfirst,North Great Plains
+elev_mean_m_basin,Confirmed,5.763104081548492,zeroflowfirst,North Great Plains
+slope_pct,Confirmed,5.006698498748668,zeroflowfirst,North Great Plains
+awcave,Confirmed,5.633779280791654,zeroflowfirst,North Great Plains
+permave,Confirmed,8.30234387502934,zeroflowfirst,North Great Plains
+topwet,Confirmed,5.494185353619982,zeroflowfirst,North Great Plains
+depth_bedrock_m,Confirmed,7.099727499952474,zeroflowfirst,North Great Plains
+porosity,Confirmed,8.463047577621419,zeroflowfirst,North Great Plains
+storage_m,Confirmed,6.686913091560055,zeroflowfirst,North Great Plains
+clayave,Confirmed,5.232212812537001,zeroflowfirst,North Great Plains
+siltave,Confirmed,12.391370144412361,zeroflowfirst,North Great Plains
+sandave,Confirmed,6.942636668861625,zeroflowfirst,North Great Plains
+p_mm_cy,Rejected,-Inf,zeroflowfirst,North Great Plains
+p_mm_jas,Rejected,-Inf,zeroflowfirst,North Great Plains
+p_mm_ond,Confirmed,4.297343243481268,zeroflowfirst,North Great Plains
+p_mm_jfm,Tentative,2.447791611440772,zeroflowfirst,North Great Plains
+p_mm_amj,Rejected,-Inf,zeroflowfirst,North Great Plains
+pet_mm_cy,Confirmed,4.095363539525956,zeroflowfirst,North Great Plains
+pet_mm_jas,Confirmed,4.525631380980022,zeroflowfirst,North Great Plains
+pet_mm_ond,Confirmed,4.161053733659577,zeroflowfirst,North Great Plains
+pet_mm_jfm,Confirmed,4.446141813865483,zeroflowfirst,North Great Plains
+pet_mm_amj,Confirmed,3.9156853923777915,zeroflowfirst,North Great Plains
+T_max_c_cy,Confirmed,5.035566133799345,zeroflowfirst,North Great Plains
+T_max_c_jas,Confirmed,5.090253901183341,zeroflowfirst,North Great Plains
+T_max_c_ond,Confirmed,4.625437231452097,zeroflowfirst,North Great Plains
+T_max_c_jfm,Confirmed,5.219122209392062,zeroflowfirst,North Great Plains
+T_max_c_amj,Tentative,2.959585856891137,zeroflowfirst,North Great Plains
+swe_mm_cy,Rejected,-Inf,zeroflowfirst,North Great Plains
+swe_mm_jas,Rejected,-Inf,zeroflowfirst,North Great Plains
+swe_mm_ond,Rejected,1.9845086608141966,zeroflowfirst,North Great Plains
+swe_mm_jfm,Rejected,-Inf,zeroflowfirst,North Great Plains
+swe_mm_amj,Rejected,-Inf,zeroflowfirst,North Great Plains
+p.pet_cy,Tentative,2.360225495374274,zeroflowfirst,North Great Plains
+swe.p_cy,Rejected,-Inf,zeroflowfirst,North Great Plains
+p.pet_jfm,Tentative,2.675568289804374,zeroflowfirst,North Great Plains
+swe.p_jfm,Rejected,0.40610961384929334,zeroflowfirst,North Great Plains
+p.pet_amj,Rejected,-Inf,zeroflowfirst,North Great Plains
+swe.p_amj,Rejected,-Inf,zeroflowfirst,North Great Plains
+p.pet_jas,Tentative,2.4222688169407545,zeroflowfirst,North Great Plains
+swe.p_jas,Rejected,-Inf,zeroflowfirst,North Great Plains
+p.pet_ond,Confirmed,5.035823453494641,zeroflowfirst,North Great Plains
+swe.p_ond,Tentative,2.5180320178149636,zeroflowfirst,North Great Plains
+p_mm_cy.previous,Confirmed,5.469834817638796,zeroflowfirst,North Great Plains
+p_mm_jas.previous,Confirmed,6.264456321131355,zeroflowfirst,North Great Plains
+p_mm_ond.previous,Confirmed,4.312460164456589,zeroflowfirst,North Great Plains
+p_mm_jfm.previous,Rejected,-Inf,zeroflowfirst,North Great Plains
+p_mm_amj.previous,Tentative,2.3318475729694446,zeroflowfirst,North Great Plains
+pet_mm_cy.previous,Confirmed,9.065746198046634,zeroflowfirst,North Great Plains
+pet_mm_jas.previous,Confirmed,5.686833976786243,zeroflowfirst,North Great Plains
+pet_mm_ond.previous,Confirmed,6.7259711095926615,zeroflowfirst,North Great Plains
+pet_mm_jfm.previous,Confirmed,5.382687831962068,zeroflowfirst,North Great Plains
+pet_mm_amj.previous,Confirmed,5.679731541815775,zeroflowfirst,North Great Plains
+T_max_c_cy.previous,Confirmed,6.239930481687615,zeroflowfirst,North Great Plains
+T_max_c_jas.previous,Confirmed,5.198454031865406,zeroflowfirst,North Great Plains
+T_max_c_ond.previous,Confirmed,5.692639913984772,zeroflowfirst,North Great Plains
+T_max_c_jfm.previous,Confirmed,3.422039130711572,zeroflowfirst,North Great Plains
+T_max_c_amj.previous,Confirmed,4.838132253200829,zeroflowfirst,North Great Plains
+swe_mm_cy.previous,Confirmed,4.011809985017447,zeroflowfirst,North Great Plains
+swe_mm_jas.previous,Rejected,-Inf,zeroflowfirst,North Great Plains
+swe_mm_ond.previous,Confirmed,3.5039467908642377,zeroflowfirst,North Great Plains
+swe_mm_jfm.previous,Confirmed,3.2293958152731195,zeroflowfirst,North Great Plains
+swe_mm_amj.previous,Rejected,-Inf,zeroflowfirst,North Great Plains
+p.pet_cy.previous,Confirmed,8.537312585413485,zeroflowfirst,North Great Plains
+swe.p_cy.previous,Tentative,2.1968832407447634,zeroflowfirst,North Great Plains
+p.pet_jfm.previous,Confirmed,4.171889704883596,zeroflowfirst,North Great Plains
+swe.p_jfm.previous,Rejected,-Inf,zeroflowfirst,North Great Plains
+p.pet_amj.previous,Tentative,2.9911485026457987,zeroflowfirst,North Great Plains
+swe.p_amj.previous,Rejected,-Inf,zeroflowfirst,North Great Plains
+p.pet_jas.previous,Confirmed,6.998056882162035,zeroflowfirst,North Great Plains
+swe.p_jas.previous,Rejected,-Inf,zeroflowfirst,North Great Plains
+p.pet_ond.previous,Confirmed,6.202784907069954,zeroflowfirst,North Great Plains
+swe.p_ond.previous,Rejected,-Inf,zeroflowfirst,North Great Plains
+dams_n,Confirmed,9.158469928007843,zeroflowfirst,Mediterranean California
+maxstorage_af,Confirmed,9.688807644003214,zeroflowfirst,Mediterranean California
+normstorage_af,Confirmed,9.709308346225175,zeroflowfirst,Mediterranean California
+majordams_n,Confirmed,9.215544339481571,zeroflowfirst,Mediterranean California
+wuse_mm,Confirmed,8.583661839167966,zeroflowfirst,Mediterranean California
+irrig_prc,Confirmed,8.432243691834415,zeroflowfirst,Mediterranean California
+lulc_water_prc,Confirmed,8.632425203082049,zeroflowfirst,Mediterranean California
+lulc_dev_prc,Confirmed,8.031652398153453,zeroflowfirst,Mediterranean California
+lulc_wetland_prc,Confirmed,4.840057523467573,zeroflowfirst,Mediterranean California
+lulc_forest_prc,Confirmed,8.264414120539374,zeroflowfirst,Mediterranean California
+lulc_barren_prc,Confirmed,5.526692566285208,zeroflowfirst,Mediterranean California
+lulc_grass_prc,Confirmed,9.403300790618735,zeroflowfirst,Mediterranean California
+lulc_ag_prc,Confirmed,8.067628204105,zeroflowfirst,Mediterranean California
+drain_sqkm,Confirmed,10.166230038117662,zeroflowfirst,Mediterranean California
+elev_mean_m_basin,Confirmed,7.880971787504464,zeroflowfirst,Mediterranean California
+slope_pct,Confirmed,8.81556620819242,zeroflowfirst,Mediterranean California
+awcave,Confirmed,5.15609116287427,zeroflowfirst,Mediterranean California
+permave,Confirmed,7.52200105305504,zeroflowfirst,Mediterranean California
+topwet,Confirmed,7.7126832986428555,zeroflowfirst,Mediterranean California
+depth_bedrock_m,Confirmed,9.140911498188489,zeroflowfirst,Mediterranean California
+porosity,Confirmed,7.604294935358013,zeroflowfirst,Mediterranean California
+storage_m,Confirmed,8.969558281122358,zeroflowfirst,Mediterranean California
+clayave,Confirmed,9.294670186933507,zeroflowfirst,Mediterranean California
+siltave,Confirmed,8.80460280603279,zeroflowfirst,Mediterranean California
+sandave,Confirmed,7.271015007747306,zeroflowfirst,Mediterranean California
+p_mm_cy,Tentative,2.1251570661202153,zeroflowfirst,Mediterranean California
+p_mm_jas,Tentative,2.4304905665444485,zeroflowfirst,Mediterranean California
+p_mm_ond,Rejected,-Inf,zeroflowfirst,Mediterranean California
+p_mm_jfm,Rejected,-Inf,zeroflowfirst,Mediterranean California
+p_mm_amj,Confirmed,3.439224467813236,zeroflowfirst,Mediterranean California
+pet_mm_cy,Confirmed,4.651489510169958,zeroflowfirst,Mediterranean California
+pet_mm_jas,Confirmed,3.379884631942795,zeroflowfirst,Mediterranean California
+pet_mm_ond,Tentative,2.5959202011608666,zeroflowfirst,Mediterranean California
+pet_mm_jfm,Confirmed,3.29522161976654,zeroflowfirst,Mediterranean California
+pet_mm_amj,Confirmed,3.719592537767968,zeroflowfirst,Mediterranean California
+T_max_c_cy,Confirmed,4.443151212926072,zeroflowfirst,Mediterranean California
+T_max_c_jas,Confirmed,4.089766971303089,zeroflowfirst,Mediterranean California
+T_max_c_ond,Tentative,2.7755350276536417,zeroflowfirst,Mediterranean California
+T_max_c_jfm,Confirmed,4.07597828733136,zeroflowfirst,Mediterranean California
+T_max_c_amj,Confirmed,4.5062116555253,zeroflowfirst,Mediterranean California
+swe_mm_cy,Confirmed,3.873923357954934,zeroflowfirst,Mediterranean California
+swe_mm_jas,Rejected,-Inf,zeroflowfirst,Mediterranean California
+swe_mm_ond,Tentative,2.150347959783225,zeroflowfirst,Mediterranean California
+swe_mm_jfm,Confirmed,3.9209735623457314,zeroflowfirst,Mediterranean California
+swe_mm_amj,Tentative,2.3979844445064895,zeroflowfirst,Mediterranean California
+p.pet_cy,Tentative,2.5453207221395653,zeroflowfirst,Mediterranean California
+swe.p_cy,Confirmed,4.380741455796645,zeroflowfirst,Mediterranean California
+p.pet_jfm,Rejected,-Inf,zeroflowfirst,Mediterranean California
+swe.p_jfm,Confirmed,4.4337806450845205,zeroflowfirst,Mediterranean California
+p.pet_amj,Confirmed,3.776394766813455,zeroflowfirst,Mediterranean California
+swe.p_amj,Confirmed,3.1335761724849616,zeroflowfirst,Mediterranean California
+p.pet_jas,Tentative,2.5277020735698654,zeroflowfirst,Mediterranean California
+swe.p_jas,Rejected,1.9689051972537657,zeroflowfirst,Mediterranean California
+p.pet_ond,Rejected,-Inf,zeroflowfirst,Mediterranean California
+swe.p_ond,Tentative,2.716692313124133,zeroflowfirst,Mediterranean California
+p_mm_cy.previous,Confirmed,10.660462493132707,zeroflowfirst,Mediterranean California
+p_mm_jas.previous,Tentative,2.065731827047925,zeroflowfirst,Mediterranean California
+p_mm_ond.previous,Confirmed,3.9222969924693643,zeroflowfirst,Mediterranean California
+p_mm_jfm.previous,Confirmed,6.055822387739765,zeroflowfirst,Mediterranean California
+p_mm_amj.previous,Confirmed,3.008681695149117,zeroflowfirst,Mediterranean California
+pet_mm_cy.previous,Confirmed,5.8192369183838855,zeroflowfirst,Mediterranean California
+pet_mm_jas.previous,Confirmed,3.6414461260013686,zeroflowfirst,Mediterranean California
+pet_mm_ond.previous,Confirmed,5.416803925807542,zeroflowfirst,Mediterranean California
+pet_mm_jfm.previous,Confirmed,8.080674634371343,zeroflowfirst,Mediterranean California
+pet_mm_amj.previous,Confirmed,3.451543567713975,zeroflowfirst,Mediterranean California
+T_max_c_cy.previous,Confirmed,5.314846607632652,zeroflowfirst,Mediterranean California
+T_max_c_jas.previous,Confirmed,3.7084553058181027,zeroflowfirst,Mediterranean California
+T_max_c_ond.previous,Confirmed,5.437775046492819,zeroflowfirst,Mediterranean California
+T_max_c_jfm.previous,Confirmed,3.7656828232949597,zeroflowfirst,Mediterranean California
+T_max_c_amj.previous,Confirmed,4.740078669324639,zeroflowfirst,Mediterranean California
+swe_mm_cy.previous,Confirmed,4.521473133081617,zeroflowfirst,Mediterranean California
+swe_mm_jas.previous,Rejected,-Inf,zeroflowfirst,Mediterranean California
+swe_mm_ond.previous,Confirmed,3.0662207752113595,zeroflowfirst,Mediterranean California
+swe_mm_jfm.previous,Confirmed,3.3863291754602436,zeroflowfirst,Mediterranean California
+swe_mm_amj.previous,Tentative,2.7438059361451566,zeroflowfirst,Mediterranean California
+p.pet_cy.previous,Confirmed,10.75680418710715,zeroflowfirst,Mediterranean California
+swe.p_cy.previous,Confirmed,5.1187569899429635,zeroflowfirst,Mediterranean California
+p.pet_jfm.previous,Confirmed,7.3710757723856,zeroflowfirst,Mediterranean California
+swe.p_jfm.previous,Confirmed,4.587307610358596,zeroflowfirst,Mediterranean California
+p.pet_amj.previous,Confirmed,3.250667674250255,zeroflowfirst,Mediterranean California
+swe.p_amj.previous,Confirmed,3.154806202519538,zeroflowfirst,Mediterranean California
+p.pet_jas.previous,Tentative,1.8883222678506233,zeroflowfirst,Mediterranean California
+swe.p_jas.previous,Rejected,-Inf,zeroflowfirst,Mediterranean California
+p.pet_ond.previous,Confirmed,4.6172017663493214,zeroflowfirst,Mediterranean California
+swe.p_ond.previous,Tentative,2.768841191113294,zeroflowfirst,Mediterranean California
+dams_n,Confirmed,8.47168882841682,zeroflowfirst,South Great Plains
+maxstorage_af,Confirmed,9.823673185024155,zeroflowfirst,South Great Plains
+normstorage_af,Confirmed,10.101865613688915,zeroflowfirst,South Great Plains
+majordams_n,Confirmed,7.560815709104011,zeroflowfirst,South Great Plains
+wuse_mm,Confirmed,9.824836559162307,zeroflowfirst,South Great Plains
+irrig_prc,Confirmed,10.156131690264816,zeroflowfirst,South Great Plains
+lulc_water_prc,Confirmed,8.838874488266974,zeroflowfirst,South Great Plains
+lulc_dev_prc,Confirmed,9.393705459694333,zeroflowfirst,South Great Plains
+lulc_wetland_prc,Confirmed,8.403444197738246,zeroflowfirst,South Great Plains
+lulc_forest_prc,Confirmed,14.513169514424543,zeroflowfirst,South Great Plains
+lulc_barren_prc,Confirmed,7.970266493383094,zeroflowfirst,South Great Plains
+lulc_grass_prc,Confirmed,12.760531935909677,zeroflowfirst,South Great Plains
+lulc_ag_prc,Confirmed,9.122903926022408,zeroflowfirst,South Great Plains
+drain_sqkm,Confirmed,10.44288028378721,zeroflowfirst,South Great Plains
+elev_mean_m_basin,Confirmed,11.728198590645281,zeroflowfirst,South Great Plains
+slope_pct,Confirmed,16.07150846620801,zeroflowfirst,South Great Plains
+awcave,Confirmed,9.570497787708895,zeroflowfirst,South Great Plains
+permave,Confirmed,15.143820309159304,zeroflowfirst,South Great Plains
+topwet,Confirmed,13.429075072131477,zeroflowfirst,South Great Plains
+depth_bedrock_m,Confirmed,9.583739894176436,zeroflowfirst,South Great Plains
+porosity,Confirmed,11.318241168302267,zeroflowfirst,South Great Plains
+storage_m,Confirmed,10.204247132496324,zeroflowfirst,South Great Plains
+clayave,Confirmed,11.16570879590591,zeroflowfirst,South Great Plains
+siltave,Confirmed,10.266773769976936,zeroflowfirst,South Great Plains
+sandave,Confirmed,11.132560439725738,zeroflowfirst,South Great Plains
+p_mm_cy,Confirmed,6.045067627256602,zeroflowfirst,South Great Plains
+p_mm_jas,Confirmed,4.818744880924065,zeroflowfirst,South Great Plains
+p_mm_ond,Confirmed,6.162175644401399,zeroflowfirst,South Great Plains
+p_mm_jfm,Confirmed,5.598039353027837,zeroflowfirst,South Great Plains
+p_mm_amj,Confirmed,10.044158733916383,zeroflowfirst,South Great Plains
+pet_mm_cy,Confirmed,7.4798026168426395,zeroflowfirst,South Great Plains
+pet_mm_jas,Confirmed,5.460696956691253,zeroflowfirst,South Great Plains
+pet_mm_ond,Confirmed,6.364189571644924,zeroflowfirst,South Great Plains
+pet_mm_jfm,Confirmed,6.51627567049031,zeroflowfirst,South Great Plains
+pet_mm_amj,Confirmed,10.331894511552592,zeroflowfirst,South Great Plains
+T_max_c_cy,Confirmed,7.797348817853511,zeroflowfirst,South Great Plains
+T_max_c_jas,Confirmed,6.52571995006689,zeroflowfirst,South Great Plains
+T_max_c_ond,Confirmed,7.684179368927725,zeroflowfirst,South Great Plains
+T_max_c_jfm,Confirmed,7.06788845710839,zeroflowfirst,South Great Plains
+T_max_c_amj,Confirmed,10.693009344136858,zeroflowfirst,South Great Plains
+swe_mm_cy,Confirmed,4.490819808574269,zeroflowfirst,South Great Plains
+swe_mm_jas,Rejected,-Inf,zeroflowfirst,South Great Plains
+swe_mm_ond,Confirmed,3.9188312851147797,zeroflowfirst,South Great Plains
+swe_mm_jfm,Confirmed,4.023575854351962,zeroflowfirst,South Great Plains
+swe_mm_amj,Rejected,-Inf,zeroflowfirst,South Great Plains
+p.pet_cy,Confirmed,6.496833103588166,zeroflowfirst,South Great Plains
+swe.p_cy,Confirmed,5.156221055760116,zeroflowfirst,South Great Plains
+p.pet_jfm,Confirmed,6.030983286012314,zeroflowfirst,South Great Plains
+swe.p_jfm,Confirmed,4.285028359880007,zeroflowfirst,South Great Plains
+p.pet_amj,Confirmed,10.695777266556465,zeroflowfirst,South Great Plains
+swe.p_amj,Rejected,-Inf,zeroflowfirst,South Great Plains
+p.pet_jas,Confirmed,5.1509474382637395,zeroflowfirst,South Great Plains
+swe.p_jas,Rejected,-Inf,zeroflowfirst,South Great Plains
+p.pet_ond,Confirmed,5.954924708334859,zeroflowfirst,South Great Plains
+swe.p_ond,Confirmed,4.659809517868262,zeroflowfirst,South Great Plains
+p_mm_cy.previous,Confirmed,11.748777116259204,zeroflowfirst,South Great Plains
+p_mm_jas.previous,Confirmed,5.361530416558825,zeroflowfirst,South Great Plains
+p_mm_ond.previous,Confirmed,8.378411142391727,zeroflowfirst,South Great Plains
+p_mm_jfm.previous,Confirmed,9.369511574284276,zeroflowfirst,South Great Plains
+p_mm_amj.previous,Confirmed,6.690107890604542,zeroflowfirst,South Great Plains
+pet_mm_cy.previous,Confirmed,10.666543038380482,zeroflowfirst,South Great Plains
+pet_mm_jas.previous,Confirmed,7.253832836384636,zeroflowfirst,South Great Plains
+pet_mm_ond.previous,Confirmed,7.521179154559649,zeroflowfirst,South Great Plains
+pet_mm_jfm.previous,Confirmed,9.183814511576154,zeroflowfirst,South Great Plains
+pet_mm_amj.previous,Confirmed,7.66719985529777,zeroflowfirst,South Great Plains
+T_max_c_cy.previous,Confirmed,9.25811939441486,zeroflowfirst,South Great Plains
+T_max_c_jas.previous,Confirmed,6.891316116556649,zeroflowfirst,South Great Plains
+T_max_c_ond.previous,Confirmed,8.400308737087945,zeroflowfirst,South Great Plains
+T_max_c_jfm.previous,Confirmed,9.15771779354432,zeroflowfirst,South Great Plains
+T_max_c_amj.previous,Confirmed,8.0514465448655,zeroflowfirst,South Great Plains
+swe_mm_cy.previous,Confirmed,5.078400161955939,zeroflowfirst,South Great Plains
+swe_mm_jas.previous,Rejected,-Inf,zeroflowfirst,South Great Plains
+swe_mm_ond.previous,Confirmed,3.9195582984423187,zeroflowfirst,South Great Plains
+swe_mm_jfm.previous,Confirmed,6.051013102327075,zeroflowfirst,South Great Plains
+swe_mm_amj.previous,Tentative,2.872966638292128,zeroflowfirst,South Great Plains
+p.pet_cy.previous,Confirmed,13.944768354212457,zeroflowfirst,South Great Plains
+swe.p_cy.previous,Confirmed,5.608085960996101,zeroflowfirst,South Great Plains
+p.pet_jfm.previous,Confirmed,11.869895457011598,zeroflowfirst,South Great Plains
+swe.p_jfm.previous,Confirmed,5.954909501978193,zeroflowfirst,South Great Plains
+p.pet_amj.previous,Confirmed,7.002756834188527,zeroflowfirst,South Great Plains
+swe.p_amj.previous,Tentative,2.8356977917596504,zeroflowfirst,South Great Plains
+p.pet_jas.previous,Confirmed,6.371554298953083,zeroflowfirst,South Great Plains
+swe.p_jas.previous,Rejected,-Inf,zeroflowfirst,South Great Plains
+p.pet_ond.previous,Confirmed,8.941021493784644,zeroflowfirst,South Great Plains
+swe.p_ond.previous,Confirmed,5.1451806464262715,zeroflowfirst,South Great Plains
+dams_n,Confirmed,6.1072778411205215,zeroflowfirst,Western Desert
+maxstorage_af,Confirmed,5.536694261768983,zeroflowfirst,Western Desert
+normstorage_af,Confirmed,5.031897090755672,zeroflowfirst,Western Desert
+majordams_n,Confirmed,4.77048009644925,zeroflowfirst,Western Desert
+wuse_mm,Confirmed,7.085499698478991,zeroflowfirst,Western Desert
+irrig_prc,Confirmed,7.798873221206535,zeroflowfirst,Western Desert
+lulc_water_prc,Confirmed,6.42946335817059,zeroflowfirst,Western Desert
+lulc_dev_prc,Confirmed,4.33718157260597,zeroflowfirst,Western Desert
+lulc_wetland_prc,Confirmed,4.201230592162667,zeroflowfirst,Western Desert
+lulc_forest_prc,Confirmed,9.685579016546585,zeroflowfirst,Western Desert
+lulc_barren_prc,Confirmed,5.281445203628739,zeroflowfirst,Western Desert
+lulc_grass_prc,Confirmed,6.9952077185266885,zeroflowfirst,Western Desert
+lulc_ag_prc,Tentative,3.2482283504874534,zeroflowfirst,Western Desert
+drain_sqkm,Confirmed,8.806713608447204,zeroflowfirst,Western Desert
+elev_mean_m_basin,Confirmed,8.134606145369116,zeroflowfirst,Western Desert
+slope_pct,Confirmed,7.700851542807247,zeroflowfirst,Western Desert
+awcave,Confirmed,6.414768861968822,zeroflowfirst,Western Desert
+permave,Confirmed,10.154767517426807,zeroflowfirst,Western Desert
+topwet,Confirmed,6.738269896838571,zeroflowfirst,Western Desert
+depth_bedrock_m,Confirmed,7.8727752394585,zeroflowfirst,Western Desert
+porosity,Confirmed,11.106480275855848,zeroflowfirst,Western Desert
+storage_m,Confirmed,8.967124922004249,zeroflowfirst,Western Desert
+clayave,Confirmed,7.815872704060855,zeroflowfirst,Western Desert
+siltave,Confirmed,6.159734937250339,zeroflowfirst,Western Desert
+sandave,Confirmed,8.687732714005385,zeroflowfirst,Western Desert
+p_mm_cy,Tentative,3.0682028281365468,zeroflowfirst,Western Desert
+p_mm_jas,Confirmed,5.957132901811397,zeroflowfirst,Western Desert
+p_mm_ond,Tentative,2.45834462458331,zeroflowfirst,Western Desert
+p_mm_jfm,Confirmed,4.935857446017265,zeroflowfirst,Western Desert
+p_mm_amj,Confirmed,3.2463255774582795,zeroflowfirst,Western Desert
+pet_mm_cy,Confirmed,4.377687322177649,zeroflowfirst,Western Desert
+pet_mm_jas,Confirmed,4.44777548689464,zeroflowfirst,Western Desert
+pet_mm_ond,Confirmed,4.339553316688122,zeroflowfirst,Western Desert
+pet_mm_jfm,Confirmed,3.4144266251781157,zeroflowfirst,Western Desert
+pet_mm_amj,Confirmed,5.732660239340598,zeroflowfirst,Western Desert
+T_max_c_cy,Confirmed,6.068931742868395,zeroflowfirst,Western Desert
+T_max_c_jas,Confirmed,4.884146667022979,zeroflowfirst,Western Desert
+T_max_c_ond,Confirmed,5.998537245559481,zeroflowfirst,Western Desert
+T_max_c_jfm,Confirmed,3.7395272032623974,zeroflowfirst,Western Desert
+T_max_c_amj,Confirmed,6.832921999988585,zeroflowfirst,Western Desert
+swe_mm_cy,Confirmed,3.8182662061808323,zeroflowfirst,Western Desert
+swe_mm_jas,Rejected,-Inf,zeroflowfirst,Western Desert
+swe_mm_ond,Tentative,2.6189227120458547,zeroflowfirst,Western Desert
+swe_mm_jfm,Confirmed,3.524831987442132,zeroflowfirst,Western Desert
+swe_mm_amj,Confirmed,5.2309490794247955,zeroflowfirst,Western Desert
+p.pet_cy,Tentative,3.2704683738066995,zeroflowfirst,Western Desert
+swe.p_cy,Confirmed,4.041084402810523,zeroflowfirst,Western Desert
+p.pet_jfm,Confirmed,4.934590082006605,zeroflowfirst,Western Desert
+swe.p_jfm,Tentative,2.917703950940687,zeroflowfirst,Western Desert
+p.pet_amj,Confirmed,3.5295349728948295,zeroflowfirst,Western Desert
+swe.p_amj,Confirmed,5.188642827932174,zeroflowfirst,Western Desert
+p.pet_jas,Confirmed,5.851324752360705,zeroflowfirst,Western Desert
+swe.p_jas,Rejected,-Inf,zeroflowfirst,Western Desert
+p.pet_ond,Confirmed,4.115043063842817,zeroflowfirst,Western Desert
+swe.p_ond,Tentative,2.449340794937947,zeroflowfirst,Western Desert
+p_mm_cy.previous,Confirmed,5.58732993341696,zeroflowfirst,Western Desert
+p_mm_jas.previous,Confirmed,5.565071921224372,zeroflowfirst,Western Desert
+p_mm_ond.previous,Rejected,-Inf,zeroflowfirst,Western Desert
+p_mm_jfm.previous,Confirmed,4.978607637604272,zeroflowfirst,Western Desert
+p_mm_amj.previous,Rejected,-Inf,zeroflowfirst,Western Desert
+pet_mm_cy.previous,Confirmed,4.930400808510255,zeroflowfirst,Western Desert
+pet_mm_jas.previous,Confirmed,5.0034541538029975,zeroflowfirst,Western Desert
+pet_mm_ond.previous,Confirmed,4.156118619776877,zeroflowfirst,Western Desert
+pet_mm_jfm.previous,Confirmed,6.210686797503628,zeroflowfirst,Western Desert
+pet_mm_amj.previous,Confirmed,4.901502844344298,zeroflowfirst,Western Desert
+T_max_c_cy.previous,Confirmed,6.065988609812544,zeroflowfirst,Western Desert
+T_max_c_jas.previous,Confirmed,4.5247086003887285,zeroflowfirst,Western Desert
+T_max_c_ond.previous,Confirmed,4.734831351898225,zeroflowfirst,Western Desert
+T_max_c_jfm.previous,Confirmed,4.173238600791933,zeroflowfirst,Western Desert
+T_max_c_amj.previous,Confirmed,5.534035507258668,zeroflowfirst,Western Desert
+swe_mm_cy.previous,Confirmed,3.902462858630882,zeroflowfirst,Western Desert
+swe_mm_jas.previous,Rejected,-Inf,zeroflowfirst,Western Desert
+swe_mm_ond.previous,Tentative,2.5120888012511053,zeroflowfirst,Western Desert
+swe_mm_jfm.previous,Tentative,3.1438152179809635,zeroflowfirst,Western Desert
+swe_mm_amj.previous,Confirmed,5.037113199565279,zeroflowfirst,Western Desert
+p.pet_cy.previous,Confirmed,4.977797785316845,zeroflowfirst,Western Desert
+swe.p_cy.previous,Confirmed,4.69513341614169,zeroflowfirst,Western Desert
+p.pet_jfm.previous,Confirmed,5.651536958805239,zeroflowfirst,Western Desert
+swe.p_jfm.previous,Tentative,3.260960343713425,zeroflowfirst,Western Desert
+p.pet_amj.previous,Tentative,2.4193913312262483,zeroflowfirst,Western Desert
+swe.p_amj.previous,Confirmed,4.970433254358525,zeroflowfirst,Western Desert
+p.pet_jas.previous,Confirmed,5.034865053929619,zeroflowfirst,Western Desert
+swe.p_jas.previous,Rejected,-Inf,zeroflowfirst,Western Desert
+p.pet_ond.previous,Rejected,-Inf,zeroflowfirst,Western Desert
+swe.p_ond.previous,Tentative,3.109322517240555,zeroflowfirst,Western Desert
+dams_n,Confirmed,6.348175209723519,zeroflowfirst,Eastern Forests
+maxstorage_af,Confirmed,5.932473867167253,zeroflowfirst,Eastern Forests
+normstorage_af,Confirmed,6.453003115637769,zeroflowfirst,Eastern Forests
+majordams_n,Confirmed,6.007151470225136,zeroflowfirst,Eastern Forests
+wuse_mm,Confirmed,5.02214773470039,zeroflowfirst,Eastern Forests
+irrig_prc,Confirmed,3.388531594762837,zeroflowfirst,Eastern Forests
+lulc_water_prc,Confirmed,7.843914975988319,zeroflowfirst,Eastern Forests
+lulc_dev_prc,Confirmed,6.47440537920511,zeroflowfirst,Eastern Forests
+lulc_wetland_prc,Confirmed,5.513486399292565,zeroflowfirst,Eastern Forests
+lulc_forest_prc,Confirmed,5.585597115968315,zeroflowfirst,Eastern Forests
+lulc_barren_prc,Confirmed,4.225966183879693,zeroflowfirst,Eastern Forests
+lulc_grass_prc,Confirmed,4.38476735567385,zeroflowfirst,Eastern Forests
+lulc_ag_prc,Confirmed,6.766163198497913,zeroflowfirst,Eastern Forests
+drain_sqkm,Confirmed,6.992676809185226,zeroflowfirst,Eastern Forests
+elev_mean_m_basin,Confirmed,7.121521577330547,zeroflowfirst,Eastern Forests
+slope_pct,Confirmed,5.410716813957354,zeroflowfirst,Eastern Forests
+awcave,Confirmed,5.114817173529439,zeroflowfirst,Eastern Forests
+permave,Confirmed,7.43750988784019,zeroflowfirst,Eastern Forests
+topwet,Confirmed,3.92880825694677,zeroflowfirst,Eastern Forests
+depth_bedrock_m,Confirmed,5.845788202489749,zeroflowfirst,Eastern Forests
+porosity,Confirmed,4.8970282538342484,zeroflowfirst,Eastern Forests
+storage_m,Confirmed,5.331768100602125,zeroflowfirst,Eastern Forests
+clayave,Confirmed,9.414735301042251,zeroflowfirst,Eastern Forests
+siltave,Confirmed,7.768121085945788,zeroflowfirst,Eastern Forests
+sandave,Confirmed,8.710787486309853,zeroflowfirst,Eastern Forests
+p_mm_cy,Confirmed,6.714867573203971,zeroflowfirst,Eastern Forests
+p_mm_jas,Confirmed,8.37875300254333,zeroflowfirst,Eastern Forests
+p_mm_ond,Tentative,3.1175006860215033,zeroflowfirst,Eastern Forests
+p_mm_jfm,Tentative,2.409433596225985,zeroflowfirst,Eastern Forests
+p_mm_amj,Confirmed,13.329250688774021,zeroflowfirst,Eastern Forests
+pet_mm_cy,Confirmed,5.9666193039804565,zeroflowfirst,Eastern Forests
+pet_mm_jas,Confirmed,5.839981414330043,zeroflowfirst,Eastern Forests
+pet_mm_ond,Confirmed,5.436854982224014,zeroflowfirst,Eastern Forests
+pet_mm_jfm,Confirmed,4.074299032964028,zeroflowfirst,Eastern Forests
+pet_mm_amj,Confirmed,10.707649497326592,zeroflowfirst,Eastern Forests
+T_max_c_cy,Confirmed,5.353024430603108,zeroflowfirst,Eastern Forests
+T_max_c_jas,Confirmed,5.798973115786788,zeroflowfirst,Eastern Forests
+T_max_c_ond,Confirmed,6.323627759860164,zeroflowfirst,Eastern Forests
+T_max_c_jfm,Confirmed,4.415489477305026,zeroflowfirst,Eastern Forests
+T_max_c_amj,Confirmed,8.165873111422709,zeroflowfirst,Eastern Forests
+swe_mm_cy,Tentative,2.7360392578915964,zeroflowfirst,Eastern Forests
+swe_mm_jas,Rejected,-Inf,zeroflowfirst,Eastern Forests
+swe_mm_ond,Rejected,-Inf,zeroflowfirst,Eastern Forests
+swe_mm_jfm,Rejected,-Inf,zeroflowfirst,Eastern Forests
+swe_mm_amj,Rejected,-Inf,zeroflowfirst,Eastern Forests
+p.pet_cy,Confirmed,5.598330870359108,zeroflowfirst,Eastern Forests
+swe.p_cy,Confirmed,3.403145843809295,zeroflowfirst,Eastern Forests
+p.pet_jfm,Confirmed,3.5885947179813926,zeroflowfirst,Eastern Forests
+swe.p_jfm,Tentative,3.156503424553927,zeroflowfirst,Eastern Forests
+p.pet_amj,Confirmed,13.825406658620018,zeroflowfirst,Eastern Forests
+swe.p_amj,Rejected,-Inf,zeroflowfirst,Eastern Forests
+p.pet_jas,Confirmed,8.060713873626586,zeroflowfirst,Eastern Forests
+swe.p_jas,Rejected,-Inf,zeroflowfirst,Eastern Forests
+p.pet_ond,Confirmed,4.98086382436499,zeroflowfirst,Eastern Forests
+swe.p_ond,Rejected,-Inf,zeroflowfirst,Eastern Forests
+p_mm_cy.previous,Confirmed,6.968188098404459,zeroflowfirst,Eastern Forests
+p_mm_jas.previous,Confirmed,5.331721264982044,zeroflowfirst,Eastern Forests
+p_mm_ond.previous,Confirmed,8.484598878329223,zeroflowfirst,Eastern Forests
+p_mm_jfm.previous,Confirmed,8.824304009335492,zeroflowfirst,Eastern Forests
+p_mm_amj.previous,Rejected,-Inf,zeroflowfirst,Eastern Forests
+pet_mm_cy.previous,Confirmed,5.165123330880412,zeroflowfirst,Eastern Forests
+pet_mm_jas.previous,Confirmed,4.552099584385588,zeroflowfirst,Eastern Forests
+pet_mm_ond.previous,Confirmed,6.074707883692466,zeroflowfirst,Eastern Forests
+pet_mm_jfm.previous,Confirmed,9.839198583881373,zeroflowfirst,Eastern Forests
+pet_mm_amj.previous,Confirmed,5.147761367552372,zeroflowfirst,Eastern Forests
+T_max_c_cy.previous,Confirmed,8.108913059451941,zeroflowfirst,Eastern Forests
+T_max_c_jas.previous,Confirmed,4.901330773624293,zeroflowfirst,Eastern Forests
+T_max_c_ond.previous,Confirmed,6.129480327968396,zeroflowfirst,Eastern Forests
+T_max_c_jfm.previous,Confirmed,10.170428004521568,zeroflowfirst,Eastern Forests
+T_max_c_amj.previous,Confirmed,5.587186804695973,zeroflowfirst,Eastern Forests
+swe_mm_cy.previous,Rejected,2.54549321440744,zeroflowfirst,Eastern Forests
+swe_mm_jas.previous,Rejected,-Inf,zeroflowfirst,Eastern Forests
+swe_mm_ond.previous,Rejected,-Inf,zeroflowfirst,Eastern Forests
+swe_mm_jfm.previous,Rejected,-Inf,zeroflowfirst,Eastern Forests
+swe_mm_amj.previous,Rejected,-Inf,zeroflowfirst,Eastern Forests
+p.pet_cy.previous,Confirmed,10.060718312191204,zeroflowfirst,Eastern Forests
+swe.p_cy.previous,Tentative,2.8924079989431637,zeroflowfirst,Eastern Forests
+p.pet_jfm.previous,Confirmed,11.922012672411165,zeroflowfirst,Eastern Forests
+swe.p_jfm.previous,Tentative,2.786260886006071,zeroflowfirst,Eastern Forests
+p.pet_amj.previous,Tentative,3.336426548725376,zeroflowfirst,Eastern Forests
+swe.p_amj.previous,Rejected,-Inf,zeroflowfirst,Eastern Forests
+p.pet_jas.previous,Confirmed,5.607204937391497,zeroflowfirst,Eastern Forests
+swe.p_jas.previous,Rejected,-Inf,zeroflowfirst,Eastern Forests
+p.pet_ond.previous,Confirmed,9.183865895202047,zeroflowfirst,Eastern Forests
+swe.p_ond.previous,Rejected,1.795529998316783,zeroflowfirst,Eastern Forests
+dams_n,Confirmed,8.102791841735248,zeroflowfirst,Western Mountains
+maxstorage_af,Confirmed,12.487554007790596,zeroflowfirst,Western Mountains
+normstorage_af,Confirmed,12.317313156422507,zeroflowfirst,Western Mountains
+majordams_n,Confirmed,10.339343261038739,zeroflowfirst,Western Mountains
+wuse_mm,Confirmed,9.442962947631415,zeroflowfirst,Western Mountains
+irrig_prc,Confirmed,6.646065995586477,zeroflowfirst,Western Mountains
+lulc_water_prc,Confirmed,10.938187279976576,zeroflowfirst,Western Mountains
+lulc_dev_prc,Confirmed,6.665975414219678,zeroflowfirst,Western Mountains
+lulc_wetland_prc,Confirmed,7.377973164452772,zeroflowfirst,Western Mountains
+lulc_forest_prc,Confirmed,10.387786789391344,zeroflowfirst,Western Mountains
+lulc_barren_prc,Confirmed,9.783625283754324,zeroflowfirst,Western Mountains
+lulc_grass_prc,Confirmed,9.685389701973223,zeroflowfirst,Western Mountains
+lulc_ag_prc,Confirmed,6.672039241963888,zeroflowfirst,Western Mountains
+drain_sqkm,Confirmed,9.287460906292777,zeroflowfirst,Western Mountains
+elev_mean_m_basin,Confirmed,9.23888821357302,zeroflowfirst,Western Mountains
+slope_pct,Confirmed,9.120423110534862,zeroflowfirst,Western Mountains
+awcave,Confirmed,7.377446446195069,zeroflowfirst,Western Mountains
+permave,Confirmed,8.431440200534837,zeroflowfirst,Western Mountains
+topwet,Confirmed,7.854624317805336,zeroflowfirst,Western Mountains
+depth_bedrock_m,Confirmed,8.388556285128043,zeroflowfirst,Western Mountains
+porosity,Confirmed,10.595677984206613,zeroflowfirst,Western Mountains
+storage_m,Confirmed,8.843322839947248,zeroflowfirst,Western Mountains
+clayave,Confirmed,8.009437114774741,zeroflowfirst,Western Mountains
+siltave,Confirmed,8.848166630386409,zeroflowfirst,Western Mountains
+sandave,Confirmed,8.082371433294464,zeroflowfirst,Western Mountains
+p_mm_cy,Confirmed,5.047488809319668,zeroflowfirst,Western Mountains
+p_mm_jas,Confirmed,5.311585587562625,zeroflowfirst,Western Mountains
+p_mm_ond,Confirmed,5.745185438494688,zeroflowfirst,Western Mountains
+p_mm_jfm,Confirmed,6.17636761242106,zeroflowfirst,Western Mountains
+p_mm_amj,Confirmed,4.715065145803535,zeroflowfirst,Western Mountains
+pet_mm_cy,Confirmed,6.6661892509362906,zeroflowfirst,Western Mountains
+pet_mm_jas,Confirmed,5.3963932681089455,zeroflowfirst,Western Mountains
+pet_mm_ond,Confirmed,5.539220343438065,zeroflowfirst,Western Mountains
+pet_mm_jfm,Confirmed,5.963116694245315,zeroflowfirst,Western Mountains
+pet_mm_amj,Confirmed,8.192952842322418,zeroflowfirst,Western Mountains
+T_max_c_cy,Confirmed,7.116299320471523,zeroflowfirst,Western Mountains
+T_max_c_jas,Confirmed,5.9541702440698625,zeroflowfirst,Western Mountains
+T_max_c_ond,Confirmed,6.112231367279191,zeroflowfirst,Western Mountains
+T_max_c_jfm,Confirmed,5.790197220484786,zeroflowfirst,Western Mountains
+T_max_c_amj,Confirmed,5.7612329734476715,zeroflowfirst,Western Mountains
+swe_mm_cy,Confirmed,4.887476524184328,zeroflowfirst,Western Mountains
+swe_mm_jas,Rejected,-Inf,zeroflowfirst,Western Mountains
+swe_mm_ond,Confirmed,4.076686072201823,zeroflowfirst,Western Mountains
+swe_mm_jfm,Confirmed,5.110451874761706,zeroflowfirst,Western Mountains
+swe_mm_amj,Confirmed,4.9051087570216305,zeroflowfirst,Western Mountains
+p.pet_cy,Confirmed,5.913435827473956,zeroflowfirst,Western Mountains
+swe.p_cy,Confirmed,5.324873453985531,zeroflowfirst,Western Mountains
+p.pet_jfm,Confirmed,5.933943441998474,zeroflowfirst,Western Mountains
+swe.p_jfm,Confirmed,4.107241733009148,zeroflowfirst,Western Mountains
+p.pet_amj,Confirmed,4.95036717877303,zeroflowfirst,Western Mountains
+swe.p_amj,Confirmed,4.968726174798227,zeroflowfirst,Western Mountains
+p.pet_jas,Confirmed,5.46089438433859,zeroflowfirst,Western Mountains
+swe.p_jas,Rejected,0.8485293064830975,zeroflowfirst,Western Mountains
+p.pet_ond,Confirmed,6.039010005827187,zeroflowfirst,Western Mountains
+swe.p_ond,Confirmed,4.049167043072438,zeroflowfirst,Western Mountains
+p_mm_cy.previous,Confirmed,9.547596054068709,zeroflowfirst,Western Mountains
+p_mm_jas.previous,Confirmed,4.772880048783334,zeroflowfirst,Western Mountains
+p_mm_ond.previous,Confirmed,7.906916264480195,zeroflowfirst,Western Mountains
+p_mm_jfm.previous,Confirmed,9.89126635723111,zeroflowfirst,Western Mountains
+p_mm_amj.previous,Confirmed,5.190782463820592,zeroflowfirst,Western Mountains
+pet_mm_cy.previous,Confirmed,7.604581363495637,zeroflowfirst,Western Mountains
+pet_mm_jas.previous,Confirmed,5.138418564969192,zeroflowfirst,Western Mountains
+pet_mm_ond.previous,Confirmed,6.411386458822033,zeroflowfirst,Western Mountains
+pet_mm_jfm.previous,Confirmed,7.777057015218786,zeroflowfirst,Western Mountains
+pet_mm_amj.previous,Confirmed,6.824890262177605,zeroflowfirst,Western Mountains
+T_max_c_cy.previous,Confirmed,6.47899917693574,zeroflowfirst,Western Mountains
+T_max_c_jas.previous,Confirmed,6.432092734878006,zeroflowfirst,Western Mountains
+T_max_c_ond.previous,Confirmed,6.7292922409449965,zeroflowfirst,Western Mountains
+T_max_c_jfm.previous,Confirmed,4.887712574144322,zeroflowfirst,Western Mountains
+T_max_c_amj.previous,Confirmed,5.376856454059235,zeroflowfirst,Western Mountains
+swe_mm_cy.previous,Confirmed,5.068863345190065,zeroflowfirst,Western Mountains
+swe_mm_jas.previous,Rejected,1.842245164790401,zeroflowfirst,Western Mountains
+swe_mm_ond.previous,Confirmed,3.42370501101782,zeroflowfirst,Western Mountains
+swe_mm_jfm.previous,Confirmed,5.703014153039654,zeroflowfirst,Western Mountains
+swe_mm_amj.previous,Confirmed,4.695565800203575,zeroflowfirst,Western Mountains
+p.pet_cy.previous,Confirmed,10.096598336979499,zeroflowfirst,Western Mountains
+swe.p_cy.previous,Confirmed,4.5025029004735995,zeroflowfirst,Western Mountains
+p.pet_jfm.previous,Confirmed,9.655593690024064,zeroflowfirst,Western Mountains
+swe.p_jfm.previous,Confirmed,3.769789537046244,zeroflowfirst,Western Mountains
+p.pet_amj.previous,Confirmed,5.422179063010641,zeroflowfirst,Western Mountains
+swe.p_amj.previous,Confirmed,4.011517006393886,zeroflowfirst,Western Mountains
+p.pet_jas.previous,Confirmed,5.150707954306435,zeroflowfirst,Western Mountains
+swe.p_jas.previous,Rejected,2.4618736814310287,zeroflowfirst,Western Mountains
+p.pet_ond.previous,Confirmed,7.171021193361312,zeroflowfirst,Western Mountains
+swe.p_ond.previous,Confirmed,4.3393071993182,zeroflowfirst,Western Mountains
+dams_n,Confirmed,10.629804080835793,peak2z_length,National
+maxstorage_af,Confirmed,11.817538400052843,peak2z_length,National
+normstorage_af,Confirmed,12.081846939343448,peak2z_length,National
+majordams_n,Confirmed,9.69430608722695,peak2z_length,National
+wuse_mm,Confirmed,17.524025583368914,peak2z_length,National
+irrig_prc,Confirmed,13.895578117427064,peak2z_length,National
+lulc_water_prc,Confirmed,11.986104039352968,peak2z_length,National
+lulc_dev_prc,Confirmed,15.365709774701836,peak2z_length,National
+lulc_wetland_prc,Confirmed,10.670568158795616,peak2z_length,National
+lulc_forest_prc,Confirmed,10.467343531521227,peak2z_length,National
+lulc_barren_prc,Confirmed,12.679660384518016,peak2z_length,National
+lulc_grass_prc,Confirmed,12.574710542345667,peak2z_length,National
+lulc_ag_prc,Confirmed,12.106462738148316,peak2z_length,National
+drain_sqkm,Confirmed,13.900046978375084,peak2z_length,National
+elev_mean_m_basin,Confirmed,10.529021809690734,peak2z_length,National
+slope_pct,Confirmed,10.843911520130346,peak2z_length,National
+awcave,Confirmed,10.776256072034949,peak2z_length,National
+permave,Confirmed,10.81487853341152,peak2z_length,National
+topwet,Confirmed,9.443445765786379,peak2z_length,National
+depth_bedrock_m,Confirmed,13.034260554916814,peak2z_length,National
+porosity,Confirmed,12.723118897499477,peak2z_length,National
+storage_m,Confirmed,13.3548699250087,peak2z_length,National
+clayave,Confirmed,9.331122195839093,peak2z_length,National
+siltave,Confirmed,8.360848878270591,peak2z_length,National
+sandave,Confirmed,8.486151409977335,peak2z_length,National
+p_mm_cy,Confirmed,6.12511877378129,peak2z_length,National
+p_mm_jas,Confirmed,7.974133969313073,peak2z_length,National
+p_mm_ond,Confirmed,5.537862882196004,peak2z_length,National
+p_mm_jfm,Confirmed,6.616331132793387,peak2z_length,National
+p_mm_amj,Confirmed,7.650033090503256,peak2z_length,National
+pet_mm_cy,Confirmed,7.133298505264034,peak2z_length,National
+pet_mm_jas,Confirmed,6.579583792256706,peak2z_length,National
+pet_mm_ond,Confirmed,6.993837384842072,peak2z_length,National
+pet_mm_jfm,Confirmed,8.637005069377109,peak2z_length,National
+pet_mm_amj,Confirmed,8.679059927148911,peak2z_length,National
+T_max_c_cy,Confirmed,8.435288137274895,peak2z_length,National
+T_max_c_jas,Confirmed,7.0604715725813625,peak2z_length,National
+T_max_c_ond,Confirmed,7.243039004541055,peak2z_length,National
+T_max_c_jfm,Confirmed,7.285402174753376,peak2z_length,National
+T_max_c_amj,Confirmed,7.382022792568267,peak2z_length,National
+swe_mm_cy,Confirmed,5.914201755187805,peak2z_length,National
+swe_mm_jas,Rejected,-Inf,peak2z_length,National
+swe_mm_ond,Confirmed,5.623037640044754,peak2z_length,National
+swe_mm_jfm,Confirmed,5.080826119381862,peak2z_length,National
+swe_mm_amj,Confirmed,4.221974806500765,peak2z_length,National
+p.pet_cy,Confirmed,6.833396684019603,peak2z_length,National
+swe.p_cy,Confirmed,5.138712386462356,peak2z_length,National
+p.pet_jfm,Confirmed,7.000458832002914,peak2z_length,National
+swe.p_jfm,Confirmed,5.114928239059428,peak2z_length,National
+p.pet_amj,Confirmed,7.5208449929570005,peak2z_length,National
+swe.p_amj,Confirmed,4.961799165247319,peak2z_length,National
+p.pet_jas,Confirmed,8.665071925105897,peak2z_length,National
+swe.p_jas,Tentative,2.8276882229995746,peak2z_length,National
+p.pet_ond,Confirmed,6.399416251025422,peak2z_length,National
+swe.p_ond,Confirmed,5.842334591045331,peak2z_length,National
+p_mm_cy.previous,Confirmed,8.202823949815524,peak2z_length,National
+p_mm_jas.previous,Confirmed,8.963481816738106,peak2z_length,National
+p_mm_ond.previous,Confirmed,5.549232811349735,peak2z_length,National
+p_mm_jfm.previous,Confirmed,8.8146606211877,peak2z_length,National
+p_mm_amj.previous,Confirmed,6.749818582055898,peak2z_length,National
+pet_mm_cy.previous,Confirmed,8.288173458244257,peak2z_length,National
+pet_mm_jas.previous,Confirmed,7.228583821889434,peak2z_length,National
+pet_mm_ond.previous,Confirmed,8.227542971736462,peak2z_length,National
+pet_mm_jfm.previous,Confirmed,9.067541063447237,peak2z_length,National
+pet_mm_amj.previous,Confirmed,7.415596706672054,peak2z_length,National
+T_max_c_cy.previous,Confirmed,8.470401314944576,peak2z_length,National
+T_max_c_jas.previous,Confirmed,6.982093091954331,peak2z_length,National
+T_max_c_ond.previous,Confirmed,7.486844022846743,peak2z_length,National
+T_max_c_jfm.previous,Confirmed,7.772827490574861,peak2z_length,National
+T_max_c_amj.previous,Confirmed,7.7457072217911955,peak2z_length,National
+swe_mm_cy.previous,Confirmed,5.7867982863812255,peak2z_length,National
+swe_mm_jas.previous,Rejected,-Inf,peak2z_length,National
+swe_mm_ond.previous,Confirmed,4.758205123016456,peak2z_length,National
+swe_mm_jfm.previous,Confirmed,5.20612633373928,peak2z_length,National
+swe_mm_amj.previous,Confirmed,4.88545102846924,peak2z_length,National
+p.pet_cy.previous,Confirmed,8.456670233375128,peak2z_length,National
+swe.p_cy.previous,Confirmed,6.443291629528126,peak2z_length,National
+p.pet_jfm.previous,Confirmed,8.873896435154968,peak2z_length,National
+swe.p_jfm.previous,Confirmed,5.284409657724024,peak2z_length,National
+p.pet_amj.previous,Confirmed,6.762953051962801,peak2z_length,National
+swe.p_amj.previous,Confirmed,4.942348827303969,peak2z_length,National
+p.pet_jas.previous,Confirmed,8.44197026141777,peak2z_length,National
+swe.p_jas.previous,Rejected,-Inf,peak2z_length,National
+p.pet_ond.previous,Confirmed,6.22253225361868,peak2z_length,National
+swe.p_ond.previous,Confirmed,4.890138825281417,peak2z_length,National
+dams_n,Confirmed,6.019288613101451,peak2z_length,North Great Plains
+maxstorage_af,Confirmed,6.144284412211662,peak2z_length,North Great Plains
+normstorage_af,Confirmed,6.443621882456191,peak2z_length,North Great Plains
+majordams_n,Confirmed,5.921928198609712,peak2z_length,North Great Plains
+wuse_mm,Confirmed,3.8016656062209746,peak2z_length,North Great Plains
+irrig_prc,Confirmed,3.769052655294279,peak2z_length,North Great Plains
+lulc_water_prc,Confirmed,3.6125765414620234,peak2z_length,North Great Plains
+lulc_dev_prc,Tentative,3.1041027938620536,peak2z_length,North Great Plains
+lulc_wetland_prc,Confirmed,5.052344505796204,peak2z_length,North Great Plains
+lulc_forest_prc,Confirmed,3.8046297528555484,peak2z_length,North Great Plains
+lulc_barren_prc,Tentative,3.0450887273100555,peak2z_length,North Great Plains
+lulc_grass_prc,Confirmed,4.015440652999246,peak2z_length,North Great Plains
+lulc_ag_prc,Confirmed,4.588305036925722,peak2z_length,North Great Plains
+drain_sqkm,Confirmed,6.450379803626316,peak2z_length,North Great Plains
+elev_mean_m_basin,Confirmed,4.404951917645982,peak2z_length,North Great Plains
+slope_pct,Confirmed,4.172455458673608,peak2z_length,North Great Plains
+awcave,Confirmed,5.15286759167519,peak2z_length,North Great Plains
+permave,Confirmed,5.69967568742938,peak2z_length,North Great Plains
+topwet,Tentative,2.7665438636131987,peak2z_length,North Great Plains
+depth_bedrock_m,Confirmed,4.510252900608285,peak2z_length,North Great Plains
+porosity,Confirmed,7.063736766796068,peak2z_length,North Great Plains
+storage_m,Confirmed,5.319624188848655,peak2z_length,North Great Plains
+clayave,Confirmed,5.874939646614192,peak2z_length,North Great Plains
+siltave,Confirmed,5.855327274010932,peak2z_length,North Great Plains
+sandave,Confirmed,5.319129887003614,peak2z_length,North Great Plains
+p_mm_cy,Rejected,-Inf,peak2z_length,North Great Plains
+p_mm_jas,Rejected,-Inf,peak2z_length,North Great Plains
+p_mm_ond,Rejected,-Inf,peak2z_length,North Great Plains
+p_mm_jfm,Rejected,-Inf,peak2z_length,North Great Plains
+p_mm_amj,Rejected,-Inf,peak2z_length,North Great Plains
+pet_mm_cy,Rejected,0.5227744852131714,peak2z_length,North Great Plains
+pet_mm_jas,Rejected,-Inf,peak2z_length,North Great Plains
+pet_mm_ond,Tentative,2.337470340351896,peak2z_length,North Great Plains
+pet_mm_jfm,Tentative,2.3278327991488963,peak2z_length,North Great Plains
+pet_mm_amj,Rejected,-Inf,peak2z_length,North Great Plains
+T_max_c_cy,Confirmed,3.391006150764751,peak2z_length,North Great Plains
+T_max_c_jas,Rejected,-Inf,peak2z_length,North Great Plains
+T_max_c_ond,Confirmed,3.6269777875514486,peak2z_length,North Great Plains
+T_max_c_jfm,Confirmed,3.386056906437965,peak2z_length,North Great Plains
+T_max_c_amj,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_cy,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_jas,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_ond,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_jfm,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_amj,Rejected,-Inf,peak2z_length,North Great Plains
+p.pet_cy,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_cy,Rejected,-Inf,peak2z_length,North Great Plains
+p.pet_jfm,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_jfm,Tentative,3.294909378472535,peak2z_length,North Great Plains
+p.pet_amj,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_amj,Rejected,-Inf,peak2z_length,North Great Plains
+p.pet_jas,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_jas,Rejected,-Inf,peak2z_length,North Great Plains
+p.pet_ond,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_ond,Rejected,-Inf,peak2z_length,North Great Plains
+p_mm_cy.previous,Confirmed,3.308194334018467,peak2z_length,North Great Plains
+p_mm_jas.previous,Rejected,-Inf,peak2z_length,North Great Plains
+p_mm_ond.previous,Rejected,-Inf,peak2z_length,North Great Plains
+p_mm_jfm.previous,Rejected,-Inf,peak2z_length,North Great Plains
+p_mm_amj.previous,Rejected,-Inf,peak2z_length,North Great Plains
+pet_mm_cy.previous,Tentative,2.7246270778640027,peak2z_length,North Great Plains
+pet_mm_jas.previous,Tentative,2.9181790341416614,peak2z_length,North Great Plains
+pet_mm_ond.previous,Confirmed,3.5781259546782667,peak2z_length,North Great Plains
+pet_mm_jfm.previous,Tentative,3.1816398767749408,peak2z_length,North Great Plains
+pet_mm_amj.previous,Rejected,-Inf,peak2z_length,North Great Plains
+T_max_c_cy.previous,Tentative,2.862773098702486,peak2z_length,North Great Plains
+T_max_c_jas.previous,Confirmed,3.380171675856145,peak2z_length,North Great Plains
+T_max_c_ond.previous,Tentative,2.9062169623105607,peak2z_length,North Great Plains
+T_max_c_jfm.previous,Tentative,2.6080619016117383,peak2z_length,North Great Plains
+T_max_c_amj.previous,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_cy.previous,Rejected,1.0939147520781916,peak2z_length,North Great Plains
+swe_mm_jas.previous,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_ond.previous,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_jfm.previous,Rejected,-Inf,peak2z_length,North Great Plains
+swe_mm_amj.previous,Rejected,-Inf,peak2z_length,North Great Plains
+p.pet_cy.previous,Tentative,2.4748073525350662,peak2z_length,North Great Plains
+swe.p_cy.previous,Rejected,-Inf,peak2z_length,North Great Plains
+p.pet_jfm.previous,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_jfm.previous,Rejected,-Inf,peak2z_length,North Great Plains
+p.pet_amj.previous,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_amj.previous,Rejected,-0.013107072150844955,peak2z_length,North Great Plains
+p.pet_jas.previous,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_jas.previous,Rejected,-Inf,peak2z_length,North Great Plains
+p.pet_ond.previous,Rejected,-Inf,peak2z_length,North Great Plains
+swe.p_ond.previous,Rejected,-Inf,peak2z_length,North Great Plains
+dams_n,Confirmed,4.293058201721981,peak2z_length,Mediterranean California
+maxstorage_af,Confirmed,5.665072834921868,peak2z_length,Mediterranean California
+normstorage_af,Confirmed,5.7669899099991,peak2z_length,Mediterranean California
+majordams_n,Confirmed,4.582102779004394,peak2z_length,Mediterranean California
+wuse_mm,Confirmed,11.458628728049485,peak2z_length,Mediterranean California
+irrig_prc,Confirmed,8.617259036049559,peak2z_length,Mediterranean California
+lulc_water_prc,Confirmed,4.9095647628991035,peak2z_length,Mediterranean California
+lulc_dev_prc,Confirmed,11.005682202116772,peak2z_length,Mediterranean California
+lulc_wetland_prc,Confirmed,3.5342432769171417,peak2z_length,Mediterranean California
+lulc_forest_prc,Confirmed,7.657659757936134,peak2z_length,Mediterranean California
+lulc_barren_prc,Confirmed,8.596519970644485,peak2z_length,Mediterranean California
+lulc_grass_prc,Confirmed,7.199822037630488,peak2z_length,Mediterranean California
+lulc_ag_prc,Confirmed,8.450123679684076,peak2z_length,Mediterranean California
+drain_sqkm,Confirmed,6.383007871607409,peak2z_length,Mediterranean California
+elev_mean_m_basin,Confirmed,6.265194928754287,peak2z_length,Mediterranean California
+slope_pct,Confirmed,6.154071380837104,peak2z_length,Mediterranean California
+awcave,Confirmed,5.74351050525715,peak2z_length,Mediterranean California
+permave,Confirmed,6.967608009260495,peak2z_length,Mediterranean California
+topwet,Confirmed,5.724456533613898,peak2z_length,Mediterranean California
+depth_bedrock_m,Confirmed,8.164086698780011,peak2z_length,Mediterranean California
+porosity,Confirmed,5.829348104249939,peak2z_length,Mediterranean California
+storage_m,Confirmed,8.245217733065298,peak2z_length,Mediterranean California
+clayave,Confirmed,8.66513403006712,peak2z_length,Mediterranean California
+siltave,Confirmed,6.112668111229125,peak2z_length,Mediterranean California
+sandave,Confirmed,6.438795970006022,peak2z_length,Mediterranean California
+p_mm_cy,Confirmed,3.855693458653079,peak2z_length,Mediterranean California
+p_mm_jas,Tentative,3.029333697957982,peak2z_length,Mediterranean California
+p_mm_ond,Rejected,-Inf,peak2z_length,Mediterranean California
+p_mm_jfm,Tentative,2.6980343888047402,peak2z_length,Mediterranean California
+p_mm_amj,Rejected,-Inf,peak2z_length,Mediterranean California
+pet_mm_cy,Confirmed,4.503546237558021,peak2z_length,Mediterranean California
+pet_mm_jas,Confirmed,3.7960962496110833,peak2z_length,Mediterranean California
+pet_mm_ond,Confirmed,4.041533112088513,peak2z_length,Mediterranean California
+pet_mm_jfm,Confirmed,4.469919960416591,peak2z_length,Mediterranean California
+pet_mm_amj,Confirmed,4.213969478892709,peak2z_length,Mediterranean California
+T_max_c_cy,Confirmed,5.13072584517491,peak2z_length,Mediterranean California
+T_max_c_jas,Confirmed,5.49155787249842,peak2z_length,Mediterranean California
+T_max_c_ond,Confirmed,5.248477785651515,peak2z_length,Mediterranean California
+T_max_c_jfm,Confirmed,4.8119050618578125,peak2z_length,Mediterranean California
+T_max_c_amj,Confirmed,4.376193094420405,peak2z_length,Mediterranean California
+swe_mm_cy,Confirmed,3.9931877573871257,peak2z_length,Mediterranean California
+swe_mm_jas,Rejected,-Inf,peak2z_length,Mediterranean California
+swe_mm_ond,Confirmed,3.280053722264559,peak2z_length,Mediterranean California
+swe_mm_jfm,Confirmed,3.178540895719671,peak2z_length,Mediterranean California
+swe_mm_amj,Rejected,-Inf,peak2z_length,Mediterranean California
+p.pet_cy,Confirmed,3.8822111603616904,peak2z_length,Mediterranean California
+swe.p_cy,Confirmed,4.572887792538336,peak2z_length,Mediterranean California
+p.pet_jfm,Tentative,2.8014139497343806,peak2z_length,Mediterranean California
+swe.p_jfm,Confirmed,3.7159824580860694,peak2z_length,Mediterranean California
+p.pet_amj,Rejected,-Inf,peak2z_length,Mediterranean California
+swe.p_amj,Rejected,-Inf,peak2z_length,Mediterranean California
+p.pet_jas,Tentative,3.2369265994765994,peak2z_length,Mediterranean California
+swe.p_jas,Rejected,-Inf,peak2z_length,Mediterranean California
+p.pet_ond,Tentative,2.4982958975294696,peak2z_length,Mediterranean California
+swe.p_ond,Confirmed,3.4572129447916735,peak2z_length,Mediterranean California
+p_mm_cy.previous,Tentative,3.154573129246605,peak2z_length,Mediterranean California
+p_mm_jas.previous,Tentative,2.9533850215203783,peak2z_length,Mediterranean California
+p_mm_ond.previous,Rejected,-Inf,peak2z_length,Mediterranean California
+p_mm_jfm.previous,Rejected,-Inf,peak2z_length,Mediterranean California
+p_mm_amj.previous,Rejected,-Inf,peak2z_length,Mediterranean California
+pet_mm_cy.previous,Confirmed,3.575292769875133,peak2z_length,Mediterranean California
+pet_mm_jas.previous,Tentative,3.3470895736956208,peak2z_length,Mediterranean California
+pet_mm_ond.previous,Confirmed,4.811698076797061,peak2z_length,Mediterranean California
+pet_mm_jfm.previous,Confirmed,4.541821784939493,peak2z_length,Mediterranean California
+pet_mm_amj.previous,Tentative,2.550952533191014,peak2z_length,Mediterranean California
+T_max_c_cy.previous,Confirmed,4.879324192197214,peak2z_length,Mediterranean California
+T_max_c_jas.previous,Confirmed,5.104507817165145,peak2z_length,Mediterranean California
+T_max_c_ond.previous,Confirmed,5.488389251285387,peak2z_length,Mediterranean California
+T_max_c_jfm.previous,Confirmed,4.131532931758357,peak2z_length,Mediterranean California
+T_max_c_amj.previous,Confirmed,3.2143330366809773,peak2z_length,Mediterranean California
+swe_mm_cy.previous,Confirmed,3.9167019418149005,peak2z_length,Mediterranean California
+swe_mm_jas.previous,Rejected,-Inf,peak2z_length,Mediterranean California
+swe_mm_ond.previous,Confirmed,3.978923472025408,peak2z_length,Mediterranean California
+swe_mm_jfm.previous,Confirmed,3.6665797680368244,peak2z_length,Mediterranean California
+swe_mm_amj.previous,Tentative,2.595725198122943,peak2z_length,Mediterranean California
+p.pet_cy.previous,Tentative,2.9985358458758467,peak2z_length,Mediterranean California
+swe.p_cy.previous,Confirmed,4.661933104289935,peak2z_length,Mediterranean California
+p.pet_jfm.previous,Rejected,-Inf,peak2z_length,Mediterranean California
+swe.p_jfm.previous,Confirmed,4.899486516452684,peak2z_length,Mediterranean California
+p.pet_amj.previous,Rejected,-Inf,peak2z_length,Mediterranean California
+swe.p_amj.previous,Confirmed,3.71233972079869,peak2z_length,Mediterranean California
+p.pet_jas.previous,Tentative,2.7163360399878007,peak2z_length,Mediterranean California
+swe.p_jas.previous,Rejected,-Inf,peak2z_length,Mediterranean California
+p.pet_ond.previous,Rejected,-Inf,peak2z_length,Mediterranean California
+swe.p_ond.previous,Confirmed,4.0009978841083145,peak2z_length,Mediterranean California
+dams_n,Confirmed,8.131296924415082,peak2z_length,South Great Plains
+maxstorage_af,Confirmed,7.503514727887345,peak2z_length,South Great Plains
+normstorage_af,Confirmed,7.67259795936266,peak2z_length,South Great Plains
+majordams_n,Confirmed,5.508926025623075,peak2z_length,South Great Plains
+wuse_mm,Confirmed,10.207906844486272,peak2z_length,South Great Plains
+irrig_prc,Confirmed,8.584451218621085,peak2z_length,South Great Plains
+lulc_water_prc,Confirmed,7.1449230851085606,peak2z_length,South Great Plains
+lulc_dev_prc,Confirmed,8.272507240190711,peak2z_length,South Great Plains
+lulc_wetland_prc,Confirmed,8.94653054752237,peak2z_length,South Great Plains
+lulc_forest_prc,Confirmed,7.836011292761711,peak2z_length,South Great Plains
+lulc_barren_prc,Confirmed,6.523244378127778,peak2z_length,South Great Plains
+lulc_grass_prc,Confirmed,8.099800867710677,peak2z_length,South Great Plains
+lulc_ag_prc,Confirmed,7.2135271957531195,peak2z_length,South Great Plains
+drain_sqkm,Confirmed,9.873445465590478,peak2z_length,South Great Plains
+elev_mean_m_basin,Confirmed,7.907328155754841,peak2z_length,South Great Plains
+slope_pct,Confirmed,12.897540629522737,peak2z_length,South Great Plains
+awcave,Confirmed,7.231448436336737,peak2z_length,South Great Plains
+permave,Confirmed,7.118822552428946,peak2z_length,South Great Plains
+topwet,Confirmed,8.670814115520825,peak2z_length,South Great Plains
+depth_bedrock_m,Confirmed,8.882229794548229,peak2z_length,South Great Plains
+porosity,Confirmed,9.393832123226607,peak2z_length,South Great Plains
+storage_m,Confirmed,9.221117731525698,peak2z_length,South Great Plains
+clayave,Confirmed,8.009820503173733,peak2z_length,South Great Plains
+siltave,Confirmed,8.487895319699428,peak2z_length,South Great Plains
+sandave,Confirmed,7.064761591334488,peak2z_length,South Great Plains
+p_mm_cy,Confirmed,4.235395794392198,peak2z_length,South Great Plains
+p_mm_jas,Rejected,-Inf,peak2z_length,South Great Plains
+p_mm_ond,Confirmed,3.6809639189940304,peak2z_length,South Great Plains
+p_mm_jfm,Confirmed,3.358372234317853,peak2z_length,South Great Plains
+p_mm_amj,Confirmed,5.212911190990522,peak2z_length,South Great Plains
+pet_mm_cy,Confirmed,4.781890656142097,peak2z_length,South Great Plains
+pet_mm_jas,Confirmed,3.7241947742420463,peak2z_length,South Great Plains
+pet_mm_ond,Confirmed,3.717784760311736,peak2z_length,South Great Plains
+pet_mm_jfm,Confirmed,3.8261400165880057,peak2z_length,South Great Plains
+pet_mm_amj,Confirmed,4.5332455908495906,peak2z_length,South Great Plains
+T_max_c_cy,Confirmed,3.856554718602325,peak2z_length,South Great Plains
+T_max_c_jas,Confirmed,3.867872827418162,peak2z_length,South Great Plains
+T_max_c_ond,Confirmed,3.5613705242378946,peak2z_length,South Great Plains
+T_max_c_jfm,Confirmed,4.387291015002065,peak2z_length,South Great Plains
+T_max_c_amj,Confirmed,3.5552739595006986,peak2z_length,South Great Plains
+swe_mm_cy,Tentative,2.843094069464681,peak2z_length,South Great Plains
+swe_mm_jas,Rejected,-Inf,peak2z_length,South Great Plains
+swe_mm_ond,Tentative,2.2803280429811483,peak2z_length,South Great Plains
+swe_mm_jfm,Tentative,2.7170894709178524,peak2z_length,South Great Plains
+swe_mm_amj,Rejected,1.3984888894931635,peak2z_length,South Great Plains
+p.pet_cy,Confirmed,4.028222605581628,peak2z_length,South Great Plains
+swe.p_cy,Confirmed,2.9723887813048595,peak2z_length,South Great Plains
+p.pet_jfm,Confirmed,3.8483105504615716,peak2z_length,South Great Plains
+swe.p_jfm,Confirmed,3.1713647151912796,peak2z_length,South Great Plains
+p.pet_amj,Confirmed,4.995860560637888,peak2z_length,South Great Plains
+swe.p_amj,Rejected,-Inf,peak2z_length,South Great Plains
+p.pet_jas,Rejected,-Inf,peak2z_length,South Great Plains
+swe.p_jas,Rejected,-Inf,peak2z_length,South Great Plains
+p.pet_ond,Confirmed,3.327528676325711,peak2z_length,South Great Plains
+swe.p_ond,Tentative,2.863462118628118,peak2z_length,South Great Plains
+p_mm_cy.previous,Confirmed,4.267531872716638,peak2z_length,South Great Plains
+p_mm_jas.previous,Rejected,1.9946276241807719,peak2z_length,South Great Plains
+p_mm_ond.previous,Confirmed,2.930206971432556,peak2z_length,South Great Plains
+p_mm_jfm.previous,Confirmed,4.621100164199009,peak2z_length,South Great Plains
+p_mm_amj.previous,Confirmed,3.413231232363955,peak2z_length,South Great Plains
+pet_mm_cy.previous,Confirmed,5.631595892309878,peak2z_length,South Great Plains
+pet_mm_jas.previous,Confirmed,4.120335646941926,peak2z_length,South Great Plains
+pet_mm_ond.previous,Confirmed,4.581405290319232,peak2z_length,South Great Plains
+pet_mm_jfm.previous,Confirmed,4.258666518659032,peak2z_length,South Great Plains
+pet_mm_amj.previous,Confirmed,3.648920814272863,peak2z_length,South Great Plains
+T_max_c_cy.previous,Confirmed,3.934923035933954,peak2z_length,South Great Plains
+T_max_c_jas.previous,Confirmed,3.750734290215736,peak2z_length,South Great Plains
+T_max_c_ond.previous,Confirmed,4.445311076864809,peak2z_length,South Great Plains
+T_max_c_jfm.previous,Confirmed,3.7521673700918603,peak2z_length,South Great Plains
+T_max_c_amj.previous,Confirmed,4.141700893309037,peak2z_length,South Great Plains
+swe_mm_cy.previous,Tentative,2.9083688881966023,peak2z_length,South Great Plains
+swe_mm_jas.previous,Rejected,-Inf,peak2z_length,South Great Plains
+swe_mm_ond.previous,Tentative,2.2865028547382207,peak2z_length,South Great Plains
+swe_mm_jfm.previous,Tentative,2.7687381375753803,peak2z_length,South Great Plains
+swe_mm_amj.previous,Tentative,2.761558168285707,peak2z_length,South Great Plains
+p.pet_cy.previous,Confirmed,4.783095093972095,peak2z_length,South Great Plains
+swe.p_cy.previous,Tentative,2.9787812632769692,peak2z_length,South Great Plains
+p.pet_jfm.previous,Confirmed,3.9722070159839267,peak2z_length,South Great Plains
+swe.p_jfm.previous,Tentative,2.735890153153896,peak2z_length,South Great Plains
+p.pet_amj.previous,Confirmed,3.4003659557727826,peak2z_length,South Great Plains
+swe.p_amj.previous,Confirmed,2.8049526552184396,peak2z_length,South Great Plains
+p.pet_jas.previous,Tentative,2.6441509904513327,peak2z_length,South Great Plains
+swe.p_jas.previous,Rejected,-Inf,peak2z_length,South Great Plains
+p.pet_ond.previous,Tentative,2.775544672458788,peak2z_length,South Great Plains
+swe.p_ond.previous,Confirmed,3.8146646287647354,peak2z_length,South Great Plains
+dams_n,Confirmed,7.443003502714156,peak2z_length,Western Desert
+maxstorage_af,Confirmed,5.0106074256655155,peak2z_length,Western Desert
+normstorage_af,Confirmed,4.990698994939469,peak2z_length,Western Desert
+majordams_n,Confirmed,6.452170733770491,peak2z_length,Western Desert
+wuse_mm,Confirmed,5.5223535325852335,peak2z_length,Western Desert
+irrig_prc,Confirmed,6.327290622876016,peak2z_length,Western Desert
+lulc_water_prc,Confirmed,3.4104145100728194,peak2z_length,Western Desert
+lulc_dev_prc,Tentative,2.489072700431415,peak2z_length,Western Desert
+lulc_wetland_prc,Confirmed,7.384361649502985,peak2z_length,Western Desert
+lulc_forest_prc,Confirmed,6.3072591525563775,peak2z_length,Western Desert
+lulc_barren_prc,Confirmed,3.0272554486427152,peak2z_length,Western Desert
+lulc_grass_prc,Confirmed,8.024812919613982,peak2z_length,Western Desert
+lulc_ag_prc,Confirmed,5.089649140886597,peak2z_length,Western Desert
+drain_sqkm,Confirmed,3.9282922077030227,peak2z_length,Western Desert
+elev_mean_m_basin,Confirmed,4.208902034239137,peak2z_length,Western Desert
+slope_pct,Confirmed,6.25226371626186,peak2z_length,Western Desert
+awcave,Confirmed,5.559376731702723,peak2z_length,Western Desert
+permave,Confirmed,5.614893400307948,peak2z_length,Western Desert
+topwet,Confirmed,4.908430102475948,peak2z_length,Western Desert
+depth_bedrock_m,Confirmed,4.201676083207654,peak2z_length,Western Desert
+porosity,Confirmed,3.9328415737930804,peak2z_length,Western Desert
+storage_m,Confirmed,4.070585466863768,peak2z_length,Western Desert
+clayave,Confirmed,5.065687710241161,peak2z_length,Western Desert
+siltave,Confirmed,4.960461400371054,peak2z_length,Western Desert
+sandave,Confirmed,5.683509983418285,peak2z_length,Western Desert
+p_mm_cy,Tentative,2.6379101024332026,peak2z_length,Western Desert
+p_mm_jas,Tentative,2.4000913729217968,peak2z_length,Western Desert
+p_mm_ond,Tentative,2.258579510732314,peak2z_length,Western Desert
+p_mm_jfm,Rejected,-Inf,peak2z_length,Western Desert
+p_mm_amj,Rejected,-Inf,peak2z_length,Western Desert
+pet_mm_cy,Confirmed,3.106956459956534,peak2z_length,Western Desert
+pet_mm_jas,Rejected,-Inf,peak2z_length,Western Desert
+pet_mm_ond,Tentative,2.692756966827202,peak2z_length,Western Desert
+pet_mm_jfm,Confirmed,3.5308147850945693,peak2z_length,Western Desert
+pet_mm_amj,Confirmed,3.0518514064611186,peak2z_length,Western Desert
+T_max_c_cy,Confirmed,5.589444086761991,peak2z_length,Western Desert
+T_max_c_jas,Tentative,2.731146320587609,peak2z_length,Western Desert
+T_max_c_ond,Confirmed,3.0029215788119514,peak2z_length,Western Desert
+T_max_c_jfm,Confirmed,4.4841120955677445,peak2z_length,Western Desert
+T_max_c_amj,Confirmed,4.833355761092479,peak2z_length,Western Desert
+swe_mm_cy,Confirmed,3.8236341046871782,peak2z_length,Western Desert
+swe_mm_jas,Rejected,-Inf,peak2z_length,Western Desert
+swe_mm_ond,Tentative,2.9017102391098786,peak2z_length,Western Desert
+swe_mm_jfm,Confirmed,3.0433859471383706,peak2z_length,Western Desert
+swe_mm_amj,Confirmed,4.075912054122295,peak2z_length,Western Desert
+p.pet_cy,Tentative,2.637567645158278,peak2z_length,Western Desert
+swe.p_cy,Confirmed,3.3220577381206025,peak2z_length,Western Desert
+p.pet_jfm,Rejected,-Inf,peak2z_length,Western Desert
+swe.p_jfm,Rejected,-Inf,peak2z_length,Western Desert
+p.pet_amj,Rejected,-Inf,peak2z_length,Western Desert
+swe.p_amj,Confirmed,3.058576722425218,peak2z_length,Western Desert
+p.pet_jas,Tentative,2.293590200878723,peak2z_length,Western Desert
+swe.p_jas,Rejected,2.1210497586775685,peak2z_length,Western Desert
+p.pet_ond,Rejected,-Inf,peak2z_length,Western Desert
+swe.p_ond,Tentative,2.8432237382521266,peak2z_length,Western Desert
+p_mm_cy.previous,Confirmed,2.9962281496681706,peak2z_length,Western Desert
+p_mm_jas.previous,Confirmed,4.145346163230321,peak2z_length,Western Desert
+p_mm_ond.previous,Rejected,-Inf,peak2z_length,Western Desert
+p_mm_jfm.previous,Rejected,1.3903589542293802,peak2z_length,Western Desert
+p_mm_amj.previous,Rejected,-Inf,peak2z_length,Western Desert
+pet_mm_cy.previous,Confirmed,3.2851615276410038,peak2z_length,Western Desert
+pet_mm_jas.previous,Confirmed,3.0789121011634704,peak2z_length,Western Desert
+pet_mm_ond.previous,Confirmed,6.136089603987193,peak2z_length,Western Desert
+pet_mm_jfm.previous,Confirmed,2.9226846925694283,peak2z_length,Western Desert
+pet_mm_amj.previous,Confirmed,3.1222144957413738,peak2z_length,Western Desert
+T_max_c_cy.previous,Confirmed,5.94287650943781,peak2z_length,Western Desert
+T_max_c_jas.previous,Tentative,2.7634018006176975,peak2z_length,Western Desert
+T_max_c_ond.previous,Confirmed,3.9043910211496793,peak2z_length,Western Desert
+T_max_c_jfm.previous,Confirmed,4.378764704887331,peak2z_length,Western Desert
+T_max_c_amj.previous,Confirmed,4.983650457250714,peak2z_length,Western Desert
+swe_mm_cy.previous,Confirmed,3.922040696611498,peak2z_length,Western Desert
+swe_mm_jas.previous,Rejected,1.591046318931792,peak2z_length,Western Desert
+swe_mm_ond.previous,Tentative,2.7557140323316536,peak2z_length,Western Desert
+swe_mm_jfm.previous,Confirmed,2.8854818614434494,peak2z_length,Western Desert
+swe_mm_amj.previous,Confirmed,5.194935818566206,peak2z_length,Western Desert
+p.pet_cy.previous,Confirmed,3.744059974072934,peak2z_length,Western Desert
+swe.p_cy.previous,Confirmed,4.4053223399787464,peak2z_length,Western Desert
+p.pet_jfm.previous,Tentative,2.2012963325396386,peak2z_length,Western Desert
+swe.p_jfm.previous,Rejected,1.6654056851425476,peak2z_length,Western Desert
+p.pet_amj.previous,Rejected,0.9367625278350121,peak2z_length,Western Desert
+swe.p_amj.previous,Tentative,2.781287550345935,peak2z_length,Western Desert
+p.pet_jas.previous,Confirmed,4.352716587868559,peak2z_length,Western Desert
+swe.p_jas.previous,Tentative,2.3712880260411446,peak2z_length,Western Desert
+p.pet_ond.previous,Rejected,-Inf,peak2z_length,Western Desert
+swe.p_ond.previous,Tentative,2.2074798363135324,peak2z_length,Western Desert
+dams_n,Confirmed,6.511989262983044,peak2z_length,Eastern Forests
+maxstorage_af,Confirmed,7.901208111206217,peak2z_length,Eastern Forests
+normstorage_af,Confirmed,8.458986763148886,peak2z_length,Eastern Forests
+majordams_n,Confirmed,6.673826562687212,peak2z_length,Eastern Forests
+wuse_mm,Confirmed,9.201297735803587,peak2z_length,Eastern Forests
+irrig_prc,Confirmed,6.955279306743836,peak2z_length,Eastern Forests
+lulc_water_prc,Confirmed,7.386181081705223,peak2z_length,Eastern Forests
+lulc_dev_prc,Confirmed,9.441949148909899,peak2z_length,Eastern Forests
+lulc_wetland_prc,Confirmed,5.975987430455061,peak2z_length,Eastern Forests
+lulc_forest_prc,Confirmed,5.20017682009266,peak2z_length,Eastern Forests
+lulc_barren_prc,Confirmed,6.006118956778728,peak2z_length,Eastern Forests
+lulc_grass_prc,Confirmed,6.328625884314749,peak2z_length,Eastern Forests
+lulc_ag_prc,Confirmed,7.027970240698908,peak2z_length,Eastern Forests
+drain_sqkm,Confirmed,13.857556325094842,peak2z_length,Eastern Forests
+elev_mean_m_basin,Confirmed,6.684742451443735,peak2z_length,Eastern Forests
+slope_pct,Confirmed,6.527174387754078,peak2z_length,Eastern Forests
+awcave,Confirmed,4.633272943229758,peak2z_length,Eastern Forests
+permave,Confirmed,4.354069516959819,peak2z_length,Eastern Forests
+topwet,Confirmed,8.013545465963261,peak2z_length,Eastern Forests
+depth_bedrock_m,Confirmed,8.498620152528654,peak2z_length,Eastern Forests
+porosity,Confirmed,6.590654778037013,peak2z_length,Eastern Forests
+storage_m,Confirmed,7.458469199251162,peak2z_length,Eastern Forests
+clayave,Confirmed,4.960200392641639,peak2z_length,Eastern Forests
+siltave,Confirmed,5.611872420333686,peak2z_length,Eastern Forests
+sandave,Confirmed,4.356766811222336,peak2z_length,Eastern Forests
+p_mm_cy,Confirmed,4.094830035310817,peak2z_length,Eastern Forests
+p_mm_jas,Confirmed,3.703967604545843,peak2z_length,Eastern Forests
+p_mm_ond,Tentative,2.2603022605975993,peak2z_length,Eastern Forests
+p_mm_jfm,Tentative,2.26344305018512,peak2z_length,Eastern Forests
+p_mm_amj,Rejected,-Inf,peak2z_length,Eastern Forests
+pet_mm_cy,Confirmed,5.106986056902965,peak2z_length,Eastern Forests
+pet_mm_jas,Confirmed,4.012571278134792,peak2z_length,Eastern Forests
+pet_mm_ond,Confirmed,4.853746731040192,peak2z_length,Eastern Forests
+pet_mm_jfm,Confirmed,4.477936303860417,peak2z_length,Eastern Forests
+pet_mm_amj,Confirmed,4.579572535799552,peak2z_length,Eastern Forests
+T_max_c_cy,Confirmed,5.435164395990675,peak2z_length,Eastern Forests
+T_max_c_jas,Confirmed,4.871000803864403,peak2z_length,Eastern Forests
+T_max_c_ond,Confirmed,5.202655346181321,peak2z_length,Eastern Forests
+T_max_c_jfm,Confirmed,4.613504956704472,peak2z_length,Eastern Forests
+T_max_c_amj,Confirmed,4.495752995865653,peak2z_length,Eastern Forests
+swe_mm_cy,Tentative,2.6462262907394485,peak2z_length,Eastern Forests
+swe_mm_jas,Rejected,-Inf,peak2z_length,Eastern Forests
+swe_mm_ond,Rejected,-Inf,peak2z_length,Eastern Forests
+swe_mm_jfm,Tentative,2.606402638056727,peak2z_length,Eastern Forests
+swe_mm_amj,Rejected,-Inf,peak2z_length,Eastern Forests
+p.pet_cy,Confirmed,4.314829620668993,peak2z_length,Eastern Forests
+swe.p_cy,Tentative,2.65679704864993,peak2z_length,Eastern Forests
+p.pet_jfm,Confirmed,3.651012555984241,peak2z_length,Eastern Forests
+swe.p_jfm,Tentative,2.651596775151147,peak2z_length,Eastern Forests
+p.pet_amj,Confirmed,3.2896194351579515,peak2z_length,Eastern Forests
+swe.p_amj,Rejected,-Inf,peak2z_length,Eastern Forests
+p.pet_jas,Confirmed,3.959703073829636,peak2z_length,Eastern Forests
+swe.p_jas,Rejected,-Inf,peak2z_length,Eastern Forests
+p.pet_ond,Confirmed,3.176619363516894,peak2z_length,Eastern Forests
+swe.p_ond,Tentative,2.3050524176971545,peak2z_length,Eastern Forests
+p_mm_cy.previous,Confirmed,4.02073840490628,peak2z_length,Eastern Forests
+p_mm_jas.previous,Confirmed,5.058054502321548,peak2z_length,Eastern Forests
+p_mm_ond.previous,Rejected,1.0243651473156243,peak2z_length,Eastern Forests
+p_mm_jfm.previous,Rejected,0.025473068334299364,peak2z_length,Eastern Forests
+p_mm_amj.previous,Rejected,-Inf,peak2z_length,Eastern Forests
+pet_mm_cy.previous,Confirmed,4.027536419038918,peak2z_length,Eastern Forests
+pet_mm_jas.previous,Confirmed,4.01785337954993,peak2z_length,Eastern Forests
+pet_mm_ond.previous,Confirmed,3.4780179564655875,peak2z_length,Eastern Forests
+pet_mm_jfm.previous,Confirmed,4.928248063197092,peak2z_length,Eastern Forests
+pet_mm_amj.previous,Tentative,2.9913214793809035,peak2z_length,Eastern Forests
+T_max_c_cy.previous,Confirmed,5.015671821741865,peak2z_length,Eastern Forests
+T_max_c_jas.previous,Confirmed,5.338011711254236,peak2z_length,Eastern Forests
+T_max_c_ond.previous,Confirmed,4.5331066491239556,peak2z_length,Eastern Forests
+T_max_c_jfm.previous,Confirmed,4.885409253783466,peak2z_length,Eastern Forests
+T_max_c_amj.previous,Confirmed,3.7677490850047772,peak2z_length,Eastern Forests
+swe_mm_cy.previous,Tentative,2.656987037165221,peak2z_length,Eastern Forests
+swe_mm_jas.previous,Rejected,-Inf,peak2z_length,Eastern Forests
+swe_mm_ond.previous,Tentative,2.446354761973494,peak2z_length,Eastern Forests
+swe_mm_jfm.previous,Tentative,2.1753677348055636,peak2z_length,Eastern Forests
+swe_mm_amj.previous,Rejected,-Inf,peak2z_length,Eastern Forests
+p.pet_cy.previous,Tentative,2.6695329492881954,peak2z_length,Eastern Forests
+swe.p_cy.previous,Confirmed,3.403824449746787,peak2z_length,Eastern Forests
+p.pet_jfm.previous,Tentative,2.8103876887160224,peak2z_length,Eastern Forests
+swe.p_jfm.previous,Confirmed,3.1165306541851483,peak2z_length,Eastern Forests
+p.pet_amj.previous,Rejected,-Inf,peak2z_length,Eastern Forests
+swe.p_amj.previous,Rejected,-Inf,peak2z_length,Eastern Forests
+p.pet_jas.previous,Confirmed,4.274063237358511,peak2z_length,Eastern Forests
+swe.p_jas.previous,Rejected,-Inf,peak2z_length,Eastern Forests
+p.pet_ond.previous,Rejected,-Inf,peak2z_length,Eastern Forests
+swe.p_ond.previous,Tentative,2.9993685646613195,peak2z_length,Eastern Forests
+dams_n,Confirmed,5.516437114836065,peak2z_length,Western Mountains
+maxstorage_af,Confirmed,6.037266708626199,peak2z_length,Western Mountains
+normstorage_af,Confirmed,6.025097373224016,peak2z_length,Western Mountains
+majordams_n,Confirmed,5.571770279833157,peak2z_length,Western Mountains
+wuse_mm,Confirmed,6.588795052340716,peak2z_length,Western Mountains
+irrig_prc,Confirmed,5.859146255252464,peak2z_length,Western Mountains
+lulc_water_prc,Confirmed,5.461938477727414,peak2z_length,Western Mountains
+lulc_dev_prc,Confirmed,7.8490052442330525,peak2z_length,Western Mountains
+lulc_wetland_prc,Confirmed,3.7016603439294493,peak2z_length,Western Mountains
+lulc_forest_prc,Confirmed,8.482806882994852,peak2z_length,Western Mountains
+lulc_barren_prc,Confirmed,7.063381648575302,peak2z_length,Western Mountains
+lulc_grass_prc,Confirmed,9.355325460269135,peak2z_length,Western Mountains
+lulc_ag_prc,Confirmed,5.470799461727058,peak2z_length,Western Mountains
+drain_sqkm,Confirmed,7.9348587976652425,peak2z_length,Western Mountains
+elev_mean_m_basin,Confirmed,7.252093980598924,peak2z_length,Western Mountains
+slope_pct,Confirmed,8.425695585138412,peak2z_length,Western Mountains
+awcave,Confirmed,4.376004416884386,peak2z_length,Western Mountains
+permave,Confirmed,6.865280934556959,peak2z_length,Western Mountains
+topwet,Confirmed,7.710781670454557,peak2z_length,Western Mountains
+depth_bedrock_m,Confirmed,8.123561640447882,peak2z_length,Western Mountains
+porosity,Confirmed,8.669521423335711,peak2z_length,Western Mountains
+storage_m,Confirmed,8.386088776809864,peak2z_length,Western Mountains
+clayave,Confirmed,6.514699073589803,peak2z_length,Western Mountains
+siltave,Confirmed,7.3058071456752325,peak2z_length,Western Mountains
+sandave,Confirmed,7.151466485609272,peak2z_length,Western Mountains
+p_mm_cy,Confirmed,4.824408975358537,peak2z_length,Western Mountains
+p_mm_jas,Confirmed,5.040701429850843,peak2z_length,Western Mountains
+p_mm_ond,Confirmed,4.294551344414371,peak2z_length,Western Mountains
+p_mm_jfm,Confirmed,4.387913350507987,peak2z_length,Western Mountains
+p_mm_amj,Confirmed,3.40997543012725,peak2z_length,Western Mountains
+pet_mm_cy,Confirmed,5.248570184155199,peak2z_length,Western Mountains
+pet_mm_jas,Confirmed,5.9462606887486045,peak2z_length,Western Mountains
+pet_mm_ond,Confirmed,4.8576134673062485,peak2z_length,Western Mountains
+pet_mm_jfm,Confirmed,5.136438237427976,peak2z_length,Western Mountains
+pet_mm_amj,Confirmed,4.3926605755738874,peak2z_length,Western Mountains
+T_max_c_cy,Confirmed,5.344340995264029,peak2z_length,Western Mountains
+T_max_c_jas,Confirmed,5.768404210300287,peak2z_length,Western Mountains
+T_max_c_ond,Confirmed,4.307175210179984,peak2z_length,Western Mountains
+T_max_c_jfm,Confirmed,3.8184346993634932,peak2z_length,Western Mountains
+T_max_c_amj,Confirmed,4.0703130779379615,peak2z_length,Western Mountains
+swe_mm_cy,Confirmed,3.1533390980017613,peak2z_length,Western Mountains
+swe_mm_jas,Rejected,-Inf,peak2z_length,Western Mountains
+swe_mm_ond,Confirmed,3.4644982095216283,peak2z_length,Western Mountains
+swe_mm_jfm,Confirmed,3.325002851090907,peak2z_length,Western Mountains
+swe_mm_amj,Confirmed,3.2514391752426475,peak2z_length,Western Mountains
+p.pet_cy,Confirmed,4.43497548089407,peak2z_length,Western Mountains
+swe.p_cy,Confirmed,3.5934930299679078,peak2z_length,Western Mountains
+p.pet_jfm,Confirmed,5.35816088986592,peak2z_length,Western Mountains
+swe.p_jfm,Confirmed,3.8451792601416703,peak2z_length,Western Mountains
+p.pet_amj,Confirmed,3.450072201770321,peak2z_length,Western Mountains
+swe.p_amj,Tentative,2.997160150873452,peak2z_length,Western Mountains
+p.pet_jas,Confirmed,5.346202001051684,peak2z_length,Western Mountains
+swe.p_jas,Tentative,2.8604475349582335,peak2z_length,Western Mountains
+p.pet_ond,Confirmed,4.652090041963953,peak2z_length,Western Mountains
+swe.p_ond,Confirmed,4.068770238795851,peak2z_length,Western Mountains
+p_mm_cy.previous,Confirmed,6.203895692705177,peak2z_length,Western Mountains
+p_mm_jas.previous,Confirmed,5.3982490230504165,peak2z_length,Western Mountains
+p_mm_ond.previous,Confirmed,6.125331485249384,peak2z_length,Western Mountains
+p_mm_jfm.previous,Confirmed,4.260748847763244,peak2z_length,Western Mountains
+p_mm_amj.previous,Tentative,2.6568931014246866,peak2z_length,Western Mountains
+pet_mm_cy.previous,Confirmed,5.0929428837906014,peak2z_length,Western Mountains
+pet_mm_jas.previous,Confirmed,5.6723139901793544,peak2z_length,Western Mountains
+pet_mm_ond.previous,Confirmed,5.369098525133775,peak2z_length,Western Mountains
+pet_mm_jfm.previous,Confirmed,4.402733078964473,peak2z_length,Western Mountains
+pet_mm_amj.previous,Confirmed,5.727373228832717,peak2z_length,Western Mountains
+T_max_c_cy.previous,Confirmed,5.7507990444525445,peak2z_length,Western Mountains
+T_max_c_jas.previous,Confirmed,4.99554495285932,peak2z_length,Western Mountains
+T_max_c_ond.previous,Confirmed,4.793619012524723,peak2z_length,Western Mountains
+T_max_c_jfm.previous,Confirmed,4.353136820790064,peak2z_length,Western Mountains
+T_max_c_amj.previous,Confirmed,4.402249979018534,peak2z_length,Western Mountains
+swe_mm_cy.previous,Confirmed,3.901975624316829,peak2z_length,Western Mountains
+swe_mm_jas.previous,Rejected,1.611350214807556,peak2z_length,Western Mountains
+swe_mm_ond.previous,Tentative,2.465191569273456,peak2z_length,Western Mountains
+swe_mm_jfm.previous,Confirmed,3.768910137018432,peak2z_length,Western Mountains
+swe_mm_amj.previous,Confirmed,3.6278809162307972,peak2z_length,Western Mountains
+p.pet_cy.previous,Confirmed,6.4331207962518375,peak2z_length,Western Mountains
+swe.p_cy.previous,Confirmed,4.104833958767772,peak2z_length,Western Mountains
+p.pet_jfm.previous,Confirmed,4.535439719719081,peak2z_length,Western Mountains
+swe.p_jfm.previous,Confirmed,4.318201672131218,peak2z_length,Western Mountains
+p.pet_amj.previous,Confirmed,3.3083203115937323,peak2z_length,Western Mountains
+swe.p_amj.previous,Confirmed,3.492754420442641,peak2z_length,Western Mountains
+p.pet_jas.previous,Confirmed,5.83742535255839,peak2z_length,Western Mountains
+swe.p_jas.previous,Tentative,2.7077711939369653,peak2z_length,Western Mountains
+p.pet_ond.previous,Confirmed,6.2484455328981054,peak2z_length,Western Mountains
+swe.p_ond.previous,Confirmed,3.211938699788601,peak2z_length,Western Mountains

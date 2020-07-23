@@ -190,7 +190,7 @@ for (m in metrics){
                     region_rf = r)
     
     ## collect results
-    if (m == metrics[1] $ r == regions[1]){
+    if (m == metrics[1] & r == regions[1]){
       br_all <- br_vars
       vs_all <- vs_vars
     } else {
