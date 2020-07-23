@@ -180,9 +180,9 @@ for (m in metrics){
     
     vs_vars <-   
       dplyr::bind_rows(
-        tibble::tibble(predictor = predictors_all[vs$varselect.pred],
+        tibble::tibble(predictor = predictors_all[vs$varselect.thres],
                        vsurf_group = "Thresholding"),
-        tibble::tibble(predictor = predictors_all[vs$varselect.pred],
+        tibble::tibble(predictor = predictors_all[vs$varselect.interp],
                        vsurf_group = "Interpretation"),
         tibble::tibble(predictor = predictors_all[vs$varselect.pred],
                        vsurf_group = "Prediction")) %>% 
@@ -208,7 +208,26 @@ br_all %>%
 vs_all %>% 
   readr::write_csv(path = file.path("results", "RandomForest_VariableSelection-VSURF.csv"))
 
+## visualize output
+br_all <- readr::read_csv(file.path("results", "RandomForest_VariableSelection-Boruta.csv"))
+vs_all <- readr::read_csv(file.path("results", "RandomForest_VariableSelection-VSURF.csv"))
 
+m <- "annualfractionnoflow"
+r <- "National"
+
+
+br_m_r <- subset(br_all, region_rf == r & metric == m)
+vs_m_r <- subset(vs_all, region_rf == r & metric == m &
+                   vsurf_group == "Prediction")  # previous code had bug where only pred variables were used
+
+br_vs <- dplyr::left_join(br_m_r, vs_m_r, by = c("predictor", "region_rf", "metric"))
+
+# set factor for ordering
+br_vs$predictor <- factor(br_vs$predictor, levels = br_vs$predictor[order(br_vs$boruta_imp_median)])
+
+ggplot(br_vs, aes(x = predictor, y = boruta_imp_median, color = vsurf_group)) +
+  geom_point() +
+  coord_flip()
 
 ####
 #### build model with tidymodels framework
