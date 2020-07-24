@@ -84,29 +84,30 @@ fit_data_in <-
   dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
 
 ## test number of predictors to use in final models
-pred_test_range <- 3:20
+pred_test_range <- 10:54  # 54 total predictors possible
+
+# set up model engine
+rf_engine <- 
+  rand_forest() %>% 
+  set_engine("ranger", num.threads = (parallel::detectCores() - 1)) %>% 
+  set_mode("regression")
+
 for (m in metrics){
   rf_var_importance <- 
     file.path("results", paste0("01_RandomForest_PreliminaryVariableImportance_", m, "_National.csv")) %>% 
-    readr::read_csv() %>% 
-    dplyr::group_by(metric, region, predictor) %>% 
-    dplyr::summarize(PrcIncMSE_mean = mean(PrcIncMSE)) %>% 
-    dplyr::ungroup()
+    readr::read_csv()
   
   for (n_pred in pred_test_range){
     
     # get predictor variables
     rf_var_predtest <-
       rf_var_importance %>% 
-      subset(metric == m & region == "National") %>% 
-      dplyr::top_n(n = n_pred, wt = PrcIncMSE_mean)
-    
-    fit_formula <- as.formula(paste0("observed ~ ", paste(unique(rf_var_predtest$predictor), collapse = "+")))
+      dplyr::top_n(n = n_pred, wt = ImpCondPerm)
     
     # subset
     fit_data_predtest <- 
       fit_data_in %>% 
-      dplyr::select(-all_of(metrics[metrics != m])) %>%  # drop metrics you aren't interested in
+      dplyr::select(all_of(m), all_of(rf_var_predtest$predictor)) %>%  # drop metrics you aren't interested in
       subset(complete.cases(.))
     
     # rename metric column
@@ -114,31 +115,39 @@ for (m in metrics){
     
     # fit model
     set.seed(1)
-    fit_rf <- randomForest::randomForest(fit_formula,
-                                         data = subset(fit_data_predtest, Sample != "Test1"),
-                                         ntree = 500,
-                                         importance = T)
+    
+    rf_recipe <-
+      recipe(observed ~ ., data = fit_data_predtest) %>%
+      step_normalize(all_predictors(), -all_outcomes())
+    
+    rf_wflow <-
+      workflow() %>% 
+      add_model(rf_engine) %>% 
+      add_recipe(rf_recipe)
+    
+    rf_fit <- 
+      rf_wflow %>% 
+      parsnip::fit(data = fit_data_predtest)
     
     if (n_pred == pred_test_range[1] & m == metrics[1]){
       fit_predtest <- tibble::tibble(metric = m,
                                      n = n_pred,
-                                     TotalMSE = fit_rf$mse[length(fit_rf$mse)],
-                                     TotalR2 = fit_rf$rsq[length(fit_rf$rsq)])
+                                     OOBmse = pull_workflow_fit(rf_fit)$fit$prediction.error,
+                                     OOBr2 = pull_workflow_fit(rf_fit)$fit$r.squared)
     } else {
       fit_predtest <- dplyr::bind_rows(fit_predtest,
-                                       tibble::tibble(metric= m,
+                                       tibble::tibble(metric = m,
                                                       n = n_pred,
-                                                      TotalMSE = fit_rf$mse[length(fit_rf$mse)],
-                                                      TotalR2 = fit_rf$rsq[length(fit_rf$rsq)]))
+                                                      OOBmse = pull_workflow_fit(rf_fit)$fit$prediction.error,
+                                                      OOBr2 = pull_workflow_fit(rf_fit)$fit$r.squared))
     }
     
     print(paste0(m, " ", n_pred, " complete"))
   }
 }
 
-
 # plot and look for elbow
-ggplot(fit_predtest, aes(x = n, y = TotalMSE)) + 
+ggplot(fit_predtest, aes(x = n, y = OOBmse)) + 
   geom_point() + geom_line() +
   scale_x_continuous(name = "Number of Predictors", breaks = seq(3,20)) +
   scale_y_continuous(name = "Random Forest MSE [training gages only]") +

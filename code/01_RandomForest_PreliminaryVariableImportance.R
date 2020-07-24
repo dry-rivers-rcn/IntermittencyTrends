@@ -2,12 +2,18 @@
 #' This script selects the variables that will be used for each random forest model
 #' with the following approach:
 #'   - Build model with all predictor variables
-#'   - Repeat 25x using 80% of reference gages in each sample
+#'   - Repeat using 80% of reference gages in each sample
 #' This variable importance will be used to build models.
 #' 
 #' A total of 21 models will be built: (6 regions + National) * (3 metrics) = 21 models
 
 source(file.path("code", "paths+packages.R"))
+library(tidymodels)
+library(ranger)
+
+####
+#### prep data
+####
 
 ## load data - gage mean properties and annual values
 gage_sample <- 
@@ -32,10 +38,12 @@ gage_sample_annual <-
                 p.pet_ond = p_mm_ond/pet_mm_ond,
                 swe.p_ond = swe_mm_ond/p_mm_ond)
 
-## clean up data and get ready to fit statistical model
-# predictors and metrics to retain; to get full list of options: 
-#   dput(names(gage_sample_annual))
-#   dput(names(gage_sample))
+## set up predictions
+# metrics and regions to predict
+metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
+regions <- c("National", unique(gage_sample$region))
+
+# all possible predictors
 predictors_climate <- c("p_mm_cy", "p_mm_jas", "p_mm_ond", "p_mm_jfm", "p_mm_amj", "pet_mm_cy", 
                         "pet_mm_jas", "pet_mm_ond", "pet_mm_jfm", "pet_mm_amj", "T_max_c_cy", 
                         "T_max_c_jas", "T_max_c_ond", "T_max_c_jfm", "T_max_c_amj",
@@ -64,17 +72,15 @@ predictors_climate_with_previous <-
                           "p.pet_amj.previous", "swe.p_amj.previous", "p.pet_jas.previous", 
                           "swe.p_jas.previous", "p.pet_ond.previous", "swe.p_ond.previous"))
 
-# metrics and regions to predict
-metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
-regions <- c("National", unique(gage_sample$region))
+predictors_all <- c(predictors_human, predictors_static, predictors_climate_with_previous)
 
-# get previous water year climate metrics
+## calculate previous water year climate metrics
 gage_sample_prevyear <- 
   gage_sample_annual[,c("gage_ID", "currentclimyear", predictors_climate)] %>% 
   dplyr::mutate(wyearjoin = currentclimyear + 1) %>% 
   dplyr::select(-currentclimyear)
 
-# combine into one data frame
+## combine into one data frame
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
@@ -87,23 +93,57 @@ fit_data_in <-
   # join with static predictors
   dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
 
-# number of iterations and percent of gages to sample each iteration
-n_iter <- 40
-prc_sample <- 0.75
+###
+### filter out predictor variables
+###
+check_cor <- 
+  cor(fit_data_in[fit_data_in$Sample == "Train",predictors_all], use = "pairwise.complete.obs", method = "pearson")
+
+cor_high <-
+  check_cor %>% 
+  reshape2::melt() %>% 
+  subset(Var1 != Var2 & is.finite(value)) %>% 
+  subset(abs(value) > 0.9) %>% 
+  dplyr::distinct() %>% 
+  dplyr::arrange(Var1, Var2)
+#cor_high <- subset(cor_high, !(Var1 %in% predictors_drop | Var2 %in% predictors_drop))
+
+# there are 51 highly-correlated pairs of predictor variables
+# (pearson r > 0.9, which is used in step_corr function)
+# we want to drop: 
+#  - seasonal variables when correlated with annual value
+#  - previous year variables when correlated with current year value
+predictors_drop <-
+  # highly correlated variables
+  c("T_max_c_jfm", "T_max_c_ond", "T_max_c_amj", "T_max_c_cy.previous",
+    "T_max_c_jfm.previous", "T_max_c_ond.previous", "T_max_c_jas.previous",
+    "T_max_c_amj.previous", "sandave", "storage_m", 'maxstorage_af', "swe_mm_cy.previous",
+    "swe_mm_jfm","p_mm_cy", "p_mm_jas", "p_mm_jfm", "p_mm_amj",
+    "p_mm_cy.previous", "p_mm_jas.previous", "p_mm_jfm.previous", "p_mm_amj.previous",
+    "pet_mm_cy.previous", "pet_mm_ond.previous", "pet_mm_ond",
+    # near-zero variance
+    "swe_mm_jas", "swe_mm_amj", "swe.p_jas", "normstorage_af", "swe_mm_jas.previous",
+    "swe_mm_amj.previous", "swe.p_jas.previous")
+
+###
+### begin loop through metrics and regions
+###
+
+# trimmed predictors list to use in models
+predictors_trimmed <- predictors_all[!(predictors_all %in% predictors_drop)]
 
 ## loop through metrics and regions
+set.seed(1)
 for (m in metrics){
   # subset to complete cases
   fit_data_m <- 
     fit_data_in %>% 
-    dplyr::select(-all_of(metrics[metrics != m])) %>%  # drop metrics you aren't interested in
+    subset(Sample == "Train") %>% 
+    dplyr::select(gage_ID, currentclimyear, region, all_of(m), all_of(predictors_trimmed)) %>% 
     subset(complete.cases(.))
   
   # rename metric column
   names(fit_data_m)[names(fit_data_m) == m] <- "observed"
-  
-  # build formula
-  fit_formula <- as.formula(paste0("observed ~ ", paste(c(predictors_climate_with_previous, predictors_human, predictors_static), collapse = "+")))
   
   for (r in regions){
     if (r == "National") {
@@ -112,37 +152,25 @@ for (m in metrics){
       fit_data_r <- subset(fit_data_m, region == r)
     }
     
-    gages_r <- unique(fit_data_r$gage_ID)
+    # extract variable importance - conditional variable importance from party package
+    #  useful blog post: https://www.r-bloggers.com/be-aware-of-bias-in-rf-variable-importance-metrics/
+    #   - suggests permutation importance as more robust
+    #   - this accounts for highly correlated predictor variables, but is super slow
+    fit_rf <- cforest(
+      observed ~ .,
+      data = dplyr::select(fit_data_r, -gage_ID, -currentclimyear, -region)
+    )
     
-    set.seed(1)
-    for (iter in 1:n_iter){
-      # select gages
-      gages_i <- sample(gages_r, size = floor(length(gages_r)*prc_sample))
-      
-      # fit model
-      fit_rf <- randomForest::randomForest(fit_formula,
-                                           data = subset(fit_data_r, gage_ID %in% gages_i),
-                                           ntree = 500,
-                                           localImp = T)
-      
-      # extract variable importance
-      fit_rf_imp_i <- tibble::tibble(predictor = rownames(randomForest::importance(fit_rf, type = 1)),
-                                     PrcIncMSE = randomForest::importance(fit_rf, type = 1)[,'%IncMSE'],
-                                     metric = m,
-                                     region = r,
-                                     iteration = iter)
-      if (iter == 1){
-        fit_rf_imp <- fit_rf_imp_i
-      } else {
-        fit_rf_imp <- dplyr::bind_rows(fit_rf_imp, fit_rf_imp_i)
-      }
-      
-      # status update
-      print(paste0(m, " ", r, " ", iter, " complete, ", Sys.time()))
-    }
+    vi <- varimp(fit_rf, conditional = T)
+    fit_rf_imp_i <- tibble::tibble(predictor = names(vi),
+                                   ImpCondPerm = vi)
     
     # write csv file separately for each metric and region
-    fit_rf_imp %>% 
+    fit_rf_imp_i %>% 
       readr::write_csv(path = file.path("results", paste0("01_RandomForest_PreliminaryVariableImportance_", m, "_", gsub(" ", "", r, fixed = TRUE), ".csv")))
+    
+    # status update
+    print(paste0(m, " ", r, " complete, ", Sys.time()))
+    
   }
 }
