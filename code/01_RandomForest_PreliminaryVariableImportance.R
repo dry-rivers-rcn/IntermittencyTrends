@@ -10,6 +10,8 @@
 source(file.path("code", "paths+packages.R"))
 library(tidymodels)
 library(ranger)
+library(partykit)
+library(future.apply)
 
 ####
 #### prep data
@@ -132,6 +134,9 @@ predictors_drop <-
 # trimmed predictors list to use in models
 predictors_trimmed <- predictors_all[!(predictors_all %in% predictors_drop)]
 
+# number of cores to use
+ncores <- (parallel::detectCores() - 1)
+
 ## loop through metrics and regions
 set.seed(1)
 for (m in metrics){
@@ -156,12 +161,20 @@ for (m in metrics){
     #  useful blog post: https://www.r-bloggers.com/be-aware-of-bias-in-rf-variable-importance-metrics/
     #   - suggests permutation importance as more robust
     #   - this accounts for highly correlated predictor variables, but is super slow
-    fit_rf <- cforest(
+    #  useful slides by authors of party package: https://www.statistik.uni-dortmund.de/useR-2008/slides/Strobl+Zeileis.pdf
+    fit_rf <- partykit::cforest(
       observed ~ .,
-      data = dplyr::select(fit_data_r, -gage_ID, -currentclimyear, -region)
+      data = dplyr::select(fit_data_r, -gage_ID, -currentclimyear, -region),
+      control = ctree_control(mincriterion = 0.95),
+      ntree = 500,
+      applyfun = future.apply::future_lapply,
+      cores = ncores
     )
-    
-    vi <- varimp(fit_rf, conditional = T)
+    vi <- partykit::varimp(fit_rf, 
+                           conditional = T, 
+                           applyfun = future.apply::future_lapply,
+                           cores = ncores)
+
     fit_rf_imp_i <- tibble::tibble(predictor = names(vi),
                                    ImpCondPerm = vi)
     
