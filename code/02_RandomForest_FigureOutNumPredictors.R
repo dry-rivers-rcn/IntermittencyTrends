@@ -146,16 +146,53 @@ for (m in metrics){
   }
 }
 
+# save results
+fit_predtest %>% 
+  readr::write_csv(path = file.path("results", "02_RandomForest_FigureOutNumPredictors.csv"))
+
+# find optimal
+fit_predtest %>% 
+  dplyr::group_by(metric) %>% 
+  dplyr::filter(OOBmse == min(OOBmse))
+
+fit_predtest %>% 
+  dplyr::group_by(metric) %>% 
+  dplyr::filter(OOBr2 == max(OOBr2))
+
+# final number of predictors
+npred_final <- 24
+
 # plot and look for elbow
 ggplot(fit_predtest, aes(x = n, y = OOBmse)) + 
+  geom_vline(xintercept = 24, color = "red") +
   geom_point() + geom_line() +
-  scale_x_continuous(name = "Number of Predictors", breaks = seq(3,20)) +
-  scale_y_continuous(name = "Random Forest MSE [training gages only]") +
+  scale_x_continuous(name = "Number of Predictors") +
+  scale_y_continuous(name = "Random Forest OOB MSE [training gages only]") +
   facet_grid(metric~., scales = "free_y",
              labeller = as_labeller(c("annualfractionnoflow" = "Annual Fraction\nZero Flow [-]", 
-                                    "peak2z_length" = "Peak-to-Zero\nLength [days]",
-                                    "zeroflowfirst" = "First Zero Flow\nDay [climate year]"))) +
+                                      "peak2z_length" = "Peak-to-Zero\nLength [days]",
+                                      "zeroflowfirst" = "First Zero Flow\nDay [climate year]"))) +
   labs(title = "Random forest MSE as a function of number of predictors",
        subtitle = "National model for each metric") +
   ggsave(file.path("figures_manuscript", "RandomForest_MSEvNumberPredictors.png"),
          width = 150, height = 150, units = "mm")
+
+ggplot(fit_predtest, aes(x = n, y = OOBr2)) + 
+  geom_point() + geom_line() +
+  scale_x_continuous(name = "Number of Predictors") +
+  scale_y_continuous(name = "Random Forest OOB R2 [training gages only]") +
+  facet_grid(metric~., scales = "free_y",
+             labeller = as_labeller(c("annualfractionnoflow" = "Annual Fraction\nZero Flow [-]", 
+                                      "peak2z_length" = "Peak-to-Zero\nLength [days]",
+                                      "zeroflowfirst" = "First Zero Flow\nDay [climate year]"))) +
+  labs(title = "Random forest R2 as a function of number of predictors",
+       subtitle = "National model for each metric")
+
+ggplot(fit_predtest, aes(x = OOBmse, y = OOBr2)) + 
+  geom_point() +
+  scale_x_continuous(name = "Random Forest OOB MSE [training gages only]") +
+  scale_y_continuous(name = "Random Forest OOB R2 [training gages only]") +
+  facet_wrap(metric~., scales = "free",
+             labeller = as_labeller(c("annualfractionnoflow" = "Annual Fraction\nZero Flow [-]", 
+                                      "peak2z_length" = "Peak-to-Zero\nLength [days]",
+                                      "zeroflowfirst" = "First Zero Flow\nDay [climate year]")))
