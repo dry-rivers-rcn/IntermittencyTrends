@@ -5,28 +5,20 @@
 source(file.path("code", "paths+packages.R"))
 
 ## load data
-# gage characteristics
-gage_sample <- 
-  readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv")) %>% 
-  dplyr::mutate(gage_ID = as.numeric(gage_ID))
-
 # random forest predictions
 rf_all <-
-  readr::read_csv(file.path("results", "03_RandomForest_RunModels_Predictions.csv")) %>% 
-  dplyr::mutate(residual = predicted - observed) %>% 
-  dplyr::left_join(gage_sample[,c("gage_ID", "region", "Sample")], by = "gage_ID")
+  readr::read_csv(file.path("results", "04_RandomForest_RunModels_Predictions.csv")) %>% 
+  dplyr::mutate(residual = predicted - observed)
 
 rf_all$region_rf[rf_all$region_rf != "National"] <- "Regional"
-
-# identify test vs. train
-rf_all$Test <- rf_all$Sample == paste0("Test", rf_all$kfold)
 
 ## calculate fit statistics
 rf_fit <-
   rf_all %>% 
-  subset(Test) %>% 
+  subset(Sample == "Test") %>% 
   dplyr::group_by(metric, region_rf, region) %>% 
-  dplyr::summarize(RMSE = round(hydroGOF::rmse(predicted, observed), 3),
+  dplyr::summarize(MAE = round(hydroGOF::mae(predicted, observed), 3),
+                   RMSE = round(hydroGOF::rmse(predicted, observed), 3),
                    NRMSE = hydroGOF::nrmse(predicted, observed, norm = "maxmin"),
                    KGE = round(hydroGOF::KGE(predicted, observed, method = "2012"), 3)) %>% 
   dplyr::ungroup() %>% 
