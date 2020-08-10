@@ -132,4 +132,4 @@ fit_data_train$predicted <- predict(hurdle_fit, fit_data_train)
 fit_data_test$predicted <-  predict(hurdle_fit, fit_data_test)
 
 ggplot(fit_data_train, aes(x = observed, y = predicted)) + 
-  geom_point()``
+  geom_point()
