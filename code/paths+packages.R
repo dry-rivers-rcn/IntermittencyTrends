@@ -78,3 +78,12 @@ R2 <- function(sim, obs) {
   return((sum((obs-mean(obs))*(sim-mean(sim)))/
             ((sum((obs-mean(obs))^2)^0.5)*(sum((sim-mean(sim))^2)^0.5)))^2)
 }
+
+# get p-value from linear model
+lmp <- function (modelobject) {
+  if (class(modelobject) != "lm") stop("Not an object of class 'lm' ")
+  f <- summary(modelobject)$fstatistic
+  p <- pf(f[1],f[2],f[3],lower.tail=F)
+  attributes(p) <- NULL
+  return(p)
+}

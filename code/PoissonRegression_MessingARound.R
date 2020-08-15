@@ -19,7 +19,7 @@ predicted_ps <- predict(fit_ps, newdata = tibble::tibble(year = seq(1980, 2017))
 
 exp(coef(fit_ps)[2]) # each year, 8.1% increase
 
-pchisq(fit_ps$deviance, fit_ps$df.residual, lower.tail = FALSE)  # p-value of fit (p > 0.05 means good fit)
+pchisq(fit_ps$deviance, fit_ps$df.residual, lower.tail = FALSE)
 
 # not understanding why these pairs aren't matching exactly
 predicted_ps[1] * exp(coef(fit_ps)[2])

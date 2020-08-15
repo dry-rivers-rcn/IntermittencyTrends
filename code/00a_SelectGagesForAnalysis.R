@@ -56,20 +56,20 @@ gages_annual_summary <-
   readr::read_csv() %>% 
   dplyr::rename(gage_ID = sitewith0) %>% 
   dplyr::left_join(p2z_mean_climyear, by = c("gage_ID", "currentclimyear" = "dry_climyear")) %>% 
-  subset(gage_ID %in% gage_sample_prelim$gage_ID)
+  subset(gage_ID %in% gage_sample_prelim$gage_ID) %>% 
+  dplyr::mutate(annualnoflowdays = as.integer(round(annualfractionnoflow*365)))
 
 # variables to calculate trends in and save
 annual_vars <- 
   c("gage_ID", "currentclimyear",
-    "annualfractionnoflow", "zeroflowfirst", "peak2z_length", "p_mm_wy", "p_mm_amj", 
+    "annualfractionnoflow", "annualnoflowdays", "zeroflowfirst", "peak2z_length", "p_mm_wy", "p_mm_amj", 
     "p_mm_jas", "p_mm_ond", "p_mm_jfm", "pet_mm_wy", "pet_mm_amj", "pet_mm_jas", 
     "pet_mm_ond", "pet_mm_jfm", "T_max_c_wy", "T_max_c_amj", "T_max_c_jas", 
     "T_max_c_ond", "T_max_c_jfm", "T_min_c_wy", "T_min_c_amj", "T_min_c_jas", 
     "T_min_c_ond", "T_min_c_jfm", "pcumdist10days", "pcumdist50days", 
     "pcumdist90days", "swe_mm_wy", "swe_mm_amj", "swe_mm_jas", "swe_mm_ond", 
     "swe_mm_jfm", "srad_wm2_wy", "srad_wm2_amj", "srad_wm2_jas", 
-    "srad_wm2_ond", "srad_wm2_jfm", "pdsi_wy", "pdsi_amj", "pdsi_jas", 
-    "pdsi_ond", "pdsi_jfm")
+    "srad_wm2_ond", "srad_wm2_jfm")
 
 gages_annual_summary <- 
   gages_annual_summary %>% 
@@ -79,15 +79,14 @@ gages_annual_summary <-
                 T_max_c_cy = T_max_c_wy,
                 T_min_c_cy = T_min_c_wy,
                 swe_mm_cy = swe_mm_wy,
-                srad_wm2_cy = srad_wm2_wy,
-                pdsi_cy = pdsi_wy)
+                srad_wm2_cy = srad_wm2_wy)
 
 ## calculate mean for each gage
 gages_mean <-
   gages_annual_summary %>% 
   dplyr::group_by(gage_ID) %>% 
   dplyr::summarize_all(mean, na.rm = T) %>% 
-  dplyr::select(-currentclimyear, -pdsi_cy, -pdsi_jfm, -pdsi_amj, -pdsi_jas, -pdsi_ond)
+  dplyr::select(-currentclimyear)
 
 gages_n_noflow <-
   gages_annual_summary %>% 
@@ -96,7 +95,7 @@ gages_n_noflow <-
                    yrs_data = sum(is.finite(annualfractionnoflow))) %>% 
   dplyr::ungroup()
 
-## trim to only gages with at least 5 years of no-flow values
+## trim to only gages with at least 5 years of no-flow values - currently not used
 noflow_prc_threshold <- 0.0
 gage_sample <-
   dplyr::left_join(gage_sample_prelim, gages_mean, by = "gage_ID") %>% 
@@ -112,6 +111,10 @@ sites <- unique(gages_annual_summary$gage_ID)
 
 # which columns to calculate trends?
 cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentclimyear"))
+nvar <- length(cols_trend)
+
+# year to split for mann-whitney? (this will be included in the first set)
+mw_yr_split <- 1998 # group 1 1980-1998, group 2 1999-2017
 
 for (i in seq_along(sites)){
   current <- subset(gages_annual_summary, gage_ID == sites[i])
@@ -119,10 +122,22 @@ for (i in seq_along(sites)){
   current[current==Inf] <- NA
   
   results <- tibble::tibble(metric = colnames(gages_annual_summary[cols_trend]),
-                            tau = as.numeric(rep(NA, length = length(cols_trend))), 
-                            pval = as.numeric(rep(NA, length = length(cols_trend))), 
-                            slope = as.numeric(rep(NA, length = length(cols_trend))),
-                            n_years = as.numeric(rep(NA, length = length(cols_trend))))
+                            mk_tau = as.numeric(rep(NA, length = nvar)), 
+                            mk_p = as.numeric(rep(NA, length = nvar)), 
+                            sen_slope = as.numeric(rep(NA, length = nvar)),
+                            lin_slope = as.numeric(rep(NA, length = nvar)),
+                            lin_r2 = as.numeric(rep(NA, length = nvar)),
+                            lin_p = as.numeric(rep(NA, length = nvar)),
+                            pois_slope = as.numeric(rep(NA, length = nvar)),
+                            pois_r2 = as.numeric(rep(NA, length = nvar)),
+                            pois_p = as.numeric(rep(NA, length = nvar)),
+                            mw_p = as.numeric(rep(NA, length = nvar)),
+                            mw_meanGroup1 = as.numeric(rep(NA, length = nvar)),
+                            mw_meanGroup2 = as.numeric(rep(NA, length = nvar)),
+                            mw_medianGroup1 = as.numeric(rep(NA, length = nvar)),
+                            mw_medianGroup2 = as.numeric(rep(NA, length = nvar)),
+                            n_yrGroup1 = as.numeric(rep(NA, length = nvar)),
+                            n_yrGroup2 = as.numeric(rep(NA, length = nvar)))
   
   site_start <- T
   for(col in cols_trend){
@@ -132,21 +147,70 @@ for (i in seq_along(sites)){
     currentcolumn <- dplyr::right_join(currentcolumn, fulllengthwyears, by = "currentclimyear")
     years_data <-  sum(is.finite(currentcolumn$variable))
     
-    # only calculate trend if at least 30 years of data
-    if (years_data >= 30){
+    # mann-whitney
+    group1 <- currentcolumn$variable[currentcolumn$currentclimyear <= mw_yr_split]
+    group2 <- currentcolumn$variable[currentcolumn$currentclimyear > mw_yr_split]
+    if (sum(is.finite(group1)) > 5 & sum(is.finite(group2)) > 5){
+      mw_test <- wilcox.test(group1, group2)
+      mw_p <- mw_test$p.value
+    } else {
+      mw_p <- NA
+    }
+    
+    # only calculate trends, differences if at least 10 years of data
+    if (years_data >= 10){
+      i_finite <- which(is.finite(currentcolumn$variable))
       manken <- rkt::rkt(currentcolumn$currentclimyear, currentcolumn$variable)
-
+      linfit <- lm(variable ~ currentclimyear, data = currentcolumn)
+      
+      # poisson slope only possible for count data (integer)
+      if (currentcolumnname %in% c("annualnoflowdays", "zeroflowfirst",
+                                   "pcumdist10days", "pcumdist50days", "pcumdist90days")){
+        pois <- glm(variable ~ currentclimyear, family=poisson(link = "log"), data = currentcolumn)
+        p_slope <- coef(pois)[2]
+        p_r2 <- R2(predict(pois, currentcolumn[i_finite, ]), currentcolumn$variable[i_finite])
+        p_p <- summary(pois)$coef[2,4]
+      } else {
+        p_slope <- NA
+        p_r2 <- NA
+        p_p <- NA
+      }
+      
       trend <- tibble::tibble(metric = currentcolumnname,
-                              tau = manken$tau,
-                              pval = manken$sl[1],
-                              slope = manken$B,
-                              n_years = years_data)
+                              mk_tau = manken$tau,
+                              mk_p = manken$sl[1],
+                              sen_slope = manken$B,
+                              lin_slope = coef(linfit)[2],
+                              lin_r2 = summary(linfit)$r.squared,
+                              lin_p = lmp(linfit),
+                              pois_slope = p_slope,
+                              pois_r2 = p_r2,
+                              pois_p = p_p,
+                              mw_p = mw_p,
+                              mw_meanGroup1 = mean(group1, na.rm = T),
+                              mw_meanGroup2 = mean(group2, na.rm = T),
+                              mw_medianGroup1 = median(group1, na.rm = T),
+                              mw_medianGroup2 = median(group2, na.rm = T),
+                              n_yrGroup1 = sum(is.finite(group1)),
+                              n_yrGroup2 = sum(is.finite(group1)))
     } else {
       trend <- tibble::tibble(metric = currentcolumnname,
-                              tau = NA,
-                              pval = NA,
-                              slope = NA,
-                              n_years = years_data)
+                              mk_tau = NA,
+                              mk_p = NA,
+                              sen_slope = NA,
+                              lin_slope = NA,
+                              lin_r2 = NA,
+                              lin_p = NA,
+                              pois_slope = NA,
+                              pois_r2 = NA,
+                              pois_p = NA,
+                              mw_p = mw_test$p.value,
+                              mw_meanGroup1 = mean(group1, na.rm = T),
+                              mw_meanGroup2 = mean(group2, na.rm = T),
+                              mw_medianGroup1 = median(group1, na.rm = T),
+                              mw_medianGroup2 = median(group2, na.rm = T),
+                              n_yrGroup1 = sum(is.finite(group1)),
+                              n_yrGroup2 = sum(is.finite(group1)))
     }
     if (site_start){
       results <- trend
@@ -172,7 +236,7 @@ for (i in seq_along(sites)){
 gage_sample_out <- 
   gage_sample %>% 
   dplyr::select(-epa_level_1_ecoregion_name) %>% 
-  subset(is.finite(annualfractionnoflow) & is.finite(zeroflowfirst) & is.finite(peak2z_length))  # screen out any with missing data
+  subset(is.finite(annualnoflowdays) & is.finite(zeroflowfirst) & is.finite(peak2z_length))  # screen out any with missing data
 
 table(gage_sample_out$region, gage_sample_out$CLASS)
 table(gage_sample_out$CLASS)
