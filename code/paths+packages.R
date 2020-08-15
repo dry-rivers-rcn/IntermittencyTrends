@@ -45,6 +45,14 @@ pal_regions_dk <-
     "Western Desert" = "#9a4400",
     "Western Mountains" = "#1986c3")
 
+lab_regions_2line <- 
+  c("Eastern Forests" = "Eastern\nForests",
+    "Mediterranean California" = "Mediterranean\nCalifornia",
+    "North Great Plains" = "North Great\nPlains",
+    "South Great Plains" = "South Great\nPlains",
+    "Western Desert" = "Western\nDesert",
+    "Western Mountains" = "Western\nMountains")
+
 ## ggplot theme
 windowsFonts(Arial=windowsFont("TT Arial"))
 theme_scz <- function(...){
