@@ -6,16 +6,38 @@
 source(file.path("code", "paths+packages.R"))
 
 ## metrics we care about
-metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
+metrics <- c("annualflowdays", "zeroflowfirst", "peak2z_length")
 
 ## load data
 gage_regions <- 
   readr::read_csv(file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
 
+gage_mean <- 
+  readr::read_csv(file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
+
 gage_trends <- 
   readr::read_csv(file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv")) %>% 
   subset(metric %in% metrics) %>% 
-  dplyr::left_join(gage_regions, by = "gage_ID")
+  dplyr::left_join(gage_regions, by = "gage_ID") %>% 
+  dplyr::left_join(gage_mean[,c("gage_ID", "dec_lat_va", "dec_long_va")], by = "gage_ID")
+
+## plot: mann-kendall results
+# load state map
+states <- map_data("state")
+
+df_mk <- 
+  gage_trends %>% 
+  dplyr::select(metric, gage_ID, region, dec_lat_va, dec_long_va, mk_tau, mk_p) %>% 
+  subset(complete.cases(.))
+
+ggplot() +
+  geom_polygon(data = states, aes(x = long, y = lat, group = group), fill = NA, color = col.gray) +
+  geom_point(data = df_mk, aes(x = dec_long_va, y = dec_lat_va, color = mk_tau)) +
+  facet_wrap(~metric, ncol = 1) +
+  scale_x_continuous(name = "Longitude") +
+  scale_y_continuous(name = "Latitude") +
+  scale_color_gradient2()
+
 
 ## summarize
 p_thres <- 0.05

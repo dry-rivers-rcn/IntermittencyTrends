@@ -57,12 +57,13 @@ gages_annual_summary <-
   dplyr::rename(gage_ID = sitewith0) %>% 
   dplyr::left_join(p2z_mean_climyear, by = c("gage_ID", "currentclimyear" = "dry_climyear")) %>% 
   subset(gage_ID %in% gage_sample_prelim$gage_ID) %>% 
-  dplyr::mutate(annualnoflowdays = as.integer(round(annualfractionnoflow*365)))
+  dplyr::mutate(annualnoflowdays = as.integer(round(annualfractionnoflow*365)),
+                annualflowdays = as.integer(round((1-annualfractionnoflow)*365)))
 
 # variables to calculate trends in and save
 annual_vars <- 
   c("gage_ID", "currentclimyear",
-    "annualfractionnoflow", "annualnoflowdays", "zeroflowfirst", "peak2z_length", "p_mm_wy", "p_mm_amj", 
+    "annualfractionnoflow", "annualnoflowdays", "annualflowdays", "zeroflowfirst", "peak2z_length", "p_mm_wy", "p_mm_amj", 
     "p_mm_jas", "p_mm_ond", "p_mm_jfm", "pet_mm_wy", "pet_mm_amj", "pet_mm_jas", 
     "pet_mm_ond", "pet_mm_jfm", "T_max_c_wy", "T_max_c_amj", "T_max_c_jas", 
     "T_max_c_ond", "T_max_c_jfm", "T_min_c_wy", "T_min_c_amj", "T_min_c_jas", 
@@ -164,7 +165,7 @@ for (i in seq_along(sites)){
       linfit <- lm(variable ~ currentclimyear, data = currentcolumn)
       
       # poisson slope only possible for count data (integer)
-      if (currentcolumnname %in% c("annualnoflowdays", "zeroflowfirst",
+      if (currentcolumnname %in% c("annualnoflowdays", "annualflowdays", "zeroflowfirst",
                                    "pcumdist10days", "pcumdist50days", "pcumdist90days")){
         pois <- glm(variable ~ currentclimyear, family=poisson(link = "log"), data = currentcolumn)
         p_slope <- coef(pois)[2]
