@@ -159,47 +159,47 @@ p_mw_hist <-
   geom_histogram(data = df_mw, aes(x = mw_diff_mean, fill = mw_p < p_thres),
                  binwidth = 10) +
   geom_vline(xintercept = 0, color = "black") +
-  facet_wrap(~metric, scales = "free", labeller = 
+  facet_wrap(~metric, ncol = 1, scales = "free", labeller = 
                as_labeller(c("annualflowdays" = "(a) Annual Days with Flow",
-                             "peak2z_length" = "(b) Days from Peak to No-Flow",
-                             "zeroflowfirst" = "(c) First No-Flow Day"))) +
-  scale_x_continuous(name = "Change in Annual Value [1999 to 2017 Mean - 1980 to 1998 Mean]") +
+                             "peak2z_length" = "(c) Days from Peak to No-Flow",
+                             "zeroflowfirst" = "(e) First No-Flow Day"))) +
+  scale_x_continuous(name = "Change in Annual Mean\n[(1999 to 2017) - (1980 to 1998)]") +
   scale_y_continuous(name = "Number of Gages") +
-  scale_fill_manual(name = "Mann-Whitney Significance", values = c("TRUE" = col.cat.blu, "FALSE" = col.gray),
+  scale_fill_manual(name = "Mann-Whitney Significance", values = c("TRUE" = col.cat.grn, "FALSE" = col.gray),
                     labels = c("TRUE" = "p < 0.05", "FALSE" = "p > 0.05"))  +
   theme(panel.border = element_blank(),
         strip.text = element_text(face = "bold"),
         legend.position = "bottom") +
-  guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5),
-         shape = guide_legend(order = 2, direction = "vertical"))
+  guides(fill = guide_legend(order = 1, title.position = "top", title.hjust = 0.5))
 
 # maps
 p_mw_map <- 
   ggplot() +
   geom_polygon(data = states, aes(x = long, y = lat, group = group),
                fill = "gray75", color = "white") +
-  geom_point(data = df_mw,  aes(x = dec_long_va, y = dec_lat_va,
-                                color = mw_diff_mean, shape = mw_p < p_thres)) +
-  facet_wrap(~metric, labeller = 
-               as_labeller(c("annualflowdays" = "(a) Annual Days with Flow",
-                             "peak2z_length" = "(b) Days from Peak to No-Flow",
-                             "zeroflowfirst" = "(c) First No-Flow Day"))) +
+  geom_point(data = subset(df_mw, mw_p < p_thres),  aes(x = dec_long_va, y = dec_lat_va,
+                                color = mw_diff_mean)) +
+  facet_wrap(~metric, ncol = 1, labeller = 
+               as_labeller(c("annualflowdays" = "(b) Annual Days with Flow",
+                             "peak2z_length" = "(d) Days from Peak to No-Flow",
+                             "zeroflowfirst" = "(f) First No-Flow Day"))) +
   scale_x_continuous(name = "Longitude [\u00B0E]") +
   scale_y_continuous(name = "Latitude [\u00B0N]",
                      breaks = seq(30, 50, 10)) +
-  scale_color_gradient2(name = "Change in Annual Mean Value",
+  scale_color_gradient2(name = "Change in Annual Mean\n[(1999 to 2017) - (1980 to 1998)]",
                         high = "#4575b4", mid = "#ffffbf", low = "#d73027") +
-  scale_shape_manual(name = "Significance", values = c("TRUE" = 16, "FALSE" = 1),
-                     labels = c("TRUE" = "p < 0.05", "FALSE" = "p > 0.05"))  +
+  #scale_shape_manual(name = "Significance", values = c("TRUE" = 16, "FALSE" = 1),
+  #                   labels = c("TRUE" = "p < 0.05", "FALSE" = "p > 0.05"))  +
   theme(panel.border = element_blank(),
         strip.text = element_text(face = "bold"),
         legend.position = "bottom") +
-  guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5),
+  guides(color = guide_colorbar(order = 1, barwidth = 10,
+                                title.position = "top", title.hjust = 0.5),
          shape = guide_legend(order = 2, direction = "vertical"))
 
 p_mw_combo <- 
   (p_mw_hist + p_mw_map) +
-  plot_layout(ncol = 1)
+  plot_layout(ncol = 2, widths = c(1, 2))
 
 ggsave(file.path("figures_Manuscript", "Trends_MannWhitney-Hist+Maps.png"),
        p_mw_combo, width = 190, height = 220, units = "mm")  
