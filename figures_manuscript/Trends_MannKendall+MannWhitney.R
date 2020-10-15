@@ -5,7 +5,7 @@
 source(file.path("code", "paths+packages.R"))
 
 ## metrics we care about
-metrics <- c("annualflowdays", "zeroflowfirst", "peak2z_length")
+metrics <- c("annualnoflowdays", "zeroflowfirst", "peak2z_length")
 
 ## load data
 gage_mean <- 
@@ -39,7 +39,7 @@ p_afd <-
   ggplot() +
   geom_polygon(data = states, aes(x = long, y = lat, group = group), 
                fill = "gray75", color = "white") +
-  geom_point(data = subset(df_mk, metric == "annualflowdays"),
+  geom_point(data = subset(df_mk, metric == "annualnoflowdays"),
              aes(x = dec_long_va, y = dec_lat_va, 
                  color = mk_tau, shape = mk_p < p_thres)) +
   scale_x_continuous(name = NULL, breaks = seq(-120, -80, 20),
@@ -47,13 +47,14 @@ p_afd <-
   scale_y_continuous(name = NULL, breaks = seq(30, 50, 10),
                      labels = c("30\u00b0N", "40\u00b0N", "50\u00b0N")) +
   scale_color_gradient2(name = "Kendall \u03c4", limits = c(tau_min, tau_max),
-                        high = "#4575b4", mid = "#ffffbf", low = "#d73027") +
-  scale_shape_manual(name = "Significance", values = c("TRUE" = 16, "FALSE" = 1),
+                        low = "#4575b4", mid = "#ffffbf", high = "#d73027") +
+  scale_shape_manual(name = NULL, values = c("TRUE" = 16, "FALSE" = 1),
                      labels = c("TRUE" = "p < 0.05", "FALSE" = "p > 0.05"))  +
+  coord_map() +
   theme(panel.border = element_blank(),
         strip.text = element_text(face = "bold"),
         axis.text.y = element_text(angle = 90, hjust = 0.5),
-        legend.position = "bottom") +
+        legend.position = "right") +
   guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5),
          shape = guide_legend(order = 2, direction = "vertical"))
 
@@ -70,12 +71,13 @@ p_p2z <-
                      labels = c("30\u00b0N", "40\u00b0N", "50\u00b0N")) +
   scale_color_gradient2(name = "Kendall \u03c4", limits = c(tau_min, tau_max),
                         high = "#4575b4", mid = "#ffffbf", low = "#d73027") +
-  scale_shape_manual(name = "Significance", values = c("TRUE" = 16, "FALSE" = 1),
+  scale_shape_manual(name = NULL, values = c("TRUE" = 16, "FALSE" = 1),
                      labels = c("TRUE" = "p < 0.05", "FALSE" = "p > 0.05"))  +
+  coord_map() +
   theme(panel.border = element_blank(),
         strip.text = element_text(face = "bold"),
         axis.text.y = element_text(angle = 90, hjust = 0.5),
-        legend.position = "bottom") +
+        legend.position = "right") +
   guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5),
          shape = guide_legend(order = 2, direction = "vertical"))
 
@@ -92,25 +94,24 @@ p_zff <-
                      labels = c("30\u00b0N", "40\u00b0N", "50\u00b0N")) +
   scale_color_gradient2(name = "Kendall \u03c4", limits = c(tau_min, tau_max),
                         high = "#4575b4", mid = "#ffffbf", low = "#d73027") +
-  scale_shape_manual(name = "Significance", values = c("TRUE" = 16, "FALSE" = 1),
+  scale_shape_manual(name = NULL, values = c("TRUE" = 16, "FALSE" = 1),
                      labels = c("TRUE" = "p < 0.05", "FALSE" = "p > 0.05"))  +
+  coord_map() +
   theme(panel.border = element_blank(),
         strip.text = element_text(face = "bold"),
         axis.text.y = element_text(angle = 90, hjust = 0.5),
-        legend.position = "bottom") +
+        legend.position = "right") +
   guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5),
          shape = guide_legend(order = 2, direction = "vertical"))
 
 p_combo <- 
-  ((p_afd + ggtitle("(a) Annual Days with Flow")) + 
+  ((p_afd + ggtitle("(a) Annual No-Flow Days")) + 
     (p_p2z + ggtitle("(b) Days from Peak to No-Flow")) + 
-    (p_zff + ggtitle("(c) First No-Flow Day")) + 
-    guide_area()) +
-  plot_layout(ncol = 2,
-              guides = "collect")
+    (p_zff + ggtitle("(c) First No-Flow Day"))) +
+  plot_layout(ncol = 1)
 
 ggsave(file.path("figures_manuscript", "Trends_MannKendall-Maps.png"),
-       p_combo, width = 190, height = 140, units = "mm")
+       p_combo, width = 190, height = 240, units = "mm")
 
 
 # ## single map using facet_wrap

@@ -3,7 +3,7 @@
 source(file.path("code", "paths+packages.R"))
 
 ## metrics we care about
-metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
+metrics <- c("annualflowdays", "zeroflowfirst", "peak2z_length")
 
 ## load data
 gage_regions <-
@@ -24,15 +24,15 @@ gage_trends %>%
                    n_sig_pos = sum(slope > 0 & pval < p_thres, na.rm = T),
                    n_sig_neg = sum(slope <= 0 & pval < p_thres, na.rm = T))
 
-## focus on annualfractionnoflow: gages that have significant trends but slope = 0
+## focus on annualflowdays (most common metric)
 sigtrends_noslope <-
-  gage_trends$gage_ID[gage_trends$pval < 0.05 &
-                      gage_trends$metric == "annualfractionnoflow" &
-                      gage_trends$slope == 0]
+  gage_trends$gage_ID[gage_trends$mk_p < 0.05 &
+                      gage_trends$metric == "annualflowdays" &
+                      gage_trends$sen_slope == 0]
 sigtrends_yesslope <-
-  gage_trends$gage_ID[gage_trends$pval < 0.05 &
-                        gage_trends$metric == "annualfractionnoflow" &
-                        gage_trends$slope != 0]
+  gage_trends$gage_ID[gage_trends$mk_p < 0.05 &
+                        gage_trends$metric == "annualflowdays" &
+                        gage_trends$sen_slope != 0]
 
 ## now: load data and choose a few case studies for different types of trends
 gage_sample_annual <-
@@ -45,32 +45,32 @@ gage_sample_annual %>%
   geom_point()
 
 # sample to a few test gages showing different types of slopes
-gages_test <- c(sigtrends_noslope[5], sigtrends_noslope[16], sigtrends_noslope[43],
-                sigtrends_yesslope[6], sigtrends_yesslope[7], sigtrends_yesslope[43])
+gages_test <- c(2313230, 6177500, 7362100, 2266205, 2291580, 7315200)
 
 gage_example <-
   gage_sample_annual %>%
   subset(gage_ID %in% gages_test) %>%
   mutate(year = currentclimyear,
-         noflowdays = round(annualfractionnoflow*365.25),
+         annualflowdays = as.integer(round((1-annualfractionnoflow)*365)),
          gage = factor(gage_ID, levels = gages_test)) %>%
-  dplyr::select(gage, year, noflowdays)
+  dplyr::select(gage, year, annualflowdays)
 
 sen <- function(..., weights = NULL) {
   mblm::mblm(...)
 }
 
-ggplot(gage_example, aes(x = year, y = noflowdays)) +
+ggplot(gage_example, aes(x = year, y = annualflowdays)) +
   geom_point() +
-  facet_wrap(~gage, scales = "free_y") +
+  facet_wrap(~gage, scales = "free_y", ncol = 2) +
   stat_smooth(method = "lm", color = "blue", se = F) +
   stat_smooth(method = "glm", method.args = list(family = "poisson"), color = "green", se = F) +
   stat_smooth(method = sen, color = "red", se = F) +
-  scale_y_continuous(name = "Days with No Flow") +
+  scale_y_continuous(name = "Annual Days with Flow") +
   scale_x_continuous(name = "Year") +
   labs(title = "Comparison of Slope Methods for Some Example Gages",
        subtitle = "Blue = Linear, Green = Poisson, Red = Theil-Sen") +
-  ggsave(file.path("results", "Trends_CompareMethods.png"))
+  ggsave(file.path("figures_manuscript", "Trends_CompareMethods.png"),
+         width = 190, height = 220, units = "mm")
 
 ## count number of gages that have no-flow in at least 50% of years
 df_test <- 
