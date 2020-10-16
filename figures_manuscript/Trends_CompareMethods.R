@@ -3,7 +3,7 @@
 source(file.path("code", "paths+packages.R"))
 
 ## metrics we care about
-metrics <- c("annualflowdays", "zeroflowfirst", "peak2z_length")
+metrics <- c("annualnoflowdays", "zeroflowfirst", "peak2z_length")
 
 ## load data
 gage_regions <-
@@ -19,19 +19,19 @@ gage_trends <-
 p_thres <- 0.05
 gage_trends %>%
   dplyr::group_by(metric) %>%
-  dplyr::summarize(n_finite = sum(is.finite(slope)),
-                   n_sig = sum(pval < p_thres, na.rm = T),
-                   n_sig_pos = sum(slope > 0 & pval < p_thres, na.rm = T),
-                   n_sig_neg = sum(slope <= 0 & pval < p_thres, na.rm = T))
+  dplyr::summarize(n_finite = sum(is.finite(sen_slope)),
+                   n_sig = sum(mk_p < p_thres, na.rm = T),
+                   n_sig_pos = sum(sen_slope > 0 & mk_p < p_thres, na.rm = T),
+                   n_sig_neg = sum(sen_slope <= 0 & mk_p < p_thres, na.rm = T))
 
-## focus on annualflowdays (most common metric)
+## focus on annualnoflowdays (most common metric)
 sigtrends_noslope <-
   gage_trends$gage_ID[gage_trends$mk_p < 0.05 &
-                      gage_trends$metric == "annualflowdays" &
+                      gage_trends$metric == "annualnoflowdays" &
                       gage_trends$sen_slope == 0]
 sigtrends_yesslope <-
   gage_trends$gage_ID[gage_trends$mk_p < 0.05 &
-                        gage_trends$metric == "annualflowdays" &
+                        gage_trends$metric == "annualnoflowdays" &
                         gage_trends$sen_slope != 0]
 
 ## now: load data and choose a few case studies for different types of trends
@@ -51,15 +51,15 @@ gage_example <-
   gage_sample_annual %>%
   subset(gage_ID %in% gages_test) %>%
   mutate(year = currentclimyear,
-         annualflowdays = as.integer(round((1-annualfractionnoflow)*365)),
+         annualnoflowdays = as.integer(round(annualfractionnoflow*365)),
          gage = factor(gage_ID, levels = gages_test)) %>%
-  dplyr::select(gage, year, annualflowdays)
+  dplyr::select(gage, year, annualnoflowdays)
 
 sen <- function(..., weights = NULL) {
   mblm::mblm(...)
 }
 
-ggplot(gage_example, aes(x = year, y = annualflowdays)) +
+ggplot(gage_example, aes(x = year, y = annualnoflowdays)) +
   geom_point() +
   facet_wrap(~gage, scales = "free_y", ncol = 2) +
   stat_smooth(method = "lm", color = "blue", se = F) +
