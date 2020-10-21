@@ -6,6 +6,7 @@ library(tidyverse)
 library(lwgeom)
 library(cowplot)
 library(patchwork)
+options(dplyr.summarise.inform=F)   # suppress summarize info
 
 # relative path to directory containing John's data analysis 
 # GitHub repository with scripts and data
