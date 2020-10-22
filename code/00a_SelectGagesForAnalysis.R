@@ -49,28 +49,54 @@ p2z_mean_climyear <-
   dplyr::summarize(peak2z_length = mean(peak2zero),
                    peak2z_count = n())
 
-# annual stats for each gage - climate and flow metrics
+## annual stats for each gage - climate and flow metrics
+# hydro metrics - based on ROUNDED data to match peak2zero
+gages_annual_hydro <- 
+  file.path("results", "000_CalculateMetrics_AnnualHydroMetrics_Rounded.csv") %>% 
+  readr::read_csv() %>% 
+  subset(gage_ID %in% gage_sample_prelim$gage_ID) %>% 
+  dplyr::select(gage_ID, currentclimyear, annualfractionnoflow, zeroflowfirst) %>% 
+  dplyr::left_join(p2z_mean_climyear, by = c("gage_ID", "currentclimyear" = "dry_climyear")) %>% 
+  dplyr::select(-peak2z_count)
+
 gages_annual_summary <- 
   file.path(dir_data, 
             "annual_no_flow_and_climate_metrics_climatic_year_050820.csv") %>% 
   readr::read_csv() %>% 
   dplyr::rename(gage_ID = sitewith0) %>% 
-  dplyr::left_join(p2z_mean_climyear, by = c("gage_ID", "currentclimyear" = "dry_climyear")) %>% 
+  dplyr::select(-contains("flow"), -starts_with("cumdist"), 
+                -peakdatewy, -lowdatewy, -area_norm_yield_mm) %>%   # drop hydro metrics (calculated separately)
+  dplyr::left_join(gages_annual_hydro, by = c("gage_ID", "currentclimyear")) %>% 
   subset(gage_ID %in% gage_sample_prelim$gage_ID) %>% 
-  dplyr::mutate(annualnoflowdays = as.integer(round(annualfractionnoflow*365)),
-                annualflowdays = as.integer(round((1-annualfractionnoflow)*365)))
+  dplyr::mutate(annualnoflowdays = as.integer(round(annualfractionnoflow*365)))
+
+# peak2zero includes some years with too much missing data. eliminate those.
+gages_annual_summary$peak2z_length[is.na(gages_annual_summary$annualfractionnoflow)] <- NA
+
+# there are a few instances that have swe > p; this should be impossible
+i_swe_wy <- which(gages_annual_summary$swe_mm_wy > gages_annual_summary$p_mm_wy)
+i_swe_amj <- which(gages_annual_summary$swe_mm_amj > gages_annual_summary$p_mm_amj)
+i_swe_jas <- which(gages_annual_summary$swe_mm_jas > gages_annual_summary$p_mm_jas)
+i_swe_ond <- which(gages_annual_summary$swe_mm_ond > gages_annual_summary$p_mm_ond)
+i_swe_jfm <- which(gages_annual_summary$swe_mm_jfm > gages_annual_summary$p_mm_jfm)
+
+gages_annual_summary$swe_mm_wy[i_swe_wy] <- gages_annual_summary$p_mm_wy[i_swe_wy]
+gages_annual_summary$swe_mm_amj[i_swe_amj] <- gages_annual_summary$p_mm_amj[i_swe_amj]
+gages_annual_summary$swe_mm_jas[i_swe_jas] <- gages_annual_summary$p_mm_jas[i_swe_jas]
+gages_annual_summary$swe_mm_ond[i_swe_ond] <- gages_annual_summary$p_mm_ond[i_swe_ond]
+gages_annual_summary$swe_mm_jfm[i_swe_jfm] <- gages_annual_summary$p_mm_jfm[i_swe_jfm]
 
 # variables to calculate trends in and save
 annual_vars <- 
   c("gage_ID", "currentclimyear",
-    "annualfractionnoflow", "annualnoflowdays", "annualflowdays", "zeroflowfirst", "peak2z_length", "p_mm_wy", "p_mm_amj", 
-    "p_mm_jas", "p_mm_ond", "p_mm_jfm", "pet_mm_wy", "pet_mm_amj", "pet_mm_jas", 
-    "pet_mm_ond", "pet_mm_jfm", "T_max_c_wy", "T_max_c_amj", "T_max_c_jas", 
-    "T_max_c_ond", "T_max_c_jfm", "T_min_c_wy", "T_min_c_amj", "T_min_c_jas", 
-    "T_min_c_ond", "T_min_c_jfm", "pcumdist10days", "pcumdist50days", 
-    "pcumdist90days", "swe_mm_wy", "swe_mm_amj", "swe_mm_jas", "swe_mm_ond", 
-    "swe_mm_jfm", "srad_wm2_wy", "srad_wm2_amj", "srad_wm2_jas", 
-    "srad_wm2_ond", "srad_wm2_jfm")
+    "annualnoflowdays", "zeroflowfirst", "peak2z_length", 
+    "p_mm_wy", "p_mm_amj",  "p_mm_jas", "p_mm_ond", "p_mm_jfm", 
+    "pet_mm_wy", "pet_mm_amj", "pet_mm_jas", "pet_mm_ond", "pet_mm_jfm", 
+    "T_max_c_wy", "T_max_c_amj", "T_max_c_jas", "T_max_c_ond", "T_max_c_jfm",
+    "T_min_c_wy", "T_min_c_amj", "T_min_c_jas", "T_min_c_ond", "T_min_c_jfm", 
+    "pcumdist10days", "pcumdist50days", "pcumdist90days", 
+    "swe_mm_wy", "swe_mm_amj", "swe_mm_jas", "swe_mm_ond", "swe_mm_jfm", 
+    "srad_wm2_wy", "srad_wm2_amj", "srad_wm2_jas", "srad_wm2_ond", "srad_wm2_jfm")
 
 gages_annual_summary <- 
   gages_annual_summary %>% 
@@ -92,8 +118,8 @@ gages_mean <-
 gages_n_noflow <-
   gages_annual_summary %>% 
   dplyr::group_by(gage_ID) %>% 
-  dplyr::summarize(yrs_noflow = sum(annualfractionnoflow > 0, na.rm = T),
-                   yrs_data = sum(is.finite(annualfractionnoflow))) %>% 
+  dplyr::summarize(yrs_noflow = sum(annualnoflowdays > 0, na.rm = T),
+                   yrs_data = sum(is.finite(annualnoflowdays))) %>% 
   dplyr::ungroup()
 
 ## trim to only gages with at least 5 years of no-flow values - currently not used
@@ -244,80 +270,102 @@ table(gage_sample_out$CLASS)
 
 ggplot(gage_sample_out, aes(x=dec_long_va, y = dec_lat_va, color = region)) + geom_point()
 
-## divide gage sample into train (80%), test (20%)
+## divide gage annual sample into train (80%), test (20%)
 # choose fraction of gages to use as validation
 frac_test <- 0.2
 
-# set up k-fold cross-validation - want to use same sample for 
-# all regions and metrics so need to take folds from each region
-# and mix of ref/nonref
+# need to take sample distributed across regions and ref/nonref
 set.seed(1)
 test <- 
-  gage_sample_out %>% 
+  gages_annual_summary %>% 
+  dplyr::left_join(gage_sample_out[,c("gage_ID", "region", "CLASS")], by = "gage_ID") %>% 
   dplyr::group_by(region, CLASS) %>% 
   dplyr::sample_frac(frac_test) %>% 
   dplyr::ungroup() %>% 
-  dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Test")
+  dplyr::select(gage_ID, currentclimyear) %>% 
+  dplyr::mutate(Sample = "Test",
+                IDyr = paste0(gage_ID, "_", currentclimyear))
 train <- 
-  gage_sample_out %>% 
-  subset(!(gage_ID %in% test$gage_ID)) %>% 
-  dplyr::select(gage_ID) %>% 
-  dplyr::mutate(Sample = "Train")
+  gages_annual_summary %>% 
+  dplyr::select(gage_ID, currentclimyear) %>% 
+  dplyr::mutate(Sample = "Train",
+                IDyr = paste0(gage_ID, "_", currentclimyear)) %>% 
+  subset(!(IDyr %in% test$IDyr))
 
-gage_val_sample <-
-  dplyr::bind_rows(test, train)
+gage_annual_sample <-
+  dplyr::bind_rows(test, train) %>% 
+  dplyr::select(-IDyr)
 
 # add to gage_sample
-gage_sample_out <- dplyr::left_join(gage_sample_out, gage_val_sample, by = "gage_ID")
+gages_annual_summary_out <- 
+  dplyr::left_join(gages_annual_summary, gage_annual_sample, 
+                   by = c("gage_ID", "currentclimyear")) %>% 
+  dplyr::left_join(gage_sample_out[,c("gage_ID", "region", "CLASS")], by = "gage_ID")
 
-# check count in each sample
-gage_sample_out %>% 
+
+## check count in train/test sample
+# overall samples
+gages_annual_summary_out %>% 
   dplyr::select(Sample) %>% 
   table()
 
-gage_sample_out %>% 
+gages_annual_summary_out %>% 
   dplyr::select(region, Sample) %>% 
   table()
 
-gage_sample_out %>% 
+gages_annual_summary_out %>% 
   dplyr::select(CLASS, Sample) %>% 
   table()
 
-gage_sample_out %>% 
-  dplyr::select(region, CLASS, Sample) %>% 
+# finite values for peak2zero and zeroflowfirst only
+gages_annual_summary_out %>% 
+  subset(is.finite(peak2z_length)) %>% 
+  dplyr::select(Sample) %>% 
   table()
 
-## there are a few instances that have swe > p; this should be impossible
-i_swe_cy <- which(gages_annual_summary$swe_mm_cy > gages_annual_summary$p_mm_cy)
-i_swe_amj <- which(gages_annual_summary$swe_mm_amj > gages_annual_summary$p_mm_amj)
-i_swe_jas <- which(gages_annual_summary$swe_mm_jas > gages_annual_summary$p_mm_jas)
-i_swe_ond <- which(gages_annual_summary$swe_mm_ond > gages_annual_summary$p_mm_ond)
-i_swe_jfm <- which(gages_annual_summary$swe_mm_jfm > gages_annual_summary$p_mm_jfm)
+gages_annual_summary_out %>% 
+  subset(is.finite(peak2z_length)) %>% 
+  dplyr::select(region, Sample) %>% 
+  table()
 
-gages_annual_summary$swe_mm_cy[i_swe_cy] <- gages_annual_summary$p_mm_cy[i_swe_cy]
-gages_annual_summary$swe_mm_amj[i_swe_amj] <- gages_annual_summary$p_mm_amj[i_swe_amj]
-gages_annual_summary$swe_mm_jas[i_swe_jas] <- gages_annual_summary$p_mm_jas[i_swe_jas]
-gages_annual_summary$swe_mm_ond[i_swe_ond] <- gages_annual_summary$p_mm_ond[i_swe_ond]
-gages_annual_summary$swe_mm_jfm[i_swe_jfm] <- gages_annual_summary$p_mm_jfm[i_swe_jfm]
+gages_annual_summary_out %>% 
+  subset(is.finite(peak2z_length)) %>% 
+  dplyr::select(CLASS, Sample) %>% 
+  table()
+
+gages_annual_summary_out %>% 
+  subset(is.finite(zeroflowfirst)) %>% 
+  dplyr::select(Sample) %>% 
+  table()
+
+gages_annual_summary_out %>% 
+  subset(is.finite(zeroflowfirst)) %>% 
+  dplyr::select(region, Sample) %>% 
+  table()
+
+gages_annual_summary_out %>% 
+  subset(is.finite(zeroflowfirst)) %>% 
+  dplyr::select(CLASS, Sample) %>% 
+  table()
 
 ## save data to repository
 gage_sample_out %>% 
-  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
+  readr::write_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv"))
 
 gage_sample %>% 
   dplyr::select(gage_ID, epa_level_1_ecoregion_name, region) %>% 
   dplyr::rename(EPA_Ecoregion_Name = epa_level_1_ecoregion_name) %>% 
   subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
-  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
+  readr::write_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageRegions.csv"))
 
-gages_annual_summary %>% 
+gages_annual_summary_out %>% 
   subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
-  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual_NoHumanImpacts.csv"))
+  dplyr::select(-region, -CLASS) %>% 
+  readr::write_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual_NoHumanImpacts.csv"))
 
 gage_trends %>% 
   subset(gage_ID %in% gage_sample_out$gage_ID) %>% 
-  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
+  readr::write_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv"))
 
 ## plot
 # load state map

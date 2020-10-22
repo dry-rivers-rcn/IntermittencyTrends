@@ -340,4 +340,4 @@ ggplot(lulc_out, aes(x=year, y = lulc_ag_prc, group = gage_ID)) +
 #### save results
 ####
 gage_sample_annual_NID_wuse_ag_lulc %>% 
-  readr::write_csv(path = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv"))
+  readr::write_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv"))
