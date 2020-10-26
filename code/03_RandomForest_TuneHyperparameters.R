@@ -35,7 +35,7 @@ gage_sample_annual <-
 
 ## set up predictions
 # metrics and regions to predict
-metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
+metrics <- c("annualnoflowdays", "zeroflowfirst", "peak2z_length")
 regions <- c("National", unique(gage_sample$region))
 
 # all possible predictors
@@ -77,14 +77,14 @@ gage_sample_prevyear <-
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
-  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), 
+  dplyr::select(c("gage_ID", "currentclimyear", "Sample", all_of(metrics), 
                   all_of(predictors_climate), all_of(predictors_human))) %>% 
   # join with previous water year
   dplyr::left_join(gage_sample_prevyear, 
                    by = c("gage_ID", "currentclimyear"="wyearjoin"), 
                    suffix = c("", ".previous")) %>% 
   # join with static predictors
-  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
+  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", predictors_static)], by = "gage_ID")
 
 ## set up tuning parameter space
 # set up model engine
@@ -96,13 +96,15 @@ rf_tune <-
   set_mode("regression")
 
 # create grid of parameters for tuning
-rf_tune_grid <- grid_regular(trees(range = c(251, 1751)),
+rf_tune_grid <- grid_regular(trees(range = c(250, 1650)),
                              mtry(range = c(1, 10)),
                              min_n(range = c(3, 25)),
-                             levels = 6)
+                             levels = 8)
 
 ## loop through metrics and regions
-n_pred <- 24 # choose number of predictors - based on script 02_RandomForest_FigureOutNumPredictors.R
+# choose number of predictors - based on script 02_RandomForest_FigureOutNumPredictors.R
+npred_final <- tibble::tibble(metric = c("annualnoflowdays", "zeroflowfirst", "peak2z_length"),
+                              npred = c(22, 27, 27)) 
 n_folds <- 5 # choose number of folds for cross-val
 
 for (m in metrics){
@@ -113,6 +115,9 @@ for (m in metrics){
   
   # rename metric column
   names(fit_data_m)[names(fit_data_m) == m] <- "observed"
+  
+  # determine number of predictors
+  n_pred <- npred_final$npred[npred_final$metric == m]
   
   for (r in regions){
     # get predictor variables

@@ -5,7 +5,7 @@
 source(file.path("code", "paths+packages.R"))
 
 # variable importance
-rf_imp <- readr::read_csv(file.path("results", "02_RandomForest_RunModels_VariableImportance.csv"))
+rf_imp <- readr::read_csv(file.path("results", "04_RandomForest_RunModels_VariableImportance.csv"))
 
 ## data frame with long names for predictors and their category
 df_pred <-
@@ -28,8 +28,15 @@ df_pred <-
                   "pet_mm_amj.previous", "pet_mm_ond.previous", "pet_mm_jas.previous", 
                   "srad_wm2_jas.previous", "T_min_c_cy.previous", "T_min_c_ond.previous", 
                   "srad_wm2_amj.previous", "p.pet_ond.previous", "p_mm_ond.previous", 
-                  "T_max_c_jfm.previous"),
-    Category = c("Physiography", "Physiography", "Physiography", "Climate", 
+                  "T_max_c_jfm.previous",
+                  "dams_n", "maxstorage_af", "normstorage_af", "majordams_n", 
+                  "wuse_mm", "irrig_prc", "lulc_water_prc", "lulc_dev_prc", "lulc_wetland_prc",
+                  "lulc_forest_prc", "lulc_barren_prc", "lulc_grass_prc", "lulc_ag_prc",
+                  "swe.p_amj", "p_mm_amj.previous", "swe_mm_ond.previous", "swe_mm_jfm.previous", 
+                  "p.pet_jfm", "swe.p_cy", "swe_mm_cy", "swe.p_cy.previous", "swe.p_amj.previous", 
+                  "p_mm_jfm", "swe_mm_ond", "swe.p_ond.previous", "swe.p_jfm", 
+                  "swe.p_jfm.previous"),
+    Category = factor(c("Physiography", "Physiography", "Physiography", "Climate", 
                  "Climate", "Climate", "Climate", "Physiography", "Climate", 
                  "Climate", "Physiography", "Physiography", "Physiography", "Climate", 
                  "Climate", "Physiography", "Physiography", "Climate", "Climate", 
@@ -44,7 +51,14 @@ df_pred <-
                  "Climate", "Climate", "Climate", "Climate", 
                  "Climate", "Climate", "Climate", "Climate", 
                  "Climate", "Climate", "Climate", "Climate",
-                  "Climate",  "Climate"),
+                  "Climate",  "Climate",
+                 "Land Use", "Land Use", "Land Use", "Land Use", 
+                 "Land Use", "Land Use", "Land Use", "Land Use", "Land Use",
+                 "Land Use", "Land Use", "Land Use", "Land Use",
+                 "Climate", "Climate", "Climate", "Climate", 
+                 "Climate", "Climate", "Climate", "Climate", "Climate", 
+                 "Climate", "Climate", "Climate", "Climate", 
+                 "Climate")),
     long_name = c("Soil Clay", "Drainage Area", "Elevation", "P/PET (AMJ)", 
                   "P/PET (CY)", "P/PET (JAS)", "P (CY)", "Soil Permeab", "PET (AMJ)", 
                   "PET (JAS)", "Soil Sand", "Soil Silt", "Slope", "SRad (AMJ)", 
@@ -61,60 +75,80 @@ df_pred <-
                   "Tmax (CY-1)", "SRad (CY-1)", "PET (JFM-1)", 
                   "PET (AMJ-1)", "PET (OND-1)", "PET (JAS-1)", 
                   "SRad (JAS-1)", "Tmin (CY-1)", "Tmin (OND-1)", 
-                  "SRad (AMJ-1)", "P/PET (OND-1)", "P (OND-1)", "Tmax (JFM-1)"))
+                  "SRad (AMJ-1)", "P/PET (OND-1)", "P (OND-1)", "Tmax (JFM-1)",
+                  "# Dams", "Dam Max Storage", "Dam Norm. Storage", "# Major Dams", 
+                  "Water Use", "Irrigation", "Water", "Developed", "Wetland",
+                  "Forest", "Barren", "Grass", "Agriculture",
+                  "SWE/P (AMJ)", "P (AMJ-1)", "SWE (OND-1)", "SWE (JFM-1)", 
+                  "P/PET (JFM)", "SWE/P (CY)", "SWE (CY)", "SWE/P (CY-1)", "SWE/P (AMJ-1)", 
+                  "P (JFM)", "SWE (OND)", "SWE/OND (P-1)", "SWE/P (JFM)", 
+                  "SWE/P (JFM-1)"))
                   
 rf_imp <- dplyr::left_join(rf_imp, df_pred, by = "predictor")
 
 
 ## plots: national
+n_pred <- 10  # number of predictors to show
+
 p_nat_afnf <-
   rf_imp %>% 
-  subset(region_rf == "National" & metric == "annualfractionnoflow") %>% 
-  dplyr::arrange(VarPrcIncMSE) %>% 
+  subset(region_rf == "National" & metric == "annualnoflowdays") %>% 
+  dplyr::slice_max(order_by = IncMSE, n = n_pred) %>% 
+  dplyr::arrange(IncMSE) %>% 
   dplyr::mutate(Predictor = factor(long_name, levels = long_name)) %>% 
-  ggplot(aes(x = Predictor, y = VarPrcIncMSE, fill = Category)) +
+  ggplot(aes(x = Predictor, y = IncMSE/oobMSE, fill = Category)) +
   geom_col() +
-  scale_fill_manual(values = c("Climate" = col.cat.red, 
-                               "Physiography" = col.cat.blu)) +
-  scale_y_continuous(name = "% Increase MSE") +
+  scale_fill_manual(drop = F,
+                    values = c("Climate" = col.cat.red, 
+                               "Physiography" = col.cat.blu,
+                               "Land Use" = col.cat.grn)) +
+  scale_y_continuous(name = "MSE Increase [%]", 
+                     breaks = seq(0,1,0.5),
+                     labels = scales::percent) +
   coord_flip() +
-  labs(title = "(a) Annual Fraction Zero Flow") +
+  labs(title = "(a) No-Flow Days") +
   theme(axis.title.y = element_blank()) +
   NULL
 
 p_nat_p2z <-
   rf_imp %>% 
   subset(region_rf == "National" & metric == "peak2z_length") %>% 
-  dplyr::arrange(VarPrcIncMSE) %>% 
+  dplyr::slice_max(order_by = IncMSE, n = n_pred) %>% 
+  dplyr::arrange(IncMSE) %>% 
   dplyr::mutate(Predictor = factor(long_name, levels = long_name)) %>% 
-  ggplot(aes(x = Predictor, y = VarPrcIncMSE, fill = Category)) +
+  ggplot(aes(x = Predictor, y = IncMSE/oobMSE, fill = Category)) +
   geom_col() +
-  scale_fill_manual(values = c("Climate" = col.cat.red, 
-                               "Physiography" = col.cat.blu)) +
-  scale_y_continuous(name = "% Increase MSE") +
+  scale_fill_manual(drop = F,
+                    values = c("Climate" = col.cat.red, 
+                               "Physiography" = col.cat.blu,
+                               "Land Use" = col.cat.grn)) +
+  scale_y_continuous(name = "MSE Increase [%]", labels = scales::percent) +
   coord_flip() +
-  labs(title = "(b) Peak to Zero") +
+  labs(title = "(b) Peak to No-Flow") +
   theme(axis.title.y = element_blank()) +
   NULL
 
 p_nat_zff <-
   rf_imp %>% 
   subset(region_rf == "National" & metric == "zeroflowfirst") %>% 
-  dplyr::arrange(VarPrcIncMSE) %>% 
+  dplyr::slice_max(order_by = IncMSE, n = n_pred) %>% 
+  dplyr::arrange(IncMSE) %>% 
   dplyr::mutate(Predictor = factor(long_name, levels = long_name)) %>% 
-  ggplot(aes(x = Predictor, y = VarPrcIncMSE, fill = Category)) +
+  ggplot(aes(x = Predictor, y = IncMSE/oobMSE, fill = Category)) +
   geom_col() +
-  scale_fill_manual(values = c("Climate" = col.cat.red, 
-                               "Physiography" = col.cat.blu)) +
-  scale_y_continuous(name = "% Increase MSE") +
+  scale_fill_manual(drop = F,
+                    values = c("Climate" = col.cat.red, 
+                               "Physiography" = col.cat.blu,
+                               "Land Use" = col.cat.grn)) +
+  scale_y_continuous(name = "MSE Increase [%]", labels = scales::percent) +
   coord_flip() +
-  labs(title = "(c) First Zero Flow") +
+  labs(title = "(c) First No-Flow Day") +
   theme(axis.title.y = element_blank()) +
   NULL
 
-((p_nat_afnf / p_nat_p2z / p_nat_zff) + 
+((p_nat_afnf + p_nat_p2z + p_nat_zff) + 
     plot_layout(guides = 'collect') & 
     theme(legend.position = "bottom",
           plot.title = element_text(face = "plain"))) +
   ggsave(file.path("figures_manuscript", "RandomForest_VariableImportance-National.png"),
-         width = 95, height = 240, units = "mm")
+         width = 190, height = 95, units = "mm")

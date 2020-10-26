@@ -41,7 +41,7 @@ gage_sample_annual <-
 ## explore gages for example
 gage_sample_annual %>% 
   subset(gage_ID == sigtrends_yesslope[43]) %>% 
-  ggplot(aes(x = currentclimyear, y = annualfractionnoflow)) +
+  ggplot(aes(x = currentclimyear, y = annualnoflowdays)) +
   geom_point()
 
 # sample to a few test gages showing different types of slopes
@@ -51,7 +51,6 @@ gage_example <-
   gage_sample_annual %>%
   subset(gage_ID %in% gages_test) %>%
   mutate(year = currentclimyear,
-         annualnoflowdays = as.integer(round(annualfractionnoflow*365)),
          gage = factor(gage_ID, levels = gages_test)) %>%
   dplyr::select(gage, year, annualnoflowdays)
 
@@ -65,7 +64,7 @@ ggplot(gage_example, aes(x = year, y = annualnoflowdays)) +
   stat_smooth(method = "lm", color = "blue", se = F) +
   stat_smooth(method = "glm", method.args = list(family = "poisson"), color = "green", se = F) +
   stat_smooth(method = sen, color = "red", se = F) +
-  scale_y_continuous(name = "Annual Days with Flow") +
+  scale_y_continuous(name = "Annual No-Flow Days") +
   scale_x_continuous(name = "Year") +
   labs(title = "Comparison of Slope Methods for Some Example Gages",
        subtitle = "Blue = Linear, Green = Poisson, Red = Theil-Sen") +
@@ -76,7 +75,7 @@ ggplot(gage_example, aes(x = year, y = annualnoflowdays)) +
 df_test <- 
   gage_sample_annual %>% 
   group_by(gage_ID) %>% 
-  summarize(n_noflow = sum(annualfractionnoflow > 0, na.rm = T),
-            n_total = sum(is.finite(annualfractionnoflow)),
+  summarize(n_noflow = sum(annualnoflowdays > 0, na.rm = T),
+            n_total = sum(is.finite(annualnoflowdays)),
             prc_noflow = n_noflow/n_total)
 sum(df_test$prc_noflow > 0.5)

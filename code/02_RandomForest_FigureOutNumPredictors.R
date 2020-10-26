@@ -6,6 +6,7 @@
 #' 
 
 source(file.path("code", "paths+packages.R"))
+library(tidymodels)
 
 ## load data - gage mean properties and annual values
 gage_sample <- 
@@ -32,7 +33,7 @@ gage_sample_annual <-
 
 ## set up predictions
 # metrics and regions to predict
-metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
+metrics <- c("annualnoflowdays", "zeroflowfirst", "peak2z_length")
 regions <- c("National", unique(gage_sample$region))
 
 # all possible predictors
@@ -74,14 +75,14 @@ gage_sample_prevyear <-
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
-  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), 
+  dplyr::select(c("gage_ID", "currentclimyear", "Sample", all_of(metrics), 
                   all_of(predictors_climate), all_of(predictors_human))) %>% 
   # join with previous water year
   dplyr::left_join(gage_sample_prevyear, 
                    by = c("gage_ID", "currentclimyear"="wyearjoin"), 
                    suffix = c("", ".previous")) %>% 
   # join with static predictors
-  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
+  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", predictors_static)], by = "gage_ID")
 
 ## test number of predictors to use in final models
 pred_test_range <- 10:54  # 54 total predictors possible
@@ -107,6 +108,7 @@ for (m in metrics){
     # subset
     fit_data_predtest <- 
       fit_data_in %>% 
+      subset(Sample == "Train") %>% 
       dplyr::select(all_of(m), all_of(rf_var_predtest$predictor)) %>%  # drop metrics you aren't interested in
       subset(complete.cases(.))
     
@@ -160,18 +162,19 @@ fit_predtest %>%
   dplyr::filter(OOBr2 == max(OOBr2))
 
 # final number of predictors
-npred_final <- 24
+npred_final <- tibble::tibble(metric = c("annualnoflowdays", "zeroflowfirst", "peak2z_length"),
+                              npred = c(22, 27, 27))
 
 # plot and look for elbow
 ggplot(fit_predtest, aes(x = n, y = OOBmse)) + 
-  geom_vline(xintercept = 24, color = "red") +
+  geom_vline(data = npred_table, aes(xintercept = npred), color = "red") +
   geom_point() + geom_line() +
   scale_x_continuous(name = "Number of Predictors") +
   scale_y_continuous(name = "Random Forest OOB MSE [training gages only]") +
   facet_grid(metric~., scales = "free_y",
-             labeller = as_labeller(c("annualfractionnoflow" = "Annual Fraction\nZero Flow [-]", 
-                                      "peak2z_length" = "Peak-to-Zero\nLength [days]",
-                                      "zeroflowfirst" = "First Zero Flow\nDay [climate year]"))) +
+             labeller = as_labeller(c("annualnoflowdays" = "Annual No-Flow\nDays", 
+                                      "peak2z_length" = "Days from Peak\nto No Flow",
+                                      "zeroflowfirst" = "First No-Flow Day\n[climate year]"))) +
   labs(title = "Random forest MSE as a function of number of predictors",
        subtitle = "National model for each metric") +
   ggsave(file.path("figures_manuscript", "RandomForest_MSEvNumberPredictors.png"),

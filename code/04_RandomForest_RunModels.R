@@ -34,7 +34,7 @@ gage_sample_annual <-
 
 ## set up predictions
 # metrics and regions to predict
-metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
+metrics <- c("annualnoflowdays", "zeroflowfirst", "peak2z_length")
 regions <- c("National", unique(gage_sample$region))
 
 # all possible predictors
@@ -78,22 +78,27 @@ gage_sample_prevyear <-
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
-  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), 
+  dplyr::select(c("gage_ID", "currentclimyear", "Sample", all_of(metrics), 
                   all_of(predictors_climate), all_of(predictors_human))) %>% 
   # join with previous water year
   dplyr::left_join(gage_sample_prevyear, 
                    by = c("gage_ID", "currentclimyear"="wyearjoin"), 
                    suffix = c("", ".previous")) %>% 
   # join with static predictors
-  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
+  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", predictors_static)], by = "gage_ID")
 
 ## load hyperparameter tuning results
 tune_res_all <- readr::read_csv(file.path("results", "03_RandomForest_TuneHyperparameters.csv"))
 
 ## loop through metrics and regions
-n_pred <- 24 # choose number of predictors - based on script 02_RandomForest_FigureOutNumPredictors.R
-
+# choose number of predictors - based on script 02_RandomForest_FigureOutNumPredictors.R
+npred_final <- tibble::tibble(metric = c("annualnoflowdays", "zeroflowfirst", "peak2z_length"),
+                              npred = c(22, 27, 27)) 
 for (m in metrics){
+  
+  # determine number of predictors
+  n_pred <- npred_final$npred[npred_final$metric == m]
+  
   for (r in regions){
     # get predictor variables
     rf_var_m_r <-
@@ -174,6 +179,7 @@ for (m in metrics){
     # extract variable importance
     fit_rf_imp_i <- tibble::tibble(predictor = names(pull_workflow_fit(rf_fit)$fit$variable.importance),
                                    IncMSE = pull_workflow_fit(rf_fit)$fit$variable.importance,
+                                   oobMSE = pull_workflow_fit(rf_fit)$fit$prediction.error,
                                    metric = m,
                                    region_rf = r)
     
@@ -194,39 +200,32 @@ for (m in metrics){
 
 # save data
 fit_data_out %>% 
-  dplyr::select(gage_ID, currentclimyear, observed, predicted, region_rf, metric, region, Sample,
-                all_of(unique(fit_rf_imp$predictor))) %>% 
+  dplyr::select(gage_ID, currentclimyear, observed, predicted, region_rf, metric) %>% 
   readr::write_csv(file.path("results", "04_RandomForest_RunModels_Predictions.csv"))
 
 fit_rf_imp %>% 
   readr::write_csv(file.path("results", "04_RandomForest_RunModels_VariableImportance.csv"))
 
 # plots
-min(subset(fit_data_out, metric == "annualfractionnoflow")$predicted)
+min(subset(fit_data_out, metric == "annualnoflowdays")$predicted)
 
-ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & Sample == "Test"), 
+ggplot(subset(fit_data_out, metric == "annualnoflowdays" & Sample == "Test"), 
        aes(x = predicted, y = observed, color = region)) +
   geom_point() +
   geom_abline(intercept = 0, slope = 1, color = col.gray) +
   scale_color_manual(values = pal_regions) +
   facet_wrap(~region_rf)
 
-ggplot(subset(fit_data_out, metric == "annualfractionnoflow"), 
+ggplot(subset(fit_data_out, metric == "annualnoflowdays"), 
        aes(x = predicted, y = observed, color = region)) +
   geom_point() +
   geom_abline(intercept = 0, slope = 1, color = col.gray) +
   scale_color_manual(values = pal_regions) +
   facet_wrap(~region_rf)
 
-ggplot(subset(fit_data_out, metric == "annualfractionnoflow" & Sample == "Test"), 
+ggplot(subset(fit_data_out, metric == "annualnoflowdays" & Sample == "Test"), 
        aes(x = currentclimyear, y = (predicted - observed), color = region)) +
   geom_hline(yintercept = 0, color = col.gray) +
   geom_point() +
   scale_color_manual(values = pal_regions) +
-  facet_wrap(~region_rf)
-
-ggplot(subset(fit_rf_imp, metric == "annualfractionnoflow"), 
-       aes(x = predictor, y = VarPrcIncMSE, color = region_rf)) +
-  geom_hline(yintercept = 0, color = col.gray) +
-  geom_point() +
   facet_wrap(~region_rf)

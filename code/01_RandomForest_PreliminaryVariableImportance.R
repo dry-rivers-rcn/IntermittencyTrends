@@ -42,7 +42,7 @@ gage_sample_annual <-
 
 ## set up predictions
 # metrics and regions to predict
-metrics <- c("annualfractionnoflow", "zeroflowfirst", "peak2z_length")
+metrics <- c("annualnoflowdays", "zeroflowfirst", "peak2z_length")
 regions <- c("National", unique(gage_sample$region))
 
 # all possible predictors
@@ -86,14 +86,14 @@ gage_sample_prevyear <-
 fit_data_in <- 
   gage_sample_annual %>% 
   # subset to fewer columns - metrics and predictors
-  dplyr::select(c("gage_ID", "currentclimyear", all_of(metrics), 
+  dplyr::select(c("gage_ID", "currentclimyear", "Sample", all_of(metrics), 
                   all_of(predictors_climate), all_of(predictors_human))) %>% 
   # join with previous water year
   dplyr::left_join(gage_sample_prevyear, 
                    by = c("gage_ID", "currentclimyear"="wyearjoin"), 
                    suffix = c("", ".previous")) %>% 
   # join with static predictors
-  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "Sample", "region", predictors_static)], by = "gage_ID")
+  dplyr::left_join(gage_sample[ , c("gage_ID", "CLASS", "region", predictors_static)], by = "gage_ID")
 
 ###
 ### filter out predictor variables
@@ -119,10 +119,11 @@ predictors_drop <-
   # highly correlated variables
   c("T_max_c_jfm", "T_max_c_ond", "T_max_c_amj", "T_max_c_cy.previous",
     "T_max_c_jfm.previous", "T_max_c_ond.previous", "T_max_c_jas.previous",
-    "T_max_c_amj.previous", "sandave", "storage_m", 'maxstorage_af', "swe_mm_cy.previous",
-    "swe_mm_jfm","p_mm_cy", "p_mm_jas", "p_mm_jfm", "p_mm_amj",
-    "p_mm_cy.previous", "p_mm_jas.previous", "p_mm_jfm.previous", "p_mm_amj.previous",
-    "pet_mm_cy.previous", "pet_mm_ond.previous", "pet_mm_ond",
+    "T_max_c_amj.previous", "swe_mm_cy.previous", "swe_mm_jfm",
+    "p_mm_cy", "p_mm_jas", "p_mm_amj", "p_mm_cy.previous", "p.pet_jas.previous","p.pet_amj.previous",
+    "pet_mm_cy.previous", "pet_mm_jfm", "pet_mm_jfm.previous",
+    # static variables
+    "sandave", "storage_m", 'maxstorage_af', 
     # near-zero variance
     "swe_mm_jas", "swe_mm_amj", "swe.p_jas", "normstorage_af", "swe_mm_jas.previous",
     "swe_mm_amj.previous", "swe.p_jas.previous")
@@ -139,6 +140,9 @@ ncores <- (parallel::detectCores() - 1)
 
 ## loop through metrics and regions
 set.seed(1)
+apply_seeded <- function(..., seed = 1) {
+  future.apply::future_lapply(..., future.seed = seed)
+}
 for (m in metrics){
   # subset to complete cases
   fit_data_m <- 
@@ -162,25 +166,26 @@ for (m in metrics){
     #   - suggests permutation importance as more robust
     #   - this accounts for highly correlated predictor variables, but is super slow
     #  useful slides by authors of party package: https://www.statistik.uni-dortmund.de/useR-2008/slides/Strobl+Zeileis.pdf
+    
     fit_rf <- partykit::cforest(
       observed ~ .,
       data = dplyr::select(fit_data_r, -gage_ID, -currentclimyear, -region),
       control = ctree_control(mincriterion = 0.95),
-      ntree = 500,
-      applyfun = future.apply::future_lapply,
+      ntree = 500, 
+      applyfun = apply_seeded,
       cores = ncores
     )
     vi <- partykit::varimp(fit_rf, 
                            conditional = T, 
-                           applyfun = future.apply::future_lapply,
+                           applyfun = apply_seeded,
                            cores = ncores)
-
+    
     fit_rf_imp_i <- tibble::tibble(predictor = names(vi),
                                    ImpCondPerm = vi)
     
     # write csv file separately for each metric and region
     fit_rf_imp_i %>% 
-      readr::write_csv(path = file.path("results", paste0("01_RandomForest_PreliminaryVariableImportance_", m, "_", gsub(" ", "", r, fixed = TRUE), ".csv")))
+      readr::write_csv(file = file.path("results", paste0("01_RandomForest_PreliminaryVariableImportance_", m, "_", gsub(" ", "", r, fixed = TRUE), ".csv")))
     
     # status update
     print(paste0(m, " ", r, " complete, ", Sys.time()))
