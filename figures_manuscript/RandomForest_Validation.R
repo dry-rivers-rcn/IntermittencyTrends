@@ -25,15 +25,30 @@ rf_all <-
 rf_all$region_rf[rf_all$region_rf != "National"] <- "Regional"
 
 ## calculate fit statistics
-rf_fit <-
+rf_fit_regional <-
   rf_all %>% 
   subset(Sample == "Test") %>% 
   dplyr::group_by(metric, region_rf, region) %>% 
   dplyr::summarize(MAE = round(hydroGOF::mae(predicted, observed), 3),
+                   Rsq = round(R2(predicted, observed), 2),
                    RMSE = round(hydroGOF::rmse(predicted, observed), 3),
                    NRMSE = hydroGOF::nrmse(predicted, observed, norm = "maxmin"),
                    KGE = round(hydroGOF::KGE(predicted, observed, method = "2012"), 3)) %>% 
-  dplyr::ungroup() %>% 
+  dplyr::ungroup()
+
+rf_fit_national <- 
+  rf_all %>% 
+  subset(Sample == "Test") %>% 
+  dplyr::group_by(metric, region_rf) %>% 
+  dplyr::summarize(MAE = round(hydroGOF::mae(predicted, observed), 3),
+                   Rsq = round(R2(predicted, observed), 2),
+                   RMSE = round(hydroGOF::rmse(predicted, observed), 3),
+                   NRMSE = hydroGOF::nrmse(predicted, observed, norm = "maxmin"),
+                   KGE = round(hydroGOF::KGE(predicted, observed, method = "2012"), 3)) %>% 
+  dplyr::ungroup()
+
+rf_fit <- 
+  dplyr::bind_rows(rf_fit_regional, rf_fit_national) %>% 
   dplyr::arrange(metric, region_rf, region)
 
 rf_fit$metric[rf_fit$metric == "annualnoflowdays"] <- "Annual No-Flow Days"
