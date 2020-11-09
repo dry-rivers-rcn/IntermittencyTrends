@@ -136,19 +136,34 @@ gages_annual_summary <-
 fulllengthwyears <- tibble::tibble(currentclimyear = c(min(gages_annual_summary$currentclimyear):max(gages_annual_summary$currentclimyear)))
 sites <- unique(gages_annual_summary$gage_ID)
 
+# create a new data frame for trends with a few derived variables
+gages_annual_for_trends <-
+  gages_annual_summary %>% 
+  # add some derived variables
+  dplyr::mutate(p.pet_cy = p_mm_cy/pet_mm_cy,
+                swe.p_cy = swe_mm_cy/p_mm_cy,
+                p.pet_jfm = p_mm_jfm/pet_mm_jfm,
+                swe.p_jfm = swe_mm_jfm/p_mm_jfm,
+                p.pet_amj = p_mm_amj/pet_mm_amj,
+                swe.p_amj = swe_mm_amj/p_mm_amj,
+                p.pet_jas = p_mm_jas/pet_mm_jas,
+                swe.p_jas = swe_mm_jas/p_mm_jas,
+                p.pet_ond = p_mm_ond/pet_mm_ond,
+                swe.p_ond = swe_mm_ond/p_mm_ond)
+
 # which columns to calculate trends?
-cols_trend <- which(!names(gages_annual_summary) %in% c("gage_ID", "currentclimyear"))
+cols_trend <- which(!names(gages_annual_for_trends) %in% c("gage_ID", "currentclimyear"))
 nvar <- length(cols_trend)
 
 # year to split for mann-whitney? (this will be included in the first set)
 mw_yr_split <- 1998 # group 1 1980-1998, group 2 1999-2017
 
 for (i in seq_along(sites)){
-  current <- subset(gages_annual_summary, gage_ID == sites[i])
+  current <- subset(gages_annual_for_trends, gage_ID == sites[i])
   current[current==-Inf] <- NA
   current[current==Inf] <- NA
   
-  results <- tibble::tibble(metric = colnames(gages_annual_summary[cols_trend]),
+  results <- tibble::tibble(metric = colnames(gages_annual_for_trends[cols_trend]),
                             mk_tau = as.numeric(rep(NA, length = nvar)), 
                             mk_p = as.numeric(rep(NA, length = nvar)), 
                             sen_slope = as.numeric(rep(NA, length = nvar)),

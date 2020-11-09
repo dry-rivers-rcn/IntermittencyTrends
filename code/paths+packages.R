@@ -54,6 +54,22 @@ lab_regions_2line <-
     "Western Desert" = "Western\nDesert",
     "Western Mountains" = "Western\nMountains")
 
+lab_regions_skinny <- 
+  c("Eastern Forests" = "East.\nForests",
+    "Mediterranean California" = "Med.\nCali.",
+    "North Great Plains" = "North\nGreat\nPlains",
+    "South Great Plains" = "South\nGreat\nPlains",
+    "Western Desert" = "West.\nDesert",
+    "Western Mountains" = "West.\nMount.")
+
+lab_regions_skinny1line <- 
+  c("Eastern Forests" = "East. Forests",
+    "Mediterranean California" = "Med. Cali.",
+    "North Great Plains" = "N Great Plains",
+    "South Great Plains" = "S Great Plains",
+    "Western Desert" = "West Desert",
+    "Western Mountains" = "West. Mount.")
+
 ## ggplot theme
 windowsFonts(Arial=windowsFont("TT Arial"))
 theme_scz <- function(...){

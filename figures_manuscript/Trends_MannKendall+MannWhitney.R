@@ -180,6 +180,10 @@ df_mk %>% subset(metric == "zeroflowfirst" & mk_tau < 0 & mk_p < p_thres) %>% di
 df_mk %>% subset(metric == "zeroflowfirst" & mk_tau > 0 & mk_p < p_thres) %>% dim()/540 # later/wetting
 df_mk %>% subset(metric == "zeroflowfirst") %>% dim()/540 # sufficient data
 
+# significant trend in any of the three metrics
+df_mk %>% subset(metric %in% metrics & mk_p < p_thres) %>% dplyr::select(gage_ID) %>% unique() %>% dim()
+
+
 # correlation between trends
 cor(x = df_mk_wide$mk_tau_annualnoflowdays, y = df_mk_wide$mk_tau_peak2z_length, use = "complete.obs")
 cor(x = df_mk_wide$mk_tau_annualnoflowdays, y = df_mk_wide$mk_tau_zeroflowfirst, use = "complete.obs")
