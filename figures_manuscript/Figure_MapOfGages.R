@@ -17,15 +17,11 @@ states <- map_data("state")
 # plot
 ggplot() + 
   geom_polygon(data = states, aes(x = long, y = lat, group = group), fill = NA, color = col.gray) +
-  geom_sf(data = sf_gages, aes(color = region, shape = CLASS)) +
+  geom_sf(data = sf_gages, aes(color = region)) +
   scale_x_continuous(name = "Longitude") +
   scale_y_continuous(name = "Latitude") +
   scale_color_manual(name = "Region",
                      values = pal_regions) +
-  scale_shape_manual(name = "Class",
-                     values = c("Non-ref" = 1, "Ref" = 2),
-                     labels = c("Non-ref" = "Non-reference",
-                                "Ref" = "Reference")) +
   coord_sf() +
   theme(panel.border = element_blank()) +
   ggsave(file.path("figures_manuscript", "Figure_MapOfGages.png"),
