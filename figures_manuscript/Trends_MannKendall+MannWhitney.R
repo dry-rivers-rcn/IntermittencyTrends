@@ -227,7 +227,7 @@ p_mw_hist <-
                as_labeller(c("annualnoflowdays" = "(a) Annual No-Flow Days",
                              "peak2z_length" = "(b) Days from Peak to No-Flow",
                              "zeroflowfirst" = "(c) First No-Flow Day"))) +
-  scale_x_continuous(name = "Change in Annual Mean [(1999 to 2017) - (1980 to 1998)]") +
+  scale_x_continuous(name = "Change in Annual Mean, (1999 to 2017) - (1980 to 1998) [days]") +
   scale_y_continuous(name = "Number of Gages") +
   scale_fill_manual(name = "Mann-Whitney Significance", 
                     values = c("SigDry" = col.cat.red, "SigWet" = col.cat.blu, "NotSig" = col.gray),
@@ -250,16 +250,19 @@ p_mw_afd_map <-
   scale_x_continuous(name = "Longitude [\u00B0E]") +
   scale_y_continuous(name = "Latitude [\u00B0N]",
                      breaks = seq(30, 50, 10)) +
-  scale_color_gradient2(name = "Change", 
-                        low = "#4575b4", mid = "#ffffbf", high = "#d73027") +
+  scale_color_gradient2(name = "Change [days]", 
+                        low = "#4575b4", mid = "#ffffbf", high = "#d73027",
+                        limits = c(-100, 100), oob = scales::squish,
+                        breaks = seq(-100, 100, 50),
+                        labels = c("<-100", "-50", "0", "50", ">100")) +
+  guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5, barwidth = 9)) +
   coord_map() +
   theme(panel.border = element_blank(),
         plot.title = element_text(hjust = 0.5, face = "plain"),
         axis.title = element_blank(),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
-        legend.position = "bottom") +
-  guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5, barwidth = 10))
+        legend.position = "bottom")
 
 p_mw_p2z_map <- 
   ggplot() +
@@ -271,16 +274,19 @@ p_mw_p2z_map <-
   scale_x_continuous(name = "Longitude [\u00B0E]") +
   scale_y_continuous(name = "Latitude [\u00B0N]",
                      breaks = seq(30, 50, 10)) +
-  scale_color_gradient2(name = "Change",
-                        high = "#4575b4", mid = "#ffffbf", low = "#d73027") +
+  scale_color_gradient2(name = "Change [days]", 
+                        low = "#d73027", mid = "#ffffbf", high = "#4575b4", 
+                        limits = c(-25, 25), oob = scales::squish,
+                        breaks = c(-25, -12, 0, 12, 25),
+                        labels = c("<-25", "-12", "0", "12", ">25")) +
+  guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5, barwidth = 9)) +
   coord_map() +
   theme(panel.border = element_blank(),
         plot.title = element_text(hjust = 0.5, face = "plain"),
         axis.title = element_blank(),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
-        legend.position = "bottom") +
-  guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5, barwidth = 10))
+        legend.position = "bottom")
 
 p_mw_zff_map <- 
   ggplot() +
@@ -292,16 +298,18 @@ p_mw_zff_map <-
   scale_x_continuous(name = "Longitude [\u00B0E]") +
   scale_y_continuous(name = "Latitude [\u00B0N]",
                      breaks = seq(30, 50, 10)) +
-  scale_color_gradient2(name = "Change",
-                        high = "#4575b4", mid = "#ffffbf", low = "#d73027") +
+  scale_color_gradient2(name = "Change [days]", 
+                        low = "#d73027", mid = "#ffffbf", high = "#4575b4", 
+                        limits = c(-60, 60), oob = scales::squish,
+                        labels = c("<-60", "-30", "0", "30", ">60")) +
+  guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5, barwidth = 9)) +
   coord_map() +
   theme(panel.border = element_blank(),
         plot.title = element_text(hjust = 0.5, face = "plain"),
         axis.title = element_blank(),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
-        legend.position = "bottom") +
-  guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5, barwidth = 10))
+        legend.position = "bottom")
 
 p_mw_map_combo <- 
   (p_mw_afd_map +
@@ -311,3 +319,8 @@ p_mw_map_combo <-
 
 ggsave(file.path("figures_Manuscript", "Trends_MannWhitney-Maps.png"),
        p_mw_map_combo, width = 190, height = 90, units = "mm")  
+
+((p_mw_hist / p_mw_map_combo) +
+  plot_layout(heights = c(0.4, 0.6))) +
+  ggsave(file.path("figures_Manuscript", "Trends_MannWhitney-Hist+Maps.png"),
+         width = 190, height = 150, units = "mm") 
