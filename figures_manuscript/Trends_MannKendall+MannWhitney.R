@@ -165,20 +165,20 @@ p_mk_p2z.zff <-
 
 ## mann-kendall stats
 # percent of gages with significant, positive, negative trends
-df_mk %>% subset(metric == "annualnoflowdays" & mk_p < p_thres) %>% dim()/540
-df_mk %>% subset(metric == "annualnoflowdays" & mk_tau > 0 & mk_p < p_thres) %>% dim()/540 # drying
-df_mk %>% subset(metric == "annualnoflowdays" & mk_tau < 0 & mk_p < p_thres) %>% dim()/540 # wetting
-df_mk %>% subset(metric == "annualnoflowdays") %>% dim()/540 # sufficient data
+n_anf_mk <- dim(subset(df_mk, metric == "annualnoflowdays"))[1] # sufficient data
+df_mk %>% subset(metric == "annualnoflowdays" & mk_p < p_thres) %>% dim()/n_anf_mk
+df_mk %>% subset(metric == "annualnoflowdays" & mk_tau > 0 & mk_p < p_thres) %>% dim()/n_anf_mk # drying
+df_mk %>% subset(metric == "annualnoflowdays" & mk_tau < 0 & mk_p < p_thres) %>% dim()/n_anf_mk # wetting
 
-df_mk %>% subset(metric == "peak2z_length" & mk_p < p_thres) %>% dim()/540
-df_mk %>% subset(metric == "peak2z_length" & mk_tau < 0 & mk_p < p_thres) %>% dim()/540 # faster/drying
-df_mk %>% subset(metric == "peak2z_length" & mk_tau > 0 & mk_p < p_thres) %>% dim()/540 # slower/wetting
-df_mk %>% subset(metric == "peak2z_length") %>% dim()/540 # sufficient data
+n_p2z_mk <- dim(subset(df_mk, metric == "peak2z_length"))[1] # sufficient data
+df_mk %>% subset(metric == "peak2z_length" & mk_p < p_thres) %>% dim()/n_p2z_mk
+df_mk %>% subset(metric == "peak2z_length" & mk_tau < 0 & mk_p < p_thres) %>% dim()/n_p2z_mk # faster/drying
+df_mk %>% subset(metric == "peak2z_length" & mk_tau > 0 & mk_p < p_thres) %>% dim()/n_p2z_mk # slower/wetting
 
-df_mk %>% subset(metric == "zeroflowfirst" & mk_p < p_thres) %>% dim()/540
-df_mk %>% subset(metric == "zeroflowfirst" & mk_tau < 0 & mk_p < p_thres) %>% dim()/540 # earlier/drying
-df_mk %>% subset(metric == "zeroflowfirst" & mk_tau > 0 & mk_p < p_thres) %>% dim()/540 # later/wetting
-df_mk %>% subset(metric == "zeroflowfirst") %>% dim()/540 # sufficient data
+n_zff_mk <- dim(subset(df_mk, metric == "zeroflowfirst"))[1] # sufficient data
+df_mk %>% subset(metric == "zeroflowfirst" & mk_p < p_thres) %>% dim()/n_zff_mk
+df_mk %>% subset(metric == "zeroflowfirst" & mk_tau < 0 & mk_p < p_thres) %>% dim()/n_zff_mk # earlier/drying
+df_mk %>% subset(metric == "zeroflowfirst" & mk_tau > 0 & mk_p < p_thres) %>% dim()/n_zff_mk # later/wetting
 
 # significant trend in any of the three metrics
 df_mk %>% subset(metric %in% metrics & mk_p < p_thres) %>% dplyr::select(gage_ID) %>% unique() %>% dim()
@@ -317,10 +317,32 @@ p_mw_map_combo <-
      p_mw_zff_map) + 
   plot_layout(ncol = 3)
 
-ggsave(file.path("figures_Manuscript", "Trends_MannWhitney-Maps.png"),
-       p_mw_map_combo, width = 190, height = 90, units = "mm")  
-
 ((p_mw_hist / p_mw_map_combo) +
   plot_layout(heights = c(0.4, 0.6))) +
   ggsave(file.path("figures_Manuscript", "Trends_MannWhitney-Hist+Maps.png"),
          width = 190, height = 150, units = "mm") 
+
+## mann-whitney stats
+# percent of gages with significant, positive, negative trends
+n_anf_mw <- dim(subset(df_mw, metric == "annualnoflowdays"))[1]
+df_mw %>% subset(metric == "annualnoflowdays" & mw_p < p_thres) %>% dim()/n_anf_mw
+df_mw %>% subset(metric == "annualnoflowdays" & mw_diff_mean > 0 & mw_p < p_thres) %>% dim()/n_anf_mw # drying
+df_mw %>% subset(metric == "annualnoflowdays" & mw_diff_mean < 0 & mw_p < p_thres) %>% dim()/n_anf_mw # wetting
+
+n_p2z_mw <- dim(subset(df_mw, metric == "peak2z_length"))[1]
+df_mw %>% subset(metric == "peak2z_length" & mw_p < p_thres) %>% dim()/n_p2z_mw
+df_mw %>% subset(metric == "peak2z_length" & mw_diff_mean < 0 & mw_p < p_thres) %>% dim()/n_p2z_mw # faster/drying
+df_mw %>% subset(metric == "peak2z_length" & mw_diff_mean > 0 & mw_p < p_thres) %>% dim()/n_p2z_mw # slower/wetting
+
+n_zff_mw <- dim(subset(df_mw, metric == "zeroflowfirst"))[1]
+df_mw %>% subset(metric == "zeroflowfirst" & mw_p < p_thres) %>% dim()/n_zff_mw
+df_mw %>% subset(metric == "zeroflowfirst" & mw_diff_mean < 0 & mw_p < p_thres) %>% dim()/n_zff_mw # earlier/drying
+df_mw %>% subset(metric == "zeroflowfirst" & mw_diff_mean > 0 & mw_p < p_thres) %>% dim()/n_zff_mw # later/wetting
+
+# significant change in any of the three metrics
+df_mw %>% subset(metric %in% metrics & mw_p < p_thres) %>% dplyr::select(gage_ID) %>% unique() %>% dim()
+
+# range of significant change
+df_mw %>% subset(metric == "annualnoflowdays" & mw_p < p_thres) %>% dplyr::select(mw_diff_mean) %>% range()
+df_mw %>% subset(metric == "peak2z_length" & mw_p < p_thres) %>% dplyr::select(mw_diff_mean) %>% range()
+df_mw %>% subset(metric == "zeroflowfirst" & mw_p < p_thres) %>% dplyr::select(mw_diff_mean) %>% range()
