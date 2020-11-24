@@ -183,13 +183,47 @@ for (m in metrics){
                                    metric = m,
                                    region_rf = r)
     
+    # partial dependence plots for top 10 variables
+    ranger_fit <- ranger::ranger(observed ~ ., 
+                                 data = dplyr::bind_cols(rf_fit$pre$mold$outcomes, 
+                                                         rf_fit$pre$mold$predictors),
+                                 num.trees = tune_res$trees[1],
+                                 mtry = tune_res$mtry[1], 
+                                 min.node.size = tune_res$min_n[1],
+                                 num.threads = (parallel::detectCores() - 1))
+    
+    
+    for (v in 1:10){ #1:npred_final){
+      var <- rf_var_m_r$predictor[v]
+      df_pdp_var <- 
+        pdp::partial(ranger_fit, 
+                     pred.var = var,
+                     mtry = tune_res$mtry[1], 
+                     min.node.size = tune_res$min_n[1],
+                     num.threads = (parallel::detectCores() - 1),
+                     parallel = T) %>% 
+        magrittr::set_colnames(c("value", "yhat"))
+      df_pdp_var$predictor <- var
+      df_pdp_var$metric <- m
+      df_pdp_var$region <- r
+      class(df_pdp_var) <- "data.frame"
+      
+      if (v == 1){
+        df_pdp <- df_pdp_var
+      } else {
+        df_pdp <- dplyr::bind_rows(df_pdp, df_pdp_var)
+      }
+    }
+    
     # combine
     if (m == metrics[1] & r == regions[1]){
       fit_data_out <- fit_data_i
       fit_rf_imp <- fit_rf_imp_i
+      fit_pdp_out <- df_pdp
     } else {
       fit_data_out <- dplyr::bind_rows(fit_data_out, fit_data_i)
       fit_rf_imp <- dplyr::bind_rows(fit_rf_imp, fit_rf_imp_i)
+      fit_pdp_out <- dplyr::bind_rows(fit_pdp_out, df_pdp)
     }
     
     # status update
@@ -205,6 +239,9 @@ fit_data_out %>%
 
 fit_rf_imp %>% 
   readr::write_csv(file.path("results", "04_RandomForest_RunModels_VariableImportance.csv"))
+
+fit_pdp_out %>% 
+  readr::write_csv(file.path("results", "04_RandomForest_RunModels_PartialDependence.csv"))
 
 # plots
 min(subset(fit_data_out, metric == "annualnoflowdays")$predicted)
