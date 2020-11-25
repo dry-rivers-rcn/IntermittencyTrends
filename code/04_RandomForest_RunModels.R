@@ -193,7 +193,7 @@ for (m in metrics){
                                  num.threads = (parallel::detectCores() - 1))
     
     
-    for (v in 1:10){ #1:npred_final){
+    for (v in 1:n_pred){
       var <- rf_var_m_r$predictor[v]
       df_pdp_var <- 
         pdp::partial(ranger_fit, 
