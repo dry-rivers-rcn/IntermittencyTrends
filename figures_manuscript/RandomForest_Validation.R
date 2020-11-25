@@ -51,7 +51,7 @@ rf_fit <-
   dplyr::bind_rows(rf_fit_regional, rf_fit_national) %>% 
   dplyr::arrange(metric, region_rf, region)
 
-rf_fit$metric[rf_fit$metric == "annualnoflowdays"] <- "Annual No-Flow Days"
+rf_fit$metric[rf_fit$metric == "annualnoflowdays"] <- "No-Flow Days"
 rf_fit$metric[rf_fit$metric == "peak2z_length"] <- "Days from Peak to No-Flow"
 rf_fit$metric[rf_fit$metric == "zeroflowfirst"] <- "First No-Flow Day"
 
@@ -61,36 +61,81 @@ rf_fit %>%
 # plot model error: national vs regional models
 rf_fit_wide <-
   rf_fit %>% 
-  dplyr::select(metric, region_rf, region, RMSE) %>% 
+  dplyr::select(metric, region_rf, region, Rsq) %>% 
   tidyr::pivot_wider(id_cols = c("metric", "region"),
                      names_from = "region_rf",
-                     values_from = "RMSE")
+                     values_from = "Rsq")
 
-ggplot(rf_fit_wide, aes(x = National, y = Regional, color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
-  geom_point() +
+ggplot(subset(rf_fit_wide, !is.na(region)), aes(x = National, y = Regional)) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  geom_point(aes(color = region)) +
+  geom_point(data = subset(rf_fit_wide, is.na(region)), 
+             aes(x = National, y = Regional), 
+             color = "black", size = 3) +
   facet_wrap(~metric, scales = "free") +
-  scale_x_continuous(name = "National Model") +
-  scale_y_continuous(name = "Regional Model") +
+  scale_x_continuous(name = "National Model", limits = c(0,1), expand = c(0,0)) +
+  scale_y_continuous(name = "Regional Model", limits = c(0,1), expand = c(0,0)) +
   scale_color_manual(name = "Region", values = pal_regions) +
-  labs(title = "Validation RMSE from regional and national random forest models") +
+  labs(title = "Validation R\u00b2 from regional and national random forest models") +
   theme(legend.position = "bottom") +
   ggsave(file.path("figures_manuscript", "RandomForest_Validation-CompareNationalRegionFit.png"),
          width = 190, height = 100, units = "mm")
 
-## scatterplot: national models, test data only
-p_nat_afnf_test <-
+## scatterplot: national models
+p_nat_afnf_train <-
   rf_all %>% 
-  subset(region_rf == "National" & metric == "annualnoflowdays" & Sample == "Test") %>% 
+  subset(region_rf == "National" & metric == "annualnoflowdays" & Sample == "Train") %>% 
   ggplot(aes(x = predicted, y = observed)) + 
   geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [days]",
                      limits = c(0,366), expand = c(0,0)) +
   scale_y_continuous(name = "Observed [days]",
                      limits = c(0,366), expand = c(0,0)) +
-  labs(title = "(a) Annual No-Flow Days") +
+  labs(title = "(a) No-Flow Days (Train)") +
+  NULL
+
+p_nat_p2z_train <-
+  rf_all %>% 
+  subset(region_rf == "National" & metric == "peak2z_length" & Sample == "Train") %>% 
+  ggplot(aes(x = predicted, y = observed)) + 
+  geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(name = "Region", values = pal_regions) +
+  scale_x_continuous(name = "Predicted [days]",
+                     limits = c(0,225), expand = c(0,0)) +
+  scale_y_continuous(name = "Observed [days]",
+                     limits = c(0,225), expand = c(0,0)) +
+  labs(title = "(b) Peak to No-Flow (Train)") +
+  NULL
+
+p_nat_zff_train <-
+  rf_all %>% 
+  subset(region_rf == "National" & metric == "zeroflowfirst" & Sample == "Train") %>% 
+  ggplot(aes(x = predicted, y = observed)) + 
+  geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(name = "Region", values = pal_regions) +
+  scale_x_continuous(name = "Predicted [day of year]",
+                     limits = c(0,366), expand = c(0,0)) +
+  scale_y_continuous(name = "Observed [day of year]",
+                     limits = c(0,366), expand = c(0,0)) +
+  labs(title = "(c) First No-Flow (Train)") +
+  NULL
+
+p_nat_afnf_test <-
+  rf_all %>% 
+  subset(region_rf == "National" & metric == "annualnoflowdays" & Sample == "Test") %>% 
+  ggplot(aes(x = predicted, y = observed)) + 
+  geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(name = "Region", values = pal_regions) +
+  scale_x_continuous(name = "Predicted [days]",
+                     limits = c(0,366), expand = c(0,0)) +
+  scale_y_continuous(name = "Observed [days]",
+                     limits = c(0,366), expand = c(0,0)) +
+  labs(title = "(d) No-Flow Days (Test)") +
   NULL
 
 p_nat_p2z_test <-
@@ -98,13 +143,13 @@ p_nat_p2z_test <-
   subset(region_rf == "National" & metric == "peak2z_length" & Sample == "Test") %>% 
   ggplot(aes(x = predicted, y = observed)) + 
   geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [days]",
                      limits = c(0,225), expand = c(0,0)) +
   scale_y_continuous(name = "Observed [days]",
                      limits = c(0,225), expand = c(0,0)) +
-  labs(title = "(b) Peak to No-Flow") +
+  labs(title = "(e) Peak to No-Flow (Test)") +
   NULL
 
 p_nat_zff_test <-
@@ -112,35 +157,78 @@ p_nat_zff_test <-
   subset(region_rf == "National" & metric == "zeroflowfirst" & Sample == "Test") %>% 
   ggplot(aes(x = predicted, y = observed)) + 
   geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [day of year]",
                      limits = c(0,366), expand = c(0,0)) +
   scale_y_continuous(name = "Observed [day of year]",
                      limits = c(0,366), expand = c(0,0)) +
-  labs(title = "(c) First No-Flow") +
+  labs(title = "(f) First No-Flow (Test)") +
   NULL
 
-((p_nat_afnf_test + p_nat_p2z_test + p_nat_zff_test) + 
+((p_nat_afnf_train + p_nat_p2z_train + p_nat_zff_train +
+    p_nat_afnf_test + p_nat_p2z_test + p_nat_zff_test) + 
     plot_layout(guides = 'collect') & 
     theme(legend.position = "bottom",
           plot.title = element_text(face = "plain"))) +
-  ggsave(file.path("figures_manuscript", "RandomForest_Validation-National-Test.png"),
-         width = 190, height = 85, units = "mm")
+  ggsave(file.path("figures_manuscript", "RandomForest_Validation-National-Train+Test.png"),
+         width = 190, height = 150, units = "mm")
 
-## scatterplot: Regional models, test data only
-p_reg_afnf_test <-
+## scatterplot: Regional models
+p_reg_afnf_train <-
   rf_all %>% 
-  subset(region_rf != "National" & metric == "annualnoflowdays" & Sample == "Test") %>% 
+  subset(region_rf != "National" & metric == "annualnoflowdays" & Sample == "Train") %>% 
   ggplot(aes(x = predicted, y = observed)) + 
   geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [days]",
                      limits = c(0,366), expand = c(0,0)) +
   scale_y_continuous(name = "Observed [days]",
                      limits = c(0,366), expand = c(0,0)) +
-  labs(title = "(a) Annual No-Flow Days") +
+  labs(title = "(a) No-Flow Days (Train)") +
+  NULL
+
+p_reg_p2z_train <-
+  rf_all %>% 
+  subset(region_rf != "National" & metric == "peak2z_length" & Sample == "Train") %>% 
+  ggplot(aes(x = predicted, y = observed)) + 
+  geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(name = "Region", values = pal_regions) +
+  scale_x_continuous(name = "Predicted [days]",
+                     limits = c(0,225), expand = c(0,0)) +
+  scale_y_continuous(name = "Observed [days]",
+                     limits = c(0,225), expand = c(0,0)) +
+  labs(title = "(b) Peak to No-Flow (Train)") +
+  NULL
+
+p_reg_zff_train <-
+  rf_all %>% 
+  subset(region_rf != "National" & metric == "zeroflowfirst" & Sample == "Train") %>% 
+  ggplot(aes(x = predicted, y = observed)) + 
+  geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(name = "Region", values = pal_regions) +
+  scale_x_continuous(name = "Predicted [day of year]",
+                     limits = c(0,366), expand = c(0,0)) +
+  scale_y_continuous(name = "Observed [day of year]",
+                     limits = c(0,366), expand = c(0,0)) +
+  labs(title = "(c) First No-Flow (Train)") +
+  NULL
+
+p_reg_afnf_test <-
+  rf_all %>% 
+  subset(region_rf != "National" & metric == "annualnoflowdays" & Sample == "Test") %>% 
+  ggplot(aes(x = predicted, y = observed)) + 
+  geom_point(shape = 1, aes(color = region)) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
+  scale_color_manual(name = "Region", values = pal_regions) +
+  scale_x_continuous(name = "Predicted [days]",
+                     limits = c(0,366), expand = c(0,0)) +
+  scale_y_continuous(name = "Observed [days]",
+                     limits = c(0,366), expand = c(0,0)) +
+  labs(title = "(d) No-Flow Days (Test)") +
   NULL
 
 p_reg_p2z_test <-
@@ -148,132 +236,33 @@ p_reg_p2z_test <-
   subset(region_rf != "National" & metric == "peak2z_length" & Sample == "Test") %>% 
   ggplot(aes(x = predicted, y = observed)) + 
   geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [days]",
                      limits = c(0,225), expand = c(0,0)) +
   scale_y_continuous(name = "Observed [days]",
                      limits = c(0,225), expand = c(0,0)) +
-  labs(title = "(b) Peak to No-Flow") +
+  labs(title = "(e) Peak to No-Flow (Test)") +
   NULL
 
 p_reg_zff_test <-
   rf_all %>% 
   subset(region_rf != "National" & metric == "zeroflowfirst" & Sample == "Test") %>% 
-  ggplot(aes(x = predicted, y = observed)) + 
-  geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
+  ggplot(aes(x = predicted, y = observed)) +
+  geom_point(shape = 1, aes(color = region)) + 
+  geom_abline(intercept = 0, slope = 1, color = col.gray) +
   scale_color_manual(name = "Region", values = pal_regions) +
   scale_x_continuous(name = "Predicted [day of year]",
                      limits = c(0,366), expand = c(0,0)) +
   scale_y_continuous(name = "Observed [day of year]",
                      limits = c(0,366), expand = c(0,0)) +
-  labs(title = "(c) First No-Flow") +
+  labs(title = "(f) First No-Flow (Test)") +
   NULL
 
-((p_reg_afnf_test + p_reg_p2z_test + p_reg_zff_test) + 
+((p_reg_afnf_train + p_reg_p2z_train + p_reg_zff_train +
+    p_reg_afnf_test + p_reg_p2z_test + p_reg_zff_test) + 
     plot_layout(guides = 'collect') & 
     theme(legend.position = "bottom",
           plot.title = element_text(face = "plain"))) +
-  ggsave(file.path("figures_manuscript", "RandomForest_Validation-Regional-Test.png"),
-         width = 190, height = 85, units = "mm")
-
-## scatterplot: national models, Train data only
-p_nat_afnf_Train <-
-  rf_all %>% 
-  subset(region_rf == "National" & metric == "annualnoflowdays" & Sample == "Train") %>% 
-  ggplot(aes(x = predicted, y = observed)) + 
-  geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
-  scale_color_manual(name = "Region", values = pal_regions) +
-  scale_x_continuous(name = "Predicted [days]",
-                     limits = c(0,366), expand = c(0,0)) +
-  scale_y_continuous(name = "Observed [days]",
-                     limits = c(0,366), expand = c(0,0)) +
-  labs(title = "(a) Annual No-Flow Days") +
-  NULL
-
-p_nat_p2z_Train <-
-  rf_all %>% 
-  subset(region_rf == "National" & metric == "peak2z_length" & Sample == "Train") %>% 
-  ggplot(aes(x = predicted, y = observed)) + 
-  geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
-  scale_color_manual(name = "Region", values = pal_regions) +
-  scale_x_continuous(name = "Predicted [days]",
-                     limits = c(0,225), expand = c(0,0)) +
-  scale_y_continuous(name = "Observed [days]",
-                     limits = c(0,225), expand = c(0,0)) +
-  labs(title = "(b) Peak to No-Flow") +
-  NULL
-
-p_nat_zff_Train <-
-  rf_all %>% 
-  subset(region_rf == "National" & metric == "zeroflowfirst" & Sample == "Train") %>% 
-  ggplot(aes(x = predicted, y = observed)) + 
-  geom_point(shape = 1, aes(color = region)) +
-  geom_abline(intercept = 0, slope = 1) +
-  scale_color_manual(name = "Region", values = pal_regions) +
-  scale_x_continuous(name = "Predicted [day of year]",
-                     limits = c(0,366), expand = c(0,0)) +
-  scale_y_continuous(name = "Observed [day of year]",
-                     limits = c(0,366), expand = c(0,0)) +
-  labs(title = "(c) First No-Flow") +
-  NULL
-
-((p_nat_afnf_Train + p_nat_p2z_Train + p_nat_zff_Train) + 
-    plot_layout(guides = 'collect') & 
-    theme(legend.position = "bottom",
-          plot.title = element_text(face = "plain"))) +
-  ggsave(file.path("figures_manuscript", "RandomForest_Validation-National-Train.png"),
-         width = 190, height = 85, units = "mm")
-
-## scatterplot: Regional models, Train data only
-p_reg_afnf_Train <-
-  rf_all %>% 
-  subset(region_rf != "National" & metric == "annualnoflowdays" & Sample == "Train") %>% 
-  ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
-  geom_point(shape = 1, aes(color = region)) +
-  scale_color_manual(name = "Region", values = pal_regions) +
-  scale_x_continuous(name = "Predicted [days]",
-                     limits = c(0,366), expand = c(0,0)) +
-  scale_y_continuous(name = "Observed [days]",
-                     limits = c(0,366), expand = c(0,0)) +
-  labs(title = "(a) Annual No-Flow Days") +
-  NULL
-
-p_reg_p2z_Train <-
-  rf_all %>% 
-  subset(region_rf != "National" & metric == "peak2z_length" & Sample == "Train") %>% 
-  ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
-  geom_point(shape = 1, aes(color = region)) +
-  scale_color_manual(name = "Region", values = pal_regions) +
-  scale_x_continuous(name = "Predicted [days]",
-                     limits = c(0,225), expand = c(0,0)) +
-  scale_y_continuous(name = "Observed [days]",
-                     limits = c(0,225), expand = c(0,0)) +
-  labs(title = "(b) Peak to No-Flow") +
-  NULL
-
-p_reg_zff_Train <-
-  rf_all %>% 
-  subset(region_rf != "National" & metric == "zeroflowfirst" & Sample == "Train") %>% 
-  ggplot(aes(x = predicted, y = observed)) + 
-  geom_abline(intercept = 0, slope = 1) +
-  geom_point(shape = 1, aes(color = region)) +
-  scale_color_manual(name = "Region", values = pal_regions) +
-  scale_x_continuous(name = "Predicted [day of year]",
-                     limits = c(0,366), expand = c(0,0)) +
-  scale_y_continuous(name = "Observed [day of year]",
-                     limits = c(0,366), expand = c(0,0)) +
-  labs(title = "(c) First No-Flow") +
-  NULL
-
-((p_reg_afnf_Train + p_reg_p2z_Train + p_reg_zff_Train) + 
-    plot_layout(guides = 'collect') & 
-    theme(legend.position = "bottom",
-          plot.title = element_text(face = "plain"))) +
-  ggsave(file.path("figures_manuscript", "RandomForest_Validation-Regional-Train.png"),
-         width = 190, height = 85, units = "mm")
+  ggsave(file.path("figures_manuscript", "RandomForest_Validation-Regional-Train+Test.png"),
+         width = 190, height = 150, units = "mm")

@@ -1,533 +1,533 @@
 predictor,IncMSE,oobMSE,metric,region_rf
-p.pet_cy.previous,3700.047796709255,3058.920995563705,annualnoflowdays,National
-drain_sqkm,2870.8650345334117,3058.920995563705,annualnoflowdays,National
-p.pet_amj,2390.1045729944917,3058.920995563705,annualnoflowdays,National
-lulc_water_prc,2742.7680610985267,3058.920995563705,annualnoflowdays,National
-p.pet_jas,1664.8256658870469,3058.920995563705,annualnoflowdays,National
-pet_mm_amj,2146.448731571006,3058.920995563705,annualnoflowdays,National
-depth_bedrock_m,2732.279451563127,3058.920995563705,annualnoflowdays,National
-permave,2550.4967683584932,3058.920995563705,annualnoflowdays,National
-majordams_n,862.1733229916213,3058.920995563705,annualnoflowdays,National
-p.pet_cy,2633.6759242836447,3058.920995563705,annualnoflowdays,National
-porosity,1640.728978054206,3058.920995563705,annualnoflowdays,National
-dams_n,2034.4607360418718,3058.920995563705,annualnoflowdays,National
-topwet,2004.3964886340264,3058.920995563705,annualnoflowdays,National
-lulc_grass_prc,1835.3866918775966,3058.920995563705,annualnoflowdays,National
-slope_pct,2265.79129248061,3058.920995563705,annualnoflowdays,National
-p.pet_jfm.previous,661.3767257498702,3058.920995563705,annualnoflowdays,National
-irrig_prc,1390.233378907294,3058.920995563705,annualnoflowdays,National
-elev_mean_m_basin,2437.579674119216,3058.920995563705,annualnoflowdays,National
-siltave,2064.3160942449354,3058.920995563705,annualnoflowdays,National
-lulc_dev_prc,1012.2730529417229,3058.920995563705,annualnoflowdays,National
-awcave,1031.9724740967752,3058.920995563705,annualnoflowdays,National
-wuse_mm,1261.9914718300226,3058.920995563705,annualnoflowdays,National
-clayave,1393.7236093084125,2312.0347968528213,annualnoflowdays,North Great Plains
-p.pet_cy,2206.7721555498665,2312.0347968528213,annualnoflowdays,North Great Plains
-porosity,807.9954256148671,2312.0347968528213,annualnoflowdays,North Great Plains
-permave,730.1447860567428,2312.0347968528213,annualnoflowdays,North Great Plains
-drain_sqkm,477.5822381330394,2312.0347968528213,annualnoflowdays,North Great Plains
-p.pet_amj,640.702878055,2312.0347968528213,annualnoflowdays,North Great Plains
-pet_mm_amj,496.5392304368331,2312.0347968528213,annualnoflowdays,North Great Plains
-p.pet_cy.previous,951.997605678287,2312.0347968528213,annualnoflowdays,North Great Plains
-depth_bedrock_m,332.8318595332373,2312.0347968528213,annualnoflowdays,North Great Plains
-pet_mm_amj.previous,470.98388892048087,2312.0347968528213,annualnoflowdays,North Great Plains
-dams_n,718.4147418309738,2312.0347968528213,annualnoflowdays,North Great Plains
-lulc_ag_prc,1034.3424625123469,2312.0347968528213,annualnoflowdays,North Great Plains
-lulc_grass_prc,568.6750267887335,2312.0347968528213,annualnoflowdays,North Great Plains
-lulc_forest_prc,1295.5187720088159,2312.0347968528213,annualnoflowdays,North Great Plains
-p_mm_ond,147.99044200145016,2312.0347968528213,annualnoflowdays,North Great Plains
-elev_mean_m_basin,722.9420062198517,2312.0347968528213,annualnoflowdays,North Great Plains
-majordams_n,68.48342207302169,2312.0347968528213,annualnoflowdays,North Great Plains
-p_mm_ond.previous,394.85264902860433,2312.0347968528213,annualnoflowdays,North Great Plains
-siltave,126.58914057643821,2312.0347968528213,annualnoflowdays,North Great Plains
-p.pet_ond.previous,410.693936345336,2312.0347968528213,annualnoflowdays,North Great Plains
-lulc_water_prc,601.6651055790562,2312.0347968528213,annualnoflowdays,North Great Plains
-slope_pct,420.5263064368167,2312.0347968528213,annualnoflowdays,North Great Plains
-p.pet_cy.previous,4502.393088710787,4527.447116071771,annualnoflowdays,Mediterranean California
-permave,2229.1681458487424,4527.447116071771,annualnoflowdays,Mediterranean California
-depth_bedrock_m,6100.163148559085,4527.447116071771,annualnoflowdays,Mediterranean California
-irrig_prc,1676.1492498517164,4527.447116071771,annualnoflowdays,Mediterranean California
-p.pet_jfm.previous,1266.6911453998375,4527.447116071771,annualnoflowdays,Mediterranean California
-clayave,1261.2274096533113,4527.447116071771,annualnoflowdays,Mediterranean California
-lulc_grass_prc,2971.0857606438612,4527.447116071771,annualnoflowdays,Mediterranean California
-siltave,1754.900120731518,4527.447116071771,annualnoflowdays,Mediterranean California
-wuse_mm,2540.4681702984094,4527.447116071771,annualnoflowdays,Mediterranean California
-p_mm_jfm.previous,720.8808725388807,4527.447116071771,annualnoflowdays,Mediterranean California
-lulc_dev_prc,1280.1926989757055,4527.447116071771,annualnoflowdays,Mediterranean California
-awcave,596.7348070799121,4527.447116071771,annualnoflowdays,Mediterranean California
-lulc_ag_prc,1147.117392633017,4527.447116071771,annualnoflowdays,Mediterranean California
-topwet,2315.0979100488494,4527.447116071771,annualnoflowdays,Mediterranean California
-slope_pct,1273.072021810998,4527.447116071771,annualnoflowdays,Mediterranean California
-drain_sqkm,1858.1094980993767,4527.447116071771,annualnoflowdays,Mediterranean California
-dams_n,1494.893375925586,4527.447116071771,annualnoflowdays,Mediterranean California
-p.pet_ond.previous,643.4982306234709,4527.447116071771,annualnoflowdays,Mediterranean California
-pet_mm_amj.previous,663.1106599111298,4527.447116071771,annualnoflowdays,Mediterranean California
-porosity,1275.7296715989628,4527.447116071771,annualnoflowdays,Mediterranean California
-p_mm_ond.previous,432.28256567409653,4527.447116071771,annualnoflowdays,Mediterranean California
-lulc_barren_prc,1140.0019026845275,4527.447116071771,annualnoflowdays,Mediterranean California
-drain_sqkm,3645.419988614884,3947.7956299276443,annualnoflowdays,South Great Plains
-majordams_n,1523.095093390254,3947.7956299276443,annualnoflowdays,South Great Plains
-permave,2819.7820534338425,3947.7956299276443,annualnoflowdays,South Great Plains
-p.pet_cy.previous,1745.6499001420866,3947.7956299276443,annualnoflowdays,South Great Plains
-p.pet_jas,800.7493519758198,3947.7956299276443,annualnoflowdays,South Great Plains
-dams_n,2328.657611552195,3947.7956299276443,annualnoflowdays,South Great Plains
-lulc_barren_prc,1453.6569946761017,3947.7956299276443,annualnoflowdays,South Great Plains
-siltave,1784.4290670288628,3947.7956299276443,annualnoflowdays,South Great Plains
-p.pet_cy,2916.215574341047,3947.7956299276443,annualnoflowdays,South Great Plains
-p.pet_amj,1142.6771085940866,3947.7956299276443,annualnoflowdays,South Great Plains
-pet_mm_amj,1178.3822207872468,3947.7956299276443,annualnoflowdays,South Great Plains
-pet_mm_jas,771.8277004851576,3947.7956299276443,annualnoflowdays,South Great Plains
-awcave,1151.3848879879727,3947.7956299276443,annualnoflowdays,South Great Plains
-irrig_prc,1797.6711422147157,3947.7956299276443,annualnoflowdays,South Great Plains
-clayave,1437.0342290735787,3947.7956299276443,annualnoflowdays,South Great Plains
-p.pet_ond.previous,365.91955820828787,3947.7956299276443,annualnoflowdays,South Great Plains
-elev_mean_m_basin,2762.3988934035847,3947.7956299276443,annualnoflowdays,South Great Plains
-wuse_mm,1347.427836069178,3947.7956299276443,annualnoflowdays,South Great Plains
-pet_mm_jas.previous,439.95287387482546,3947.7956299276443,annualnoflowdays,South Great Plains
-T_max_c_jas,986.5663051580124,3947.7956299276443,annualnoflowdays,South Great Plains
-depth_bedrock_m,2054.0624364500113,3947.7956299276443,annualnoflowdays,South Great Plains
-pet_mm_cy,955.0752692127146,3947.7956299276443,annualnoflowdays,South Great Plains
-porosity,5083.130118155311,2050.057878765833,annualnoflowdays,Western Desert
-awcave,823.0597169021634,2050.057878765833,annualnoflowdays,Western Desert
-slope_pct,3506.90107664254,2050.057878765833,annualnoflowdays,Western Desert
-drain_sqkm,795.8301311723806,2050.057878765833,annualnoflowdays,Western Desert
-depth_bedrock_m,2045.6148289012278,2050.057878765833,annualnoflowdays,Western Desert
-dams_n,785.8149613262906,2050.057878765833,annualnoflowdays,Western Desert
-lulc_forest_prc,4660.642587859995,2050.057878765833,annualnoflowdays,Western Desert
-majordams_n,298.7339277853792,2050.057878765833,annualnoflowdays,Western Desert
-lulc_water_prc,1210.194654827391,2050.057878765833,annualnoflowdays,Western Desert
-T_max_c_cy,3025.187333063188,2050.057878765833,annualnoflowdays,Western Desert
-elev_mean_m_basin,2583.4525607324085,2050.057878765833,annualnoflowdays,Western Desert
-permave,2194.252847192272,2050.057878765833,annualnoflowdays,Western Desert
-siltave,932.6882817624231,2050.057878765833,annualnoflowdays,Western Desert
-pet_mm_jas,440.2791538967833,2050.057878765833,annualnoflowdays,Western Desert
-lulc_barren_prc,1932.9440231670471,2050.057878765833,annualnoflowdays,Western Desert
-pet_mm_cy,7375.872898317413,2050.057878765833,annualnoflowdays,Western Desert
-pet_mm_amj,3352.9911800225314,2050.057878765833,annualnoflowdays,Western Desert
-pet_mm_jas.previous,380.178251464899,2050.057878765833,annualnoflowdays,Western Desert
-topwet,862.5405092647133,2050.057878765833,annualnoflowdays,Western Desert
-T_max_c_jas,609.9821642945382,2050.057878765833,annualnoflowdays,Western Desert
-pet_mm_amj.previous,1883.6549111470868,2050.057878765833,annualnoflowdays,Western Desert
-lulc_grass_prc,2244.526555955804,2050.057878765833,annualnoflowdays,Western Desert
-permave,1805.5508520507321,1708.088457484638,annualnoflowdays,Eastern Forests
-lulc_water_prc,659.943313625719,1708.088457484638,annualnoflowdays,Eastern Forests
-drain_sqkm,935.18390777711,1708.088457484638,annualnoflowdays,Eastern Forests
-topwet,679.2527791800109,1708.088457484638,annualnoflowdays,Eastern Forests
-pet_mm_amj,674.3558088163452,1708.088457484638,annualnoflowdays,Eastern Forests
-slope_pct,884.4415127932704,1708.088457484638,annualnoflowdays,Eastern Forests
-lulc_grass_prc,442.1839849141198,1708.088457484638,annualnoflowdays,Eastern Forests
-elev_mean_m_basin,634.0504996080566,1708.088457484638,annualnoflowdays,Eastern Forests
-depth_bedrock_m,526.1662572458068,1708.088457484638,annualnoflowdays,Eastern Forests
-wuse_mm,507.9421377592077,1708.088457484638,annualnoflowdays,Eastern Forests
-p.pet_cy,521.4962505244973,1708.088457484638,annualnoflowdays,Eastern Forests
-p.pet_cy.previous,205.90404586172508,1708.088457484638,annualnoflowdays,Eastern Forests
-siltave,1203.435598340568,1708.088457484638,annualnoflowdays,Eastern Forests
-lulc_wetland_prc,534.2807018120257,1708.088457484638,annualnoflowdays,Eastern Forests
-p.pet_amj,294.97116813195447,1708.088457484638,annualnoflowdays,Eastern Forests
-clayave,739.4651620437265,1708.088457484638,annualnoflowdays,Eastern Forests
-p.pet_jfm.previous,191.60189717670266,1708.088457484638,annualnoflowdays,Eastern Forests
-p_mm_jfm.previous,124.85811372214552,1708.088457484638,annualnoflowdays,Eastern Forests
-lulc_barren_prc,338.92739842849954,1708.088457484638,annualnoflowdays,Eastern Forests
-p.pet_jas,444.99449107975,1708.088457484638,annualnoflowdays,Eastern Forests
-pet_mm_ond.previous,453.5896865182572,1708.088457484638,annualnoflowdays,Eastern Forests
-dams_n,267.544822013381,1708.088457484638,annualnoflowdays,Eastern Forests
-lulc_forest_prc,4768.455944939684,2673.7806540885495,annualnoflowdays,Western Mountains
-drain_sqkm,2785.2211257729864,2673.7806540885495,annualnoflowdays,Western Mountains
-p.pet_cy.previous,2989.4157972240973,2673.7806540885495,annualnoflowdays,Western Mountains
-lulc_grass_prc,3065.5779690035897,2673.7806540885495,annualnoflowdays,Western Mountains
-siltave,1526.7169296758477,2673.7806540885495,annualnoflowdays,Western Mountains
-depth_bedrock_m,1576.0097763044055,2673.7806540885495,annualnoflowdays,Western Mountains
-permave,4336.791558782834,2673.7806540885495,annualnoflowdays,Western Mountains
-majordams_n,1198.1209480470986,2673.7806540885495,annualnoflowdays,Western Mountains
-lulc_ag_prc,1476.274358597802,2673.7806540885495,annualnoflowdays,Western Mountains
-elev_mean_m_basin,2168.1518735599298,2673.7806540885495,annualnoflowdays,Western Mountains
-porosity,2781.054890105822,2673.7806540885495,annualnoflowdays,Western Mountains
-irrig_prc,868.9928127782542,2673.7806540885495,annualnoflowdays,Western Mountains
-slope_pct,4119.127289108567,2673.7806540885495,annualnoflowdays,Western Mountains
-lulc_wetland_prc,1966.096592892802,2673.7806540885495,annualnoflowdays,Western Mountains
-lulc_barren_prc,1752.6665772687463,2673.7806540885495,annualnoflowdays,Western Mountains
-dams_n,1042.1329570757662,2673.7806540885495,annualnoflowdays,Western Mountains
-pet_mm_amj,2252.6413610332834,2673.7806540885495,annualnoflowdays,Western Mountains
-awcave,529.466947215174,2673.7806540885495,annualnoflowdays,Western Mountains
-pet_mm_amj.previous,2094.831029985956,2673.7806540885495,annualnoflowdays,Western Mountains
-p.pet_amj,842.8767879504447,2673.7806540885495,annualnoflowdays,Western Mountains
-swe.p_amj,537.3635125849675,2673.7806540885495,annualnoflowdays,Western Mountains
-topwet,1501.302667127184,2673.7806540885495,annualnoflowdays,Western Mountains
-p.pet_cy.previous,1471.765560637438,2604.7723656657763,zeroflowfirst,National
-p.pet_jfm.previous,1141.1201989887857,2604.7723656657763,zeroflowfirst,National
-p_mm_jfm.previous,752.8647491239077,2604.7723656657763,zeroflowfirst,National
-p.pet_amj,469.4540404761508,2604.7723656657763,zeroflowfirst,National
-pet_mm_ond.previous,997.7581855694747,2604.7723656657763,zeroflowfirst,National
-pet_mm_amj,814.6989600011892,2604.7723656657763,zeroflowfirst,National
-p.pet_ond.previous,751.1872481513071,2604.7723656657763,zeroflowfirst,National
-drain_sqkm,563.617267013536,2604.7723656657763,zeroflowfirst,National
-p_mm_ond.previous,557.7509120746098,2604.7723656657763,zeroflowfirst,National
-dams_n,440.8958505799216,2604.7723656657763,zeroflowfirst,National
-pet_mm_amj.previous,488.8775494616898,2604.7723656657763,zeroflowfirst,National
-awcave,291.96058172360176,2604.7723656657763,zeroflowfirst,National
-lulc_ag_prc,499.7359904002878,2604.7723656657763,zeroflowfirst,National
-lulc_barren_prc,292.3939085117601,2604.7723656657763,zeroflowfirst,National
-porosity,310.6519966006792,2604.7723656657763,zeroflowfirst,National
-depth_bedrock_m,670.5943278987895,2604.7723656657763,zeroflowfirst,National
-lulc_grass_prc,481.7005684992767,2604.7723656657763,zeroflowfirst,National
-irrig_prc,422.202292326388,2604.7723656657763,zeroflowfirst,National
-pet_mm_cy,711.9388150960159,2604.7723656657763,zeroflowfirst,National
-lulc_forest_prc,542.8884066934288,2604.7723656657763,zeroflowfirst,National
-wuse_mm,511.9178490567742,2604.7723656657763,zeroflowfirst,National
-p_mm_amj.previous,411.6244047891628,2604.7723656657763,zeroflowfirst,National
-permave,508.79406427523764,2604.7723656657763,zeroflowfirst,National
-majordams_n,161.72608593215827,2604.7723656657763,zeroflowfirst,National
-slope_pct,619.6131230927128,2604.7723656657763,zeroflowfirst,National
-T_max_c_cy,608.1299963283494,2604.7723656657763,zeroflowfirst,National
-elev_mean_m_basin,637.152291797531,2604.7723656657763,zeroflowfirst,National
-pet_mm_ond.previous,843.3827536099104,4531.756787076581,zeroflowfirst,North Great Plains
-permave,766.2245703871115,4531.756787076581,zeroflowfirst,North Great Plains
-clayave,538.2072897279725,4531.756787076581,zeroflowfirst,North Great Plains
-awcave,151.95772023460552,4531.756787076581,zeroflowfirst,North Great Plains
-T_max_c_jas,393.8172572903719,4531.756787076581,zeroflowfirst,North Great Plains
-p.pet_cy.previous,699.4439362623366,4531.756787076581,zeroflowfirst,North Great Plains
-pet_mm_jas.previous,344.3532559043464,4531.756787076581,zeroflowfirst,North Great Plains
-porosity,391.2572332841051,4531.756787076581,zeroflowfirst,North Great Plains
-p.pet_jfm.previous,226.93189580648925,4531.756787076581,zeroflowfirst,North Great Plains
-p_mm_jas.previous,405.3020009327996,4531.756787076581,zeroflowfirst,North Great Plains
-p.pet_ond.previous,365.3200579152815,4531.756787076581,zeroflowfirst,North Great Plains
-lulc_grass_prc,426.95209415121496,4531.756787076581,zeroflowfirst,North Great Plains
-siltave,360.8751918521041,4531.756787076581,zeroflowfirst,North Great Plains
-drain_sqkm,214.1041500455498,4531.756787076581,zeroflowfirst,North Great Plains
-pet_mm_jas,250.93311887847156,4531.756787076581,zeroflowfirst,North Great Plains
-swe_mm_ond.previous,141.83213685509037,4531.756787076581,zeroflowfirst,North Great Plains
-wuse_mm,172.64849123157234,4531.756787076581,zeroflowfirst,North Great Plains
-pet_mm_ond,283.2021237823775,4531.756787076581,zeroflowfirst,North Great Plains
-T_max_c_cy,531.6611071364599,4531.756787076581,zeroflowfirst,North Great Plains
-pet_mm_cy,228.52415746012306,4531.756787076581,zeroflowfirst,North Great Plains
-irrig_prc,204.3722073640502,4531.756787076581,zeroflowfirst,North Great Plains
-depth_bedrock_m,237.7457121930629,4531.756787076581,zeroflowfirst,North Great Plains
-p_mm_ond.previous,163.13507064519754,4531.756787076581,zeroflowfirst,North Great Plains
-lulc_water_prc,243.3004116756587,4531.756787076581,zeroflowfirst,North Great Plains
-lulc_forest_prc,314.2541563605372,4531.756787076581,zeroflowfirst,North Great Plains
-pet_mm_amj.previous,199.12201619793777,4531.756787076581,zeroflowfirst,North Great Plains
-pet_mm_amj,106.4848628685057,4531.756787076581,zeroflowfirst,North Great Plains
-p.pet_cy.previous,892.1714035042089,2118.417066067958,zeroflowfirst,Mediterranean California
-p.pet_jfm.previous,473.8244128100534,2118.417066067958,zeroflowfirst,Mediterranean California
-p_mm_jfm.previous,394.96028635450705,2118.417066067958,zeroflowfirst,Mediterranean California
-irrig_prc,450.28021260739735,2118.417066067958,zeroflowfirst,Mediterranean California
-depth_bedrock_m,598.0869025070863,2118.417066067958,zeroflowfirst,Mediterranean California
-p.pet_ond.previous,264.13835282923964,2118.417066067958,zeroflowfirst,Mediterranean California
-p_mm_ond.previous,254.11045975376166,2118.417066067958,zeroflowfirst,Mediterranean California
-lulc_barren_prc,304.7328658119108,2118.417066067958,zeroflowfirst,Mediterranean California
-slope_pct,243.63079563369985,2118.417066067958,zeroflowfirst,Mediterranean California
-p.pet_amj,168.12826210472917,2118.417066067958,zeroflowfirst,Mediterranean California
-lulc_grass_prc,223.75752294283703,2118.417066067958,zeroflowfirst,Mediterranean California
-lulc_forest_prc,288.7741898378561,2118.417066067958,zeroflowfirst,Mediterranean California
-pet_mm_ond.previous,205.17650769411185,2118.417066067958,zeroflowfirst,Mediterranean California
-siltave,235.67304197880284,2118.417066067958,zeroflowfirst,Mediterranean California
-topwet,415.6567172749054,2118.417066067958,zeroflowfirst,Mediterranean California
-lulc_ag_prc,189.23621167493403,2118.417066067958,zeroflowfirst,Mediterranean California
-drain_sqkm,296.71839182300516,2118.417066067958,zeroflowfirst,Mediterranean California
-clayave,180.86326476298515,2118.417066067958,zeroflowfirst,Mediterranean California
-majordams_n,93.19359117916626,2118.417066067958,zeroflowfirst,Mediterranean California
-porosity,241.7083561059312,2118.417066067958,zeroflowfirst,Mediterranean California
-wuse_mm,411.7822146841546,2118.417066067958,zeroflowfirst,Mediterranean California
-elev_mean_m_basin,220.70113705083426,2118.417066067958,zeroflowfirst,Mediterranean California
-lulc_water_prc,269.2242246116692,2118.417066067958,zeroflowfirst,Mediterranean California
-T_max_c_cy,185.8775112265371,2118.417066067958,zeroflowfirst,Mediterranean California
-p_mm_jas.previous,46.982203052527645,2118.417066067958,zeroflowfirst,Mediterranean California
-awcave,117.2112244845445,2118.417066067958,zeroflowfirst,Mediterranean California
-pet_mm_jas.previous,138.0196741844772,2118.417066067958,zeroflowfirst,Mediterranean California
-p.pet_cy.previous,1063.4829500181393,2434.0462990778515,zeroflowfirst,South Great Plains
-p.pet_jfm.previous,573.4935140015682,2434.0462990778515,zeroflowfirst,South Great Plains
-drain_sqkm,425.11742696571775,2434.0462990778515,zeroflowfirst,South Great Plains
-permave,431.4632645873619,2434.0462990778515,zeroflowfirst,South Great Plains
-depth_bedrock_m,449.27569600260694,2434.0462990778515,zeroflowfirst,South Great Plains
-p.pet_ond.previous,290.1857135958113,2434.0462990778515,zeroflowfirst,South Great Plains
-p_mm_jfm.previous,309.5979845625729,2434.0462990778515,zeroflowfirst,South Great Plains
-slope_pct,378.4942966875518,2434.0462990778515,zeroflowfirst,South Great Plains
-majordams_n,116.9333656980134,2434.0462990778515,zeroflowfirst,South Great Plains
-p_mm_ond.previous,212.49317877778535,2434.0462990778515,zeroflowfirst,South Great Plains
-pet_mm_amj,385.6387196858445,2434.0462990778515,zeroflowfirst,South Great Plains
-pet_mm_ond.previous,244.09877246448144,2434.0462990778515,zeroflowfirst,South Great Plains
-p.pet_amj,404.2723365448663,2434.0462990778515,zeroflowfirst,South Great Plains
-porosity,323.68495579170786,2434.0462990778515,zeroflowfirst,South Great Plains
-dams_n,265.2450903898322,2434.0462990778515,zeroflowfirst,South Great Plains
-T_max_c_cy,368.83409350268744,2434.0462990778515,zeroflowfirst,South Great Plains
-lulc_forest_prc,456.5719513794746,2434.0462990778515,zeroflowfirst,South Great Plains
-awcave,125.82857767952878,2434.0462990778515,zeroflowfirst,South Great Plains
-clayave,311.18798319955647,2434.0462990778515,zeroflowfirst,South Great Plains
-pet_mm_jas.previous,186.05215610676024,2434.0462990778515,zeroflowfirst,South Great Plains
-lulc_grass_prc,368.35717401713725,2434.0462990778515,zeroflowfirst,South Great Plains
-swe_mm_jfm.previous,169.576826936944,2434.0462990778515,zeroflowfirst,South Great Plains
-siltave,216.0339986495304,2434.0462990778515,zeroflowfirst,South Great Plains
-p_mm_amj.previous,310.82477698137205,2434.0462990778515,zeroflowfirst,South Great Plains
-lulc_barren_prc,231.05997688211718,2434.0462990778515,zeroflowfirst,South Great Plains
-p.pet_jfm,94.92125325692926,2434.0462990778515,zeroflowfirst,South Great Plains
-elev_mean_m_basin,352.12378618721397,2434.0462990778515,zeroflowfirst,South Great Plains
-pet_mm_amj,651.20487093171,2057.9208962480207,zeroflowfirst,Western Desert
-T_max_c_cy,488.7201603522999,2057.9208962480207,zeroflowfirst,Western Desert
-pet_mm_amj.previous,230.4324148443424,2057.9208962480207,zeroflowfirst,Western Desert
-pet_mm_cy,279.95703338570223,2057.9208962480207,zeroflowfirst,Western Desert
-swe.p_cy,68.34487921762172,2057.9208962480207,zeroflowfirst,Western Desert
-porosity,402.9421710859876,2057.9208962480207,zeroflowfirst,Western Desert
-slope_pct,327.2007924371641,2057.9208962480207,zeroflowfirst,Western Desert
-swe_mm_cy,174.39835388620634,2057.9208962480207,zeroflowfirst,Western Desert
-pet_mm_ond,182.5518892442787,2057.9208962480207,zeroflowfirst,Western Desert
-p.pet_jas,243.54501954359824,2057.9208962480207,zeroflowfirst,Western Desert
-swe_mm_jfm.previous,194.0280963316737,2057.9208962480207,zeroflowfirst,Western Desert
-lulc_forest_prc,494.9891505864484,2057.9208962480207,zeroflowfirst,Western Desert
-swe.p_cy.previous,159.721178245568,2057.9208962480207,zeroflowfirst,Western Desert
-pet_mm_ond.previous,261.75778197188924,2057.9208962480207,zeroflowfirst,Western Desert
-dams_n,142.82587249640252,2057.9208962480207,zeroflowfirst,Western Desert
-p.pet_jfm.previous,323.7035104165441,2057.9208962480207,zeroflowfirst,Western Desert
-lulc_grass_prc,462.1269339078177,2057.9208962480207,zeroflowfirst,Western Desert
-depth_bedrock_m,290.1259320644003,2057.9208962480207,zeroflowfirst,Western Desert
-permave,203.53520318337732,2057.9208962480207,zeroflowfirst,Western Desert
-swe.p_amj.previous,45.558327423223844,2057.9208962480207,zeroflowfirst,Western Desert
-drain_sqkm,180.07308425725844,2057.9208962480207,zeroflowfirst,Western Desert
-awcave,94.35749529339132,2057.9208962480207,zeroflowfirst,Western Desert
-swe.p_amj,61.694054635075446,2057.9208962480207,zeroflowfirst,Western Desert
-wuse_mm,218.90123883543927,2057.9208962480207,zeroflowfirst,Western Desert
-siltave,66.58161222516539,2057.9208962480207,zeroflowfirst,Western Desert
-p_mm_jfm.previous,329.4467482375553,2057.9208962480207,zeroflowfirst,Western Desert
-topwet,136.4567579874912,2057.9208962480207,zeroflowfirst,Western Desert
-permave,1067.5813844235963,2448.0078050988755,zeroflowfirst,Eastern Forests
-siltave,1382.3887308981118,2448.0078050988755,zeroflowfirst,Eastern Forests
-p.pet_jfm.previous,1167.6880307915112,2448.0078050988755,zeroflowfirst,Eastern Forests
-p_mm_jfm.previous,1127.38425300221,2448.0078050988755,zeroflowfirst,Eastern Forests
-p.pet_amj,667.5337706311141,2448.0078050988755,zeroflowfirst,Eastern Forests
-clayave,488.30222318667455,2448.0078050988755,zeroflowfirst,Eastern Forests
-p.pet_cy.previous,753.0035544257328,2448.0078050988755,zeroflowfirst,Eastern Forests
-pet_mm_amj,386.7027082055912,2448.0078050988755,zeroflowfirst,Eastern Forests
-p.pet_ond.previous,1196.205454584562,2448.0078050988755,zeroflowfirst,Eastern Forests
-p.pet_jas,1183.3066182525577,2448.0078050988755,zeroflowfirst,Eastern Forests
-p_mm_ond,145.51813809613296,2448.0078050988755,zeroflowfirst,Eastern Forests
-elev_mean_m_basin,293.27891069018784,2448.0078050988755,zeroflowfirst,Eastern Forests
-p_mm_ond.previous,432.3598969141762,2448.0078050988755,zeroflowfirst,Eastern Forests
-majordams_n,94.63983509233616,2448.0078050988755,zeroflowfirst,Eastern Forests
-drain_sqkm,220.22785086385346,2448.0078050988755,zeroflowfirst,Eastern Forests
-swe_mm_cy,123.01975061430153,2448.0078050988755,zeroflowfirst,Eastern Forests
-pet_mm_ond.previous,445.9945205758807,2448.0078050988755,zeroflowfirst,Eastern Forests
-p.pet_ond,278.68372136916076,2448.0078050988755,zeroflowfirst,Eastern Forests
-T_max_c_cy,537.3766426405293,2448.0078050988755,zeroflowfirst,Eastern Forests
-p.pet_cy,237.94533488258674,2448.0078050988755,zeroflowfirst,Eastern Forests
-swe.p_cy.previous,91.8575619431764,2448.0078050988755,zeroflowfirst,Eastern Forests
-T_max_c_jas,96.26271993532201,2448.0078050988755,zeroflowfirst,Eastern Forests
-dams_n,116.69535079351554,2448.0078050988755,zeroflowfirst,Eastern Forests
-awcave,250.64879968221044,2448.0078050988755,zeroflowfirst,Eastern Forests
-topwet,60.04613528712919,2448.0078050988755,zeroflowfirst,Eastern Forests
-wuse_mm,251.69583096359312,2448.0078050988755,zeroflowfirst,Eastern Forests
-pet_mm_amj.previous,244.49678446613973,2448.0078050988755,zeroflowfirst,Eastern Forests
-lulc_forest_prc,1652.3546223543729,2763.6522684214697,zeroflowfirst,Western Mountains
-lulc_wetland_prc,700.8494171899633,2763.6522684214697,zeroflowfirst,Western Mountains
-lulc_grass_prc,862.2825086427156,2763.6522684214697,zeroflowfirst,Western Mountains
-pet_mm_amj.previous,852.5062347931408,2763.6522684214697,zeroflowfirst,Western Mountains
-pet_mm_ond.previous,999.435130602502,2763.6522684214697,zeroflowfirst,Western Mountains
-pet_mm_amj,1101.4509237527186,2763.6522684214697,zeroflowfirst,Western Mountains
-lulc_ag_prc,419.0894069358455,2763.6522684214697,zeroflowfirst,Western Mountains
-pet_mm_ond,451.11174079820194,2763.6522684214697,zeroflowfirst,Western Mountains
-elev_mean_m_basin,736.7422970351023,2763.6522684214697,zeroflowfirst,Western Mountains
-lulc_barren_prc,665.5252710679177,2763.6522684214697,zeroflowfirst,Western Mountains
-pet_mm_cy,677.8075686880896,2763.6522684214697,zeroflowfirst,Western Mountains
-wuse_mm,761.9919939524768,2763.6522684214697,zeroflowfirst,Western Mountains
-p.pet_cy.previous,991.4750905096391,2763.6522684214697,zeroflowfirst,Western Mountains
-irrig_prc,388.08496916114024,2763.6522684214697,zeroflowfirst,Western Mountains
-permave,495.2007316181961,2763.6522684214697,zeroflowfirst,Western Mountains
-p_mm_ond.previous,313.5824632305046,2763.6522684214697,zeroflowfirst,Western Mountains
-dams_n,255.3414609469863,2763.6522684214697,zeroflowfirst,Western Mountains
-majordams_n,688.6991466301067,2763.6522684214697,zeroflowfirst,Western Mountains
-slope_pct,969.092500577646,2763.6522684214697,zeroflowfirst,Western Mountains
-p.pet_jfm.previous,757.2316666107702,2763.6522684214697,zeroflowfirst,Western Mountains
-p_mm_jfm.previous,479.6723297141977,2763.6522684214697,zeroflowfirst,Western Mountains
-T_max_c_cy,551.9572928020851,2763.6522684214697,zeroflowfirst,Western Mountains
-p_mm_amj.previous,200.16589378550407,2763.6522684214697,zeroflowfirst,Western Mountains
-drain_sqkm,751.3118066340837,2763.6522684214697,zeroflowfirst,Western Mountains
-T_max_c_jas,371.51720149226253,2763.6522684214697,zeroflowfirst,Western Mountains
-clayave,263.26433694840284,2763.6522684214697,zeroflowfirst,Western Mountains
-siltave,482.8579041704193,2763.6522684214697,zeroflowfirst,Western Mountains
-lulc_wetland_prc,162.19509735321364,255.2146637963379,peak2z_length,National
-wuse_mm,111.96134977694076,255.2146637963379,peak2z_length,National
-lulc_dev_prc,80.41343629758013,255.2146637963379,peak2z_length,National
-drain_sqkm,142.263189859265,255.2146637963379,peak2z_length,National
-lulc_grass_prc,125.94854366302275,255.2146637963379,peak2z_length,National
-lulc_forest_prc,143.6279485573206,255.2146637963379,peak2z_length,National
-permave,118.57294724128789,255.2146637963379,peak2z_length,National
-T_max_c_cy,136.19667950834864,255.2146637963379,peak2z_length,National
-siltave,118.93916092216107,255.2146637963379,peak2z_length,National
-pet_mm_ond,77.80869019111401,255.2146637963379,peak2z_length,National
-pet_mm_amj,52.38242283892157,255.2146637963379,peak2z_length,National
-p_mm_jas.previous,48.219287099741365,255.2146637963379,peak2z_length,National
-pet_mm_cy,87.12268154635817,255.2146637963379,peak2z_length,National
-majordams_n,56.69439664111177,255.2146637963379,peak2z_length,National
-p.pet_cy,55.291423764880065,255.2146637963379,peak2z_length,National
-clayave,112.09025802382543,255.2146637963379,peak2z_length,National
-pet_mm_ond.previous,83.4633864174857,255.2146637963379,peak2z_length,National
-p.pet_jas,46.843668740685004,255.2146637963379,peak2z_length,National
-pet_mm_jas.previous,66.09870230524803,255.2146637963379,peak2z_length,National
-dams_n,81.76529776077412,255.2146637963379,peak2z_length,National
-p.pet_cy.previous,66.93360367165288,255.2146637963379,peak2z_length,National
-topwet,131.13702825367844,255.2146637963379,peak2z_length,National
-elev_mean_m_basin,110.60270353756248,255.2146637963379,peak2z_length,National
-depth_bedrock_m,87.04785624288849,255.2146637963379,peak2z_length,National
-awcave,43.958142456576375,255.2146637963379,peak2z_length,National
-slope_pct,133.1280991029243,255.2146637963379,peak2z_length,National
-lulc_water_prc,68.13736884063586,255.2146637963379,peak2z_length,National
-clayave,66.13739107675384,505.2601297152042,peak2z_length,North Great Plains
-slope_pct,71.7020827241221,505.2601297152042,peak2z_length,North Great Plains
-drain_sqkm,55.47677601280889,505.2601297152042,peak2z_length,North Great Plains
-lulc_wetland_prc,82.30375145570278,505.2601297152042,peak2z_length,North Great Plains
-topwet,57.65414155928603,505.2601297152042,peak2z_length,North Great Plains
-siltave,49.17621827118778,505.2601297152042,peak2z_length,North Great Plains
-majordams_n,36.02891100505409,505.2601297152042,peak2z_length,North Great Plains
-lulc_grass_prc,64.87775102283096,505.2601297152042,peak2z_length,North Great Plains
-lulc_ag_prc,65.43190341573124,505.2601297152042,peak2z_length,North Great Plains
-permave,59.53324340778241,505.2601297152042,peak2z_length,North Great Plains
-lulc_water_prc,48.718511506308914,505.2601297152042,peak2z_length,North Great Plains
-awcave,38.76072560285077,505.2601297152042,peak2z_length,North Great Plains
-T_max_c_cy,63.13519373897254,505.2601297152042,peak2z_length,North Great Plains
-pet_mm_ond.previous,24.26155624492194,505.2601297152042,peak2z_length,North Great Plains
-p_mm_jfm,15.293283623106028,505.2601297152042,peak2z_length,North Great Plains
-T_max_c_jas,23.651148456057424,505.2601297152042,peak2z_length,North Great Plains
-elev_mean_m_basin,68.97086319878704,505.2601297152042,peak2z_length,North Great Plains
-porosity,66.4738565495225,505.2601297152042,peak2z_length,North Great Plains
-pet_mm_ond,41.38887109014994,505.2601297152042,peak2z_length,North Great Plains
-depth_bedrock_m,60.21842426356839,505.2601297152042,peak2z_length,North Great Plains
-swe_mm_ond,11.063006445428861,505.2601297152042,peak2z_length,North Great Plains
-p.pet_cy,35.4805092373755,505.2601297152042,peak2z_length,North Great Plains
-dams_n,99.81985208157106,505.2601297152042,peak2z_length,North Great Plains
-p.pet_ond,11.65113664012368,505.2601297152042,peak2z_length,North Great Plains
-lulc_barren_prc,61.830734429729745,505.2601297152042,peak2z_length,North Great Plains
-swe.p_ond.previous,15.017141158943105,505.2601297152042,peak2z_length,North Great Plains
-pet_mm_amj,3.6110924812794423,505.2601297152042,peak2z_length,North Great Plains
-wuse_mm,203.5579695917421,188.58241448802417,peak2z_length,Mediterranean California
-lulc_dev_prc,107.2197396846649,188.58241448802417,peak2z_length,Mediterranean California
-lulc_forest_prc,61.71138686297084,188.58241448802417,peak2z_length,Mediterranean California
-lulc_ag_prc,56.81331183802632,188.58241448802417,peak2z_length,Mediterranean California
-lulc_barren_prc,48.97683843075271,188.58241448802417,peak2z_length,Mediterranean California
-porosity,46.95307530209905,188.58241448802417,peak2z_length,Mediterranean California
-pet_mm_jas,26.998674882097287,188.58241448802417,peak2z_length,Mediterranean California
-pet_mm_jas.previous,19.962339785395,188.58241448802417,peak2z_length,Mediterranean California
-majordams_n,11.224233863773936,188.58241448802417,peak2z_length,Mediterranean California
-irrig_prc,69.73791237993747,188.58241448802417,peak2z_length,Mediterranean California
-pet_mm_ond,12.69312609540072,188.58241448802417,peak2z_length,Mediterranean California
-permave,66.6030239786115,188.58241448802417,peak2z_length,Mediterranean California
-clayave,68.52075410827024,188.58241448802417,peak2z_length,Mediterranean California
-p.pet_jas,6.490390331401768,188.58241448802417,peak2z_length,Mediterranean California
-elev_mean_m_basin,40.63745984929688,188.58241448802417,peak2z_length,Mediterranean California
-topwet,57.89335509326653,188.58241448802417,peak2z_length,Mediterranean California
-p.pet_ond,11.533476369297423,188.58241448802417,peak2z_length,Mediterranean California
-p_mm_ond,14.231526060714002,188.58241448802417,peak2z_length,Mediterranean California
-dams_n,18.230693725766187,188.58241448802417,peak2z_length,Mediterranean California
-lulc_water_prc,61.46089813347629,188.58241448802417,peak2z_length,Mediterranean California
-drain_sqkm,64.98205194977716,188.58241448802417,peak2z_length,Mediterranean California
-T_max_c_jas,26.318882105871108,188.58241448802417,peak2z_length,Mediterranean California
-slope_pct,42.51021911834904,188.58241448802417,peak2z_length,Mediterranean California
-siltave,32.27277546243014,188.58241448802417,peak2z_length,Mediterranean California
-pet_mm_amj,23.12773125540556,188.58241448802417,peak2z_length,Mediterranean California
-T_max_c_cy,27.751807955135607,188.58241448802417,peak2z_length,Mediterranean California
-swe.p_amj,3.2408278180000463,188.58241448802417,peak2z_length,Mediterranean California
-topwet,73.78683067242822,177.64971330032685,peak2z_length,South Great Plains
-porosity,93.24257058118634,177.64971330032685,peak2z_length,South Great Plains
-slope_pct,71.11484799484873,177.64971330032685,peak2z_length,South Great Plains
-lulc_dev_prc,36.50434560498191,177.64971330032685,peak2z_length,South Great Plains
-elev_mean_m_basin,96.1495030242437,177.64971330032685,peak2z_length,South Great Plains
-majordams_n,30.946724611394245,177.64971330032685,peak2z_length,South Great Plains
-lulc_grass_prc,40.993302391762974,177.64971330032685,peak2z_length,South Great Plains
-dams_n,76.36611333567653,177.64971330032685,peak2z_length,South Great Plains
-wuse_mm,59.01951573383473,177.64971330032685,peak2z_length,South Great Plains
-depth_bedrock_m,51.4311906530104,177.64971330032685,peak2z_length,South Great Plains
-clayave,70.05298531152593,177.64971330032685,peak2z_length,South Great Plains
-p_mm_jfm,20.00903181005978,177.64971330032685,peak2z_length,South Great Plains
-pet_mm_ond.previous,13.2342544318379,177.64971330032685,peak2z_length,South Great Plains
-permave,49.488038892979695,177.64971330032685,peak2z_length,South Great Plains
-lulc_forest_prc,49.739314445630214,177.64971330032685,peak2z_length,South Great Plains
-p.pet_cy,24.43650707287581,177.64971330032685,peak2z_length,South Great Plains
-irrig_prc,49.69390157581225,177.64971330032685,peak2z_length,South Great Plains
-lulc_wetland_prc,67.61143697462494,177.64971330032685,peak2z_length,South Great Plains
-drain_sqkm,58.66694838709875,177.64971330032685,peak2z_length,South Great Plains
-swe_mm_jfm.previous,5.254102164883538,177.64971330032685,peak2z_length,South Great Plains
-pet_mm_cy,20.946976741962413,177.64971330032685,peak2z_length,South Great Plains
-siltave,51.51103137662006,177.64971330032685,peak2z_length,South Great Plains
-p.pet_jfm,23.41408058436678,177.64971330032685,peak2z_length,South Great Plains
-awcave,29.837102471127753,177.64971330032685,peak2z_length,South Great Plains
-lulc_water_prc,57.12758003810341,177.64971330032685,peak2z_length,South Great Plains
-T_max_c_jas,17.298629081825606,177.64971330032685,peak2z_length,South Great Plains
-p.pet_jas,5.241560766054759,177.64971330032685,peak2z_length,South Great Plains
-majordams_n,29.452166583239055,264.3846941758889,peak2z_length,Western Desert
-pet_mm_amj.previous,43.08860565716976,264.3846941758889,peak2z_length,Western Desert
-swe.p_cy,54.40409538449184,264.3846941758889,peak2z_length,Western Desert
-swe_mm_cy,48.719756628199505,264.3846941758889,peak2z_length,Western Desert
-dams_n,25.369138352407383,264.3846941758889,peak2z_length,Western Desert
-p_mm_jas.previous,43.66153975894074,264.3846941758889,peak2z_length,Western Desert
-swe.p_cy.previous,46.3706714946607,264.3846941758889,peak2z_length,Western Desert
-p.pet_jas,18.37362727297632,264.3846941758889,peak2z_length,Western Desert
-T_max_c_cy,57.530545763618825,264.3846941758889,peak2z_length,Western Desert
-siltave,79.3986737315898,264.3846941758889,peak2z_length,Western Desert
-lulc_ag_prc,32.25730547288548,264.3846941758889,peak2z_length,Western Desert
-swe.p_ond,31.311621472077164,264.3846941758889,peak2z_length,Western Desert
-awcave,69.34515973465743,264.3846941758889,peak2z_length,Western Desert
-pet_mm_amj,40.23140879404285,264.3846941758889,peak2z_length,Western Desert
-T_max_c_jas,45.45070007301139,264.3846941758889,peak2z_length,Western Desert
-clayave,33.34507729406987,264.3846941758889,peak2z_length,Western Desert
-lulc_wetland_prc,70.99132286047578,264.3846941758889,peak2z_length,Western Desert
-lulc_forest_prc,113.42595161303294,264.3846941758889,peak2z_length,Western Desert
-porosity,57.29489420583779,264.3846941758889,peak2z_length,Western Desert
-lulc_grass_prc,79.73597047854535,264.3846941758889,peak2z_length,Western Desert
-permave,52.93507474201955,264.3846941758889,peak2z_length,Western Desert
-swe.p_amj.previous,7.0056991633755326,264.3846941758889,peak2z_length,Western Desert
-pet_mm_ond,26.988137630269595,264.3846941758889,peak2z_length,Western Desert
-swe.p_jfm,16.33354902712929,264.3846941758889,peak2z_length,Western Desert
-p.pet_jfm,7.563216409326355,264.3846941758889,peak2z_length,Western Desert
-swe_mm_jfm.previous,26.79908146300654,264.3846941758889,peak2z_length,Western Desert
-lulc_water_prc,26.40807384594517,264.3846941758889,peak2z_length,Western Desert
-lulc_wetland_prc,123.6683162101199,314.6733403839058,peak2z_length,Eastern Forests
-drain_sqkm,268.5752253631265,314.6733403839058,peak2z_length,Eastern Forests
-siltave,91.72928819571015,314.6733403839058,peak2z_length,Eastern Forests
-lulc_dev_prc,92.78248210713006,314.6733403839058,peak2z_length,Eastern Forests
-pet_mm_amj,58.21178522226114,314.6733403839058,peak2z_length,Eastern Forests
-depth_bedrock_m,177.83781075978135,314.6733403839058,peak2z_length,Eastern Forests
-pet_mm_cy,54.57172167078445,314.6733403839058,peak2z_length,Eastern Forests
-p.pet_jfm.previous,7.839810556362621,314.6733403839058,peak2z_length,Eastern Forests
-wuse_mm,98.34125562910197,314.6733403839058,peak2z_length,Eastern Forests
-p.pet_jfm,15.171538754835524,314.6733403839058,peak2z_length,Eastern Forests
-p.pet_cy,21.863826528227264,314.6733403839058,peak2z_length,Eastern Forests
-clayave,111.92969191315233,314.6733403839058,peak2z_length,Eastern Forests
-T_max_c_cy,38.43181983479829,314.6733403839058,peak2z_length,Eastern Forests
-majordams_n,61.27216757388556,314.6733403839058,peak2z_length,Eastern Forests
-permave,70.89461900724976,314.6733403839058,peak2z_length,Eastern Forests
-dams_n,111.35463882468636,314.6733403839058,peak2z_length,Eastern Forests
-slope_pct,126.35164712065104,314.6733403839058,peak2z_length,Eastern Forests
-topwet,67.21740074183887,314.6733403839058,peak2z_length,Eastern Forests
-pet_mm_ond,33.05930891251687,314.6733403839058,peak2z_length,Eastern Forests
-lulc_forest_prc,155.4839878707603,314.6733403839058,peak2z_length,Eastern Forests
-T_max_c_jas,26.891796807202436,314.6733403839058,peak2z_length,Eastern Forests
-pet_mm_ond.previous,24.379720012189054,314.6733403839058,peak2z_length,Eastern Forests
-awcave,29.415626447749677,314.6733403839058,peak2z_length,Eastern Forests
-lulc_ag_prc,55.8028356520282,314.6733403839058,peak2z_length,Eastern Forests
-p.pet_ond,18.01061672834397,314.6733403839058,peak2z_length,Eastern Forests
-pet_mm_jas.previous,18.50326451265443,314.6733403839058,peak2z_length,Eastern Forests
-p_mm_jas.previous,23.939271301456404,314.6733403839058,peak2z_length,Eastern Forests
-elev_mean_m_basin,98.9563141143212,324.68937492899886,peak2z_length,Western Mountains
-lulc_grass_prc,80.11966284715484,324.68937492899886,peak2z_length,Western Mountains
-p.pet_jas,66.50504468980472,324.68937492899886,peak2z_length,Western Mountains
-p.pet_ond,46.94493299101346,324.68937492899886,peak2z_length,Western Mountains
-depth_bedrock_m,78.70528480031248,324.68937492899886,peak2z_length,Western Mountains
-slope_pct,63.896300345057995,324.68937492899886,peak2z_length,Western Mountains
-p_mm_jas.previous,46.58081478333209,324.68937492899886,peak2z_length,Western Mountains
-lulc_forest_prc,83.56987912931781,324.68937492899886,peak2z_length,Western Mountains
-pet_mm_ond,34.3115073963987,324.68937492899886,peak2z_length,Western Mountains
-swe.p_ond.previous,17.77914100485566,324.68937492899886,peak2z_length,Western Mountains
-lulc_barren_prc,46.89438283739565,324.68937492899886,peak2z_length,Western Mountains
-lulc_dev_prc,33.2742482041661,324.68937492899886,peak2z_length,Western Mountains
-p_mm_ond,42.402793218849716,324.68937492899886,peak2z_length,Western Mountains
-p_mm_ond.previous,18.680437221039746,324.68937492899886,peak2z_length,Western Mountains
-p.pet_ond.previous,23.86327744886057,324.68937492899886,peak2z_length,Western Mountains
-p_mm_jfm,14.12932196318556,324.68937492899886,peak2z_length,Western Mountains
-pet_mm_ond.previous,39.01492914488184,324.68937492899886,peak2z_length,Western Mountains
-p.pet_jfm.previous,11.48007427716657,324.68937492899886,peak2z_length,Western Mountains
-lulc_ag_prc,20.358061158891616,324.68937492899886,peak2z_length,Western Mountains
-drain_sqkm,69.54019145024893,324.68937492899886,peak2z_length,Western Mountains
-swe.p_amj,6.373494474391425,324.68937492899886,peak2z_length,Western Mountains
-pet_mm_amj.previous,29.551130167948152,324.68937492899886,peak2z_length,Western Mountains
-clayave,30.79585674872511,324.68937492899886,peak2z_length,Western Mountains
-permave,62.615544270038605,324.68937492899886,peak2z_length,Western Mountains
-pet_mm_amj,24.739578086320098,324.68937492899886,peak2z_length,Western Mountains
-swe.p_jfm.previous,18.79639726676553,324.68937492899886,peak2z_length,Western Mountains
-p.pet_jfm,21.72123668194621,324.68937492899886,peak2z_length,Western Mountains
+p.pet_cy.previous,3780.2256395729996,3064.5292569414087,annualnoflowdays,National
+drain_sqkm,3012.739366435655,3064.5292569414087,annualnoflowdays,National
+p.pet_amj,2348.655656121347,3064.5292569414087,annualnoflowdays,National
+lulc_water_prc,2628.917615006007,3064.5292569414087,annualnoflowdays,National
+p.pet_jas,1627.5388498853652,3064.5292569414087,annualnoflowdays,National
+pet_mm_amj,2163.9081875869374,3064.5292569414087,annualnoflowdays,National
+depth_bedrock_m,2648.84137736114,3064.5292569414087,annualnoflowdays,National
+permave,2563.655985295987,3064.5292569414087,annualnoflowdays,National
+majordams_n,802.8079220210054,3064.5292569414087,annualnoflowdays,National
+p.pet_cy,2760.087009346146,3064.5292569414087,annualnoflowdays,National
+porosity,1649.1387865994234,3064.5292569414087,annualnoflowdays,National
+dams_n,1993.3787905347262,3064.5292569414087,annualnoflowdays,National
+topwet,1994.2102908186748,3064.5292569414087,annualnoflowdays,National
+lulc_grass_prc,1798.6992872060307,3064.5292569414087,annualnoflowdays,National
+slope_pct,2233.04519507364,3064.5292569414087,annualnoflowdays,National
+p.pet_jfm.previous,660.9474794419382,3064.5292569414087,annualnoflowdays,National
+irrig_prc,1418.1746602988303,3064.5292569414087,annualnoflowdays,National
+elev_mean_m_basin,2384.5920219725667,3064.5292569414087,annualnoflowdays,National
+siltave,2010.2193405839862,3064.5292569414087,annualnoflowdays,National
+lulc_dev_prc,1022.3019427834708,3064.5292569414087,annualnoflowdays,National
+awcave,1017.9638072950557,3064.5292569414087,annualnoflowdays,National
+wuse_mm,1233.1306353896844,3064.5292569414087,annualnoflowdays,National
+clayave,1456.655509667052,2326.7591615662855,annualnoflowdays,North Great Plains
+p.pet_cy,2165.9749990909972,2326.7591615662855,annualnoflowdays,North Great Plains
+porosity,735.245074414396,2326.7591615662855,annualnoflowdays,North Great Plains
+permave,685.7430810161649,2326.7591615662855,annualnoflowdays,North Great Plains
+drain_sqkm,491.17030399005506,2326.7591615662855,annualnoflowdays,North Great Plains
+p.pet_amj,653.804104237685,2326.7591615662855,annualnoflowdays,North Great Plains
+pet_mm_amj,533.8612255286865,2326.7591615662855,annualnoflowdays,North Great Plains
+p.pet_cy.previous,973.2065809076635,2326.7591615662855,annualnoflowdays,North Great Plains
+depth_bedrock_m,289.16325212667414,2326.7591615662855,annualnoflowdays,North Great Plains
+pet_mm_amj.previous,514.6298604053414,2326.7591615662855,annualnoflowdays,North Great Plains
+dams_n,705.9058554435861,2326.7591615662855,annualnoflowdays,North Great Plains
+lulc_ag_prc,1002.0381824793825,2326.7591615662855,annualnoflowdays,North Great Plains
+lulc_grass_prc,530.2048715832362,2326.7591615662855,annualnoflowdays,North Great Plains
+lulc_forest_prc,1269.9947625703,2326.7591615662855,annualnoflowdays,North Great Plains
+p_mm_ond,157.9370415367132,2326.7591615662855,annualnoflowdays,North Great Plains
+elev_mean_m_basin,581.2515716190167,2326.7591615662855,annualnoflowdays,North Great Plains
+majordams_n,85.78938735751875,2326.7591615662855,annualnoflowdays,North Great Plains
+p_mm_ond.previous,436.9937723855954,2326.7591615662855,annualnoflowdays,North Great Plains
+siltave,140.65394973948037,2326.7591615662855,annualnoflowdays,North Great Plains
+p.pet_ond.previous,408.9346086696063,2326.7591615662855,annualnoflowdays,North Great Plains
+lulc_water_prc,562.8845720543712,2326.7591615662855,annualnoflowdays,North Great Plains
+slope_pct,481.4695210038145,2326.7591615662855,annualnoflowdays,North Great Plains
+p.pet_cy.previous,4423.2682343436645,4525.837303928817,annualnoflowdays,Mediterranean California
+permave,2320.320795878435,4525.837303928817,annualnoflowdays,Mediterranean California
+depth_bedrock_m,6191.169251426524,4525.837303928817,annualnoflowdays,Mediterranean California
+irrig_prc,1664.8589908106642,4525.837303928817,annualnoflowdays,Mediterranean California
+p.pet_jfm.previous,1255.8572298431034,4525.837303928817,annualnoflowdays,Mediterranean California
+clayave,1240.4989233232805,4525.837303928817,annualnoflowdays,Mediterranean California
+lulc_grass_prc,2774.846749934373,4525.837303928817,annualnoflowdays,Mediterranean California
+siltave,1633.5910170124343,4525.837303928817,annualnoflowdays,Mediterranean California
+wuse_mm,2549.000088441232,4525.837303928817,annualnoflowdays,Mediterranean California
+p_mm_jfm.previous,758.3486880223425,4525.837303928817,annualnoflowdays,Mediterranean California
+lulc_dev_prc,1331.818595569353,4525.837303928817,annualnoflowdays,Mediterranean California
+awcave,606.8070602783082,4525.837303928817,annualnoflowdays,Mediterranean California
+lulc_ag_prc,1178.0782492577325,4525.837303928817,annualnoflowdays,Mediterranean California
+topwet,2375.9875524583445,4525.837303928817,annualnoflowdays,Mediterranean California
+slope_pct,1221.093213311481,4525.837303928817,annualnoflowdays,Mediterranean California
+drain_sqkm,1890.572590033104,4525.837303928817,annualnoflowdays,Mediterranean California
+dams_n,1526.2739626398595,4525.837303928817,annualnoflowdays,Mediterranean California
+p.pet_ond.previous,655.5066024190445,4525.837303928817,annualnoflowdays,Mediterranean California
+pet_mm_amj.previous,665.799203460731,4525.837303928817,annualnoflowdays,Mediterranean California
+porosity,1279.1720387233997,4525.837303928817,annualnoflowdays,Mediterranean California
+p_mm_ond.previous,439.6156101636559,4525.837303928817,annualnoflowdays,Mediterranean California
+lulc_barren_prc,1115.7200509124636,4525.837303928817,annualnoflowdays,Mediterranean California
+drain_sqkm,3559.67307400018,3962.4369682151823,annualnoflowdays,South Great Plains
+majordams_n,1507.1790177000241,3962.4369682151823,annualnoflowdays,South Great Plains
+permave,2819.2634106564283,3962.4369682151823,annualnoflowdays,South Great Plains
+p.pet_cy.previous,1744.1259052446685,3962.4369682151823,annualnoflowdays,South Great Plains
+p.pet_jas,813.797319076319,3962.4369682151823,annualnoflowdays,South Great Plains
+dams_n,2272.2252204062734,3962.4369682151823,annualnoflowdays,South Great Plains
+lulc_barren_prc,1451.8766424764453,3962.4369682151823,annualnoflowdays,South Great Plains
+siltave,1796.8817337469943,3962.4369682151823,annualnoflowdays,South Great Plains
+p.pet_cy,2967.8733865211966,3962.4369682151823,annualnoflowdays,South Great Plains
+p.pet_amj,1129.3963155069812,3962.4369682151823,annualnoflowdays,South Great Plains
+pet_mm_amj,1171.3764475772687,3962.4369682151823,annualnoflowdays,South Great Plains
+pet_mm_jas,750.7381801772563,3962.4369682151823,annualnoflowdays,South Great Plains
+awcave,1147.1305119423755,3962.4369682151823,annualnoflowdays,South Great Plains
+irrig_prc,1778.737298997977,3962.4369682151823,annualnoflowdays,South Great Plains
+clayave,1358.9363764580175,3962.4369682151823,annualnoflowdays,South Great Plains
+p.pet_ond.previous,373.8422291496223,3962.4369682151823,annualnoflowdays,South Great Plains
+elev_mean_m_basin,2796.8130179623254,3962.4369682151823,annualnoflowdays,South Great Plains
+wuse_mm,1284.8436584238243,3962.4369682151823,annualnoflowdays,South Great Plains
+pet_mm_jas.previous,437.07078397879957,3962.4369682151823,annualnoflowdays,South Great Plains
+T_max_c_jas,990.5714789786897,3962.4369682151823,annualnoflowdays,South Great Plains
+depth_bedrock_m,2114.874904435165,3962.4369682151823,annualnoflowdays,South Great Plains
+pet_mm_cy,927.915112067355,3962.4369682151823,annualnoflowdays,South Great Plains
+porosity,5067.501155767898,2044.1696161853745,annualnoflowdays,Western Desert
+awcave,733.5107371530555,2044.1696161853745,annualnoflowdays,Western Desert
+slope_pct,3642.1364922448097,2044.1696161853745,annualnoflowdays,Western Desert
+drain_sqkm,757.2435101863531,2044.1696161853745,annualnoflowdays,Western Desert
+depth_bedrock_m,1829.6223578981608,2044.1696161853745,annualnoflowdays,Western Desert
+dams_n,867.8073396856204,2044.1696161853745,annualnoflowdays,Western Desert
+lulc_forest_prc,4633.910532107713,2044.1696161853745,annualnoflowdays,Western Desert
+majordams_n,334.72475603369116,2044.1696161853745,annualnoflowdays,Western Desert
+lulc_water_prc,1309.4301711723308,2044.1696161853745,annualnoflowdays,Western Desert
+T_max_c_cy,3164.199188283818,2044.1696161853745,annualnoflowdays,Western Desert
+elev_mean_m_basin,2408.340685948371,2044.1696161853745,annualnoflowdays,Western Desert
+permave,2226.6798976977316,2044.1696161853745,annualnoflowdays,Western Desert
+siltave,966.7590406517803,2044.1696161853745,annualnoflowdays,Western Desert
+pet_mm_jas,345.9813432908269,2044.1696161853745,annualnoflowdays,Western Desert
+lulc_barren_prc,2047.4438408239728,2044.1696161853745,annualnoflowdays,Western Desert
+pet_mm_cy,7435.832844801412,2044.1696161853745,annualnoflowdays,Western Desert
+pet_mm_amj,3316.3343624010713,2044.1696161853745,annualnoflowdays,Western Desert
+pet_mm_jas.previous,300.60598560126016,2044.1696161853745,annualnoflowdays,Western Desert
+topwet,624.6812911395622,2044.1696161853745,annualnoflowdays,Western Desert
+T_max_c_jas,605.6740106194013,2044.1696161853745,annualnoflowdays,Western Desert
+pet_mm_amj.previous,1884.713207462434,2044.1696161853745,annualnoflowdays,Western Desert
+lulc_grass_prc,2389.929570035017,2044.1696161853745,annualnoflowdays,Western Desert
+permave,1829.9187396007512,1718.426774228796,annualnoflowdays,Eastern Forests
+lulc_water_prc,702.9015480252048,1718.426774228796,annualnoflowdays,Eastern Forests
+drain_sqkm,905.1651865550925,1718.426774228796,annualnoflowdays,Eastern Forests
+topwet,639.7676686101826,1718.426774228796,annualnoflowdays,Eastern Forests
+pet_mm_amj,651.4267979842441,1718.426774228796,annualnoflowdays,Eastern Forests
+slope_pct,942.0320130080779,1718.426774228796,annualnoflowdays,Eastern Forests
+lulc_grass_prc,428.87106416026194,1718.426774228796,annualnoflowdays,Eastern Forests
+elev_mean_m_basin,627.9378166009094,1718.426774228796,annualnoflowdays,Eastern Forests
+depth_bedrock_m,482.5007452989805,1718.426774228796,annualnoflowdays,Eastern Forests
+wuse_mm,523.8596339013988,1718.426774228796,annualnoflowdays,Eastern Forests
+p.pet_cy,501.7591744663813,1718.426774228796,annualnoflowdays,Eastern Forests
+p.pet_cy.previous,218.3543982325698,1718.426774228796,annualnoflowdays,Eastern Forests
+siltave,1304.8293644296668,1718.426774228796,annualnoflowdays,Eastern Forests
+lulc_wetland_prc,532.3088243271949,1718.426774228796,annualnoflowdays,Eastern Forests
+p.pet_amj,289.2841504679195,1718.426774228796,annualnoflowdays,Eastern Forests
+clayave,724.1772886435521,1718.426774228796,annualnoflowdays,Eastern Forests
+p.pet_jfm.previous,212.80365606331526,1718.426774228796,annualnoflowdays,Eastern Forests
+p_mm_jfm.previous,111.1130554357454,1718.426774228796,annualnoflowdays,Eastern Forests
+lulc_barren_prc,343.98824468442945,1718.426774228796,annualnoflowdays,Eastern Forests
+p.pet_jas,486.1548278742598,1718.426774228796,annualnoflowdays,Eastern Forests
+pet_mm_ond.previous,440.2676924504528,1718.426774228796,annualnoflowdays,Eastern Forests
+dams_n,286.6666095770528,1718.426774228796,annualnoflowdays,Eastern Forests
+lulc_forest_prc,4648.980455478756,2633.2566265831565,annualnoflowdays,Western Mountains
+drain_sqkm,2723.0455776868603,2633.2566265831565,annualnoflowdays,Western Mountains
+p.pet_cy.previous,2984.010615991675,2633.2566265831565,annualnoflowdays,Western Mountains
+lulc_grass_prc,3099.621131439334,2633.2566265831565,annualnoflowdays,Western Mountains
+siltave,1497.7277629256998,2633.2566265831565,annualnoflowdays,Western Mountains
+depth_bedrock_m,1395.2109027682181,2633.2566265831565,annualnoflowdays,Western Mountains
+permave,4463.776094546611,2633.2566265831565,annualnoflowdays,Western Mountains
+majordams_n,1279.6463102677574,2633.2566265831565,annualnoflowdays,Western Mountains
+lulc_ag_prc,1461.8285571992744,2633.2566265831565,annualnoflowdays,Western Mountains
+elev_mean_m_basin,2166.9970803780207,2633.2566265831565,annualnoflowdays,Western Mountains
+porosity,2972.3342597236337,2633.2566265831565,annualnoflowdays,Western Mountains
+irrig_prc,906.84649490590175,2633.2566265831565,annualnoflowdays,Western Mountains
+slope_pct,4109.680500439196,2633.2566265831565,annualnoflowdays,Western Mountains
+lulc_wetland_prc,2036.4592294643278,2633.2566265831565,annualnoflowdays,Western Mountains
+lulc_barren_prc,1810.9602091434904,2633.2566265831565,annualnoflowdays,Western Mountains
+dams_n,1059.384614125664,2633.2566265831565,annualnoflowdays,Western Mountains
+pet_mm_amj,2464.1770152081494,2633.2566265831565,annualnoflowdays,Western Mountains
+awcave,509.83722796845905,2633.2566265831565,annualnoflowdays,Western Mountains
+pet_mm_amj.previous,2230.0551256003905,2633.2566265831565,annualnoflowdays,Western Mountains
+p.pet_amj,892.4905150718046,2633.2566265831565,annualnoflowdays,Western Mountains
+swe.p_amj,562.3696005240546,2633.2566265831565,annualnoflowdays,Western Mountains
+topwet,1442.667814676077,2633.2566265831565,annualnoflowdays,Western Mountains
+p.pet_cy.previous,1478.9841247945255,2602.780048126692,zeroflowfirst,National
+p.pet_jfm.previous,1135.335973057403,2602.780048126692,zeroflowfirst,National
+p_mm_jfm.previous,719.6074021685386,2602.780048126692,zeroflowfirst,National
+p.pet_amj,464.480846054983,2602.780048126692,zeroflowfirst,National
+pet_mm_ond.previous,1028.1753380007256,2602.780048126692,zeroflowfirst,National
+pet_mm_amj,828.0331896926864,2602.780048126692,zeroflowfirst,National
+p.pet_ond.previous,770.471774765255,2602.780048126692,zeroflowfirst,National
+drain_sqkm,544.2290316226572,2602.780048126692,zeroflowfirst,National
+p_mm_ond.previous,551.844031236574,2602.780048126692,zeroflowfirst,National
+dams_n,442.5880647797944,2602.780048126692,zeroflowfirst,National
+pet_mm_amj.previous,508.0883188181557,2602.780048126692,zeroflowfirst,National
+awcave,305.814053041262,2602.780048126692,zeroflowfirst,National
+lulc_ag_prc,496.2867565338709,2602.780048126692,zeroflowfirst,National
+lulc_barren_prc,291.2349916063882,2602.780048126692,zeroflowfirst,National
+porosity,316.6436153798185,2602.780048126692,zeroflowfirst,National
+depth_bedrock_m,671.2432676274043,2602.780048126692,zeroflowfirst,National
+lulc_grass_prc,474.2359554224519,2602.780048126692,zeroflowfirst,National
+irrig_prc,413.5634398588225,2602.780048126692,zeroflowfirst,National
+pet_mm_cy,743.0303699552612,2602.780048126692,zeroflowfirst,National
+lulc_forest_prc,535.1033611653851,2602.780048126692,zeroflowfirst,National
+wuse_mm,519.453069067187,2602.780048126692,zeroflowfirst,National
+p_mm_amj.previous,415.90007072055477,2602.780048126692,zeroflowfirst,National
+permave,500.99222410130443,2602.780048126692,zeroflowfirst,National
+majordams_n,159.4164680236158,2602.780048126692,zeroflowfirst,National
+slope_pct,617.0833418824772,2602.780048126692,zeroflowfirst,National
+T_max_c_cy,614.7132823012162,2602.780048126692,zeroflowfirst,National
+elev_mean_m_basin,648.8694475037897,2602.780048126692,zeroflowfirst,National
+pet_mm_ond.previous,772.0844948938666,4531.789952284855,zeroflowfirst,North Great Plains
+permave,816.9501304674354,4531.789952284855,zeroflowfirst,North Great Plains
+clayave,576.5075734143697,4531.789952284855,zeroflowfirst,North Great Plains
+awcave,128.3945878917996,4531.789952284855,zeroflowfirst,North Great Plains
+T_max_c_jas,346.2301879309852,4531.789952284855,zeroflowfirst,North Great Plains
+p.pet_cy.previous,699.7245249955939,4531.789952284855,zeroflowfirst,North Great Plains
+pet_mm_jas.previous,342.6339627678261,4531.789952284855,zeroflowfirst,North Great Plains
+porosity,385.907721270882,4531.789952284855,zeroflowfirst,North Great Plains
+p.pet_jfm.previous,203.71175012943448,4531.789952284855,zeroflowfirst,North Great Plains
+p_mm_jas.previous,386.87936892488744,4531.789952284855,zeroflowfirst,North Great Plains
+p.pet_ond.previous,379.6869713238569,4531.789952284855,zeroflowfirst,North Great Plains
+lulc_grass_prc,426.0246627104099,4531.789952284855,zeroflowfirst,North Great Plains
+siltave,383.34385776710104,4531.789952284855,zeroflowfirst,North Great Plains
+drain_sqkm,219.73251750112527,4531.789952284855,zeroflowfirst,North Great Plains
+pet_mm_jas,235.42733982565784,4531.789952284855,zeroflowfirst,North Great Plains
+swe_mm_ond.previous,140.59332263709695,4531.789952284855,zeroflowfirst,North Great Plains
+wuse_mm,155.12167785639602,4531.789952284855,zeroflowfirst,North Great Plains
+pet_mm_ond,291.3099758606779,4531.789952284855,zeroflowfirst,North Great Plains
+T_max_c_cy,570.1728001991837,4531.789952284855,zeroflowfirst,North Great Plains
+pet_mm_cy,203.2628719324002,4531.789952284855,zeroflowfirst,North Great Plains
+irrig_prc,212.65264795356342,4531.789952284855,zeroflowfirst,North Great Plains
+depth_bedrock_m,238.26694722575493,4531.789952284855,zeroflowfirst,North Great Plains
+p_mm_ond.previous,194.87489597084343,4531.789952284855,zeroflowfirst,North Great Plains
+lulc_water_prc,240.79669820652882,4531.789952284855,zeroflowfirst,North Great Plains
+lulc_forest_prc,294.30030379948244,4531.789952284855,zeroflowfirst,North Great Plains
+pet_mm_amj.previous,163.91423362763274,4531.789952284855,zeroflowfirst,North Great Plains
+pet_mm_amj,110.40708593666515,4531.789952284855,zeroflowfirst,North Great Plains
+p.pet_cy.previous,933.0749801178083,2135.809765528507,zeroflowfirst,Mediterranean California
+p.pet_jfm.previous,478.08767723212674,2135.809765528507,zeroflowfirst,Mediterranean California
+p_mm_jfm.previous,403.01505816560416,2135.809765528507,zeroflowfirst,Mediterranean California
+irrig_prc,472.98479995540833,2135.809765528507,zeroflowfirst,Mediterranean California
+depth_bedrock_m,606.5651847906969,2135.809765528507,zeroflowfirst,Mediterranean California
+p.pet_ond.previous,255.1884598370232,2135.809765528507,zeroflowfirst,Mediterranean California
+p_mm_ond.previous,239.52843518294006,2135.809765528507,zeroflowfirst,Mediterranean California
+lulc_barren_prc,298.5365592752172,2135.809765528507,zeroflowfirst,Mediterranean California
+slope_pct,227.51727580581903,2135.809765528507,zeroflowfirst,Mediterranean California
+p.pet_amj,175.89172602712657,2135.809765528507,zeroflowfirst,Mediterranean California
+lulc_grass_prc,215.03875035478268,2135.809765528507,zeroflowfirst,Mediterranean California
+lulc_forest_prc,310.29984904777797,2135.809765528507,zeroflowfirst,Mediterranean California
+pet_mm_ond.previous,185.48620781380814,2135.809765528507,zeroflowfirst,Mediterranean California
+siltave,226.42922654551677,2135.809765528507,zeroflowfirst,Mediterranean California
+topwet,397.298648433139,2135.809765528507,zeroflowfirst,Mediterranean California
+lulc_ag_prc,186.6236593409943,2135.809765528507,zeroflowfirst,Mediterranean California
+drain_sqkm,278.73193718937483,2135.809765528507,zeroflowfirst,Mediterranean California
+clayave,184.84623536686092,2135.809765528507,zeroflowfirst,Mediterranean California
+majordams_n,96.36609067030393,2135.809765528507,zeroflowfirst,Mediterranean California
+porosity,223.03944220855522,2135.809765528507,zeroflowfirst,Mediterranean California
+wuse_mm,423.6166759918945,2135.809765528507,zeroflowfirst,Mediterranean California
+elev_mean_m_basin,237.2083106562172,2135.809765528507,zeroflowfirst,Mediterranean California
+lulc_water_prc,275.5187930940513,2135.809765528507,zeroflowfirst,Mediterranean California
+T_max_c_cy,174.37487394605571,2135.809765528507,zeroflowfirst,Mediterranean California
+p_mm_jas.previous,42.20454626298584,2135.809765528507,zeroflowfirst,Mediterranean California
+awcave,111.52773189168913,2135.809765528507,zeroflowfirst,Mediterranean California
+pet_mm_jas.previous,134.65346176755702,2135.809765528507,zeroflowfirst,Mediterranean California
+p.pet_cy.previous,1100.2844690392124,2434.0344016327917,zeroflowfirst,South Great Plains
+p.pet_jfm.previous,571.496071755605,2434.0344016327917,zeroflowfirst,South Great Plains
+drain_sqkm,437.56414329583635,2434.0344016327917,zeroflowfirst,South Great Plains
+permave,432.159517988972,2434.0344016327917,zeroflowfirst,South Great Plains
+depth_bedrock_m,426.76503480728115,2434.0344016327917,zeroflowfirst,South Great Plains
+p.pet_ond.previous,271.9347022604,2434.0344016327917,zeroflowfirst,South Great Plains
+p_mm_jfm.previous,291.834462511963,2434.0344016327917,zeroflowfirst,South Great Plains
+slope_pct,377.24454973947644,2434.0344016327917,zeroflowfirst,South Great Plains
+majordams_n,117.82735942931171,2434.0344016327917,zeroflowfirst,South Great Plains
+p_mm_ond.previous,224.92033087057072,2434.0344016327917,zeroflowfirst,South Great Plains
+pet_mm_amj,388.7020867654104,2434.0344016327917,zeroflowfirst,South Great Plains
+pet_mm_ond.previous,231.12827326185538,2434.0344016327917,zeroflowfirst,South Great Plains
+p.pet_amj,419.4150783847986,2434.0344016327917,zeroflowfirst,South Great Plains
+porosity,331.3169473861203,2434.0344016327917,zeroflowfirst,South Great Plains
+dams_n,286.9525966856458,2434.0344016327917,zeroflowfirst,South Great Plains
+T_max_c_cy,364.8490418639881,2434.0344016327917,zeroflowfirst,South Great Plains
+lulc_forest_prc,446.80779058007187,2434.0344016327917,zeroflowfirst,South Great Plains
+awcave,131.55766331501454,2434.0344016327917,zeroflowfirst,South Great Plains
+clayave,313.87438806024056,2434.0344016327917,zeroflowfirst,South Great Plains
+pet_mm_jas.previous,188.87672915938649,2434.0344016327917,zeroflowfirst,South Great Plains
+lulc_grass_prc,369.987783817112,2434.0344016327917,zeroflowfirst,South Great Plains
+swe_mm_jfm.previous,173.72014078356534,2434.0344016327917,zeroflowfirst,South Great Plains
+siltave,217.33391041070914,2434.0344016327917,zeroflowfirst,South Great Plains
+p_mm_amj.previous,315.7378435871762,2434.0344016327917,zeroflowfirst,South Great Plains
+lulc_barren_prc,227.12502988282512,2434.0344016327917,zeroflowfirst,South Great Plains
+p.pet_jfm,98.44777459894974,2434.0344016327917,zeroflowfirst,South Great Plains
+elev_mean_m_basin,375.74713094942877,2434.0344016327917,zeroflowfirst,South Great Plains
+pet_mm_amj,606.9041855576738,2037.063935152045,zeroflowfirst,Western Desert
+T_max_c_cy,648.6663811255802,2037.063935152045,zeroflowfirst,Western Desert
+pet_mm_amj.previous,212.11615739329176,2037.063935152045,zeroflowfirst,Western Desert
+pet_mm_cy,352.8257612725917,2037.063935152045,zeroflowfirst,Western Desert
+swe.p_cy,120.98006537936773,2037.063935152045,zeroflowfirst,Western Desert
+porosity,356.4485263827717,2037.063935152045,zeroflowfirst,Western Desert
+slope_pct,286.01008185631764,2037.063935152045,zeroflowfirst,Western Desert
+swe_mm_cy,179.71810487686312,2037.063935152045,zeroflowfirst,Western Desert
+pet_mm_ond,187.53238537463437,2037.063935152045,zeroflowfirst,Western Desert
+p.pet_jas,274.5818973873701,2037.063935152045,zeroflowfirst,Western Desert
+swe_mm_jfm.previous,118.77786989282862,2037.063935152045,zeroflowfirst,Western Desert
+lulc_forest_prc,461.86200343573665,2037.063935152045,zeroflowfirst,Western Desert
+swe.p_cy.previous,120.3908592495898,2037.063935152045,zeroflowfirst,Western Desert
+pet_mm_ond.previous,316.64256157055945,2037.063935152045,zeroflowfirst,Western Desert
+dams_n,151.77028817116502,2037.063935152045,zeroflowfirst,Western Desert
+p.pet_jfm.previous,370.4092006848807,2037.063935152045,zeroflowfirst,Western Desert
+lulc_grass_prc,485.80863063966507,2037.063935152045,zeroflowfirst,Western Desert
+depth_bedrock_m,250.42711162616783,2037.063935152045,zeroflowfirst,Western Desert
+permave,173.38975397910357,2037.063935152045,zeroflowfirst,Western Desert
+swe.p_amj.previous,20.211597526332348,2037.063935152045,zeroflowfirst,Western Desert
+drain_sqkm,154.3046641100844,2037.063935152045,zeroflowfirst,Western Desert
+awcave,88.00826510287882,2037.063935152045,zeroflowfirst,Western Desert
+swe.p_amj,82.46705593859923,2037.063935152045,zeroflowfirst,Western Desert
+wuse_mm,215.09553118508018,2037.063935152045,zeroflowfirst,Western Desert
+siltave,80.15962478484619,2037.063935152045,zeroflowfirst,Western Desert
+p_mm_jfm.previous,265.18064523644347,2037.063935152045,zeroflowfirst,Western Desert
+topwet,109.35023556249315,2037.063935152045,zeroflowfirst,Western Desert
+permave,1205.336114192256,2478.7072456987444,zeroflowfirst,Eastern Forests
+siltave,1148.6490833462,2478.7072456987444,zeroflowfirst,Eastern Forests
+p.pet_jfm.previous,988.4940412267846,2478.7072456987444,zeroflowfirst,Eastern Forests
+p_mm_jfm.previous,1007.4695747458009,2478.7072456987444,zeroflowfirst,Eastern Forests
+p.pet_amj,615.3646693768387,2478.7072456987444,zeroflowfirst,Eastern Forests
+clayave,542.1375487820159,2478.7072456987444,zeroflowfirst,Eastern Forests
+p.pet_cy.previous,726.3402499269756,2478.7072456987444,zeroflowfirst,Eastern Forests
+pet_mm_amj,531.763817208929,2478.7072456987444,zeroflowfirst,Eastern Forests
+p.pet_ond.previous,1308.5611235681577,2478.7072456987444,zeroflowfirst,Eastern Forests
+p.pet_jas,1371.2760478664077,2478.7072456987444,zeroflowfirst,Eastern Forests
+p_mm_ond,192.38509233057553,2478.7072456987444,zeroflowfirst,Eastern Forests
+elev_mean_m_basin,351.60487936266213,2478.7072456987444,zeroflowfirst,Eastern Forests
+p_mm_ond.previous,373.55930138569335,2478.7072456987444,zeroflowfirst,Eastern Forests
+majordams_n,68.9986239222762,2478.7072456987444,zeroflowfirst,Eastern Forests
+drain_sqkm,211.140637177032,2478.7072456987444,zeroflowfirst,Eastern Forests
+swe_mm_cy,146.64976023914932,2478.7072456987444,zeroflowfirst,Eastern Forests
+pet_mm_ond.previous,432.92932406139244,2478.7072456987444,zeroflowfirst,Eastern Forests
+p.pet_ond,307.24780107413613,2478.7072456987444,zeroflowfirst,Eastern Forests
+T_max_c_cy,490.66081501598063,2478.7072456987444,zeroflowfirst,Eastern Forests
+p.pet_cy,142.22166282807245,2478.7072456987444,zeroflowfirst,Eastern Forests
+swe.p_cy.previous,87.11037795759388,2478.7072456987444,zeroflowfirst,Eastern Forests
+T_max_c_jas,110.2135895795204,2478.7072456987444,zeroflowfirst,Eastern Forests
+dams_n,134.67667050235153,2478.7072456987444,zeroflowfirst,Eastern Forests
+awcave,168.33757390485113,2478.7072456987444,zeroflowfirst,Eastern Forests
+topwet,55.997301341239634,2478.7072456987444,zeroflowfirst,Eastern Forests
+wuse_mm,262.16815947537975,2478.7072456987444,zeroflowfirst,Eastern Forests
+pet_mm_amj.previous,263.6929848122567,2478.7072456987444,zeroflowfirst,Eastern Forests
+lulc_forest_prc,1688.9592145445206,2753.88399460818,zeroflowfirst,Western Mountains
+lulc_wetland_prc,809.3777519970668,2753.88399460818,zeroflowfirst,Western Mountains
+lulc_grass_prc,784.6964910470801,2753.88399460818,zeroflowfirst,Western Mountains
+pet_mm_amj.previous,804.319606434343,2753.88399460818,zeroflowfirst,Western Mountains
+pet_mm_ond.previous,981.3680890611824,2753.88399460818,zeroflowfirst,Western Mountains
+pet_mm_amj,1058.3103820068377,2753.88399460818,zeroflowfirst,Western Mountains
+lulc_ag_prc,399.68624647018794,2753.88399460818,zeroflowfirst,Western Mountains
+pet_mm_ond,445.8505840841479,2753.88399460818,zeroflowfirst,Western Mountains
+elev_mean_m_basin,665.9736890300387,2753.88399460818,zeroflowfirst,Western Mountains
+lulc_barren_prc,671.7815650848582,2753.88399460818,zeroflowfirst,Western Mountains
+pet_mm_cy,649.4324955484177,2753.88399460818,zeroflowfirst,Western Mountains
+wuse_mm,649.4447590421822,2753.88399460818,zeroflowfirst,Western Mountains
+p.pet_cy.previous,1020.6865778320795,2753.88399460818,zeroflowfirst,Western Mountains
+irrig_prc,412.2559987988595,2753.88399460818,zeroflowfirst,Western Mountains
+permave,445.8819572441745,2753.88399460818,zeroflowfirst,Western Mountains
+p_mm_ond.previous,290.23770197774405,2753.88399460818,zeroflowfirst,Western Mountains
+dams_n,230.24127505735763,2753.88399460818,zeroflowfirst,Western Mountains
+majordams_n,672.9787240475642,2753.88399460818,zeroflowfirst,Western Mountains
+slope_pct,959.0869829868722,2753.88399460818,zeroflowfirst,Western Mountains
+p.pet_jfm.previous,776.4676172974422,2753.88399460818,zeroflowfirst,Western Mountains
+p_mm_jfm.previous,478.4853429459205,2753.88399460818,zeroflowfirst,Western Mountains
+T_max_c_cy,608.5024360095485,2753.88399460818,zeroflowfirst,Western Mountains
+p_mm_amj.previous,212.4114285621169,2753.88399460818,zeroflowfirst,Western Mountains
+drain_sqkm,734.6099935713161,2753.88399460818,zeroflowfirst,Western Mountains
+T_max_c_jas,355.0245432981566,2753.88399460818,zeroflowfirst,Western Mountains
+clayave,260.7207821728863,2753.88399460818,zeroflowfirst,Western Mountains
+siltave,492.79462416968306,2753.88399460818,zeroflowfirst,Western Mountains
+lulc_wetland_prc,167.1837695343204,255.7041004801985,peak2z_length,National
+wuse_mm,111.52144637050502,255.7041004801985,peak2z_length,National
+lulc_dev_prc,79.894283377242715,255.7041004801985,peak2z_length,National
+drain_sqkm,145.93430985677986,255.7041004801985,peak2z_length,National
+lulc_grass_prc,127.3972013733754,255.7041004801985,peak2z_length,National
+lulc_forest_prc,144.3919344065928,255.7041004801985,peak2z_length,National
+permave,115.18935379568461,255.7041004801985,peak2z_length,National
+T_max_c_cy,137.3431333738769,255.7041004801985,peak2z_length,National
+siltave,104.62714409828793,255.7041004801985,peak2z_length,National
+pet_mm_ond,83.84071332391618,255.7041004801985,peak2z_length,National
+pet_mm_amj,53.91766602867451,255.7041004801985,peak2z_length,National
+p_mm_jas.previous,50.3526168557303,255.7041004801985,peak2z_length,National
+pet_mm_cy,89.77518502500284,255.7041004801985,peak2z_length,National
+majordams_n,55.25226345879013,255.7041004801985,peak2z_length,National
+p.pet_cy,56.45037762342845,255.7041004801985,peak2z_length,National
+clayave,115.84091187464317,255.7041004801985,peak2z_length,National
+pet_mm_ond.previous,87.79332423816182,255.7041004801985,peak2z_length,National
+p.pet_jas,48.35410004133407,255.7041004801985,peak2z_length,National
+pet_mm_jas.previous,63.016775335869,255.7041004801985,peak2z_length,National
+dams_n,78.56005731868876,255.7041004801985,peak2z_length,National
+p.pet_cy.previous,65.7072590088617,255.7041004801985,peak2z_length,National
+topwet,122.87618315331865,255.7041004801985,peak2z_length,National
+elev_mean_m_basin,117.97473925365202,255.7041004801985,peak2z_length,National
+depth_bedrock_m,86.0117139666397,255.7041004801985,peak2z_length,National
+awcave,44.389128469568156,255.7041004801985,peak2z_length,National
+slope_pct,132.85071482688656,255.7041004801985,peak2z_length,National
+lulc_water_prc,65.5606575529508,255.7041004801985,peak2z_length,National
+clayave,89.04418849894125,504.2036437988374,peak2z_length,North Great Plains
+slope_pct,73.78241282618336,504.2036437988374,peak2z_length,North Great Plains
+drain_sqkm,50.79633401158466,504.2036437988374,peak2z_length,North Great Plains
+lulc_wetland_prc,86.04710655127138,504.2036437988374,peak2z_length,North Great Plains
+topwet,54.385763763294186,504.2036437988374,peak2z_length,North Great Plains
+siltave,51.98697194321205,504.2036437988374,peak2z_length,North Great Plains
+majordams_n,43.22573337769167,504.2036437988374,peak2z_length,North Great Plains
+lulc_grass_prc,63.4921763811363,504.2036437988374,peak2z_length,North Great Plains
+lulc_ag_prc,81.53941901321616,504.2036437988374,peak2z_length,North Great Plains
+permave,64.56074382902527,504.2036437988374,peak2z_length,North Great Plains
+lulc_water_prc,58.07395794390158,504.2036437988374,peak2z_length,North Great Plains
+awcave,50.77675586071196,504.2036437988374,peak2z_length,North Great Plains
+T_max_c_cy,57.605712941888356,504.2036437988374,peak2z_length,North Great Plains
+pet_mm_ond.previous,21.050063506174766,504.2036437988374,peak2z_length,North Great Plains
+p_mm_jfm,2.506117519311239,504.2036437988374,peak2z_length,North Great Plains
+T_max_c_jas,39.50362618423877,504.2036437988374,peak2z_length,North Great Plains
+elev_mean_m_basin,72.99150748449298,504.2036437988374,peak2z_length,North Great Plains
+porosity,68.9609421718066,504.2036437988374,peak2z_length,North Great Plains
+pet_mm_ond,45.52008218383286,504.2036437988374,peak2z_length,North Great Plains
+depth_bedrock_m,49.10760361818721,504.2036437988374,peak2z_length,North Great Plains
+swe_mm_ond,5.619648944573805,504.2036437988374,peak2z_length,North Great Plains
+p.pet_cy,36.6795042745822,504.2036437988374,peak2z_length,North Great Plains
+dams_n,118.12063655144104,504.2036437988374,peak2z_length,North Great Plains
+p.pet_ond,20.438173439231697,504.2036437988374,peak2z_length,North Great Plains
+lulc_barren_prc,50.08529494035233,504.2036437988374,peak2z_length,North Great Plains
+swe.p_ond.previous,14.454124055463408,504.2036437988374,peak2z_length,North Great Plains
+pet_mm_amj,5.928732948004933,504.2036437988374,peak2z_length,North Great Plains
+wuse_mm,199.49392334682156,190.72957316895395,peak2z_length,Mediterranean California
+lulc_dev_prc,98.01082528972844,190.72957316895395,peak2z_length,Mediterranean California
+lulc_forest_prc,65.83601214865848,190.72957316895395,peak2z_length,Mediterranean California
+lulc_ag_prc,49.60168320835045,190.72957316895395,peak2z_length,Mediterranean California
+lulc_barren_prc,50.616334055594194,190.72957316895395,peak2z_length,Mediterranean California
+porosity,53.94482029274309,190.72957316895395,peak2z_length,Mediterranean California
+pet_mm_jas,27.780914783678547,190.72957316895395,peak2z_length,Mediterranean California
+pet_mm_jas.previous,17.339098322259147,190.72957316895395,peak2z_length,Mediterranean California
+majordams_n,11.56332952964968,190.72957316895395,peak2z_length,Mediterranean California
+irrig_prc,67.72190376989613,190.72957316895395,peak2z_length,Mediterranean California
+pet_mm_ond,14.312403889166593,190.72957316895395,peak2z_length,Mediterranean California
+permave,66.02220468374976,190.72957316895395,peak2z_length,Mediterranean California
+clayave,82.46779255836537,190.72957316895395,peak2z_length,Mediterranean California
+p.pet_jas,5.799538566349428,190.72957316895395,peak2z_length,Mediterranean California
+elev_mean_m_basin,33.53259560315298,190.72957316895395,peak2z_length,Mediterranean California
+topwet,53.344303115600425,190.72957316895395,peak2z_length,Mediterranean California
+p.pet_ond,14.144082838794384,190.72957316895395,peak2z_length,Mediterranean California
+p_mm_ond,13.411416816039004,190.72957316895395,peak2z_length,Mediterranean California
+dams_n,21.972339486917093,190.72957316895395,peak2z_length,Mediterranean California
+lulc_water_prc,52.844995801886206,190.72957316895395,peak2z_length,Mediterranean California
+drain_sqkm,56.330241571909625,190.72957316895395,peak2z_length,Mediterranean California
+T_max_c_jas,29.426213129867243,190.72957316895395,peak2z_length,Mediterranean California
+slope_pct,35.9076557989279,190.72957316895395,peak2z_length,Mediterranean California
+siltave,39.93284129820219,190.72957316895395,peak2z_length,Mediterranean California
+pet_mm_amj,26.776003358650957,190.72957316895395,peak2z_length,Mediterranean California
+T_max_c_cy,26.43058880188827,190.72957316895395,peak2z_length,Mediterranean California
+swe.p_amj,2.0787198142600305,190.72957316895395,peak2z_length,Mediterranean California
+topwet,81.33733403358384,177.90141822230288,peak2z_length,South Great Plains
+porosity,94.32992572548778,177.90141822230288,peak2z_length,South Great Plains
+slope_pct,70.40949420697399,177.90141822230288,peak2z_length,South Great Plains
+lulc_dev_prc,36.492948191681954,177.90141822230288,peak2z_length,South Great Plains
+elev_mean_m_basin,106.64639055261487,177.90141822230288,peak2z_length,South Great Plains
+majordams_n,28.28667664557912,177.90141822230288,peak2z_length,South Great Plains
+lulc_grass_prc,42.224007710848106,177.90141822230288,peak2z_length,South Great Plains
+dams_n,73.94552029913675,177.90141822230288,peak2z_length,South Great Plains
+wuse_mm,53.77562855545062,177.90141822230288,peak2z_length,South Great Plains
+depth_bedrock_m,52.98261471273483,177.90141822230288,peak2z_length,South Great Plains
+clayave,68.77524082511367,177.90141822230288,peak2z_length,South Great Plains
+p_mm_jfm,15.409679399807796,177.90141822230288,peak2z_length,South Great Plains
+pet_mm_ond.previous,10.426120537739024,177.90141822230288,peak2z_length,South Great Plains
+permave,46.93945781366137,177.90141822230288,peak2z_length,South Great Plains
+lulc_forest_prc,51.61936435124649,177.90141822230288,peak2z_length,South Great Plains
+p.pet_cy,19.253598431981132,177.90141822230288,peak2z_length,South Great Plains
+irrig_prc,46.73184259844259,177.90141822230288,peak2z_length,South Great Plains
+lulc_wetland_prc,70.28550253138721,177.90141822230288,peak2z_length,South Great Plains
+drain_sqkm,60.188481154899044,177.90141822230288,peak2z_length,South Great Plains
+swe_mm_jfm.previous,5.672891568894096,177.90141822230288,peak2z_length,South Great Plains
+pet_mm_cy,18.72595697708504,177.90141822230288,peak2z_length,South Great Plains
+siltave,55.5269689160526,177.90141822230288,peak2z_length,South Great Plains
+p.pet_jfm,16.02036151080273,177.90141822230288,peak2z_length,South Great Plains
+awcave,30.53478467337848,177.90141822230288,peak2z_length,South Great Plains
+lulc_water_prc,58.153575789563334,177.90141822230288,peak2z_length,South Great Plains
+T_max_c_jas,16.364472175095063,177.90141822230288,peak2z_length,South Great Plains
+p.pet_jas,3.8554942211615804,177.90141822230288,peak2z_length,South Great Plains
+majordams_n,30.489170572750044,265.3076853593609,peak2z_length,Western Desert
+pet_mm_amj.previous,40.58626472401075,265.3076853593609,peak2z_length,Western Desert
+swe.p_cy,54.180516495130746,265.3076853593609,peak2z_length,Western Desert
+swe_mm_cy,50.94619166418963,265.3076853593609,peak2z_length,Western Desert
+dams_n,21.13277277079665,265.3076853593609,peak2z_length,Western Desert
+p_mm_jas.previous,35.79601796518587,265.3076853593609,peak2z_length,Western Desert
+swe.p_cy.previous,41.88239591017226,265.3076853593609,peak2z_length,Western Desert
+p.pet_jas,16.57095814042741,265.3076853593609,peak2z_length,Western Desert
+T_max_c_cy,66.0205989770951,265.3076853593609,peak2z_length,Western Desert
+siltave,61.768516264452224,265.3076853593609,peak2z_length,Western Desert
+lulc_ag_prc,30.42735543343439,265.3076853593609,peak2z_length,Western Desert
+swe.p_ond,33.52103348054953,265.3076853593609,peak2z_length,Western Desert
+awcave,66.47858548592654,265.3076853593609,peak2z_length,Western Desert
+pet_mm_amj,36.87189608847184,265.3076853593609,peak2z_length,Western Desert
+T_max_c_jas,46.905177067003784,265.3076853593609,peak2z_length,Western Desert
+clayave,37.13459252540251,265.3076853593609,peak2z_length,Western Desert
+lulc_wetland_prc,72.89081356924883,265.3076853593609,peak2z_length,Western Desert
+lulc_forest_prc,104.6047490903091,265.3076853593609,peak2z_length,Western Desert
+porosity,52.766950741364234,265.3076853593609,peak2z_length,Western Desert
+lulc_grass_prc,77.17786488572877,265.3076853593609,peak2z_length,Western Desert
+permave,56.924968356028536,265.3076853593609,peak2z_length,Western Desert
+swe.p_amj.previous,11.013907186601077,265.3076853593609,peak2z_length,Western Desert
+pet_mm_ond,31.007465145501936,265.3076853593609,peak2z_length,Western Desert
+swe.p_jfm,19.74546997731684,265.3076853593609,peak2z_length,Western Desert
+p.pet_jfm,5.820046938575866,265.3076853593609,peak2z_length,Western Desert
+swe_mm_jfm.previous,26.746100093873647,265.3076853593609,peak2z_length,Western Desert
+lulc_water_prc,22.68139808608841,265.3076853593609,peak2z_length,Western Desert
+lulc_wetland_prc,119.41865108927392,313.41255392735985,peak2z_length,Eastern Forests
+drain_sqkm,240.93317419707716,313.41255392735985,peak2z_length,Eastern Forests
+siltave,86.79637314625322,313.41255392735985,peak2z_length,Eastern Forests
+lulc_dev_prc,104.38201109794174,313.41255392735985,peak2z_length,Eastern Forests
+pet_mm_amj,57.89840161301968,313.41255392735985,peak2z_length,Eastern Forests
+depth_bedrock_m,180.7416298283822,313.41255392735985,peak2z_length,Eastern Forests
+pet_mm_cy,54.63495872036515,313.41255392735985,peak2z_length,Eastern Forests
+p.pet_jfm.previous,13.108767172035218,313.41255392735985,peak2z_length,Eastern Forests
+wuse_mm,91.04669672323328,313.41255392735985,peak2z_length,Eastern Forests
+p.pet_jfm,15.41946437171857,313.41255392735985,peak2z_length,Eastern Forests
+p.pet_cy,21.799691296919512,313.41255392735985,peak2z_length,Eastern Forests
+clayave,90.4112264466277,313.41255392735985,peak2z_length,Eastern Forests
+T_max_c_cy,48.58159694198774,313.41255392735985,peak2z_length,Eastern Forests
+majordams_n,64.25914011339103,313.41255392735985,peak2z_length,Eastern Forests
+permave,58.56622181566252,313.41255392735985,peak2z_length,Eastern Forests
+dams_n,113.6974598069995,313.41255392735985,peak2z_length,Eastern Forests
+slope_pct,144.28832232031286,313.41255392735985,peak2z_length,Eastern Forests
+topwet,60.02025580206996,313.41255392735985,peak2z_length,Eastern Forests
+pet_mm_ond,30.79416763446998,313.41255392735985,peak2z_length,Eastern Forests
+lulc_forest_prc,152.01110790654198,313.41255392735985,peak2z_length,Eastern Forests
+T_max_c_jas,22.91759121586036,313.41255392735985,peak2z_length,Eastern Forests
+pet_mm_ond.previous,24.12921436225573,313.41255392735985,peak2z_length,Eastern Forests
+awcave,26.997270061839185,313.41255392735985,peak2z_length,Eastern Forests
+lulc_ag_prc,55.01432333138831,313.41255392735985,peak2z_length,Eastern Forests
+p.pet_ond,20.867127345733845,313.41255392735985,peak2z_length,Eastern Forests
+pet_mm_jas.previous,20.454494993385545,313.41255392735985,peak2z_length,Eastern Forests
+p_mm_jas.previous,26.530750834300477,313.41255392735985,peak2z_length,Eastern Forests
+elev_mean_m_basin,101.72893499427724,324.1599713841199,peak2z_length,Western Mountains
+lulc_grass_prc,78.78220016308744,324.1599713841199,peak2z_length,Western Mountains
+p.pet_jas,65.62223108787248,324.1599713841199,peak2z_length,Western Mountains
+p.pet_ond,52.62705942538856,324.1599713841199,peak2z_length,Western Mountains
+depth_bedrock_m,69.1572590529486,324.1599713841199,peak2z_length,Western Mountains
+slope_pct,61.15513463566633,324.1599713841199,peak2z_length,Western Mountains
+p_mm_jas.previous,44.56731873165872,324.1599713841199,peak2z_length,Western Mountains
+lulc_forest_prc,91.44672805712138,324.1599713841199,peak2z_length,Western Mountains
+pet_mm_ond,31.61348074077224,324.1599713841199,peak2z_length,Western Mountains
+swe.p_ond.previous,20.579357605324475,324.1599713841199,peak2z_length,Western Mountains
+lulc_barren_prc,42.8380883998378,324.1599713841199,peak2z_length,Western Mountains
+lulc_dev_prc,30.39527657873414,324.1599713841199,peak2z_length,Western Mountains
+p_mm_ond,37.385920265793054,324.1599713841199,peak2z_length,Western Mountains
+p_mm_ond.previous,20.125503968947815,324.1599713841199,peak2z_length,Western Mountains
+p.pet_ond.previous,20.917350904335784,324.1599713841199,peak2z_length,Western Mountains
+p_mm_jfm,13.251362229161249,324.1599713841199,peak2z_length,Western Mountains
+pet_mm_ond.previous,46.941455653561945,324.1599713841199,peak2z_length,Western Mountains
+p.pet_jfm.previous,11.248305706662183,324.1599713841199,peak2z_length,Western Mountains
+lulc_ag_prc,20.26627250115508,324.1599713841199,peak2z_length,Western Mountains
+drain_sqkm,69.43360225016097,324.1599713841199,peak2z_length,Western Mountains
+swe.p_amj,8.119668656896236,324.1599713841199,peak2z_length,Western Mountains
+pet_mm_amj.previous,30.952102981764313,324.1599713841199,peak2z_length,Western Mountains
+clayave,35.25869046115986,324.1599713841199,peak2z_length,Western Mountains
+permave,61.37477596640192,324.1599713841199,peak2z_length,Western Mountains
+pet_mm_amj,21.89613916898586,324.1599713841199,peak2z_length,Western Mountains
+swe.p_jfm.previous,18.73465850307542,324.1599713841199,peak2z_length,Western Mountains
+p.pet_jfm,15.027654858066056,324.1599713841199,peak2z_length,Western Mountains
