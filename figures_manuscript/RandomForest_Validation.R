@@ -71,7 +71,7 @@ ggplot(subset(rf_fit_wide, !is.na(region)), aes(x = National, y = Regional)) +
   geom_point(aes(color = region)) +
   geom_point(data = subset(rf_fit_wide, is.na(region)), 
              aes(x = National, y = Regional), 
-             color = "black", size = 3) +
+             color = "black", size = 3, shape = 18) +
   facet_wrap(~metric, scales = "free") +
   scale_x_continuous(name = "National Model", limits = c(0,1), expand = c(0,0)) +
   scale_y_continuous(name = "Regional Model", limits = c(0,1), expand = c(0,0)) +
