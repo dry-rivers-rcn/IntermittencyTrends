@@ -1,4 +1,4 @@
-## Figure+Table_RandomForest_Validation.R
+## RandomForest_Validation.R
 # This script will produce a figure showing the validation for the random forest
 # model (scatterplot of sim vs obs) and a table with computed fit statistics.
 

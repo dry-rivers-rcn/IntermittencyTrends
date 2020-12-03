@@ -183,7 +183,7 @@ for (m in metrics){
                                    metric = m,
                                    region_rf = r)
     
-    # partial dependence plots for top 10 variables
+    # partial dependence plots for all variables
     ranger_fit <- ranger::ranger(observed ~ ., 
                                  data = dplyr::bind_cols(rf_fit$pre$mold$outcomes, 
                                                          rf_fit$pre$mold$predictors),

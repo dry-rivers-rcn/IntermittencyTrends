@@ -140,9 +140,6 @@ ncores <- (parallel::detectCores() - 1)
 
 ## loop through metrics and regions
 set.seed(1)
-apply_seeded <- function(..., seed = 1) {
-  future.apply::future_lapply(..., future.seed = seed)
-}
 for (m in metrics){
   # subset to complete cases
   fit_data_m <- 

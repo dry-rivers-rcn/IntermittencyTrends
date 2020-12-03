@@ -8,6 +8,9 @@ library(cowplot)
 library(patchwork)
 options(dplyr.summarise.inform=F)   # suppress summarize info
 
+# number of cores to use
+ncores <- (parallel::detectCores() - 1)
+
 # relative path to directory containing John's data analysis 
 # GitHub repository with scripts and data
 dir_DataAnalysis <- file.path("..", "DataAnalysis")
@@ -98,7 +101,11 @@ df_pred <-
                   "swe.p_amj", "p_mm_amj.previous", "swe_mm_ond.previous", "swe_mm_jfm.previous", 
                   "p.pet_jfm", "swe.p_cy", "swe_mm_cy", "swe.p_cy.previous", "swe.p_amj.previous", 
                   "p_mm_jfm", "swe_mm_ond", "swe.p_ond.previous", "swe.p_jfm", 
-                  "swe.p_jfm.previous"),
+                  "swe.p_jfm.previous",
+                  "tau_p.pet_jfm", "tau_pet_mm_amj", "tau_p.pet_cy", "tau_p.pet_amj", 
+                  "tau_p_mm_jfm", "tau_pet_mm_cy", "tau_T_max_c_cy", "tau_pet_mm_jas", 
+                  "tau_p.pet_cy", "tau_p.pet_jfm", 
+                  "tau_pet_mm_ond", "tau_swe.p_amj"),
     Category = factor(c("Physiography", "Physiography", "Physiography", "Climate", 
                         "Climate", "Climate", "Climate", "Physiography", "Climate", 
                         "Climate", "Physiography", "Physiography", "Physiography", "Climate", 
@@ -121,7 +128,11 @@ df_pred <-
                         "Climate", "Climate", "Climate", "Climate", 
                         "Climate", "Climate", "Climate", "Climate", "Climate", 
                         "Climate", "Climate", "Climate", "Climate", 
-                        "Climate")),
+                        "Climate",
+                        "Climate", "Climate", "Climate", "Climate", 
+                        "Climate", "Climate", "Climate", "Climate", 
+                        "Climate", "Climate", 
+                        "Climate", "Climate")),
     long_name = c("Soil Clay", "Drainage Area", "Elevation", "P/PET (AMJ)", 
                   "P/PET (CY)", "P/PET (JAS)", "P (CY)", "Soil Permeab", "PET (AMJ)", 
                   "PET (JAS)", "Soil Sand", "Soil Silt", "Slope", "SRad (AMJ)", 
@@ -145,7 +156,11 @@ df_pred <-
                   "SWE/P (AMJ)", "P (AMJ-1)", "SWE (OND-1)", "SWE (JFM-1)", 
                   "P/PET (JFM)", "SWE/P (CY)", "SWE (CY)", "SWE/P (CY-1)", "SWE/P (AMJ-1)", 
                   "P (JFM)", "SWE (OND)", "SWE/OND (P-1)", "SWE/P (JFM)", 
-                  "SWE/P (JFM-1)"))
+                  "SWE/P (JFM-1)",
+                  "\u03c4 P/PET (OND)", "\u03c4 PET (AMJ)", "\u03c4 P/PET (CY)", "\u03c4 P/PET (AMJ)", 
+                  "\u03c4 P (JFM)", "\u03c4 PET (CY)", "\u03c4 Tmax (CY)", "\u03c4 PET (JAS)", 
+                  "\u03c4 P/PET (CY)", "\u03c4 P/PET (JFM)", 
+                  "\u03c4 PET (OND)", "\u03c4 SWE/P (AMJ)"))
 
 ## ggplot theme
 windowsFonts(Arial=windowsFont("TT Arial"))
@@ -180,4 +195,8 @@ lmp <- function (modelobject) {
   p <- pf(f[1],f[2],f[3],lower.tail=F)
   attributes(p) <- NULL
   return(p)
+}
+
+apply_seeded <- function(..., seed = 1) {
+  future.apply::future_lapply(..., future.seed = seed)
 }

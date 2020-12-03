@@ -1,0 +1,4 @@
+metric,MAE,Rsq,RMSE,NRMSE,KGE
+annualnoflowdays,0.146,0.42,0.193,15.5,0.451
+peak2z_length,0.189,0,0.239,19,-0.258
+zeroflowfirst,0.148,0.27,0.185,18.5,0.208
