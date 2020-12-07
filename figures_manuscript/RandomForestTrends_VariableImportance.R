@@ -47,7 +47,7 @@ p_nat_anf <-
                      labels = scales::percent) +
   scale_x_discrete(limits = rev(levels(imp_anf$Predictor))) +
   coord_flip() +
-  labs(title = "(a) No-Flow Days") +
+  labs(title = "(a) Kendall \u03c4,\n     No-Flow Days") +
   theme(axis.title.y = element_blank()) +
   NULL
 
@@ -61,7 +61,7 @@ p_nat_p2z <-
   scale_y_continuous(name = "MSE Increase [%]", labels = scales::percent) +
   scale_x_discrete(limits = rev(levels(imp_p2z$Predictor))) +
   coord_flip() +
-  labs(title = "(b) Peak to No-Flow") +
+  labs(title = "(b) Kendall \u03c4,\n     Peak to No-Flow") +
   theme(axis.title.y = element_blank()) +
   NULL
 
@@ -77,7 +77,7 @@ p_nat_zff <-
                      labels = scales::percent) +
   scale_x_discrete(limits = rev(levels(imp_zff$Predictor))) +
   coord_flip() +
-  labs(title = "(c) First No-Flow Day") +
+  labs(title = "(c) Kendall \u03c4,\n     First No-Flow Day") +
   theme(axis.title.y = element_blank()) +
   NULL
 

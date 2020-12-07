@@ -47,9 +47,9 @@ ggplot(rf_all, aes(x = predicted, y = observed)) +
   geom_abline(intercept = 0, slope = 1, color = col.gray) +
   facet_grid(metric ~ Sample, 
              labeller = 
-               as_labeller(c("annualnoflowdays" = "Annual No-Flow Days",
-                             "peak2z_length" = "Days from Peak to No-Flow",
-                             "zeroflowfirst" = "First No-Flow Day",
+               as_labeller(c("annualnoflowdays" = "Kendall \u03c4,\nAnnual No-Flow Days",
+                             "peak2z_length" = "Kendall \u03c4,\nDays from Peak to No-Flow",
+                             "zeroflowfirst" = "Kendall \u03c4,\nFirst No-Flow Day",
                              "Train" = "Train",
                              "Test" = "Test"))) +
   scale_color_manual(name = "Region", values = pal_regions) +
