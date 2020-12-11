@@ -121,7 +121,8 @@ df_cor_anf <-
   dplyr::arrange(-abs(pearson_r))
 
 # take the residual of tau_annualnoflowdays and tau_p
-fit_data_in$tau_anf_p.pet_resid <- lm(tau_annualnoflowdays ~ tau_p.pet_cy, data = fit_data_in)$residual
+fit_anf.p.pet <- lm(tau_annualnoflowdays ~ tau_p.pet_cy, data = fit_data_in)
+fit_data_in$tau_anf_p.pet_resid <- fit_anf.p.pet$residual
 fit_data_in$tau_anf_p.pet_resid.resid <- lm(tau_anf_p.pet_resid ~ tau_annualnoflowdays, data = fit_data_in)$residual
 
 # rank by strength of linear correlation with residual
@@ -192,3 +193,25 @@ ggplot(fit_data_in, aes(x = topwet, y = tau_anf_p.pet_resid.resid)) +
 ## multiple linear regression: top climate, land use, and physiographic variable
 fit_mlr <- lm(tau_annualnoflowdays ~ tau_p.pet_cy + lulc_ag_prc + topwet, data = fit_data_in)
 summary(fit_mlr)
+
+## multiple plots
+fit_data_in %>% 
+  dplyr::select(tau_annualnoflowdays, tau_p.pet_cy, tau_anf_p.pet_resid, region) %>% 
+  tidyr::pivot_longer(cols = c("tau_p.pet_cy", "tau_anf_p.pet_resid")) %>% 
+  dplyr::mutate(name = factor(name, levels = c("tau_p.pet_cy", "tau_anf_p.pet_resid"))) %>% 
+  ggplot(aes(x = value, y = tau_annualnoflowdays, color = region)) +
+  geom_hline(yintercept = 0, color = col.gray) +
+  geom_vline(xintercept = 0, color = col.gray) +
+  geom_point() +
+  facet_wrap(~name, scales = "free", 
+             labeller = as_labeller(c("tau_p.pet_cy" = "P/PET Kendall \u03c4",
+                                      "tau_anf_p.pet_resid" = "Residual of plot on left"))) +
+  scale_y_continuous(name = "Annual No-Flow Days,\nKendall \u03c4", expand = c(0, 0.01),
+                     limits = c(-0.7, 0.7)) +
+  scale_x_continuous(name = "Value of Variable at top of plot", expand = c(0, 0.01)) +
+  scale_color_manual(name = "Region", values = pal_regions,
+                     labels = lab_regions_skinny1line) +
+  stat_smooth(method = "lm", color = "black") +
+  theme(legend.position = "bottom") +
+  ggsave("figures_manuscript/Trends_CompareTrendsToDrivers-NoFlowToAridity+Resid.png",
+         width = 160, height = 100, units = "mm")
