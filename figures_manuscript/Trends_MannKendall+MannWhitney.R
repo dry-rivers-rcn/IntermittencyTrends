@@ -346,3 +346,7 @@ df_mw %>% subset(metric %in% metrics & mw_p < p_thres) %>% dplyr::select(gage_ID
 df_mw %>% subset(metric == "annualnoflowdays" & mw_p < p_thres) %>% dplyr::select(mw_diff_mean) %>% range()
 df_mw %>% subset(metric == "peak2z_length" & mw_p < p_thres) %>% dplyr::select(mw_diff_mean) %>% range()
 df_mw %>% subset(metric == "zeroflowfirst" & mw_p < p_thres) %>% dplyr::select(mw_diff_mean) %>% range()
+
+# big changes
+df_mw %>% subset(metric == "annualnoflowdays" & mw_diff_mean > 100 & mw_p < p_thres) %>% dim()
+df_mw %>% subset(metric == "annualnoflowdays" & mw_diff_mean < -100 & mw_p < p_thres) %>% dim()
