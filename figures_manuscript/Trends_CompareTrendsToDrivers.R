@@ -215,3 +215,42 @@ fit_data_in %>%
   theme(legend.position = "bottom") +
   ggsave("figures_manuscript/Trends_CompareTrendsToDrivers-NoFlowToAridity+Resid.png",
          width = 160, height = 100, units = "mm")
+
+### messing around with copulas
+## example here: https://datascienceplus.com/modelling-dependence-with-copulas/
+library(MASS)
+library(copula)
+library(VineCopula)
+m <- 3
+n <- 2000
+sigma <- matrix(c(1, 0.4, 0.2,
+                  0.4, 1, -0.8,
+                  0.2, -0.8, 1), 
+                nrow=3)
+z <- mvrnorm(n,mu=rep(0, m),Sigma=sigma,empirical=T)
+
+tau_anf <- fit_data_in$tau_annualnoflowdays
+tau_p.pet <- fit_data_in$tau_p.pet_cy
+
+tau_both <- matrix(data = c(tau_anf, tau_p.pet), ncol = 2)
+
+plot(tau_p.pet, tau_anf)
+pairs(tau_both)
+
+pnorm_both <- pnorm(tau_both)
+pairs(pnorm_both)
+
+pobs_anf <- pobs(tau_anf)
+pobs_p.pet <- pobs(tau_p.pet)
+
+selectedCopula <- BiCopSelect(pobs_anf, pobs_p.pet)
+selectedCopula$family # Frank copula
+
+fit_cop <- fitCopula(t.cop,m,method='ml')
+
+## test model mis-specification
+library(lmtest)
+resettest(tau_anf ~ tau_p.pet)
+
+lm(tau_anf ~ tau_p.pet) %>% summary()
+lm(tau_anf ~ (tau_p.pet^4)) %>% summary()
