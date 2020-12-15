@@ -76,8 +76,8 @@ p_zff.aridity <-
     plot_annotation(tag_levels = 'a', tag_prefix = '(', tag_suffix = ')') &
     theme(legend.position = "bottom",
           plot.tag.position = c(0.05, 1))) +
-  ggsave(file.path("figures_manuscript", "Trends_CompareTrendsToDrivers-MetricsVsAridity.png"),
-         width = 95, height = 210, units = "mm")
+  ggsave(file.path("figures_manuscript", "Trends_CompareTrendsToDrivers-MetricsVsAridity_NoText.pdf"),
+         width = 95, height = 210, units = "mm", device = cairo_pdf)
 
 # get correlation between trends
 cor(x = fit_data_in$tau_p.pet_cy, y = fit_data_in$tau_annualnoflowdays, use = "complete.obs")
