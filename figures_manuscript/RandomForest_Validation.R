@@ -24,7 +24,7 @@ rf_all <-
 
 rf_all$region_rf[rf_all$region_rf != "National"] <- "Regional"
 
-## calculate fit statistics
+## calculate fit statistics for test data
 rf_fit_regional <-
   rf_all %>% 
   subset(Sample == "Test") %>% 
@@ -56,7 +56,41 @@ rf_fit$metric[rf_fit$metric == "peak2z_length"] <- "Days from Peak to No-Flow"
 rf_fit$metric[rf_fit$metric == "zeroflowfirst"] <- "First No-Flow Day"
 
 rf_fit %>% 
-  readr::write_csv(file.path("figures_manuscript", "RandomForest_Validation-FitTable.csv"))
+  readr::write_csv(file.path("figures_manuscript", "RandomForest_Validation-FitTable-Test.csv"))
+
+## calculate fit statistics for training data
+rf_fit_regional_train <-
+  rf_all %>% 
+  subset(Sample == "Train") %>% 
+  dplyr::group_by(metric, region_rf, region) %>% 
+  dplyr::summarize(MAE = round(hydroGOF::mae(predicted, observed), 3),
+                   Rsq = round(R2(predicted, observed), 2),
+                   RMSE = round(hydroGOF::rmse(predicted, observed), 3),
+                   NRMSE = hydroGOF::nrmse(predicted, observed, norm = "maxmin"),
+                   KGE = round(hydroGOF::KGE(predicted, observed, method = "2012"), 3)) %>% 
+  dplyr::ungroup()
+
+rf_fit_national_train <- 
+  rf_all %>% 
+  subset(Sample == "Train") %>% 
+  dplyr::group_by(metric, region_rf) %>% 
+  dplyr::summarize(MAE = round(hydroGOF::mae(predicted, observed), 3),
+                   Rsq = round(R2(predicted, observed), 2),
+                   RMSE = round(hydroGOF::rmse(predicted, observed), 3),
+                   NRMSE = hydroGOF::nrmse(predicted, observed, norm = "maxmin"),
+                   KGE = round(hydroGOF::KGE(predicted, observed, method = "2012"), 3)) %>% 
+  dplyr::ungroup()
+
+rf_fit_train <- 
+  dplyr::bind_rows(rf_fit_regional_train, rf_fit_national_train) %>% 
+  dplyr::arrange(metric, region_rf, region)
+
+rf_fit_train$metric[rf_fit_train$metric == "annualnoflowdays"] <- "No-Flow Days"
+rf_fit_train$metric[rf_fit_train$metric == "peak2z_length"] <- "Days from Peak to No-Flow"
+rf_fit_train$metric[rf_fit_train$metric == "zeroflowfirst"] <- "First No-Flow Day"
+
+rf_fit_train %>% 
+  readr::write_csv(file.path("figures_manuscript", "RandomForest_Validation-FitTable-Train.csv"))
 
 # plot model error: national vs regional models
 rf_fit_wide <-

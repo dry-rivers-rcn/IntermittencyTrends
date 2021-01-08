@@ -1,18 +1,18 @@
 metric,region_rf,region,MAE,Rsq,RMSE,NRMSE,KGE
-Annual No-Flow Days,National,Eastern Forests,25.911,0.65,39.807,10.9,0.593
-Annual No-Flow Days,National,Mediterranean California,52.314,0.71,67.302,18.4,0.653
-Annual No-Flow Days,National,North Great Plains,30.314,0.69,44.545,12.2,0.593
-Annual No-Flow Days,National,South Great Plains,46.864,0.7,62.307,17.1,0.624
-Annual No-Flow Days,National,Western Desert,29.777,0.92,41.802,11.5,0.855
-Annual No-Flow Days,National,Western Mountains,39.509,0.83,54.012,14.8,0.766
-Annual No-Flow Days,National,NA,38.641,0.77,54.237,14.9,0.714
-Annual No-Flow Days,Regional,Eastern Forests,25.553,0.66,39.441,10.8,0.613
-Annual No-Flow Days,Regional,Mediterranean California,51.06,0.71,66.332,18.2,0.698
-Annual No-Flow Days,Regional,North Great Plains,29.534,0.66,45.388,12.4,0.639
-Annual No-Flow Days,Regional,South Great Plains,47.162,0.69,63.15,17.3,0.622
-Annual No-Flow Days,Regional,Western Desert,24.418,0.93,36.419,10,0.923
-Annual No-Flow Days,Regional,Western Mountains,33.915,0.84,49.998,13.7,0.841
-Annual No-Flow Days,Regional,NA,37.316,0.77,53.609,14.7,0.746
+No-Flow Days,National,Eastern Forests,25.911,0.65,39.807,10.9,0.593
+No-Flow Days,National,Mediterranean California,52.314,0.71,67.302,18.4,0.653
+No-Flow Days,National,North Great Plains,30.314,0.69,44.545,12.2,0.593
+No-Flow Days,National,South Great Plains,46.864,0.7,62.307,17.1,0.624
+No-Flow Days,National,Western Desert,29.777,0.92,41.802,11.5,0.855
+No-Flow Days,National,Western Mountains,39.509,0.83,54.012,14.8,0.766
+No-Flow Days,National,NA,38.641,0.77,54.237,14.9,0.714
+No-Flow Days,Regional,Eastern Forests,25.553,0.66,39.441,10.8,0.613
+No-Flow Days,Regional,Mediterranean California,51.06,0.71,66.332,18.2,0.698
+No-Flow Days,Regional,North Great Plains,29.534,0.66,45.388,12.4,0.639
+No-Flow Days,Regional,South Great Plains,47.162,0.69,63.15,17.3,0.622
+No-Flow Days,Regional,Western Desert,24.418,0.93,36.419,10,0.923
+No-Flow Days,Regional,Western Mountains,33.915,0.84,49.998,13.7,0.841
+No-Flow Days,Regional,NA,37.316,0.77,53.609,14.7,0.746
 Days from Peak to No-Flow,National,Eastern Forests,11.081,0.38,20.424,6.8,0.424
 Days from Peak to No-Flow,National,Mediterranean California,9.382,0.25,16.721,10.5,0.272
 Days from Peak to No-Flow,National,North Great Plains,17.851,0.15,34.855,11.5,0.166

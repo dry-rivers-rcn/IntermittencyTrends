@@ -85,6 +85,10 @@ cor(x = fit_data_in$tau_p.pet_cy, y = fit_data_in$tau_peak2z_length, use = "comp
 cor(x = fit_data_in$tau_p.pet_cy, y = fit_data_in$tau_zeroflowfirst, use = "complete.obs")
 
 
+lm(tau_annualnoflowdays ~ tau_p.pet_cy, data = fit_data_in) %>% summary()
+lm(tau_peak2z_length ~ tau_p.pet_cy, data = fit_data_in) %>% summary()
+lm(tau_zeroflowfirst ~ tau_p.pet_cy, data = fit_data_in) %>% summary()
+
 ## exploratory
 fit_data_in %>% 
   dplyr::select(region, tau_annualnoflowdays, tau_zeroflowfirst, tau_peak2z_length, T_max_c_cy) %>% 
