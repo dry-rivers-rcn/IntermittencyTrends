@@ -17,7 +17,7 @@
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="Trends_CompareTrendsToDrivers-MetricsVsAridity.svg"
-   inkscape:export-filename="C:\Users\Zippe\WorkGits\IntermittencyTrends\figures_manuscript\Trends_CompareTrendsToDrivers-MetricsVsAridity.png"
+   inkscape:export-filename="C:\Users\samzipper\WorkGits\IntermittencyTrends\figures_manuscript\Trends_CompareTrendsToDrivers-MetricsVsAridity.png"
    inkscape:export-xdpi="299.81107"
    inkscape:export-ydpi="299.81107">
   <defs
@@ -360,7 +360,7 @@
        x2="1.6536458"
        y2="46.611202"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0,-1.1562639,1.1699248,0,40.385631,16.965667)" />
+       gradientTransform="matrix(0,-1.4332402,1.1699248,0,40.385631,12.915235)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -490,7 +490,7 @@
        x2="1.6536458"
        y2="46.611202"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(-2.4911463,0,0,-1.1724658,31.167275,230.10265)" />
+       gradientTransform="matrix(-2.6323544,0,0,-1.1724658,29.931194,230.10265)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -730,7 +730,7 @@
        x2="1.6536458"
        y2="46.611202"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0,1.2750882,-1.1699248,0,149.47156,97.14443)" />
+       gradientTransform="matrix(0,1.3841043,-1.1699248,0,149.47156,99.385186)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -1642,7 +1642,7 @@
        x2="1.6536458"
        y2="46.611202"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0,1.2750882,-1.1699248,0,149.47156,155.05192)" />
+       gradientTransform="matrix(0,1.3784588,-1.1699248,0,149.47156,154.88098)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -1682,8 +1682,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6"
-     inkscape:cx="161.8856"
-     inkscape:cy="290.12958"
+     inkscape:cx="19.6981"
+     inkscape:cy="387.98324"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1692,9 +1692,9 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-height="1147"
+     inkscape:window-x="1192"
+     inkscape:window-y="379"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -9957,21 +9957,21 @@
     </g>
     <path
        style="fill:none;stroke:url(#linearGradient7509);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart);marker-end:url(#marker7525)"
-       d="M 94.917232,40.101479 V 15.053616"
+       d="M 94.917232,41.593094 V 10.545162"
        id="path7501"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-13.259577"
+       x="-9.5554132"
        y="96.15918"
        id="text6600-56"
        transform="rotate(-90)"><tspan
          sodipodi:role="line"
          id="tspan6598-49"
-         x="-13.259577"
+         x="-9.5554132"
          y="96.15918"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Longer</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Drier</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -9983,7 +9983,7 @@
          id="tspan6598-49-0"
          x="-53.009968"
          y="96.181892"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Shorter</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Wetter</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -9995,7 +9995,7 @@
          id="tspan6598-49-6"
          x="-111.02142"
          y="96.181892"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Faster</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">More</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -10007,7 +10007,7 @@
          id="tspan6598-49-0-6"
          x="-70.836243"
          y="96.224953"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Slower</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Fewer</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -10035,38 +10035,38 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="17.546698"
+       x="16.488363"
        y="176.69463"
        id="text6600-56-53-7-8-5-4"><tspan
          sodipodi:role="line"
          id="tspan6598-49-6-0-9-6-6"
-         x="17.546698"
+         x="16.488363"
          y="176.69463"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Drier</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="82.554115"
+       x="83.61245"
        y="176.69463"
        id="text6600-56-5-2-1-0-6-8"><tspan
          sodipodi:role="line"
          id="tspan6598-49-0-6-5-4-0-3"
-         x="82.554115"
+         x="83.61245"
          y="176.69463"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Wetter</tspan></text>
     <path
        style="fill:none;stroke:url(#linearGradient7509-6-6-1);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-8-8);marker-end:url(#marker7525-9-1-7)"
-       d="M 81.012903,175.45261 H 27.047796"
+       d="M 82.60227,175.45261 H 25.578206"
        id="path7501-5-6-2"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:url(#linearGradient7509-6-3-1);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-1-4);marker-end:url(#marker7525-9-8-4)"
-       d="M 94.939942,71.631021 V 99.25298"
+       d="m 94.939942,71.69046 v 29.98355"
        id="path7501-5-8-1"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:url(#linearGradient7509-6-3-1-6);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-1-4-6);marker-end:url(#marker7525-9-8-4-7)"
-       d="m 94.939942,129.53851 v 27.62196"
+       d="m 94.939942,127.29921 v 29.86126"
        id="path7501-5-8-1-8"
        inkscape:connector-curvature="0" />
   </g>

@@ -47,7 +47,7 @@ p_region <-
   facet_wrap(~metric, ncol = 1, dir = "v",
              scales = "free_y", labeller = as_labeller(labs_metrics)) +
   scale_x_discrete(name = "Region", labels = lab_regions_skinny) +
-  scale_y_continuous(name = "Kendall \u03c4", limits = c(-tau_abs, tau_abs),
+  scale_y_continuous(name = "Trend (Kendall \u03c4)", limits = c(-tau_abs, tau_abs),
                      breaks = seq(-0.6, 0.6, 0.3), expand = c(0, 0.01)) +
   scale_fill_manual(values = pal_regions, guide = NULL) +
   scale_color_manual(values = pal_regions_dk, guide = NULL) +
@@ -64,11 +64,12 @@ p_lat <-
   geom_hline(yintercept = 0, color = col.gray) +
   geom_violin(draw_quantiles = 0.5) +
   facet_wrap(~metric, ncol = 1, dir = "v",
-             scales = "free_y", labeller = as_labeller(labs_metrics)) +
+             scales = "free_x", labeller = as_labeller(labs_metrics)) +
   coord_flip() +
-  scale_y_continuous(name = "Kendall \u03c4", limits = c(-tau_abs, tau_abs),
+  scale_y_continuous(name = "Trend (Kendall \u03c4)", limits = c(-tau_abs, tau_abs),
                      breaks = seq(-0.6, 0.6, 0.3), expand = c(0, 0.01)) +
-    scale_x_discrete(name = "Latitude [\u00b0N]")
+    scale_x_discrete(name = "Latitude [\u00b0N]") +
+  theme(axis.text.x = element_blank())
 
 
 # combine    

@@ -222,7 +222,7 @@ p_mw_hist <-
   ggplot() +
   geom_histogram(data = df_mw, aes(x = mw_diff_mean, fill = mw_sig),
                  binwidth = 10) +
-  geom_vline(xintercept = 0, color = "black") +
+  geom_vline(xintercept = 0, color = "#ffffbf") +
   facet_wrap(~metric, ncol = 3, scales = "free", labeller = 
                as_labeller(c("annualnoflowdays" = "(a) Annual No-Flow Days",
                              "peak2z_length" = "(b) Days from Peak to No-Flow",
