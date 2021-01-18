@@ -41,7 +41,10 @@ p_nat_anf <-
   scale_fill_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   scale_y_continuous(name = "MSE Increase [%]", 
                      breaks = c(0, 0.03, 0.06, 0.09),
                      labels = scales::percent) +
@@ -57,7 +60,10 @@ p_nat_p2z <-
   scale_fill_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   scale_y_continuous(name = "MSE Increase [%]", labels = scales::percent) +
   scale_x_discrete(limits = rev(levels(imp_p2z$Predictor))) +
   coord_flip() +
@@ -71,7 +77,10 @@ p_nat_zff <-
   scale_fill_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   scale_y_continuous(name = "MSE Increase [%]", 
                      breaks = c(0, 0.03, 0.06, 0.09),
                      labels = scales::percent) +

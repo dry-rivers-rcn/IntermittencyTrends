@@ -67,7 +67,10 @@ p_nat_anf <-
   scale_fill_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   scale_y_continuous(name = "MSE Increase [%]", 
                      breaks = seq(0,1,0.5),
                      labels = scales::percent) +
@@ -83,7 +86,10 @@ p_nat_p2z <-
   scale_fill_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   scale_y_continuous(name = "MSE Increase [%]", labels = scales::percent) +
   scale_x_discrete(limits = rev(levels(imp_p2z$Predictor))) +
   coord_flip() +
@@ -97,7 +103,10 @@ p_nat_zff <-
   scale_fill_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   scale_y_continuous(name = "MSE Increase [%]", labels = scales::percent) +
   scale_x_discrete(limits = rev(levels(imp_zff$Predictor))) +
   coord_flip() +
@@ -118,10 +127,13 @@ p_pdp_anf <-
   geom_line() +
   facet_wrap( ~ Predictor, scales = "free_x") +
   scale_x_continuous(name = "Scaled Value of Variable [z-score]", limits = c(-2, 2)) +
-  scale_fill_manual(drop = F,
+  scale_color_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   labs(title = "No-Flow Days") +
   theme(legend.position = "bottom") +
   NULL +
@@ -136,7 +148,10 @@ p_pdp_p2z <-
   scale_color_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   labs(title = "Peak to No-Flow") +
   theme(legend.position = "bottom") +
   NULL +
@@ -150,7 +165,10 @@ ggplot(pdp_zff, aes(x = value, y = yhat, color = Category)) +
   scale_color_manual(drop = F,
                     values = c("Climate" = col.cat.red, 
                                "Physiography" = col.cat.blu,
-                               "Land Use" = col.cat.grn)) +
+                               "Land Use" = col.cat.grn),
+                    labels = c("Climate" = "Climate", 
+                               "Physiography" = "Physiography",
+                               "Land Use" = "Land/Water Use")) +
   labs(title = "First No-Flow Day") +
   theme(legend.position = "bottom") +
   NULL +
