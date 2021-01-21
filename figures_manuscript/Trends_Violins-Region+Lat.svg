@@ -357,7 +357,7 @@
        x2="1.6536458"
        y2="46.611203"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0,-0.67670205,1.1699248,0,-49.420722,17.79787)" />
+       gradientTransform="matrix(0,-0.7394525,1.1699248,0,-49.420722,17.370792)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -388,16 +388,6 @@
          style="fill:#e6194b;fill-opacity:1;fill-rule:evenodd;stroke:#e6194b;stroke-width:1.00000003pt;stroke-opacity:1"
          transform="matrix(-0.4,0,0,-0.4,-4,0)" />
     </marker>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient7507"
-       id="linearGradient7509-6-3"
-       x1="-20.009113"
-       y1="46.611202"
-       x2="1.6536458"
-       y2="46.611202"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0,0.64620735,-1.1699248,0,59.642476,110.23809)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -428,16 +418,6 @@
          style="fill:#e6194b;fill-opacity:1;fill-rule:evenodd;stroke:#e6194b;stroke-width:1.00000003pt;stroke-opacity:1"
          transform="matrix(-0.4,0,0,-0.4,-4,0)" />
     </marker>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient7507"
-       id="linearGradient7509-6-6"
-       x1="-20.009113"
-       y1="46.611202"
-       x2="1.6536458"
-       y2="46.611202"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(-2.0013154,0,0,-1.1724658,138.0388,183.04273)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -468,16 +448,6 @@
          style="fill:#e6194b;fill-opacity:1;fill-rule:evenodd;stroke:#e6194b;stroke-width:1.00000003pt;stroke-opacity:1"
          transform="matrix(-0.4,0,0,-0.4,-4,0)" />
     </marker>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient7507"
-       id="linearGradient7509-6-6-3"
-       x1="-20.009113"
-       y1="46.611202"
-       x2="1.6536458"
-       y2="46.611202"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(-2.0013154,0,0,-1.1724658,138.20416,138.56298)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -517,7 +487,7 @@
        x2="1.6536458"
        y2="46.611202"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.9495408,0,0,1.1724658,174.13335,-11.106795)" />
+       gradientTransform="matrix(1.9495408,0,0,1.1724658,173.60874,-11.106795)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -748,16 +718,6 @@
          id="path14683"
          d="m 306.418,251.266 h 225.914 v 91.969 H 306.418 Z" />
     </clipPath>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient7507"
-       id="linearGradient7509-6-3-1"
-       x1="-20.009113"
-       y1="46.611202"
-       x2="1.6536458"
-       y2="46.611202"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0,0.64620734,-1.1699248,0,59.642476,70.087996)" />
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -2012,6 +1972,176 @@
          id="path5277"
          d="m 351.602,252.926 h 180.73 v 90.305 h -180.73 z" />
     </clipPath>
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mstart-4"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6698-9"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#0082c8;fill-opacity:1;fill-rule:evenodd;stroke:#0082c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.4,0,0,0.4,4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7525-5"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7523-11"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#e6194b;fill-opacity:1;fill-rule:evenodd;stroke:#e6194b;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7507"
+       id="linearGradient2230"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,0.7394525,-1.1699248,0,59.64248,32.895087)"
+       x1="-20.009114"
+       y1="46.611203"
+       x2="1.6536458"
+       y2="46.611203" />
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mstart-4-1"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6698-9-2"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#0082c8;fill-opacity:1;fill-rule:evenodd;stroke:#0082c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.4,0,0,0.4,4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7525-5-5"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7523-11-9"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#e6194b;fill-opacity:1;fill-rule:evenodd;stroke:#e6194b;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7507"
+       id="linearGradient2576"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,0.7394525,-1.1699248,0,59.64248,32.531285)"
+       x1="-20.009114"
+       y1="46.611203"
+       x2="1.6536458"
+       y2="46.611203" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7507"
+       id="linearGradient2578"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,-0.7394525,1.1699248,0,-49.420722,17.370792)"
+       x1="-20.009114"
+       y1="46.611203"
+       x2="1.6536458"
+       y2="46.611203" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7507"
+       id="linearGradient7509-6-6-1-6"
+       x1="-20.009115"
+       y1="46.611202"
+       x2="1.6536458"
+       y2="46.611202"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.9495408,0,0,-1.1724658,137.824,138.8845)" />
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mstart-9-8-8-5"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6698-1-2-5-6"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#0082c8;fill-opacity:1;fill-rule:evenodd;stroke:#0082c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.4,0,0,0.4,4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7525-9-1-7-1"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7523-1-3-5-9"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#e6194b;fill-opacity:1;fill-rule:evenodd;stroke:#e6194b;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7507"
+       id="linearGradient7509-6-6-1-6-2"
+       x1="-20.009115"
+       y1="46.611202"
+       x2="1.6536458"
+       y2="46.611202"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.9495408,0,0,-1.1724658,137.824,182.54076)" />
+    <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mstart-9-8-8-5-1"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6698-1-2-5-6-2"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#0082c8;fill-opacity:1;fill-rule:evenodd;stroke:#0082c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.4,0,0,0.4,4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7525-9-1-7-1-6"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7523-1-3-5-9-9"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#e6194b;fill-opacity:1;fill-rule:evenodd;stroke:#e6194b;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -2021,7 +2151,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6"
-     inkscape:cx="360.06822"
+     inkscape:cx="416.10308"
      inkscape:cy="266.43001"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -3483,167 +3613,64 @@
          x="14.443533"
          y="87.400085"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">(c) First No-Flow Day</tspan></text>
-    <path
-       style="fill:none;stroke:url(#linearGradient7509);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart);marker-end:url(#marker7525)"
-       d="M 5.1108788,31.338075 V 16.678844"
-       id="path7501"
-       inkscape:connector-curvature="0" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-14.450206"
-       y="6.0582008"
-       id="text6600-56"
-       transform="rotate(-90)"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49"
+    <g
+       id="g2076"
+       transform="translate(-0.1529627)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7501"
+         d="M 5.1108788,32.166577 V 16.147999"
+         style="fill:none;stroke:url(#linearGradient2578);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart);marker-end:url(#marker7525)" />
+      <text
+         transform="rotate(-90)"
+         id="text6600-56"
+         y="6.0582008"
          x="-14.450206"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332"
+           y="6.0582008"
+           x="-14.450206"
+           id="tspan6598-49"
+           sodipodi:role="line">Drier</tspan></text>
+      <text
+         transform="rotate(-90)"
+         id="text6600-56-5"
          y="6.0582008"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Drier</tspan></text>
+         x="-43.584175"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332"
+           y="6.0582008"
+           x="-43.584175"
+           id="tspan6598-49-0"
+           sodipodi:role="line">Wetter</tspan></text>
+    </g>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-43.055008"
-       y="6.0582008"
-       id="text6600-56-5"
-       transform="rotate(-90)"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-0"
-         x="-43.055008"
-         y="6.0582008"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Wetter</tspan></text>
-    <path
-       style="fill:none;stroke:url(#linearGradient7509-6-3);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-1);marker-end:url(#marker7525-9-8)"
-       d="M 5.1108788,97.308038 V 111.30669"
-       id="path7501-5-8"
-       inkscape:connector-curvature="0" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-82.876343"
-       y="6.0582008"
-       id="text6600-56-53"
-       transform="rotate(-90)"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-6"
-         x="-82.876343"
-         y="6.0582008"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Fewer</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-54.663593"
-       y="6.0564785"
-       id="text6600-56-5-2"
-       transform="rotate(-90)"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-0-6"
-         x="-54.663593"
-         y="6.0564785"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">More</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-123.46622"
-       y="6.0582008"
-       id="text6600-56-53-7"
-       transform="rotate(-90)"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-6-0"
-         x="-123.46622"
-         y="6.0582008"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Earlier</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-95.518028"
-       y="6.0582008"
-       id="text6600-56-5-2-1"
-       transform="rotate(-90)"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-0-6-5"
-         x="-95.518028"
-         y="6.0582008"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Later</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="123.39607"
-       y="129.14557"
-       id="text6600-56-53-7-8"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-6-0-9"
-         x="123.39607"
-         y="129.14557"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Earlier</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="180.40671"
-       y="129.14557"
-       id="text6600-56-5-2-1-0"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-0-6-5-4"
-         x="180.40671"
-         y="129.14557"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Later</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="123.65962"
-       y="85.099411"
-       id="text6600-56-53-7-8-5"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-6-0-9-6"
-         x="123.65962"
-         y="85.099411"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Fewer</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="179.90886"
-       y="85.142471"
-       id="text6600-56-5-2-1-0-6"><tspan
-         sodipodi:role="line"
-         id="tspan6598-49-0-6-5-4-0"
-         x="179.90886"
-         y="85.142471"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">More</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="179.17406"
+       x="179.21385"
        y="44.507412"
        id="text6600-56-53-7-8-5-4"><tspan
          sodipodi:role="line"
          id="tspan6598-49-6-0-9-6-6"
-         x="179.17406"
+         x="179.21385"
          y="44.507412"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Drier</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="122.77079"
+       x="123.29995"
        y="44.561256"
        id="text6600-56-5-2-1-0-6-8"><tspan
          sodipodi:role="line"
          id="tspan6598-49-0-6-5-4-0-3"
-         x="122.77079"
+         x="123.29995"
          y="44.561256"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Wetter</tspan></text>
     <path
-       style="fill:none;stroke:url(#linearGradient7509-6-6);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-8);marker-end:url(#marker7525-9-1)"
-       d="M 178.08335,128.3927 H 134.72933"
-       id="path7501-5-6"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:none;stroke:url(#linearGradient7509-6-6-3);stroke-width:0.35299999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-8-2);marker-end:url(#marker7525-9-1-9)"
-       d="M 178.24871,83.912888 H 134.89469"
-       id="path7501-5-6-7"
-       inkscape:connector-curvature="0" />
-    <path
        style="fill:none;stroke:url(#linearGradient7509-6-6-1);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-8-8);marker-end:url(#marker7525-9-1-7)"
-       d="M 135.12476,43.543244 H 177.3572"
+       d="m 134.60015,43.543244 h 42.23244"
        id="path7501-5-6-2"
        inkscape:connector-curvature="0" />
     <path
@@ -3706,11 +3733,6 @@
        id="path5439-9-2"
        style="fill:none;stroke:#333333;stroke-width:0.34218737;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        d="M 100.52393,41.395474 V 40.515999" />
-    <path
-       style="fill:none;stroke:url(#linearGradient7509-6-3-1);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-1-4);marker-end:url(#marker7525-9-8-4)"
-       d="m 5.1108788,57.157946 v 13.99865"
-       id="path7501-5-8-1"
-       inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -3969,5 +3991,125 @@
            x="730"
            y="469.2933" /></flowRegion><flowPara
          id="flowPara5796-3"
-         style="fill:#4d4d4d;fill-opacity:1">0.6</flowPara></flowRoot>  </g>
+         style="fill:#4d4d4d;fill-opacity:1">0.6</flowPara></flowRoot>    <g
+       transform="translate(-0.1529627,39.490175)"
+       id="g2076-0">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7501-8"
+         d="M 5.1108788,18.099302 V 34.11788"
+         style="fill:none;stroke:url(#linearGradient2230);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-4);marker-end:url(#marker7525-5)" />
+      <text
+         transform="rotate(-90)"
+         id="text6600-56-6"
+         y="6.0582008"
+         x="-43.02523"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332"
+           y="6.0582008"
+           x="-43.02523"
+           id="tspan6598-49-08"
+           sodipodi:role="line">Drier</tspan></text>
+      <text
+         transform="rotate(-90)"
+         id="text6600-56-5-1"
+         y="6.0582008"
+         x="-16.795086"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332"
+           y="6.0582008"
+           x="-16.795086"
+           id="tspan6598-49-0-3"
+           sodipodi:role="line">Wetter</tspan></text>
+    </g>
+    <g
+       transform="translate(-0.1529627,80.165902)"
+       id="g2076-0-1">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7501-8-4"
+         d="M 5.1108788,17.7355 V 33.754078"
+         style="fill:none;stroke:url(#linearGradient2576);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-4-1);marker-end:url(#marker7525-5-5)" />
+      <text
+         transform="rotate(-90)"
+         id="text6600-56-6-9"
+         y="6.0582008"
+         x="-43.02523"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332"
+           y="6.0582008"
+           x="-43.02523"
+           id="tspan6598-49-08-7"
+           sodipodi:role="line">Drier</tspan></text>
+      <text
+         transform="rotate(-90)"
+         id="text6600-56-5-1-1"
+         y="6.0582008"
+         x="-16.795086"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332"
+           y="6.0582008"
+           x="-16.795086"
+           id="tspan6598-49-0-3-8"
+           sodipodi:role="line">Wetter</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="124.52209"
+       y="85.198616"
+       id="text6600-56-53-7-8-5-4-6"><tspan
+         sodipodi:role="line"
+         id="tspan6598-49-6-0-9-6-6-7"
+         x="124.52209"
+         y="85.198616"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Drier</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="177.9917"
+       y="85.252464"
+       id="text6600-56-5-2-1-0-6-8-3"><tspan
+         sodipodi:role="line"
+         id="tspan6598-49-0-6-5-4-0-3-3"
+         x="177.9917"
+         y="85.252464"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Wetter</tspan></text>
+    <path
+       style="fill:none;stroke:url(#linearGradient7509-6-6-1-6);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-8-8-5);marker-end:url(#marker7525-9-1-7-1)"
+       d="M 176.83259,84.234461 H 134.60015"
+       id="path7501-5-6-2-6"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="124.52209"
+       y="128.85487"
+       id="text6600-56-53-7-8-5-4-6-7"><tspan
+         sodipodi:role="line"
+         id="tspan6598-49-6-0-9-6-6-7-5"
+         x="124.52209"
+         y="128.85487"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#e6194b;fill-opacity:1;stroke-width:0.26458332">Drier</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="177.9917"
+       y="128.90872"
+       id="text6600-56-5-2-1-0-6-8-3-1"><tspan
+         sodipodi:role="line"
+         id="tspan6598-49-0-6-5-4-0-3-3-4"
+         x="177.9917"
+         y="128.90872"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:Arial;-inkscape-font-specification:Arial;fill:#0082c8;fill-opacity:1;stroke-width:0.26458332">Wetter</tspan></text>
+    <path
+       style="fill:none;stroke:url(#linearGradient7509-6-6-1-6-2);stroke-width:0.35277778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-9-8-8-5-1);marker-end:url(#marker7525-9-1-7-1-6)"
+       d="M 176.83259,127.89072 H 134.60015"
+       id="path7501-5-6-2-6-0"
+       inkscape:connector-curvature="0" />
+  </g>
 </svg>
