@@ -60,7 +60,7 @@ p_afd <-
         axis.text.y = element_text(angle = 90, hjust = 0.5),
         legend.position = "right") +
   guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5),
-         shape = guide_legend(order = 2, direction = "vertical"))
+         shape = "none")
 
 p_p2z <- 
   ggplot() +
@@ -83,7 +83,7 @@ p_p2z <-
         axis.text.y = element_text(angle = 90, hjust = 0.5),
         legend.position = "right") +
   guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5),
-         shape = guide_legend(order = 2, direction = "vertical"))
+         shape = "none")
 
 p_zff <- 
   ggplot() +
@@ -106,7 +106,7 @@ p_zff <-
         axis.text.y = element_text(angle = 90, hjust = 0.5),
         legend.position = "right") +
   guides(color = guide_colorbar(order = 1, title.position = "top", title.hjust = 0.5),
-         shape = guide_legend(order = 2, direction = "vertical"))
+         shape = "none")
 
 p_combo <- 
   ((p_afd + ggtitle("(a) Annual No-Flow Days")) + 
@@ -116,7 +116,7 @@ p_combo <-
   theme(plot.title = element_text(face = "plain"))
 
 ggsave(file.path("figures_manuscript", "Trends_MannKendall-Maps.png"),
-       p_combo, width = 190, height = 240, units = "mm")
+       p_combo, width = 190, height = 200, units = "mm")
 
 ## comparison among trends
 df_mk_wide <-
