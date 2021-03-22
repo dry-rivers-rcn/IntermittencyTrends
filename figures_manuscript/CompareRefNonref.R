@@ -10,7 +10,8 @@ gage_regions <-
 gage_sample <- 
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleMean.csv")) %>% 
   dplyr::mutate(gage_ID = as.numeric(gage_ID)) %>% 
-  dplyr::select(gage_ID, CLASS)
+  dplyr::select(gage_ID, CLASS) %>% 
+  dplyr::left_join(gage_regions, by = "gage_ID")
 
 gage_sample_annual <-
   readr::read_csv(file = file.path("results", "00_SelectGagesForAnalysis_GageSampleAnnual.csv")) %>% 
@@ -28,6 +29,10 @@ gage_sample_annual <-
                 p.pet_ond = p_mm_ond/pet_mm_ond,
                 swe.p_ond = swe_mm_ond/p_mm_ond)
 
+gage_trends <- 
+  readr::read_csv(file.path("results", "00_SelectGagesForAnalysis_GageSampleTrends.csv")) %>% 
+  dplyr::left_join(gage_sample[,c("gage_ID", "CLASS", "region")], by = "gage_ID")
+
 ## collect data for plots
 metrics <- c("annualnoflowdays", "zeroflowfirst", "peak2z_length")
 
@@ -41,28 +46,34 @@ df_mean <-
   df_annual %>% 
   dplyr::group_by(gage_ID, CLASS, region, metric) %>% 
   dplyr::summarize(value_mean = mean(value, na.rm = T))
-#  dplyr::group_by(gage_ID, CLASS, region, metric) %>% 
-#  dplyr::summarize(anf_mean = mean(annualnoflowdays, na.rm = T),
-#                   p2z_mean = mean(peak2z_length, na.rm = T),
-#                   zff_mean = mean(zeroflowfirst, na.rm = T))
 
-## boxplots - mean, all gages
+df_trends <- 
+  gage_trends %>% 
+  subset(metric %in% metrics) 
+
+## compare mean values
+# boxplots - mean, all gages
 ggplot(df_mean, aes(x = metric, y = value_mean, fill = CLASS)) +
-  geom_boxplot(outlier.shape = 1) +
-  scale_fill_discrete(name = "Gage Class", labels = c("Non-Reference", "Reference")) +
+  geom_violin(draw_quantiles = 0.5) +
+  scale_fill_manual(name = "Gage Class", labels = c("Non-Reference", "Reference"),
+                    values = c(col.cat.org, col.cat.grn)) +
   scale_x_discrete(name = "Intermittency Signature", 
                    labels = c("No-Flow\nDays", "Peak to\nNo-Flow", "First No-Flow\nDay")) +
   scale_y_continuous(name = "Gage Average [days]", limits = c(0, 366), expand = c(0,0)) +
   theme(legend.position = c(0.99, 0.99),
         legend.justification = c(1, 1)) +
-  ggsave(file.path("figures_manuscript", "CompareRefNonref_Boxplots-AllGageMean.png"),
+  ggsave(file.path("figures_manuscript", "CompareRefNonref_Violin-MeanAllGage.png"),
          width = 95, height = 95, units = "mm")
 
-## boxplots - mean, by region
-ggplot(df_mean, aes(x = region, y = value_mean, fill = CLASS)) +
-  geom_boxplot() +
-  facet_wrap(~metric)
-
-## boxplots - annual, all gages
-ggplot(df_annual, aes(x = metric, y = value, fill = CLASS)) +
-  geom_boxplot()
+## compare trends
+# boxplots - trend, all gages
+ggplot(df_trends, aes(x = metric, y = mk_tau, fill = CLASS)) +
+  geom_hline(yintercept = 0, color = col.gray) +
+  geom_violin(draw_quantiles = 0.5) +
+  scale_fill_manual(name = "Gage Class", labels = c("Non-Reference", "Reference"),
+                      values = c(col.cat.org, col.cat.grn)) +
+  scale_x_discrete(name = "Intermittency Signature", 
+                   labels = c("No-Flow\nDays", "Peak to\nNo-Flow", "First No-Flow\nDay")) +
+  scale_y_continuous(name = "Kendall \u03c4") +
+  ggsave(file.path("figures_manuscript", "CompareRefNonref_Violin-TrendAllGage.png"),
+         width = 120, height = 95, units = "mm")
