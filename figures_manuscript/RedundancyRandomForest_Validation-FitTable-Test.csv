@@ -1,0 +1,22 @@
+metric,region_rf,region,Rsq,RMSE,NRMSE,KGE
+No-Flow Days,National,Eastern Forests,0.66,38.876,10.7,0.607
+No-Flow Days,National,Mediterranean California,0.71,67.062,18.4,0.663
+No-Flow Days,National,North Great Plains,0.66,45.842,12.6,0.611
+No-Flow Days,National,South Great Plains,0.73,60.551,16.6,0.659
+No-Flow Days,National,Western Desert,0.92,39.615,10.9,0.877
+No-Flow Days,National,Western Mountains,0.81,53.077,14.5,0.758
+No-Flow Days,National,NA,0.77,52.908,14.5,0.733
+Days from Peak to No-Flow,National,Eastern Forests,0.3,20.069,6.7,0.345
+Days from Peak to No-Flow,National,Mediterranean California,0.25,17.392,10.9,0.264
+Days from Peak to No-Flow,National,North Great Plains,0.16,22.761,12,0.216
+Days from Peak to No-Flow,National,South Great Plains,0.39,12.576,6.7,0.426
+Days from Peak to No-Flow,National,Western Desert,0.42,10.654,13.3,0.557
+Days from Peak to No-Flow,National,Western Mountains,0.32,21.503,11.7,0.341
+Days from Peak to No-Flow,National,NA,0.33,17.501,5.8,0.383
+First No-Flow Day,National,Eastern Forests,0.63,40.331,11.4,0.586
+First No-Flow Day,National,Mediterranean California,0.4,53.45,14.7,0.383
+First No-Flow Day,National,North Great Plains,0.45,60.459,18.1,0.434
+First No-Flow Day,National,South Great Plains,0.45,47.903,13.6,0.421
+First No-Flow Day,National,Western Desert,0.56,36.221,11.5,0.541
+First No-Flow Day,National,Western Mountains,0.44,62.914,17.3,0.48
+First No-Flow Day,National,NA,0.52,49.763,13.7,0.523
