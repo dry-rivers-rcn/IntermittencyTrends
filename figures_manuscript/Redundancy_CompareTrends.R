@@ -40,12 +40,12 @@ ggplot() +
   scale_y_continuous(name = "Latitude") +
   scale_color_manual(name = NULL,
                      values = c("TRUE" = "black", "FALSE" = col.cat.red),
-                     labels = c("TRUE" = "Not Redundant", "FALSE" = "Redundant")) +
+                     labels = c("TRUE" = "Not Redundant", "FALSE" = "Potentially Redundant")) +
   coord_sf() +
   theme(panel.border = element_blank(),
         legend.position = "bottom") +
   ggsave(file.path("figures_manuscript", "Redundancy_MapOfGages.png"),
-         width = 190, height = 95, units = "mm")
+         width = 190, height = 120, units = "mm")
 
 ## gages removed by trend significance
 gage_trends %>% 
