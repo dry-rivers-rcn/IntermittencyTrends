@@ -89,6 +89,27 @@ lm(tau_annualnoflowdays ~ tau_p.pet_cy, data = fit_data_in) %>% summary()
 lm(tau_peak2z_length ~ tau_p.pet_cy, data = fit_data_in) %>% summary()
 lm(tau_zeroflowfirst ~ tau_p.pet_cy, data = fit_data_in) %>% summary()
 
+## separate plots for each region for SI
+fit_data_in %>% 
+  dplyr::select(region, tau_annualnoflowdays, tau_zeroflowfirst, tau_peak2z_length, tau_p.pet_cy) %>% 
+  tidyr::pivot_longer(c("tau_annualnoflowdays", "tau_zeroflowfirst", "tau_peak2z_length")) %>% 
+  ggplot(aes(x = tau_p.pet_cy, y = value, color = region)) +
+  geom_hline(yintercept = 0, color = col.gray) + 
+  geom_vline(xintercept = 0, color = col.gray) +
+  geom_point() +
+  stat_smooth(method = "lm") +
+  facet_grid(region ~ name, labeller = as_labeller(c(lab_regions_2line, 
+                                                     "tau_annualnoflowdays" = "Annual No-Flow Days,\nKendall \u03c4", 
+                                                     "tau_peak2z_length" = "Peak to No-Flow Days,\nKendall \u03c4", 
+                                                     "tau_zeroflowfirst" = "First No-Flow Day,\nKendall \u03c4"))) +
+  scale_x_continuous(name = "P/PET, Kendall \u03c4", expand = c(0, 0.01)) +
+  scale_y_continuous(name = "Intermittency Signature, Kendall \u03c4", expand = c(0, 0.01)) +
+  scale_color_manual(values = pal_regions, guide = F) +
+  ggsave(file.path("figures_manuscript", "Trends_CompareTrendsToDrivers-MetricsVsAridity-SplitByRegion.png"),
+         width = 190, height = 210, units = "mm")
+
+
+
 ## exploratory
 fit_data_in %>% 
   dplyr::select(region, tau_annualnoflowdays, tau_zeroflowfirst, tau_peak2z_length, T_max_c_cy) %>% 
