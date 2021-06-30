@@ -121,6 +121,13 @@ p_nat_zff <-
   ggsave(file.path("figures_manuscript", "RandomForest_VariableImportance.png"),
          width = 190, height = 95, units = "mm")
 
+((p_nat_anf + p_nat_p2z + p_nat_zff) + 
+    plot_layout(guides = 'collect') & 
+    theme(legend.position = "bottom",
+          plot.title = element_text(face = "plain"))) +
+  ggsave(file.path("figures_manuscript", "Figure6.pdf"),
+         width = 190, height = 95, units = "mm", device = cairo_pdf)
+
 ## partial dependence plots
 p_pdp_anf <-
   ggplot(pdp_anf, aes(x = value, y = yhat, color = Category)) +

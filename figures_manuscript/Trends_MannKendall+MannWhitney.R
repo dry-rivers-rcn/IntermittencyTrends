@@ -118,6 +118,9 @@ p_combo <-
 ggsave(file.path("figures_manuscript", "Trends_MannKendall-Maps.png"),
        p_combo, width = 190, height = 200, units = "mm")
 
+ggsave(file.path("figures_manuscript", "Figure2.pdf"),
+       p_combo, width = 140, height = 200, units = "mm", device = cairo_pdf)
+
 ## comparison among trends
 df_mk_wide <-
   df_mk %>% 
@@ -318,9 +321,14 @@ p_mw_map_combo <-
   plot_layout(ncol = 3)
 
 ((p_mw_hist / p_mw_map_combo) +
-  plot_layout(heights = c(0.4, 0.6))) +
+    plot_layout(heights = c(0.4, 0.6))) +
   ggsave(file.path("figures_Manuscript", "Trends_MannWhitney-Hist+Maps.png"),
          width = 190, height = 150, units = "mm") 
+
+((p_mw_hist / p_mw_map_combo) +
+    plot_layout(heights = c(0.4, 0.6))) +
+  ggsave(file.path("figures_Manuscript", "Figure4.pdf"),
+         width = 190, height = 130, units = "mm", device = cairo_pdf) 
 
 ## mann-whitney stats
 # percent of gages with significant, positive, negative trends
