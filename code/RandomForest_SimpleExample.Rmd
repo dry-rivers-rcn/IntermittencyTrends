@@ -1,6 +1,6 @@
 ---
 title: "Random Forest - Simple example"
-output: github_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}

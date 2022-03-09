@@ -42,7 +42,7 @@ library(tidymodels)
     ## x dplyr::lag()      masks stats::lag()
     ## x yardstick::spec() masks readr::spec()
     ## x recipes::step()   masks stats::step()
-    ## * Learn how to get started at https://www.tidymodels.org/start/
+    ## * Dig deeper into tidy modeling with R at https://www.tmwr.org
 
 ``` r
 library(ranger)
