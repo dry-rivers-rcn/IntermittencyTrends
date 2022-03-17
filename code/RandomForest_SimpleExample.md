@@ -1,6 +1,16 @@
 Random Forest - Simple example
 ================
 
+## Some links about random forest variable importance metrics
+
+-   [useful blog
+    post](https://www.r-bloggers.com/be-aware-of-bias-in-rf-variable-importance-metrics/)
+    -   suggests permutation importance as more robust
+    -   this accounts for highly correlated predictor variables, but is
+        super slow
+-   [useful slides by authors of party
+    package](https://www.statistik.uni-dortmund.de/useR-2008/slides/Strobl+Zeileis.pdf)
+
 ## Load packages
 
 ``` r
@@ -42,7 +52,7 @@ library(tidymodels)
     ## x dplyr::lag()      masks stats::lag()
     ## x yardstick::spec() masks readr::spec()
     ## x recipes::step()   masks stats::step()
-    ## * Dig deeper into tidy modeling with R at https://www.tmwr.org
+    ## * Learn how to get started at https://www.tidymodels.org/start/
 
 ``` r
 library(ranger)

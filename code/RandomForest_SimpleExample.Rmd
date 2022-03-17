@@ -7,6 +7,13 @@ output: rmarkdown::github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Some links about random forest variable importance metrics
+
+ - [useful blog post](https://www.r-bloggers.com/be-aware-of-bias-in-rf-variable-importance-metrics/)
+   - suggests permutation importance as more robust
+   - this accounts for highly correlated predictor variables, but is super slow
+ - [useful slides by authors of party package](https://www.statistik.uni-dortmund.de/useR-2008/slides/Strobl+Zeileis.pdf) 
+
 ## Load packages
 
 ```{r}
